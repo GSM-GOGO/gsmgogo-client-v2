@@ -39,5 +39,5 @@ export const Input = styled.input<ErrorType>`
 export const CertificationNumberWrapper = styled.div`
   display: flex;
   width: 100%;
-  justifycontent: space-between;
+  justify-content: space-between;
 `;

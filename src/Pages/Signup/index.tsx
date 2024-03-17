@@ -12,6 +12,7 @@ export default function SignUp() {
     formState: { errors },
     handleSubmit,
     setError,
+    reset
   } = useForm<{ phoneNumber: string; verificationCode: string }>({ mode: "onChange" });
 
   const onSubmit = (data: { phoneNumber: string; verificationCode: string }) => {
@@ -33,6 +34,7 @@ export default function SignUp() {
     if (showVerification) {
       // 이전으로
       setShowVerification(false);
+      reset(); 
     } else {
       // 넘어가기
       console.log("넘어가기");

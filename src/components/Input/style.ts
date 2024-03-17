@@ -14,6 +14,7 @@ export const Label = styled.label<ErrorType>`
   font-weight: 400;
   font-size: 12px;
   color: ${({ errors }) => (errors ? " #F03131" : "#929292")};
+  margin-top:${({ errors }) => (errors ? "8px" : "")};
 `;
 
 export const InputWrapper = styled.div`

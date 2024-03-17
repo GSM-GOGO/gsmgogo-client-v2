@@ -29,40 +29,37 @@ export const SubmitWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  div {
-    width: 100%;
-    display: flex;
-    gap: 10px;
-    button:first-child {
-      width: 50%;
-      height: 52px;
-      background: none;
-      border-radius: 10px;
-      font-weight: 600;
-      font-size: 18px;
-      color: #ffffff;
-      cursor: pointer;
-      border: 1px solid rgba(35, 246, 154, 1);
-      color: rgba(35, 246, 154, 1);
-    }
-    button:last-child {
-      width: 50%;
-      height: 52px;
-      color: rgba(183, 183, 190, 1);
-      background: rgba(68, 68, 75, 1);
-      border: none;
-      border-radius: 10px;
-      font-weight: 400;
-      font-weight: 600;
-      font-size: 18px;
+`;
 
-      cursor: pointer;
-    }
-    button.SubmitOK {
-      background: rgba(35, 246, 154, 1);
-      color: rgba(28, 28, 31, 1);
-    }
-  }
+export const ButtonContainer = styled.div`
+width: 100%;
+display: flex;
+gap: 10px;
+`;
+
+export const StyledButton = styled.button`
+  width: 50%;
+  height: 52px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 18px;
+  cursor: pointer;
+`;
+
+export const BeforeButton = styled(StyledButton)`
+  background: none;
+  border: 1px solid rgba(35, 246, 154, 1);
+  color: rgba(35, 246, 154, 1);
+`;
+
+export const CertificationButton = styled(StyledButton)<{ SubmitOK?: boolean }>`
+  background: ${({ SubmitOK }) => (SubmitOK ? "rgba(35, 246, 154, 1)" : "rgba(68, 68, 75, 1)")};
+  color: ${({ SubmitOK }) => (SubmitOK ? "rgba(28, 28, 31, 1)" : "rgba(183, 183, 190, 1)")};
+`;
+
+export const SuccessButton = styled(StyledButton)`
+  background: rgba(35, 246, 154, 1);
+  color: rgba(28, 28, 31, 1);
 `;
 
 export const Form = styled.form`

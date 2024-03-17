@@ -82,14 +82,14 @@ export default function SignUp() {
             )}
           </InputWrapper>
           <SubmitWrapper>
-            <div>
-              <button type="button" onClick={handleButtonClick}>
+            <S.ButtonContainer>
+              <S.BeforeButton type="button" onClick={handleButtonClick}>
                 {showVerification ? "이전으로" : "넘어가기"}
-              </button>
-              <button type="submit" className={Object.keys(errors).length === 0 ? "SubmitOK" : ""}>
+              </S.BeforeButton>
+              <S.CertificationButton type="submit" SubmitOK={Object.keys(errors).length === 0}>
                 {showVerification ? "인증하기" : "인증번호"}
-              </button>
-            </div>
+              </S.CertificationButton>
+            </S.ButtonContainer>
           </SubmitWrapper>
         </Form>
       </S.Wrapper>

@@ -17,7 +17,7 @@ interface Props {
 export default function Input({ label, errors, message, register, type = "tel", maxLength, placeholder, readOnly }: Props) {
   return (
     <S.Wrapper>
-      <S.Label errors={false} style={{ height: "15px" }}>
+      <S.Label style={{ height: "15px" }}>
         <div style={{ width: "70px" }}>{label}</div>
         {label == "인증번호" && (
           <S.CertificationNumberWrapper>

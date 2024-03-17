@@ -1,6 +1,6 @@
 import styled from "styled-components";
 type ErrorType = {
-  errors: boolean;
+  errors?: boolean;
 };
 
 export const Wrapper = styled.div`

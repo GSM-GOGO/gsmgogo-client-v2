@@ -1,6 +1,6 @@
 import styled from "styled-components";
 type ErrorType = {
-  errors?: boolean;
+  erroredStyle ?: boolean;
 };
 
 export const Wrapper = styled.div`
@@ -13,8 +13,8 @@ export const Label = styled.label<ErrorType>`
   align-items: center;
   font-weight: 400;
   font-size: 12px;
-  color: ${({ errors }) => (errors ? " #F03131" : "#929292")};
-  margin-top:${({ errors }) => (errors ? "8px" : "")};
+  color: ${({ erroredStyle  }) => (erroredStyle  ? " #F03131" : "#929292")};
+  margin-top:${({ erroredStyle  }) => (erroredStyle  ? "8px" : "")};
 `;
 
 export const InputWrapper = styled.div`
@@ -27,7 +27,7 @@ export const Input = styled.input<ErrorType>`
   height: 44px;
   outline: none;
   border: none;
-  border-bottom: 1px solid ${({ errors }) => (errors ? " #F03131" : "#929292")};
+  border-bottom: 1px solid ${({ erroredStyle  }) => (erroredStyle  ? " #F03131" : "#929292")};
   color: white;
   background: transparent;
   font-size: 14px;

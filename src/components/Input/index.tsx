@@ -29,7 +29,7 @@ export default function Input({ label, errors, message, register, type = "tel", 
       <S.InputWrapper>
         <S.Input type={type} {...register} maxLength={maxLength} placeholder={placeholder} errors={errors} autoComplete="off" readOnly={readOnly} />
       </S.InputWrapper>
-      <S.Label errors={errors}>{message && message}</S.Label>
+      <S.Label  errors={errors}>{message && message}</S.Label>
     </S.Wrapper>
   );
 }

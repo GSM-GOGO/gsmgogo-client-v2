@@ -8,7 +8,7 @@ interface TimerProps {
   setError?: UseFormSetError<FormData>;
 }
 
-const timer: React.FC<TimerProps> = ({ count, setCount ,setError}) => {
+const Timer: React.FC<TimerProps> = ({ count, setCount ,setError}) => {
 
   const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
@@ -38,4 +38,4 @@ const timer: React.FC<TimerProps> = ({ count, setCount ,setError}) => {
   );
 };
 
-export default timer;
+export default Timer;

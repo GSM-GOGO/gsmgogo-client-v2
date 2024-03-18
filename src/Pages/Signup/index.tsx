@@ -64,7 +64,7 @@ export default function SignUp() {
               register={register("phoneNumber", {
                 required: "전화번호를 입력하지 않았습니다",
                 pattern: {
-                  value: /^[0-9]{10,11}$/,
+                  value: /^010[0-9]{8}$/,
                   message: "올바른 전화번호 형식을 입력해주세요",
                 },
               })}

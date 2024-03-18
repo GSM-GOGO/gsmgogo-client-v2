@@ -20,7 +20,8 @@ interface Props {
 }
 
 export default function Input({ label, errors, message, register, type = "tel", maxLength, placeholder, readOnly, setError, reset }: Props) {
-  const [count, setCount] = useState(10);
+  const validtime = 10; // 인증번호 시간
+  const [count, setCount] = useState(validtime);
   const [expired, setExpired] = useState(false);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export default function Input({ label, errors, message, register, type = "tel", 
   }, [count]);
 
   const resetTimer = () => {
-    setCount(10);
+    setCount(validtime);
     setExpired(false);
     if (setError) {
       setError("verificationCode", { type: "manual", message: "" });

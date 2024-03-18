@@ -4,12 +4,8 @@ import { Form, InputWrapper, SubmitWrapper } from "./style";
 import * as S from "./style";
 import { useState } from "react";
 import { Logo } from "../../assets/svg";
-
+import { FormData } from "../../types/FormDataType";
 export default function SignUp() {
-  interface FormData {
-    phoneNumber: string;
-    verificationCode: string;
-  }
   
   const [showVerification, setShowVerification] = useState(false);
   const {
@@ -75,6 +71,8 @@ export default function SignUp() {
                 label="인증번호"
                 errors={!!errors.verificationCode}
                 message={errors.verificationCode?.message}
+                setError={setError}
+                reset={() => reset({ verificationCode: "" })}
                 placeholder="인증번호를 입력해주세요"
                 register={register("verificationCode", {
                   required: "인증번호를 입력하지 않았습니다",
@@ -91,7 +89,7 @@ export default function SignUp() {
               <S.BeforeButton type="button" onClick={handleButtonClick}>
                 {showVerification ? "이전으로" : "넘어가기"}
               </S.BeforeButton>
-              <S.CertificationButton type="submit" SubmitOK={Object.keys(errors).length === 0}>
+              <S.CertificationButton type="submit" SubmitOK={Object.keys(errors).length === 0} disabled={Object.keys(errors).length !== 0}>
                 {showVerification ? "인증하기" : "인증번호"}
               </S.CertificationButton>
             </S.ButtonContainer>

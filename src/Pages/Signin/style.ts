@@ -30,3 +30,23 @@ export const ImgBox = styled.img`
   background-repeat: no-repeat;
   background-size: cover;
 `;
+
+export const GauthLoginButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+  max-width: 17rem;
+  max-height: 5rem;
+  white-space: nowrap;
+  background: white;
+  color: #2e80cc;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 1.5469rem;
+  padding: 1.0125rem 0;
+  font-weight: 600;
+  outline: none;
+  border: none;
+`;

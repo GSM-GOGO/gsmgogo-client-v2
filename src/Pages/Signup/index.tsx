@@ -6,6 +6,11 @@ import { useState } from "react";
 import { Logo } from "../../assets/svg";
 
 export default function SignUp() {
+  interface FormData {
+    phoneNumber: string;
+    verificationCode: string;
+  }
+  
   const [showVerification, setShowVerification] = useState(false);
   const {
     register,
@@ -13,9 +18,9 @@ export default function SignUp() {
     handleSubmit,
     setError,
     reset
-  } = useForm<{ phoneNumber: string; verificationCode: string }>({ mode: "onChange" });
+  } = useForm<FormData>({ mode: "onChange" });
 
-  const onSubmit = (data: { phoneNumber: string; verificationCode: string }) => {
+  const onSubmit = (data: FormData) => {
     if (!showVerification) {
       console.log("전화번호가 제출되었습니다", data.phoneNumber);
       setShowVerification(true); // 인증번호 input 보이기

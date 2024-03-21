@@ -1,16 +1,6 @@
 import * as S from "./style";
 import { PlayingButton, Vote, NotVote } from "../../assets";
-
-export interface ArrayProps {
-  isYes: boolean;
-  isFinal: boolean;
-  Playing: string[];
-  TeamName: string[];
-  Grade: string[];
-  Time: string[];
-  isLive: boolean;
-  isVoting: boolean;
-}
+import { ArrayProps } from "../../types/ArrayProps";
 
 const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName, Grade, Time, isLive, isVoting}) => {
   const getEventText = () => {

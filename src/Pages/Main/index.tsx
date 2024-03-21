@@ -1,7 +1,8 @@
 import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 import PlayingContainer from '../../components/PlayingContainer/index.tsx';
+import WeatherContainer from '../../components/WeatherContainer/index.tsx';
 import * as S from "./style";
-import { ArrayProps } from '../../components/PlayingContainer/index.tsx';
+import { ArrayProps } from '../../types/ArrayProps.ts';
 
 const dataArray: Array<ArrayProps> = [
   {
@@ -42,6 +43,9 @@ const Main = () => {
   return (
     <>
       <HeaderContainer/>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <WeatherContainer/>
+      </div>
       <S.MainContainer>
         {dataArray.map((data, index) => (
             <PlayingContainer 

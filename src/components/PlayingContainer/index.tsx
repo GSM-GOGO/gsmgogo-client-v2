@@ -15,7 +15,11 @@ export interface ArrayProps {
 const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName, Grade, Time, isLive, isVoting}) => {
   const getEventText = () => {
     if (isFinal) {
-      return '결승전';
+      return (
+        <S.EventTexts style={{color: "var(--Main, #23F69A)"}}>
+          결승전🔥
+        </S.EventTexts>
+      );
     } else {
       return isYes ? '예선' : '본선';
     }
@@ -36,18 +40,22 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
 
           <S.GradeBox>
             <S.OneGrade>
-              <S.TeamName>
-                {TeamName[0]}
-              </S.TeamName>
+              <div style={{width: "6.25rem", textAlign: "center"}}>
+                <S.TeamName>
+                  {TeamName[0]}
+                </S.TeamName>
+              </div>
               <S.GradeText>
                 {Grade[0]}
               </S.GradeText>
             </S.OneGrade>
 
             <S.OneGrade>
-              <S.TeamName>
-                {TeamName[1]}
-              </S.TeamName>
+              <div style={{width: "6.25rem", textAlign: "center"}}>
+                <S.TeamName>
+                  {TeamName[1]}
+                </S.TeamName>
+              </div>
               <S.GradeText>
                 {Grade[1]}
               </S.GradeText>

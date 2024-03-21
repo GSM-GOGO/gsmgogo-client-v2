@@ -8,7 +8,7 @@ const dataArray: Array<ArrayProps> = [
     isYes: true,
     isFinal: false,
     Playing: ["농구", "축구"],
-    TeamName: ["임정희 싹싺싺", "송선아 화이팅"],
+    TeamName: ["임정희싹싺싺싹", "송선아화이팅"],
     Grade: ["2학년 2반", "1학년 1반"],
     Time: ["00:00 ~ 12:45", "12:50 ~ 01:30"],
     isLive: true,

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ThreeDot } from "../../assets";
 import * as S from "./style";
+import { useEffect, useState } from "react";
 
 interface TextTypeProps {
   mainText: string,
@@ -14,16 +15,24 @@ const numberWithCommas = (x: string) => {
 
 const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
   const navigate= useNavigate();
+  const [rankingClicked, setRankingClicked] = useState(false);
+  const [miniClicked, setMiniClicked] = useState(false);
 
   const toMain = () => {
+    setMiniClicked(false)
+    setRankingClicked(false)
     navigate(`/`);
   }
 
   const toRanking = () => {
+    setRankingClicked(true);
+    setMiniClicked(false)
     navigate(`/ranking`);
   }
 
   const toMiniGame = () => {
+    setMiniClicked(true)
+    setRankingClicked(false)
     navigate(`/minigame`);
   }
 
@@ -41,7 +50,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
         <S.GoGoMiniText 
           onClick={toRanking}
           style={{
-            color: "var(--Gray1, #B7B7BE)",
+            color: rankingClicked ? "var(--Main, #23F69A)" : "var(--Gray1, #B7B7BE)",
             cursor: "pointer"
           }}
         >
@@ -51,17 +60,20 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
         <S.GoGoMiniText 
           onClick={toMiniGame}
           style={{
-            color: "var(--Gray1, #B7B7BE)",
+            color: miniClicked ? "var(--Main, #23F69A)" : "var(--Gray1, #B7B7BE)",
             cursor: "pointer"
           }}
         >
           {miniText[1]}
         </S.GoGoMiniText>
 
-        <S.GoGoMiniText style={{ color: "var(--Main, #23F69A)" }}>
+        <S.GoGoMiniText 
+          style={{ 
+            color: "var(--Main, #23F69A)" 
+            }}
+        >
           {numberWithCommas(point)}
           P
-        
         </S.GoGoMiniText>
 
         <div style={{cursor: "pointer"}}>

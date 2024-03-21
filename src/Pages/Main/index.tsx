@@ -1,9 +1,9 @@
-import * as S from './style.ts';
+import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 
 const Main = () => {
   return (
     <>
-      <S.TestTitle>Main</S.TestTitle>
+      <HeaderContainer/>
     </>
   );
 };

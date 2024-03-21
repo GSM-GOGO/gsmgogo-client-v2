@@ -17,7 +17,8 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.1",
     "react-router-dom": "^6.22.3",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.2.25",

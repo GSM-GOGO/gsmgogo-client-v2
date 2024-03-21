@@ -1,35 +1,54 @@
 import * as S from "./style";
-import { PlayingButton } from "../../assets";
+import { PlayingButton, Vote, NotVote } from "../../assets";
 
-const PlayContainer = () => {
+export interface ArrayProps {
+  isYes: boolean;
+  isFinal: boolean;
+  Playing: string[];
+  TeamName: string[];
+  Grade: string[];
+  Time: string[];
+  isLive: boolean;
+  isVoting: boolean;
+}
+
+const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName, Grade, Time, isLive, isVoting}) => {
+  const getEventText = () => {
+    if (isFinal) {
+      return '결승전';
+    } else {
+      return isYes ? '예선' : '본선';
+    }
+  };
+
   return(
     <S.PlayingContainer>
       <S.MainContainer>
         <S.EventContainer>
           <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
-            예선
+            {getEventText()}
           </S.EventTexts>
           <S.EventTexts style={{color: "#FFF"}}>
-            야구
+            {Playing[0]}
           </S.EventTexts>
         </S.EventContainer>
 
         <S.GradeBox>
           <S.OneGrade>
             <S.TeamName>
-              어쩌고저꺼고팀
+              {TeamName[0]}
             </S.TeamName>
             <S.GradeText>
-              2학년 3반
+              {Grade[0]}
             </S.GradeText>
           </S.OneGrade>
 
           <S.OneGrade>
             <S.TeamName>
-              어쩌고저꺼고팀
+              {TeamName[1]}
             </S.TeamName>
             <S.GradeText>
-              2학년 3반
+              {Grade[1]}
             </S.GradeText>
           </S.OneGrade>
         </S.GradeBox>
@@ -41,21 +60,21 @@ const PlayContainer = () => {
             투표 시간
           </S.TimeText>
           <S.TimeText>
-            00:00 ~ 12:45
+            {Time[0]}
           </S.TimeText>
         </S.OneTimeBox>
 
         <S.OneTimeBox>
           <S.TimeText>
-            투표 시간
+            경기 시간
           </S.TimeText>
           <S.TimeText>
-            00:00 ~ 12:45
+            {Time[1]}
           </S.TimeText>
         </S.OneTimeBox>
       </S.TimeContainer>
 
-      <div>
+      <div style={{display: "flex", justifyContent: "center"}}>
         <PlayingButton/>
       </div>
     </S.PlayingContainer>

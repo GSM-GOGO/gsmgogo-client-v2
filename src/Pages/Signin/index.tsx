@@ -1,11 +1,33 @@
 import * as S from './style.ts';
 import { GAuthLogo, SignInLogo } from '../../assets';
 import '@msg-team/gauth-react/dist/index.css';
-import { GAUTH_CLIENT_ID, REDIRECT_URI } from '../../utils/env.ts';
+
+import { useNavigate } from 'react-router-dom';
+import apiClient from '../../utils/libs/apiClient.ts';
+import { useEffect } from 'react';
+import IsLoggedIn from '../../utils/IsLoggedIn.ts';
+import { Login } from '../../utils/apis/auth.ts';
 
 const Signin = () => {
-  const handleSignIn = () => {
-    window.location.href = `https://gauth.co.kr/login?client_id=${GAUTH_CLIENT_ID}&redirect_uri=${REDIRECT_URI}`;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      if (await IsLoggedIn()) {
+        navigate('/');
+      }
+    };
+    checkLoggedIn();
+  }, []);
+  Login();
+
+  const handleSignIn = async () => {
+    try {
+      const response = await apiClient.get('/auth/login');
+      navigate(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
   return (
     <S.Wrapper>

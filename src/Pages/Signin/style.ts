@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: #202124;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +40,8 @@ export const GauthLoginButton = styled.button`
   max-width: 17rem;
   max-height: 5rem;
   white-space: nowrap;
-  background: white;
+  background: black;
+  border: 0.25rem solid #fff;
   color: #2e80cc;
   cursor: pointer;
   font-size: 1rem;
@@ -48,5 +49,5 @@ export const GauthLoginButton = styled.button`
   padding: 1.0125rem 0;
   font-weight: 600;
   outline: none;
-  border: none;
+  color: #23f69a;
 `;

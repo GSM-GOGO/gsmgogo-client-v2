@@ -6,11 +6,10 @@ export const HeaderWrapper = styled.div`
   padding: 1rem 41.25rem;
   justify-content: space-between;
   align-items: center;
-  @media (max-width: 1500px) {
-    width: 50vw;
-    height: 5vh;
-    padding: 0.5vw 15vh;
-    font-size: 3.6364vw;
+
+  @media (max-width: 1800px) {
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
   }
 `
 

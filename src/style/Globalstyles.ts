@@ -2,9 +2,11 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 	body{
+        background: var(--Black, #1C1C1F);
+        width: 100vw;
+        height: 100vh;
         padding: 0;
         margin: 0;
-        box-sizing: border-box;
     };
 
     @font-face {

@@ -8,7 +8,7 @@ export const HeaderWrapper = styled.div`
   align-items: center;
 
   @media (max-width: 1800px) {
-    padding: 1rem 3rem;
+    padding: 1rem 2rem;
     font-size: 1.5rem;
   }
 `
@@ -25,7 +25,7 @@ export const GoGoText = styled.h1`
 
 export const TextBox = styled.div`
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 3rem;
 `
 

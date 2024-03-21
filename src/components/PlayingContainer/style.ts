@@ -88,3 +88,9 @@ export const TimeText = styled.p`
   line-height: 1.125rem;
   margin: 0;
 `
+
+export const GrayLine = styled.div`
+width: 37.5rem;
+height: 0.0625rem;
+background: var(--colors-gray-gray-800, #44444B);
+`

@@ -22,62 +22,73 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
   };
 
   return(
-    <S.PlayingContainer>
-      <S.MainContainer>
-        <S.EventContainer>
-          <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
-            {getEventText()}
-          </S.EventTexts>
-          <S.EventTexts style={{color: "#FFF"}}>
-            {Playing[0]}
-          </S.EventTexts>
-        </S.EventContainer>
+    <>
+      <S.PlayingContainer>
+        <S.MainContainer>
+          <S.EventContainer>
+            <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
+              {getEventText()}
+            </S.EventTexts>
+            <S.EventTexts style={{color: "#FFF"}}>
+              {Playing[0]}
+            </S.EventTexts>
+          </S.EventContainer>
 
-        <S.GradeBox>
-          <S.OneGrade>
-            <S.TeamName>
-              {TeamName[0]}
-            </S.TeamName>
-            <S.GradeText>
-              {Grade[0]}
-            </S.GradeText>
-          </S.OneGrade>
+          <S.GradeBox>
+            <S.OneGrade>
+              <S.TeamName>
+                {TeamName[0]}
+              </S.TeamName>
+              <S.GradeText>
+                {Grade[0]}
+              </S.GradeText>
+            </S.OneGrade>
 
-          <S.OneGrade>
-            <S.TeamName>
-              {TeamName[1]}
-            </S.TeamName>
-            <S.GradeText>
-              {Grade[1]}
-            </S.GradeText>
-          </S.OneGrade>
-        </S.GradeBox>
-      </S.MainContainer>
+            <S.OneGrade>
+              <S.TeamName>
+                {TeamName[1]}
+              </S.TeamName>
+              <S.GradeText>
+                {Grade[1]}
+              </S.GradeText>
+            </S.OneGrade>
+          </S.GradeBox>
+        </S.MainContainer>
 
-      <S.TimeContainer>
-        <S.OneTimeBox>
-          <S.TimeText>
-            투표 시간
-          </S.TimeText>
-          <S.TimeText>
-            {Time[0]}
-          </S.TimeText>
-        </S.OneTimeBox>
+        <S.TimeContainer>
+          <S.OneTimeBox>
+            <S.TimeText>
+              투표 시간
+            </S.TimeText>
+            <S.TimeText>
+              {Time[0]}
+            </S.TimeText>
+          </S.OneTimeBox>
 
-        <S.OneTimeBox>
-          <S.TimeText>
-            경기 시간
-          </S.TimeText>
-          <S.TimeText>
-            {Time[1]}
-          </S.TimeText>
-        </S.OneTimeBox>
-      </S.TimeContainer>
+          <S.OneTimeBox>
+            <S.TimeText>
+              경기 시간
+            </S.TimeText>
+            <S.TimeText>
+              {Time[1]}
+            </S.TimeText>
+          </S.OneTimeBox>
+        </S.TimeContainer>
 
-      <div style={{display: "flex", justifyContent: "center"}}>
-        <PlayingButton/>
-      </div>
-    </S.PlayingContainer>
+        <div style={{display: "flex", justifyContent: "center"}}>
+          {isLive ? (
+              <PlayingButton/>
+          ) : (
+            isVoting ? <Vote /> : <NotVote />
+          )}
+        </div>
+      </S.PlayingContainer>
+      {isLive ? (
+        <S.GrayLine/>
+      ) : (
+        <></>
+      )}
+    </>
   )
 }
 

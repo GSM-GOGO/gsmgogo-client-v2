@@ -1,6 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main, Minigame, Ranking, Signin ,Signup } from './Pages';
+import { Main, Minigame, Ranking, Signin, Signup } from './Pages';
 import { GlobalStyles } from './style/Globalstyles.ts';
+import Soccer from './Pages/Category/Soccer/index.tsx';
+import Basketball from './Pages/Category/Basketball/index.tsx';
+import Volleyball from './Pages/Category/Volleyball/index.tsx';
 
 function App() {
   return (
@@ -13,6 +16,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/minigame" element={<Minigame />} />
+          <Route path="/matches/soccer" element={<Soccer />} />
+          <Route path="/matches/basketball" element={<Basketball />} />
+          <Route path="/matches/volleyball" element={<Volleyball />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </Router>

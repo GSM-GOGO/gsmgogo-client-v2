@@ -11,7 +11,15 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
         </S.EventTexts>
       );
     } else {
-      return isYes ? '예선' : '본선';
+      return isYes ? (
+          <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
+            '예선'
+          </S.EventTexts>
+        ) : (
+          <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
+            '본선'
+          </S.EventTexts>
+        );
     }
   };
 
@@ -20,9 +28,7 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
       <S.PlayingContainer>
         <S.MainContainer>
           <S.EventContainer>
-            <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
               {getEventText()}
-            </S.EventTexts>
             <S.EventTexts style={{color: "#FFF"}}>
               {Playing[0]}
             </S.EventTexts>

@@ -16,7 +16,7 @@ export default {
   },
 } as Meta;
 
-const Template = (args) => <Input {...args} />;
+const Template = (args : any) => <Input {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

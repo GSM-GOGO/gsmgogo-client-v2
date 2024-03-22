@@ -12,6 +12,7 @@ export const DateContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  cursor: pointer;
 `
 
 export const DayText = styled.p`

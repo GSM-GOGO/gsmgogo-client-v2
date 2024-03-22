@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
-import { playersList } from './soccerList.tsx';
+import { playersList } from '../soccerList.tsx';
 import * as D from './style.ts';
 import Draggable from "react-draggable";
 import FiledImg from "../../../assets/png/Field.png"

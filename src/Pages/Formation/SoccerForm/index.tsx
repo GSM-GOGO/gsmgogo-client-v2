@@ -1,9 +1,23 @@
-import { SoccerField } from '../../../assets/index.ts';
+import { useEffect, useRef, useState } from 'react';
+import { People } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
+import { playersList } from './soccerList.tsx';
 import * as D from './style.ts';
+import Draggable from "react-draggable";
+import FiledImg from "../../../assets/png/Field.png"
 
 const SoccerForm = () => {
+  const [bounds, setBounds] = useState({ left: 0, top: 0, right: 0, bottom: 0 });
+  const formationFieldRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (formationFieldRef.current) {
+      const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
+      setBounds({ left: left - 90, top: top - 165, right: right - left - 60, bottom: bottom - top - 60});
+    }
+}, []);
+
   return (
     <>
       <HeaderContainer/>
@@ -20,13 +34,25 @@ const SoccerForm = () => {
             </S.CategoryContainer>
 
             <S.ContainerResponse style={{paddingBottom: "3.5rem"}}>
-              <SoccerField/>
-
-              <D.PlayerContainer>
-                <D.PlayerText>
-                  
-                </D.PlayerText>
-              </D.PlayerContainer>
+                <D.ImgBox ref={formationFieldRef} img = {FiledImg} style={{position: "relative"}}>
+                    {playersList.map((player) => (
+                      <div key={player.id} style={{position: "absolute"}}>
+                        <div style={{position: "relative"}}>
+                            <Draggable
+                                defaultPosition={{ x: player.x, y: player.y }}
+                                bounds={bounds}
+                            >
+                              <D.PlayerContainer style={{cursor: "pointer"}}>
+                                  <People/>
+                                  <D.PlayerText style={{ userSelect: 'none' }}>
+                                    {player.name}
+                                  </D.PlayerText>
+                              </D.PlayerContainer>
+                            </Draggable>
+                        </div>
+                      </div>
+                    ))}
+                </D.ImgBox>
             </S.ContainerResponse>
 
             <S.ContainerResponse>

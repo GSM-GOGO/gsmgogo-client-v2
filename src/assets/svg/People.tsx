@@ -1,4 +1,4 @@
-const People = () => {
+const People = () => (
   <svg 
     width="22" 
     height="24" 
@@ -19,6 +19,6 @@ const People = () => {
       stroke="white"
     />
   </svg>
-}
+)
 
 export default People;

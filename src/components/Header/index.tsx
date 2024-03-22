@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { ThreeDot } from "../../assets";
 import * as S from "./style";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface TextTypeProps {
   mainText: string,

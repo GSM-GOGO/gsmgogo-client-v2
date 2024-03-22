@@ -5,7 +5,7 @@ import Soccer from './Pages/Category/Soccer/index.tsx';
 import Basketball from './Pages/Category/Basketball/index.tsx';
 import Volleyball from './Pages/Category/Volleyball/index.tsx';
 import SoccerForm from './Pages/Formation/SoccerForm/index.tsx';
-import BasketForm from './Pages/Formation/BasketForm/index.tsx';
+import BasketForm from './Pages/Formation/SoccerForm/index.tsx';
 import VolleyForm from './Pages/Formation/VolleyForm/index.tsx';
 
 function App() {

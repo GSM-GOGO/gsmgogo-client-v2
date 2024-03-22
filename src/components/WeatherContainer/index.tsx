@@ -3,6 +3,7 @@ import * as S from "./style";
 
 const WeatherContainer = () => {
   const [dates, setDates] = useState<Date[]>([]);
+  const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(null);
   const [dayOfWeek, setDayOfWeek] = useState<string[]>([]);
 
   useEffect(() => {
@@ -25,10 +26,18 @@ const WeatherContainer = () => {
     setDayOfWeek(newDayOfWeek);
   }, []);
 
+  const handleDateClick = (index: number) => {
+    setSelectedDateIndex(index);
+  };
+
   return (
     <S.WeatherWrapper>
       {dates.map((date, index) => (
-        <S.DateContainer key={index}>
+        <S.DateContainer 
+          key={index}
+          onClick={() => handleDateClick(index)} 
+          selected={index === selectedDateIndex}
+        >
           <S.DayText>
             {dayOfWeek[index]}
           </S.DayText>

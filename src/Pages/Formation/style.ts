@@ -25,10 +25,13 @@ export const CategoryContainer = styled.div`
   margin-top: 1.25rem;
   margin-bottom: 4rem;
   display: flex;
+  justify-content: space-between;
+  @media (max-width: 1800px) {
+    padding: 0.5rem 2rem;
+  }
 `
 
 export const Category = styled.p`
-  color: var(--White, #FFF);
   font-family: Pretendard;
   font-size: 1.5rem;
   font-style: normal;

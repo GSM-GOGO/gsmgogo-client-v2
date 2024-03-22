@@ -11,8 +11,11 @@ const SoccerForm = () => {
         <S.Container>
           <S.ContainerResponse>
             <S.CategoryContainer>
-              <S.Category>
+              <S.Category style={{color: "var(--White, #FFF)"}}>
                 어쩌구저쩌구팀 축구 포메이션
+              </S.Category>
+              <S.Category style={{color: "var(--Main, #23F69A)"}}>
+                3승
               </S.Category>
             </S.CategoryContainer>
 

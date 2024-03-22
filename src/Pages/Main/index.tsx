@@ -23,6 +23,7 @@ const dataArray: Array<ArrayProps> = [
     Score: [],
     BettingPoint: '',
     Winning: [],
+    Percent: [],
   },
 
   { //2
@@ -42,6 +43,7 @@ const dataArray: Array<ArrayProps> = [
     Score: [],
     BettingPoint: '',
     Winning: [],
+    Percent: [],
   },
 
   { //3
@@ -61,6 +63,7 @@ const dataArray: Array<ArrayProps> = [
     Score: [],
     BettingPoint: '',
     Winning: [],
+    Percent: [],
   },
 
 
@@ -72,7 +75,7 @@ const dataArray: Array<ArrayProps> = [
     isFinal: false,
     SportsName: '야구',
     TeamName: ['나이스나이스', '나이스나이스'],
-    Grade: ['2학년 SW', '1학년 SW'],
+    Grade: ['9학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
     isVoting: true,
@@ -84,6 +87,7 @@ const dataArray: Array<ArrayProps> = [
     Score: ["3", "1"],
     BettingPoint: '30000',
     Winning: [true, false],
+    Percent: ["64", "36"],
   },
 
   { //5
@@ -103,6 +107,7 @@ const dataArray: Array<ArrayProps> = [
     Score: ["3", "1"],
     BettingPoint: '50000',
     Winning: [true, false],
+    Percent: ["18", "82"],
   },
 
   { //6
@@ -110,7 +115,7 @@ const dataArray: Array<ArrayProps> = [
     isFinal: false,
     SportsName: '야구',
     TeamName: ['나이스나이스', '나이스나이스'],
-    Grade: ['2학년 SW', '1학년 SW'],
+    Grade: ['1학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
     isVoting: true,
@@ -122,6 +127,7 @@ const dataArray: Array<ArrayProps> = [
     Score: ["3", "1"],
     BettingPoint: '27000',
     Winning: [true, false],
+    Percent: ["64", "36"]
   },
 
   { //7
@@ -129,7 +135,7 @@ const dataArray: Array<ArrayProps> = [
     isFinal: false,
     SportsName: '야구',
     TeamName: ['나이스나이스', '나이스나이스'],
-    Grade: ['2학년 SW', '1학년 SW'],
+    Grade: ['0학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
     isVoting: true,
@@ -140,7 +146,8 @@ const dataArray: Array<ArrayProps> = [
     PredictScore: [],
     Score: ["3", "1"],
     BettingPoint: '',
-    Winning: [true, false],
+    Winning: [false, true],
+    Percent: ["64", "36"]
   },
 ];
 
@@ -174,6 +181,7 @@ const Main = () => {
                 Score={data.Score}
                 BettingPoint={data.BettingPoint}
                 Winning={data.Winning}
+                Percent={data.Percent}
               />
             ))}
           </S.MainContainer>

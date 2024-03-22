@@ -15,4 +15,5 @@ export interface ArrayProps {
   Score: string[] //경기의 score가 뭔지
   BettingPoint: string; //배팅한 결과의 포인트
   Winning: boolean[];
+  Percent: string[]; //AI 에측
 }

@@ -1,5 +1,5 @@
 import * as S from "./style";
-import { PlayingButton, Vote, NotVote } from "../../assets";
+import { PlayingButton, Vote, NotVote, PercentGuageBar } from "../../assets";
 import { ArrayProps } from "../../types/ArrayProps";
 
 const PlayContainer: React.FC<ArrayProps> = (
@@ -15,6 +15,7 @@ const PlayContainer: React.FC<ArrayProps> = (
     isFavorite, 
     isFinish,
     Winning,
+    Percent,
   }
   ) => {
   
@@ -70,7 +71,7 @@ const PlayContainer: React.FC<ArrayProps> = (
                     </S.TeamName>
                   )}  
                 </div>
-                <S.GradeText>
+                <S.GradeText style={{color: 'var(--Gray2, #6F6F7B)'}}>
                   {Grade[0]}
                 </S.GradeText>
               </S.OneGrade>
@@ -89,7 +90,7 @@ const PlayContainer: React.FC<ArrayProps> = (
                     </S.TeamName>
                   )}  
                 </div>
-                <S.GradeText>
+                <S.GradeText style={{color: 'var(--Gray2, #6F6F7B)'}}>
                   {Grade[1]}
                 </S.GradeText>
               </S.OneGrade>
@@ -149,7 +150,7 @@ const PlayContainer: React.FC<ArrayProps> = (
                     {TeamName[0]}
                   </S.EventTexts>
                 )}
-                <S.GradeText>
+                <S.GradeText style={{color: 'var(--Gray2, #6F6F7B)'}}>
                   {Grade[0]}
                 </S.GradeText>
               </S.OneGrade>
@@ -166,12 +167,24 @@ const PlayContainer: React.FC<ArrayProps> = (
                     </S.EventTexts>
                   )}
                 </S.EventTexts>
-                <S.GradeText>
+                <S.GradeText style={{color: 'var(--Gray2, #6F6F7B)'}}>
                   {Grade[1]}
                 </S.GradeText>
               </S.OneGrade>
             </S.GradeBox>
           </S.MainContainer>
+
+          <S.PercentBar>
+            <S.GradeText style={{color: 'var(--Gray1, #B7B7BE)'}}>
+              {Percent[0]}
+            </S.GradeText>
+
+            <PercentGuageBar percent={Percent[0]} />
+
+            <S.GradeText style={{color: 'var(--Gray2, #6F6F7B)'}}>
+              {Percent[1]}
+            </S.GradeText>
+          </S.PercentBar>
         </S.PlayingContainer>
 
         <S.PlayingContainer>

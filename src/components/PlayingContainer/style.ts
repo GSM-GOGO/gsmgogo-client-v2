@@ -55,7 +55,6 @@ export const TeamName = styled.h3`
 `
 
 export const GradeText = styled.p`
-  color: var(--Gray2, #6F6F7B);
   font-family: Pretendard;
   font-size: 0.875rem;
   font-style: normal;
@@ -101,3 +100,22 @@ export const PredictContainer = styled.div`
   border-radius: 0.75rem;
   background: var(--colors-gray-gray-900, #26262A);
 `
+
+export const PercentBar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`
+
+export const GaugeBarContainer = styled.div`
+  width: 150px;
+  height: 12px;
+  position: relative;
+`;
+
+export const GaugeBarFill = styled.div`
+  position: absolute;
+  height: 100%;
+  background-color: #B7B7BE;
+  border-radius: 6px;
+`;

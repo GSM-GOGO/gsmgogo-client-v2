@@ -6,8 +6,6 @@ export const PlayingContainer = styled.div`
   padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0.75rem;
-  background: var(--colors-gray-gray-900, #26262A);
 `
 
 export const MainContainer = styled.div`

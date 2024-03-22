@@ -14,8 +14,10 @@ const PlayContainer: React.FC<ArrayProps> = (
     isVoting, 
     isFavorite, 
     isFinish,
+    Winning,
   }
   ) => {
+  
   const getEventText = () => {
     if (isFinal) {
       return (
@@ -25,11 +27,11 @@ const PlayContainer: React.FC<ArrayProps> = (
       );
     } else {
       return isPredictGame ? (
-          <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
+          <S.EventTexts style={{color: "var(--White, #FFF)"}}>
             예선
           </S.EventTexts>
         ) : (
-          <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
+          <S.EventTexts style={{color: "var(--White, #FFF)"}}>
             본선
           </S.EventTexts>
         );
@@ -49,7 +51,7 @@ const PlayContainer: React.FC<ArrayProps> = (
             <S.EventContainer>
                 {getEventText()}
               <S.EventTexts style={{color: "#FFF"}}>
-                {SportsName[0]}
+                {SportsName}
               </S.EventTexts>
             </S.EventContainer>
 
@@ -130,7 +132,51 @@ const PlayContainer: React.FC<ArrayProps> = (
       </>
     ) : (
       <S.PredictContainer>
-        
+        <S.PlayingContainer>
+          <S.MainContainer>
+            <S.EventTexts style={{color: 'var(--White, #FFF)'}}>
+              {SportsName}
+            </S.EventTexts>
+
+            <S.GradeBox>
+              <S.OneGrade>
+                {Winning[0] === true ? (
+                  <S.EventTexts style={{color: "var(--White, #FFF)"}}>
+                    {TeamName[0]}
+                  </S.EventTexts>
+                ) : (
+                  <S.EventTexts style={{color: "var(--Gray2, #6F6F7B)"}}>
+                    {TeamName[0]}
+                  </S.EventTexts>
+                )}
+                <S.GradeText>
+                  {Grade[0]}
+                </S.GradeText>
+              </S.OneGrade>
+
+              <S.OneGrade>
+                <S.EventTexts>
+                  {Winning[1] === true ? (
+                    <S.EventTexts style={{color: "var(--White, #FFF)"}}>
+                      {TeamName[1]}
+                    </S.EventTexts>
+                  ) : (
+                    <S.EventTexts style={{color: "var(--Gray2, #6F6F7B)"}}>
+                      {TeamName[1]}
+                    </S.EventTexts>
+                  )}
+                </S.EventTexts>
+                <S.GradeText>
+                  {Grade[1]}
+                </S.GradeText>
+              </S.OneGrade>
+            </S.GradeBox>
+          </S.MainContainer>
+        </S.PlayingContainer>
+
+        <S.PlayingContainer>
+
+        </S.PlayingContainer>
       </S.PredictContainer>
     ) }
     </>

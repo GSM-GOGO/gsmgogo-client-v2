@@ -9,7 +9,7 @@ const dataArray: Array<ArrayProps> = [
   { //1
     isPredictGame: true,
     isFinal: false,
-    SportsName: ['농구', '축구'],
+    SportsName: '농구',
     TeamName: ['쌲싹싺싺싹', '나이스나이스'],
     Grade: ['2학년 SW', '2학년 임베'],
     Time: ['00:00 ~ 12:45', '12:50 ~ 01:30'],
@@ -20,15 +20,15 @@ const dataArray: Array<ArrayProps> = [
     isPredict: false,
     isSuccess: [],
     PredictScore: [],
-    Score: '',
-    ScorePoint: '',
+    Score: [],
+    BettingPoint: '',
     Winning: [],
   },
 
   { //2
     isPredictGame: false,
     isFinal: true,
-    SportsName: ['축구', '야구'],
+    SportsName: '축구',
     TeamName: ['안녕하세요1', '안녕하세요2'],
     Grade: ['1학년 SW', '2학년 SW'],
     Time: ['00:00 ~ 12:00', '12:50 ~ 01:00'],
@@ -39,15 +39,15 @@ const dataArray: Array<ArrayProps> = [
     isPredict: false,
     isSuccess: [],
     PredictScore: [],
-    Score: '',
-    ScorePoint: '',
+    Score: [],
+    BettingPoint: '',
     Winning: [],
   },
 
   { //3
     isPredictGame: false,
     isFinal: false,
-    SportsName: ['야구', '야구'],
+    SportsName: '야구',
     TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
     Grade: ['2학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
@@ -58,8 +58,8 @@ const dataArray: Array<ArrayProps> = [
     isPredict: false,
     isSuccess: [],
     PredictScore: [],
-    Score: '',
-    ScorePoint: '',
+    Score: [],
+    BettingPoint: '',
     Winning: [],
   },
 
@@ -70,8 +70,8 @@ const dataArray: Array<ArrayProps> = [
   { //4
     isPredictGame: false,
     isFinal: false,
-    SportsName: ['야구', '야구'],
-    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    SportsName: '야구',
+    TeamName: ['나이스나이스', '나이스나이스'],
     Grade: ['2학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
@@ -80,17 +80,17 @@ const dataArray: Array<ArrayProps> = [
     isFinish: true,
     isPredict: true,
     isSuccess: [false, true],
-    PredictScore: [],
-    Score: '',
-    ScorePoint: '',
+    PredictScore: ["2", "1"],
+    Score: ["3", "1"],
+    BettingPoint: '30000',
     Winning: [true, false],
   },
 
   { //5
     isPredictGame: false,
     isFinal: false,
-    SportsName: ['야구', '야구'],
-    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    SportsName: '야구',
+    TeamName: ['나이스나이스', '나이스나이스'],
     Grade: ['2학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
@@ -99,17 +99,17 @@ const dataArray: Array<ArrayProps> = [
     isFinish: true,
     isPredict: true,
     isSuccess: [false, true],
-    PredictScore: [],
-    Score: '',
-    ScorePoint: '',
+    PredictScore: ["3", "1"],
+    Score: ["3", "1"],
+    BettingPoint: '50000',
     Winning: [true, false],
   },
 
   { //6
     isPredictGame: false,
     isFinal: false,
-    SportsName: ['야구', '야구'],
-    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    SportsName: '야구',
+    TeamName: ['나이스나이스', '나이스나이스'],
     Grade: ['2학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
@@ -118,17 +118,17 @@ const dataArray: Array<ArrayProps> = [
     isFinish: true,
     isPredict: true,
     isSuccess: [false, true],
-    PredictScore: [],
-    Score: '',
-    ScorePoint: '',
+    PredictScore: ["1", "2"],
+    Score: ["3", "1"],
+    BettingPoint: '27000',
     Winning: [true, false],
   },
 
   { //7
     isPredictGame: false,
     isFinal: false,
-    SportsName: ['야구', '야구'],
-    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    SportsName: '야구',
+    TeamName: ['나이스나이스', '나이스나이스'],
     Grade: ['2학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
@@ -138,8 +138,8 @@ const dataArray: Array<ArrayProps> = [
     isPredict: false,
     isSuccess: [],
     PredictScore: [],
-    Score: '',
-    ScorePoint: '',
+    Score: ["3", "1"],
+    BettingPoint: '',
     Winning: [true, false],
   },
 ];
@@ -172,7 +172,7 @@ const Main = () => {
                 isSuccess={data.isSuccess}
                 PredictScore={data.PredictScore}
                 Score={data.Score}
-                ScorePoint={data.ScorePoint}
+                BettingPoint={data.BettingPoint}
                 Winning={data.Winning}
               />
             ))}

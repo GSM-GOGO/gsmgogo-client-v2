@@ -1,9 +1,4 @@
-type Players = {
-  id: number;
-  name: string;
-  x: number;
-  y: number;
-}
+import { Players } from "../../types/SportPlayerType";
 
 export const playersList: Players[] = [
   {

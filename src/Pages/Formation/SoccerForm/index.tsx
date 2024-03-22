@@ -17,7 +17,11 @@ const SoccerForm = () => {
   useEffect(() => {
     if (formationFieldRef.current) {
       const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
-      setBounds({ left: left - 90, top: top - 165, right: right - left - 60, bottom: bottom - top - 60});
+      console.log(left)
+      console.log(top)
+      console.log(right)
+      console.log(bottom)
+      setBounds({ left: 0, top: 0, right: right - left - 35, bottom: bottom - top - 60});
     }
 }, []);
 

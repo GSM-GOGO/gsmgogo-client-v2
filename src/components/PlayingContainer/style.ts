@@ -47,6 +47,7 @@ export const OneGrade = styled.div`
 `
 
 export const TeamName = styled.h3`
+  color: #FFF;
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;

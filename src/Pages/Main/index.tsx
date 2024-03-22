@@ -17,6 +17,11 @@ const dataArray: Array<ArrayProps> = [
     isVoting: false,
     isFavorite: [false, false],
     isFinish: false,
+    isPredict: false,
+    isSuccess: [],
+    PredictScore: [],
+    Score: '',
+    ScorePoint: '',
   },
 
   {
@@ -30,6 +35,11 @@ const dataArray: Array<ArrayProps> = [
     isVoting: false,
     isFavorite: [true, false],
     isFinish: false,
+    isPredict: false,
+    isSuccess: [],
+    PredictScore: [],
+    Score: '',
+    ScorePoint: '',
   },
 
   {
@@ -43,6 +53,11 @@ const dataArray: Array<ArrayProps> = [
     isVoting: true,
     isFavorite: [false, false],
     isFinish: false,
+    isPredict: false,
+    isSuccess: [],
+    PredictScore: [],
+    Score: '',
+    ScorePoint: '',
   },
 ];
 
@@ -70,6 +85,11 @@ const Main = () => {
                 isVoting={data.isVoting}
                 isFavorite={data.isFavorite}
                 isFinish={data.isFinish}
+                isPredict={data.isPredict}
+                isSuccess={data.isSuccess}
+                PredictScore={data.PredictScore}
+                Score={data.Score}
+                ScorePoint={data.ScorePoint}
               />
             ))}
           </S.MainContainer>

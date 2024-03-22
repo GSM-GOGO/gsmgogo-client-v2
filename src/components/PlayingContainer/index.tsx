@@ -1,16 +1,6 @@
 import * as S from "./style";
 import { PlayingButton, Vote, NotVote } from "../../assets";
-
-export interface ArrayProps {
-  isYes: boolean;
-  isFinal: boolean;
-  Playing: string[];
-  TeamName: string[];
-  Grade: string[];
-  Time: string[];
-  isLive: boolean;
-  isVoting: boolean;
-}
+import { ArrayProps } from "../../types/ArrayProps";
 
 const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName, Grade, Time, isLive, isVoting}) => {
   const getEventText = () => {
@@ -21,7 +11,15 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
         </S.EventTexts>
       );
     } else {
-      return isYes ? '예선' : '본선';
+      return isYes ? (
+          <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
+            '예선'
+          </S.EventTexts>
+        ) : (
+          <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
+            '본선'
+          </S.EventTexts>
+        );
     }
   };
 
@@ -30,9 +28,7 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
       <S.PlayingContainer>
         <S.MainContainer>
           <S.EventContainer>
-            <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
               {getEventText()}
-            </S.EventTexts>
             <S.EventTexts style={{color: "#FFF"}}>
               {Playing[0]}
             </S.EventTexts>

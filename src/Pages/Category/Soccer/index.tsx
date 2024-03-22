@@ -1,9 +1,17 @@
 import { useState } from 'react';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
+import Category from '../../../components/Category/index.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const Soccer = () => {
+  const navigate = useNavigate();
+
   const [cheer, setCheer] = useState(false);
+
+  const GoToForm = (sport: string) => {
+    navigate(`/matches/${sport}/form`)
+  }
 
   return (
     <>
@@ -36,12 +44,7 @@ const Soccer = () => {
         ) : null}
         <S.Container>
           <S.ContainerResponse>
-            <S.CategoryContainer>
-              <S.Category>경기</S.Category>
-              <S.Category>축구</S.Category>
-              <S.Category>농구</S.Category>
-              <S.Category>배구</S.Category>
-            </S.CategoryContainer>
+            <Category />
             <S.ListWrapper>
               <S.ListContainer>
                 <S.List>
@@ -52,7 +55,7 @@ const Soccer = () => {
                     </S.TeamTextContainer>
                     <S.WinText>3승</S.WinText>
                   </S.TextContainer>
-                  <S.FormationButton>포메이션</S.FormationButton>
+                  <S.FormationButton onClick={() => GoToForm("soccer")}>포메이션</S.FormationButton>
                 </S.List>
               </S.ListContainer>
               <S.Stroke />
@@ -67,7 +70,7 @@ const Soccer = () => {
                   </S.TextContainer>
                   <S.ButtonWrapper>
                     <S.ButtonContainer>
-                      <S.FormationButton>포메이션</S.FormationButton>
+                      <S.FormationButton onClick={() => GoToForm("soccer")}>포메이션</S.FormationButton>
                       <S.CheerButton onClick={() => setCheer(!cheer)}>응원하기</S.CheerButton>
                     </S.ButtonContainer>
                   </S.ButtonWrapper>
@@ -77,14 +80,14 @@ const Soccer = () => {
                 <S.List>
                   <S.TextContainer>
                     <S.TeamTextContainer>
-                      <S.TeamName>예슬팀</S.TeamName>
+                      <S.TeamName>축구팀</S.TeamName>
                       <S.TeamClass>3학년 2반</S.TeamClass>
                     </S.TeamTextContainer>
                     <S.WinText>3승</S.WinText>
                   </S.TextContainer>
                   <S.ButtonWrapper>
                     <S.ButtonContainer>
-                      <S.FormationButton>포메이션</S.FormationButton>
+                      <S.FormationButton onClick={() => GoToForm("soccer")}>포메이션</S.FormationButton>
                       <S.CheerButton onClick={() => setCheer(!cheer)}>응원하기</S.CheerButton>
                     </S.ButtonContainer>
                   </S.ButtonWrapper>

@@ -20,19 +20,6 @@ export const ContainerResponse = styled.div`
   flex-wrap: wrap;
 `;
 
-export const CategoryContainer = styled.div`
-  margin-top: 1.25rem;
-  margin-bottom: 2.5rem;
-  display: flex;
-  gap: 1.75rem;
-`;
-
-export const Category = styled.div`
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #6f6f7b;
-`;
-
 export const ListWrapper = styled.div`
   display: flex;
   width: 100%;

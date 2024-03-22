@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
-import { playersList } from './soccerList.tsx';
+import { SoccerPlayersList } from '../soccerList.tsx';
 import * as D from './style.ts';
 import Draggable from "react-draggable";
 import FiledImg from "../../../assets/png/Field.png"
@@ -17,7 +17,11 @@ const SoccerForm = () => {
   useEffect(() => {
     if (formationFieldRef.current) {
       const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
-      setBounds({ left: left - 90, top: top - 165, right: right - left - 60, bottom: bottom - top - 60});
+      console.log(left)
+      console.log(top)
+      console.log(right)
+      console.log(bottom)
+      setBounds({ left: 0, top: 0, right: right - left - 35, bottom: bottom - top - 60});
     }
 }, []);
 
@@ -32,8 +36,11 @@ const SoccerForm = () => {
         <S.Container>
           <S.ContainerResponse>
             <S.CategoryContainer>
-              <S.Category style={{color: "var(--White, #FFF)"}}>
-                어쩌구저쩌구팀 축구 포메이션
+              <S.Category style={{color: "var(--White, #FFF)", paddingRight: '1.5rem'}}>
+                어쩌구저쩌구FC 축구 포메이션
+                <D.MiniText>
+                  3학년 SW
+                </D.MiniText>
               </S.Category>
               <S.Category style={{color: "var(--Main, #23F69A)"}}>
                 3승
@@ -42,7 +49,7 @@ const SoccerForm = () => {
 
             <S.ContainerResponse style={{paddingBottom: "3.5rem"}}>
                 <D.ImgBox ref={formationFieldRef} img = {FiledImg} style={{position: "relative"}}>
-                    {playersList.map((player) => (
+                    {SoccerPlayersList.map((player) => (
                       <div key={player.id} style={{position: "absolute"}}>
                         <div style={{position: "relative"}}>
                             <Draggable

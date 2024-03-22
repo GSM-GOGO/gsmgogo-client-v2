@@ -21,10 +21,10 @@ export const ContainerResponse = styled.div`
 `;
 
 export const CategoryContainer = styled.div`
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 1.25rem;
+  margin-bottom: 2.5rem;
   display: flex;
-  gap: 28px;
+  gap: 1.75rem;
 `;
 
 export const Category = styled.div`
@@ -45,7 +45,7 @@ export const ListContainer = styled.div`
 `;
 
 export const List = styled.div`
-  padding: 24px 16px;
+  padding: 1.5rem 1rem;
   width: 100%;
   height: 4.25rem;
   border-radius: 0.75rem;
@@ -142,7 +142,7 @@ export const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: 1.5rem;
 `;
 
 export const ModalBackground = styled.div`
@@ -165,18 +165,18 @@ export const ModalContainer = styled.div`
   height: 10.5rem;
   background-color: #1d1d1d;
   border-radius: 0.875rem;
-  padding: 19px 0 0 0;
+  padding: 1.1875rem 0 0 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 0.75rem;
 `;
 
 export const ModalTextContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 0.25rem;
   align-items: center;
 `;
 
@@ -207,7 +207,7 @@ export const ModalNovelContainer = styled.div`
 export const ModalNovel = styled.p`
   text-align: center;
   margin: 0;
-  font-weight: 400px;
+  font-weight: 400;
   font-size: 0.875rem;
   font-family: pretendard;
   color: #6f6f7b;
@@ -220,7 +220,7 @@ export const ModalButtonContainer = styled.div`
 `;
 
 export const ModalCencleButton = styled.div`
-  border-top: 0.33px solid #545458a6;
+  border-top: 0.0206rem solid #545458a6;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -235,13 +235,13 @@ export const ModalCencleButton = styled.div`
 `;
 
 export const ModalCheerButton = styled.div`
-  border-top: 0.33px solid #545458a6;
-  border-left: 0.33px solid #545458a6;
+  border-top: 0.0206rem solid #545458a6;
+  border-left: 0.0206rem solid #545458a6;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 134.83px;
-  height: 44px;
+  width: 8.4269rem;
+  height: 2.75rem;
   cursor: pointer;
 
   color: #23f69a;

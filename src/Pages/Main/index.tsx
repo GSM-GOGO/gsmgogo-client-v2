@@ -14,6 +14,7 @@ const dataArray: Array<ArrayProps> = [
     Time: ["00:00 ~ 12:45", "12:50 ~ 01:30"],
     isLive: true,
     isVoting: false,
+    isFavorite: [false, false],
   },
 
   {
@@ -25,6 +26,7 @@ const dataArray: Array<ArrayProps> = [
     Time: ["00:00 ~ 12:00", "12:50 ~ 01:00"],
     isLive: false,
     isVoting: false,
+    isFavorite: [true, false],
   },
 
   {
@@ -36,6 +38,7 @@ const dataArray: Array<ArrayProps> = [
     Time: ["00:00 ~ 11:00", "12:50 ~ 11:00"],
     isLive: false,
     isVoting: true,
+    isFavorite: [false, false],
   },
 ];
 
@@ -58,6 +61,7 @@ const Main = () => {
               Time={data.Time}
               isLive={data.isLive}
               isVoting={data.isVoting}
+              isFavorite={data.isFavorite}
             />
         ))}
       </S.MainContainer>

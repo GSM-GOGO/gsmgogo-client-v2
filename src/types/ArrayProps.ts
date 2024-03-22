@@ -7,4 +7,5 @@ export interface ArrayProps {
   Time: string[];
   isLive: boolean;
   isVoting: boolean;
+  isFavorite: boolean[];
 }

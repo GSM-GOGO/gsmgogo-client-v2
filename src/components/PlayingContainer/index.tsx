@@ -2,7 +2,7 @@ import * as S from "./style";
 import { PlayingButton, Vote, NotVote } from "../../assets";
 import { ArrayProps } from "../../types/ArrayProps";
 
-const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName, Grade, Time, isLive, isVoting}) => {
+const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName, Grade, Time, isLive, isVoting, isFavorite}) => {
   const getEventText = () => {
     if (isFinal) {
       return (
@@ -13,11 +13,11 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
     } else {
       return isYes ? (
           <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
-            '예선'
+            예선
           </S.EventTexts>
         ) : (
           <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
-            '본선'
+            본선
           </S.EventTexts>
         );
     }
@@ -36,10 +36,18 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
 
           <S.GradeBox>
             <S.OneGrade>
-              <div style={{width: "6.25rem", textAlign: "center"}}>
-                <S.TeamName>
-                  {TeamName[0]}
-                </S.TeamName>
+              <div style={{width: "6.25rem"}}>
+                {isFavorite[0] ? (
+                  <>
+                    <S.TeamName style={{color: "var(--Main, #23F69A)"}}>
+                      {TeamName[0]}
+                    </S.TeamName>
+                  </>
+                ) : (
+                  <S.TeamName style={{color: "#FFF"}}>
+                    {TeamName[0]}
+                  </S.TeamName>
+                )}  
               </div>
               <S.GradeText>
                 {Grade[0]}
@@ -47,10 +55,18 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
             </S.OneGrade>
 
             <S.OneGrade>
-              <div style={{width: "6.25rem", textAlign: "center"}}>
-                <S.TeamName>
-                  {TeamName[1]}
-                </S.TeamName>
+              <div style={{width: "6.25rem"}}>
+                {isFavorite[1] ? (
+                  <>
+                    <S.TeamName style={{color: "var(--Main, #23F69A)"}}>
+                      {TeamName[1]}
+                    </S.TeamName>
+                  </>
+                ) : (
+                  <S.TeamName style={{color: "#FFF"}}>
+                    {TeamName[1]}
+                  </S.TeamName>
+                )}  
               </div>
               <S.GradeText>
                 {Grade[1]}

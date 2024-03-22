@@ -19,7 +19,7 @@ export const PlayerText = styled.p`
   margin: 0;
 `
 
-export const ImgBox = styled.div<{img : any}>`
+export const ImgBox = styled.div<{img: any}>`
   width: 365px;
   height: 550px;
   background: url(${({ img  }) => (img)});

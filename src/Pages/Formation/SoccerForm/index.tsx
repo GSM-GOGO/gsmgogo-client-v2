@@ -6,10 +6,13 @@ import { playersList } from './soccerList.tsx';
 import * as D from './style.ts';
 import Draggable from "react-draggable";
 import FiledImg from "../../../assets/png/Field.png"
+import { useNavigate } from 'react-router-dom';
 
 const SoccerForm = () => {
   const [bounds, setBounds] = useState({ left: 0, top: 0, right: 0, bottom: 0 });
   const formationFieldRef = useRef<HTMLDivElement>(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (formationFieldRef.current) {
@@ -17,6 +20,10 @@ const SoccerForm = () => {
       setBounds({ left: left - 90, top: top - 165, right: right - left - 60, bottom: bottom - top - 60});
     }
 }, []);
+
+  const GoBackButton = () => {
+    navigate(`/matches/soccer`)
+  }
 
   return (
     <>
@@ -56,7 +63,7 @@ const SoccerForm = () => {
             </S.ContainerResponse>
 
             <S.ContainerResponse>
-              <S.BackButton>
+              <S.BackButton onClick={GoBackButton}>
                 <S.BackText>
                   돌아가기
                 </S.BackText>

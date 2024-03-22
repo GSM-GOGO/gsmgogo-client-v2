@@ -8,6 +8,7 @@ export const WeatherWrapper = styled.div`
   align-items: flex-start;
   gap: 1.5rem;
   margin-bottom: 2.5rem;
+  width: 37.5rem;
 `
 
 export const DateContainer = styled.div<DateContainerProps>`

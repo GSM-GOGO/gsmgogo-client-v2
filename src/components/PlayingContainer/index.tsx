@@ -129,9 +129,9 @@ const PlayContainer: React.FC<ArrayProps> = (
           )}
       </>
     ) : (
-      <div>
+      <S.PredictContainer>
         
-      </div>
+      </S.PredictContainer>
     ) }
     </>
   )

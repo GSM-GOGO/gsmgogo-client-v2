@@ -94,3 +94,12 @@ width: 37.5rem;
 height: 0.0625rem;
 background: var(--colors-gray-gray-800, #44444B);
 `
+
+
+export const PredictContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 0.75rem;
+  background: var(--colors-gray-gray-900, #26262A);
+`

@@ -6,7 +6,7 @@ import { ArrayProps } from '../../types/ArrayProps.ts';
 import Category from '../../components/Category/index.tsx';
 
 const dataArray: Array<ArrayProps> = [
-  {
+  { //1
     isPredictGame: true,
     isFinal: false,
     SportsName: ['농구', '축구'],
@@ -22,9 +22,10 @@ const dataArray: Array<ArrayProps> = [
     PredictScore: [],
     Score: '',
     ScorePoint: '',
+    Winning: [],
   },
 
-  {
+  { //2
     isPredictGame: false,
     isFinal: true,
     SportsName: ['축구', '야구'],
@@ -40,9 +41,10 @@ const dataArray: Array<ArrayProps> = [
     PredictScore: [],
     Score: '',
     ScorePoint: '',
+    Winning: [],
   },
 
-  {
+  { //3
     isPredictGame: false,
     isFinal: false,
     SportsName: ['야구', '야구'],
@@ -58,6 +60,87 @@ const dataArray: Array<ArrayProps> = [
     PredictScore: [],
     Score: '',
     ScorePoint: '',
+    Winning: [],
+  },
+
+
+
+
+
+  { //4
+    isPredictGame: false,
+    isFinal: false,
+    SportsName: ['야구', '야구'],
+    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    Grade: ['2학년 SW', '1학년 SW'],
+    Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
+    isLive: false,
+    isVoting: true,
+    isFavorite: [false, false],
+    isFinish: true,
+    isPredict: true,
+    isSuccess: [false, true],
+    PredictScore: [],
+    Score: '',
+    ScorePoint: '',
+    Winning: [true, false],
+  },
+
+  { //5
+    isPredictGame: false,
+    isFinal: false,
+    SportsName: ['야구', '야구'],
+    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    Grade: ['2학년 SW', '1학년 SW'],
+    Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
+    isLive: false,
+    isVoting: true,
+    isFavorite: [false, false],
+    isFinish: true,
+    isPredict: true,
+    isSuccess: [false, true],
+    PredictScore: [],
+    Score: '',
+    ScorePoint: '',
+    Winning: [true, false],
+  },
+
+  { //6
+    isPredictGame: false,
+    isFinal: false,
+    SportsName: ['야구', '야구'],
+    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    Grade: ['2학년 SW', '1학년 SW'],
+    Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
+    isLive: false,
+    isVoting: true,
+    isFavorite: [false, false],
+    isFinish: true,
+    isPredict: true,
+    isSuccess: [false, true],
+    PredictScore: [],
+    Score: '',
+    ScorePoint: '',
+    Winning: [true, false],
+  },
+
+  { //7
+    isPredictGame: false,
+    isFinal: false,
+    SportsName: ['야구', '야구'],
+    TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
+    Grade: ['2학년 SW', '1학년 SW'],
+    Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
+    isLive: false,
+    isVoting: true,
+    isFavorite: [false, false],
+    isFinish: true,
+    isPredict: false,
+    isSuccess: [],
+    PredictScore: [],
+    Score: '',
+    ScorePoint: '',
+    Winning: [true, false],
   },
 ];
 
@@ -90,6 +173,7 @@ const Main = () => {
                 PredictScore={data.PredictScore}
                 Score={data.Score}
                 ScorePoint={data.ScorePoint}
+                Winning={data.Winning}
               />
             ))}
           </S.MainContainer>

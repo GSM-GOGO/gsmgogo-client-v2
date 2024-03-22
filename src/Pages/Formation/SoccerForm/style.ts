@@ -25,3 +25,12 @@ export const ImgBox = styled.div<{img: any}>`
   background: url(${({ img  }) => (img)});
   background-repeat: no-repeat;
 `;
+
+export const MiniText = styled.p`
+  color: var(--Gray2, #6F6F7B);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem;
+`

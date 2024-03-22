@@ -32,8 +32,11 @@ const SoccerForm = () => {
         <S.Container>
           <S.ContainerResponse>
             <S.CategoryContainer>
-              <S.Category style={{color: "var(--White, #FFF)"}}>
-                어쩌구저쩌구팀 축구 포메이션
+              <S.Category style={{color: "var(--White, #FFF)", paddingRight: '1.5rem'}}>
+                어쩌구저쩌구FC 축구 포메이션
+                <D.MiniText>
+                  3학년 SW
+                </D.MiniText>
               </S.Category>
               <S.Category style={{color: "var(--Main, #23F69A)"}}>
                 3승

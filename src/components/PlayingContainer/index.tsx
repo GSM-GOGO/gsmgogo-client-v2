@@ -244,6 +244,10 @@ const PlayContainer: React.FC<ArrayProps> = (
         <S.PlayingContainer>
           <S.UnderTextBox>
             {SuccesOfFail()}
+
+            <S.PercentBar>
+              
+            </S.PercentBar>
           </S.UnderTextBox>
         </S.PlayingContainer>
       </S.PredictContainer>

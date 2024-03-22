@@ -127,7 +127,7 @@ const dataArray: Array<ArrayProps> = [
     Score: ["1", "3"],
     BettingPoint: '27000',
     Winning: [true, false],
-    Percent: ["64", "36"]
+    Percent: ["72", "28"]
   },
 
   { //7

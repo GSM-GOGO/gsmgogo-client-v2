@@ -107,19 +107,6 @@ export const PercentBar = styled.div`
   gap: 0.5rem;
 `
 
-export const GaugeBarContainer = styled.div`
-  width: 150px;
-  height: 12px;
-  position: relative;
-`;
-
-export const GaugeBarFill = styled.div`
-  position: absolute;
-  height: 100%;
-  background-color: #B7B7BE;
-  border-radius: 6px;
-`;
-
 export const UnderTextBox = styled.div`
   display: flex;
   justify-content: space-between;

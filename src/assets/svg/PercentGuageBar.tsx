@@ -17,7 +17,7 @@ const PercentGuageBox = ({percent}) => (
       />
     <rect 
       y="-5" 
-      width={percent}
+      width={`${percent}%`} 
       height="25" 
       fill="#B7B7BE"
     />

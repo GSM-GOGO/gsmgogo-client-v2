@@ -17,6 +17,7 @@ const PlayContainer: React.FC<ArrayProps> = (
     Winning,
     Percent,
     Score,
+    PredictScore,
   }
   ) => {
   const getEventText = () => {
@@ -36,6 +37,33 @@ const PlayContainer: React.FC<ArrayProps> = (
             본선
           </S.EventTexts>
         );
+    }
+  };
+
+  const SuccesOfFail = () => {
+    const predictScore0 = parseInt(PredictScore[0]);
+    const predictScore1 = parseInt(PredictScore[1]);
+    const score0 = parseInt(Score[0]);
+    const score1 = parseInt(Score[1]);
+  
+    if (predictScore0 === score0 && predictScore1 === score1) {
+      return (
+        <S.EventTexts style={{ color: "var(--Main, #23F69A)" }}>
+          대성공🔥
+        </S.EventTexts>
+      );
+    } else if ((predictScore0 > predictScore1 && score0 > score1) || (predictScore0 < predictScore1 && score0 < score1)) {
+      return (
+        <S.EventTexts style={{ color: "var(--White, #FFF)" }}>
+          성공🎉
+        </S.EventTexts>
+      );
+    } else {
+      return (
+        <S.EventTexts style={{ color: "var(--Gray1, #B7B7BE)" }}>
+          실패💔
+        </S.EventTexts>
+      );
     }
   };
 
@@ -214,7 +242,9 @@ const PlayContainer: React.FC<ArrayProps> = (
         </S.PlayingContainer>
 
         <S.PlayingContainer>
-
+          <S.UnderTextBox>
+            {SuccesOfFail()}
+          </S.UnderTextBox>
         </S.PlayingContainer>
       </S.PredictContainer>
     ) }

@@ -119,3 +119,22 @@ export const GaugeBarFill = styled.div`
   background-color: #B7B7BE;
   border-radius: 6px;
 `;
+
+export const UnderTextBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+`
+
+export const WinORLosestyled = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+`
+
+export const PredictPointBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`

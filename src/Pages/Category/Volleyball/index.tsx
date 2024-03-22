@@ -2,9 +2,16 @@ import { useState } from 'react';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
+import { useNavigate } from 'react-router-dom';
 
 const Volleyball = () => {
+  const navigate = useNavigate();
+
   const [cheer, setCheer] = useState(false);
+
+  const GoToForm = (sport: string) => {
+    navigate(`/matches/${sport}/form`)
+  }
 
   return (
     <>
@@ -48,7 +55,7 @@ const Volleyball = () => {
                     </S.TeamTextContainer>
                     <S.WinText>3승</S.WinText>
                   </S.TextContainer>
-                  <S.FormationButton>포메이션</S.FormationButton>
+                  <S.FormationButton onClick={() => GoToForm("volleyball")}>포메이션</S.FormationButton>
                 </S.List>
               </S.ListContainer>
               <S.Stroke />
@@ -63,7 +70,7 @@ const Volleyball = () => {
                   </S.TextContainer>
                   <S.ButtonWrapper>
                     <S.ButtonContainer>
-                      <S.FormationButton>포메이션</S.FormationButton>
+                      <S.FormationButton onClick={() => GoToForm("volleyball")}>포메이션</S.FormationButton>
                       <S.CheerButton onClick={() => setCheer(!cheer)}>응원하기</S.CheerButton>
                     </S.ButtonContainer>
                   </S.ButtonWrapper>
@@ -80,7 +87,7 @@ const Volleyball = () => {
                   </S.TextContainer>
                   <S.ButtonWrapper>
                     <S.ButtonContainer>
-                      <S.FormationButton>포메이션</S.FormationButton>
+                      <S.FormationButton onClick={() => GoToForm("volleyball")}>포메이션</S.FormationButton>
                       <S.CheerButton onClick={() => setCheer(!cheer)}>응원하기</S.CheerButton>
                     </S.ButtonContainer>
                   </S.ButtonWrapper>

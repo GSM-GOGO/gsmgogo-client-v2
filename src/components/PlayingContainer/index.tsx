@@ -2,7 +2,7 @@ import * as S from "./style";
 import { PlayingButton, Vote, NotVote } from "../../assets";
 import { ArrayProps } from "../../types/ArrayProps";
 
-const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName, Grade, Time, isLive, isVoting, isFavorite}) => {
+const PlayContainer: React.FC<ArrayProps> = ({isPredictGame, isFinal, SportsName, TeamName, Grade, Time, isLive, isVoting, isFavorite}) => {
   const getEventText = () => {
     if (isFinal) {
       return (
@@ -11,7 +11,7 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
         </S.EventTexts>
       );
     } else {
-      return isYes ? (
+      return isPredictGame ? (
           <S.EventTexts style={{color: "var(--Gray1, #B7B7BE)"}}>
             예선
           </S.EventTexts>
@@ -30,7 +30,7 @@ const PlayContainer: React.FC<ArrayProps> = ({isYes, isFinal, Playing, TeamName,
           <S.EventContainer>
               {getEventText()}
             <S.EventTexts style={{color: "#FFF"}}>
-              {Playing[0]}
+              {SportsName[0]}
             </S.EventTexts>
           </S.EventContainer>
 

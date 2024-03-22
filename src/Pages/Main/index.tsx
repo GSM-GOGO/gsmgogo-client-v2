@@ -7,57 +7,42 @@ import Category from '../../components/Category/index.tsx';
 
 const dataArray: Array<ArrayProps> = [
   {
-    isYes: true,
+    isPredictGame: true,
     isFinal: false,
-    Playing: ['농구', '축구'],
+    SportsName: ['농구', '축구'],
     TeamName: ['쌲싹싺싺싹', '나이스나이스'],
-    Grade: ['2학년 2반', '1학년 1반'],
+    Grade: ['2학년 SW', '2학년 임베'],
     Time: ['00:00 ~ 12:45', '12:50 ~ 01:30'],
     isLive: true,
     isVoting: false,
     isFavorite: [false, false],
     isFinish: false,
-    isPredict: false,
-    isSuccess: [],
-    PredictScore: [], 
-    Score: '3 : 1', 
-    ScorePoint: '',
   },
 
   {
-    isYes: false,
+    isPredictGame: false,
     isFinal: true,
-    Playing: ['축구', '야구'],
+    SportsName: ['축구', '야구'],
     TeamName: ['안녕하세요1', '안녕하세요2'],
-    Grade: ['2학년 3반', '1학년 3반'],
+    Grade: ['1학년 SW', '2학년 SW'],
     Time: ['00:00 ~ 12:00', '12:50 ~ 01:00'],
     isLive: false,
     isVoting: false,
     isFavorite: [true, false],
     isFinish: false,
-    isPredict: false,
-    isSuccess: [],
-    PredictScore: [], 
-    Score: '2 : 1', 
-    ScorePoint: '',
   },
 
   {
-    isYes: false,
+    isPredictGame: false,
     isFinal: false,
-    Playing: ['야구', '야구'],
+    SportsName: ['야구', '야구'],
     TeamName: ['ㅜㅜㅜㅜㅜㅜ', 'ㅣㅣㅣㅣㅣㅣ'],
-    Grade: ['2학년 0반', '1학년 0반'],
+    Grade: ['2학년 SW', '1학년 SW'],
     Time: ['00:00 ~ 11:00', '12:50 ~ 11:00'],
     isLive: false,
     isVoting: true,
     isFavorite: [false, false],
     isFinish: false,
-    isPredict: false,
-    isSuccess: [],
-    PredictScore: [], 
-    Score: '0 : 1', 
-    ScorePoint: '',
   },
 ];
 
@@ -75,9 +60,9 @@ const Main = () => {
             {dataArray.map((data, index) => (
               <PlayingContainer
                 key={index}
-                isYes={data.isYes}
+                isPredictGame={data.isPredictGame}
                 isFinal={data.isFinal}
-                Playing={data.Playing}
+                SportsName={data.SportsName}
                 TeamName={data.TeamName}
                 Grade={data.Grade}
                 Time={data.Time}
@@ -85,11 +70,6 @@ const Main = () => {
                 isVoting={data.isVoting}
                 isFavorite={data.isFavorite}
                 isFinish={data.isFinish}
-                isPredict={data.isPredict}
-                isSuccess={data.isSuccess}
-                PredictScore={data.PredictScore}
-                Score={data.Score}
-                ScorePoint={data.ScorePoint}
               />
             ))}
           </S.MainContainer>

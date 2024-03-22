@@ -125,3 +125,17 @@ export const PredictPointBox = styled.div`
   align-items: center;
   gap: 1rem;
 `
+
+export const PredictText = styled.p`
+  color: var(--White, #FFF);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: 1.25rem;
+`
+
+export const PredictScoreBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+`

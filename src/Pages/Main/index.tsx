@@ -123,8 +123,8 @@ const dataArray: Array<ArrayProps> = [
     isFinish: true,
     isPredict: true,
     isSuccess: [false, true],
-    PredictScore: ["1", "2"],
-    Score: ["3", "1"],
+    PredictScore: ["9", "2"],
+    Score: ["1", "3"],
     BettingPoint: '27000',
     Winning: [true, false],
     Percent: ["64", "36"]

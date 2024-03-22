@@ -16,9 +16,9 @@ const PlayContainer: React.FC<ArrayProps> = (
     isFinish,
     Winning,
     Percent,
+    Score,
   }
   ) => {
-  
   const getEventText = () => {
     if (isFinal) {
       return (
@@ -178,13 +178,39 @@ const PlayContainer: React.FC<ArrayProps> = (
             <S.GradeText style={{color: 'var(--Gray1, #B7B7BE)'}}>
               {Percent[0]}
             </S.GradeText>
-
+            {/* 동적변환가능한 퍼센트게이지바 */}
             <PercentGuageBar percent={Percent[0]} />
 
             <S.GradeText style={{color: 'var(--Gray2, #6F6F7B)'}}>
               {Percent[1]}
             </S.GradeText>
           </S.PercentBar>
+
+          {parseInt(Score[0]) > parseInt(Score[1]) === true ? (
+            <div style={{display: "flex", gap: "0.5rem"}}>
+              <S.GradeText style={{color: "var(--White, #FFF)"}}> 
+                {Score[0]}
+              </S.GradeText>
+              <S.GradeText style={{color: 'var(--Gray1, #B7B7BE)'}}>
+                -
+              </S.GradeText>
+              <S.GradeText style={{color: 'var(--Gray1, #B7B7BE)'}}>
+                {Score[1]}
+              </S.GradeText>
+            </div>
+          ) : (
+            <div style={{display: "flex", gap: "0.5rem"}}>
+              <S.GradeText style={{color: 'var(--Gray1, #B7B7BE)'}}> 
+                {Score[0]}
+              </S.GradeText>
+              <S.GradeText style={{color: 'var(--Gray1, #B7B7BE)'}}>
+                -
+              </S.GradeText>
+              <S.GradeText style={{color: "var(--White, #FFF)"}}>
+                {Score[1]}
+              </S.GradeText>
+            </div>
+          )}
         </S.PlayingContainer>
 
         <S.PlayingContainer>

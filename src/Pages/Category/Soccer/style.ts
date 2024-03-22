@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 37.5rem;
+  width: 40.5rem;
 `;
 
 export const ContainerResponse = styled.div`

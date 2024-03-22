@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
-import { playersList } from '../soccerList.tsx';
+import { BasketplayersList } from '../BasketList.tsx';
 import * as D from './style.ts';
 import Draggable from "react-draggable";
 import BasketField from "../../../assets/png/BasketField.png"
@@ -17,7 +17,7 @@ const BasketForm = () => {
   useEffect(() => {
     if (formationFieldRef.current) {
       const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
-      setBounds({ left: left - 90, top: top - 165, right: right - left - 60, bottom: bottom - top - 60});
+      setBounds({ left: 0, top: 0, right: right - left - 35, bottom: bottom - top - 45});
     }
 }, []);
 
@@ -45,7 +45,7 @@ const BasketForm = () => {
 
             <S.ContainerResponse style={{paddingBottom: "3.5rem"}}>
                 <D.ImgBox ref={formationFieldRef} img = {BasketField} style={{position: "relative"}}>
-                    {playersList.map((player) => (
+                    {BasketplayersList.map((player) => (
                       <div key={player.id} style={{position: "absolute"}}>
                         <div style={{position: "relative"}}>
                             <Draggable

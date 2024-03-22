@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
-import { playersList } from '../soccerList.tsx';
+import { SoccerPlayersList } from '../soccerList.tsx';
 import * as D from './style.ts';
 import Draggable from "react-draggable";
 import FiledImg from "../../../assets/png/Field.png"
@@ -49,7 +49,7 @@ const SoccerForm = () => {
 
             <S.ContainerResponse style={{paddingBottom: "3.5rem"}}>
                 <D.ImgBox ref={formationFieldRef} img = {FiledImg} style={{position: "relative"}}>
-                    {playersList.map((player) => (
+                    {SoccerPlayersList.map((player) => (
                       <div key={player.id} style={{position: "absolute"}}>
                         <div style={{position: "relative"}}>
                             <Draggable

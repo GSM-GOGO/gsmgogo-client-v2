@@ -8,16 +8,20 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 40.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @media (max-width: 650px) {
+    width: 35rem;
+  }
+  @media (max-width: 550px) {
+    width: 30rem;
+  }
+  @media (max-width: 550px) {
+    width: 27.5rem;
+  }
 `;
 
 export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   align-items: center;
   gap: 1.5rem;
 `;

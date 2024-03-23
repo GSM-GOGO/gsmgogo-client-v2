@@ -158,9 +158,8 @@ const Main = () => {
       <S.Wrapper>
         <S.Container>
           <Category />
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
             <WeatherContainer />
-          </div>
           <S.MainContainer>
             {dataArray.map((data, index) => (
               <PlayingContainer
@@ -185,6 +184,7 @@ const Main = () => {
               />
             ))}
           </S.MainContainer>
+          </div>
         </S.Container>
       </S.Wrapper>
     </>

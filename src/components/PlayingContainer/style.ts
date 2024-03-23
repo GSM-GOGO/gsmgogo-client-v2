@@ -6,12 +6,24 @@ export const PlayingContainer = styled.div`
   padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
+  @media (max-width: 650px) {
+    width: 30rem;
+  }
+  @media (max-width: 500px) {
+    width: 27.5rem;
+  }
+  @media (max-width: 450px) {
+    width: 25rem;
+  }
 `
 
 export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  @media (max-width: 650px) {
+    gap: 1rem;
+  }
 `
 
 export const EventContainer = styled.div`
@@ -27,6 +39,9 @@ export const EventTexts = styled.h2`
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.7rem;
+  }
 `
 
 export const GradeBox = styled.div`
@@ -52,6 +67,16 @@ export const TeamName = styled.h3`
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
+`
+
+export const ForMedia = styled.div`
+  width: 6.25rem;
+  @media (max-width: 650px) {
+    width: 5rem;
+  }
 `
 
 export const GradeText = styled.p`
@@ -61,6 +86,9 @@ export const GradeText = styled.p`
   font-weight: 400;
   line-height: 1.25rem;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
 `
 
 export const TimeContainer = styled.div`

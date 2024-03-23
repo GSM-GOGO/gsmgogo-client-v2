@@ -92,7 +92,7 @@ const PlayContainer: React.FC<ArrayProps> = (
   
                 <S.GradeBox>
                   <S.OneGrade>
-                    <div style={{ width: "6.25rem" }}>
+                    <S.ForMedia>
                       {isFavorite[0] ? (
                         <S.TeamName style={{ color: "var(--Main, #23F69A)" }}>
                           {TeamName[0]}
@@ -102,14 +102,14 @@ const PlayContainer: React.FC<ArrayProps> = (
                           {TeamName[0]}
                         </S.TeamName>
                       )}
-                    </div>
+                    </S.ForMedia>
                     <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>
                       {Grade[0]}
                     </S.GradeText>
                   </S.OneGrade>
   
                   <S.OneGrade>
-                    <div style={{ width: "6.25rem" }}>
+                    <S.ForMedia>
                       {isFavorite[1] ? (
                         <S.TeamName style={{ color: "var(--Main, #23F69A)" }}>
                           {TeamName[1]}
@@ -119,7 +119,7 @@ const PlayContainer: React.FC<ArrayProps> = (
                           {TeamName[1]}
                         </S.TeamName>
                       )}
-                    </div>
+                    </S.ForMedia>
                     <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>
                       {Grade[1]}
                     </S.GradeText>

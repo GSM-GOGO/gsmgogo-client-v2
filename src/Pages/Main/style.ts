@@ -8,6 +8,10 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 40.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MainContainer = styled.div`

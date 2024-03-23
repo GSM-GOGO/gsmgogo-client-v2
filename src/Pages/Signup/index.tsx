@@ -6,10 +6,12 @@ import { useState } from "react";
 import { Logo } from "../../assets/svg";
 import { FormData } from "../../types/FormDataType";
 import { useNavigate } from "react-router-dom";
+
 export default function SignUp() {
   const navigate = useNavigate();
   
   const [showVerification, setShowVerification] = useState(false);
+
   const {
     register,
     formState: { errors },
@@ -33,6 +35,7 @@ export default function SignUp() {
       }
     }
   };
+
   const handleButtonClick = () => {
     if (showVerification) {
       // 이전으로
@@ -74,7 +77,7 @@ export default function SignUp() {
                 message={errors.verificationCode?.message}
                 setError={setError}
                 reset={() => reset({ verificationCode: "" })}
-                placeholder="인증번호를 입력해주세요"
+                placeholder="재발송 3번 초과 시 24시간 후 시도할 수 있습니다"
                 register={register("verificationCode", {
                   required: "인증번호를 입력하지 않았습니다",
                   pattern: {
@@ -82,6 +85,7 @@ export default function SignUp() {
                     message: "인증번호는 6자리의 숫자로 입력해주세요",
                   },
                 })}
+                resendLimitMessage="재발송 3번 초과 시 24시간 후 시도할 수 있습니다"
               />
             )}
           </InputWrapper>

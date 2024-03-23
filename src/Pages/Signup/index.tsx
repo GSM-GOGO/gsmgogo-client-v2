@@ -5,7 +5,9 @@ import * as S from "./style";
 import { useState } from "react";
 import { Logo } from "../../assets/svg";
 import { FormData } from "../../types/FormDataType";
+import { useNavigate } from "react-router-dom";
 export default function SignUp() {
+  const navigate = useNavigate();
   
   const [showVerification, setShowVerification] = useState(false);
   const {
@@ -37,8 +39,7 @@ export default function SignUp() {
       setShowVerification(false);
       reset(); 
     } else {
-      // 넘어가기
-      console.log("넘어가기");
+      navigate(`/`)
     }
   };
 

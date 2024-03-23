@@ -21,7 +21,7 @@ const SoccerForm = () => {
       console.log(top)
       console.log(right)
       console.log(bottom)
-      setBounds({ left: 0, top: 0, right: right - left - 35, bottom: bottom - top - 60});
+      setBounds({ left: 20, top: 40, right: right - left - 55, bottom: bottom - top - 80});
     }
 }, []);
 

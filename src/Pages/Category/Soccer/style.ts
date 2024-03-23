@@ -119,14 +119,7 @@ export const CheerButton = styled.button`
   font-weight: 400;
 `;
 
-export const ButtonWrapper = styled.div`
-  width: 11.625rem;
-  height: 2.25rem;
-  display: flex;
-  align-items: center;
-`;
 export const ButtonContainer = styled.div`
-  width: 100%;
   display: flex;
   align-items: center;
   gap: 1.5rem;

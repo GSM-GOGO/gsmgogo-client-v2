@@ -47,7 +47,7 @@ const PlayContainer: React.FC<ArrayProps> = (
     }
   };
 
-  const onChangeInput = (e : any) => {
+  const onChangeInput = (e: any) => {
     const {
       target: { name, value },
     } = e;
@@ -61,10 +61,10 @@ const PlayContainer: React.FC<ArrayProps> = (
     }
   };
 
-  const checkInput = () => {
+  const handleButton = () => {
     if (teamA === teamB && teamA !== '' && teamB !== '') {
       setSameInput(true);
-    } else {
+    } else if (teamA !== '' && teamB !== '') {
       setSameInput(false);
     }
   };
@@ -125,7 +125,6 @@ const PlayContainer: React.FC<ArrayProps> = (
                     type="text"
                     value={teamA}
                     onChange={onChangeInput}
-                    onBlur={checkInput}
                   />
                   <S.ModalInputText>:</S.ModalInputText>
                   <S.ModalInput
@@ -134,7 +133,6 @@ const PlayContainer: React.FC<ArrayProps> = (
                     type="text"
                     value={teamB}
                     onChange={onChangeInput}
-                    onBlur={checkInput}
                   />
                 </S.ModalInputContainer>
                 {sameInput && <S.ModalInputError>무승부 배팅은 불가능 합니다.</S.ModalInputError>}
@@ -150,7 +148,7 @@ const PlayContainer: React.FC<ArrayProps> = (
                 >
                   아니오
                 </S.ModalCencleButton>
-                <S.ModalCheerButton>투표하기</S.ModalCheerButton>
+                <S.ModalCheerButton onClick={handleButton}>투표하기</S.ModalCheerButton>
               </S.ModalButtonContainer>
             </S.ModalContainer>
           </S.ModalBackground>

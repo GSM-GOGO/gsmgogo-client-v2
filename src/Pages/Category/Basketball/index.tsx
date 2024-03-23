@@ -67,12 +67,10 @@ const Basketball = () => {
                     </S.TeamTextContainer>
                     <S.WinText>3승</S.WinText>
                   </S.TextContainer>
-                  <S.ButtonWrapper>
                     <S.ButtonContainer>
                       <S.FormationButton onClick={() => GoToForm("basketball")}>포메이션</S.FormationButton>
                       <S.CheerButton onClick={() => setCheer(!cheer)}>응원하기</S.CheerButton>
                     </S.ButtonContainer>
-                  </S.ButtonWrapper>
                 </S.List>
               </S.ListContainer>
               <S.ListContainer>
@@ -84,12 +82,10 @@ const Basketball = () => {
                     </S.TeamTextContainer>
                     <S.WinText>3승</S.WinText>
                   </S.TextContainer>
-                  <S.ButtonWrapper>
                     <S.ButtonContainer>
                       <S.FormationButton onClick={() => GoToForm("basketball")}>포메이션</S.FormationButton>
                       <S.CheerButton onClick={() => setCheer(!cheer)}>응원하기</S.CheerButton>
                     </S.ButtonContainer>
-                  </S.ButtonWrapper>
                 </S.List>
               </S.ListContainer>
             </S.ListWrapper>

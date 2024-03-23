@@ -8,7 +8,15 @@ export const WeatherWrapper = styled.div`
   align-items: flex-start;
   gap: 1.5rem;
   margin-bottom: 2.5rem;
-  width: 37.5rem;
+  @media (max-width: 650px) {
+    gap: 1.25rem;
+  }
+  @media (max-width: 550px) {
+    gap: 1rem;
+  }
+  @media (max-width: 450px) {
+    gap: 0.75rem;
+  }
 `
 
 export const DateContainer = styled.div<DateContainerProps>`
@@ -20,7 +28,6 @@ export const DateContainer = styled.div<DateContainerProps>`
   cursor: pointer;
 
   color: ${props => props.selected ? 'var(--White, #FFF)' : 'var(--Gray2, #6F6F7B)'};
-
 `
 
 export const DayText = styled.p`
@@ -31,4 +38,7 @@ export const DayText = styled.p`
   font-weight: 400;
   line-height: 1.4rem;
   margin: 0;
+  @media (max-width: 550px) {
+    font-size: 0.75rem;
+  }
 `

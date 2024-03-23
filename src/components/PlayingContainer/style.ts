@@ -6,14 +6,24 @@ export const PlayingContainer = styled.div`
   padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
-  border-radius: 0.75rem;
-  background: var(--colors-gray-gray-900, #26262a);
+  @media (max-width: 650px) {
+    width: 30rem;
+  }
+  @media (max-width: 500px) {
+    width: 27.5rem;
+  }
+  @media (max-width: 450px) {
+    width: 25rem;
+  }
 `;
 
 export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  @media (max-width: 650px) {
+    gap: 1rem;
+  }
 `;
 
 export const EventContainer = styled.div`
@@ -29,6 +39,9 @@ export const EventTexts = styled.h2`
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const GradeBox = styled.div`
@@ -54,16 +67,28 @@ export const TeamName = styled.h3`
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
+`;
+
+export const ForMedia = styled.div`
+  width: 6.25rem;
+  @media (max-width: 650px) {
+    width: 5rem;
+  }
 `;
 
 export const GradeText = styled.p`
-  color: var(--Gray2, #6f6f7b);
   font-family: Pretendard;
   font-size: 0.875rem;
   font-style: normal;
   font-weight: 400;
   line-height: 1.25rem;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const TimeContainer = styled.div`
@@ -92,7 +117,55 @@ export const TimeText = styled.p`
 export const GrayLine = styled.div`
   width: 37.5rem;
   height: 0.0625rem;
-  background: var(--colors-gray-gray-800, #44444b);
+  background: var(--colors-gray-gray-800, #44444B);
+`;
+
+
+export const PredictContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 0.75rem;
+  background: var(--colors-gray-gray-900, #26262A);
+`
+
+export const PercentBar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const UnderTextBox = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 1 0 0;
+`;
+
+export const WinORLosestyled = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+export const PredictPointBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+`;
+
+export const PredictText = styled.p`
+  color: var(--White, #FFF);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  line-height: 1.25rem;
+`;
+
+export const PredictScoreBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;
 
 export const ModalBackground = styled.div`

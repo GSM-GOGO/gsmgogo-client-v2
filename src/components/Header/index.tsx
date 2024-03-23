@@ -25,11 +25,11 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
       </S.GoGoText>
 
       <S.TextBox>
-        <S.GoGoMiniLink to="/ranking" style={currentPath === '/ranking' ? { color: '#23F69A' } : null}>
+        <S.GoGoMiniLink to="/ranking" style={currentPath === '/ranking' ? { color: '#23F69A' } : undefined}>
           {miniText[0]}
         </S.GoGoMiniLink>
 
-        <S.GoGoMiniLink to="/minigame" style={currentPath === '/minigame' ? { color: '#23F69A' } : null}>
+        <S.GoGoMiniLink to="/minigame" style={currentPath === '/minigame' ? { color: '#23F69A' } : undefined}>
           {miniText[1]}
         </S.GoGoMiniLink>
 

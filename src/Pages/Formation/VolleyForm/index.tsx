@@ -16,7 +16,7 @@ const VolleyForm = () => {
   useEffect(() => {
     if (formationFieldRef.current) {
       const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
-      setBounds({ left: 0, top: 0, right: right - left - 35, bottom: bottom - top - 45});
+      setBounds({ left: 20, top: 20, right: right - left - 55, bottom: bottom - top - 65});
     }
 }, []);
 

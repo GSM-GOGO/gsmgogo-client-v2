@@ -1,98 +1,135 @@
 import styled from 'styled-components';
 
-export const PlayingContainer = styled.div`
+export const Wrapper = styled.div`
   display: flex;
-  width: 37.5rem;
-  padding: 1rem 1.5rem;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  border-radius: 0.75rem;
-  background: var(--colors-gray-gray-900, #26262a);
 `;
 
-export const MainContainer = styled.div`
+export const Container = styled.div`
+  width: 40.5rem;
+`;
+
+export const ContainerResponse = styled.div`
+  width: 100%;
+  height: 100%;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+`;
+
+export const ListWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  flex-direction: column;
   gap: 1.5rem;
 `;
 
-export const EventContainer = styled.div`
+export const ListContainer = styled.div`
   display: flex;
-  align-items: center;
-  gap: 0.75rem;
 `;
 
-export const EventTexts = styled.h2`
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.375rem;
-  margin: 0;
-`;
-
-export const GradeBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 0.75rem;
-`;
-
-export const OneGrade = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-`;
-
-export const TeamName = styled.h3`
-  color: #fff;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 1.375rem;
-  margin: 0;
-`;
-
-export const GradeText = styled.p`
-  color: var(--Gray2, #6f6f7b);
-  font-family: Pretendard;
+export const List = styled.div`
+  padding: 1.5rem 1rem;
+  width: 100%;
+  height: 4.25rem;
+  border-radius: 0.75rem;
   font-size: 0.875rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25rem;
-  margin: 0;
-`;
-
-export const TimeContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.25rem;
-`;
-
-export const OneTimeBox = styled.div`
+  box-sizing: border-box;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+
+  background: #26262a;
+  justify-content: space-between;
 `;
 
-export const TimeText = styled.p`
-  color: var(--Gray2, #6f6f7b);
-  font-family: Pretendard;
-  font-size: 0.75rem;
-  font-style: normal;
+export const TextContainer = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+`;
+
+export const WinText = styled.p`
+  color: #23f69a;
+  font-family: pretendard;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 1.125rem;
   margin: 0;
 `;
 
-export const GrayLine = styled.div`
-  width: 37.5rem;
+export const TeamTextContainer = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+`;
+
+export const TeamName = styled.p`
+  margin: 0;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: pretendard;
+`;
+
+export const TeamClass = styled.p`
+  margin: 0;
+  color: #6f6f7b;
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: pretendard;
+`;
+
+export const Stroke = styled.div`
+  width: 100%;
   height: 0.0625rem;
-  background: var(--colors-gray-gray-800, #44444b);
+  background-color: #44444b;
+`;
+
+export const FormationButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.0625rem;
+  height: 2.25rem;
+  background: transparent;
+  border: 0.0625rem solid #b7b7be;
+  color: #b7b7be;
+  cursor: pointer;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  padding: 1.0125rem 0;
+  font-weight: 400;
+`;
+
+export const CheerButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5.0625rem;
+  height: 2.25rem;
+  background: #23f69a;
+  border: none;
+  color: #1c1c1f;
+  cursor: pointer;
+  font-size: 0.875rem;
+  border-radius: 0.75rem;
+  padding: 1.0125rem 0;
+  font-weight: 400;
+`;
+
+export const ButtonWrapper = styled.div`
+  width: 11.625rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+`;
+export const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
 `;
 
 export const ModalBackground = styled.div`
@@ -112,6 +149,7 @@ export const ModalContainer = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 16.875rem;
+  height: 10.5rem;
   background-color: #1d1d1d;
   border-radius: 0.875rem;
   padding: 1.1875rem 0 0 0;
@@ -121,19 +159,11 @@ export const ModalContainer = styled.div`
   gap: 0.75rem;
 `;
 
-export const ModalTextWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-`;
-
 export const ModalTextContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
-  justify-content: centers;
   align-items: center;
 `;
 
@@ -142,6 +172,7 @@ export const ModalTitleContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 14.875rem;
+  height: 2.75rem;
 `;
 
 export const ModalTitle = styled.p`
@@ -157,6 +188,7 @@ export const ModalNovelContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 14.875rem;
+  height: 2.75rem;
 `;
 
 export const ModalNovel = styled.p`
@@ -166,36 +198,6 @@ export const ModalNovel = styled.p`
   font-size: 0.875rem;
   font-family: pretendard;
   color: #6f6f7b;
-`;
-
-export const ModalInputContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const ModalInput = styled.input`
-  background: #26262a;
-  width: 2.5rem;
-  height: 3rem;
-  border-radius: 0.5rem;
-  border: none;
-  outline: none;
-  text-align: center;
-
-  font-size: 1rem;
-  font-weight: 400;
-  font-family: pretendard;
-  color: #fff;
-`;
-
-export const ModalInputText = styled.p`
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
-  font-family: pretendard;
-  color: #b7b7be;
 `;
 
 export const ModalButtonContainer = styled.div`
@@ -233,14 +235,4 @@ export const ModalCheerButton = styled.div`
   font-size: 1.0625rem;
   font-weight: 400;
   font-family: pretendard;
-`;
-
-export const ModalInputError = styled.p`
-  margin: 0;
-  font-family: Pretendard;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 20px;
-  text-align: left;
-  color: #df454a;
 `;

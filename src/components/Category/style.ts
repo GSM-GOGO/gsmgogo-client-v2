@@ -16,6 +16,7 @@ export const CategoryContainer = styled.div`
 export const CategoryLink = styled(Link)`
   font-size: 1.5rem;
   font-weight: 600;
+  font-family: pretendard;
   color: #6f6f7b;
   text-decoration: none;
 `;

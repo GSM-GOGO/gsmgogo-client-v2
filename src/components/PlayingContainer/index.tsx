@@ -1,6 +1,7 @@
 import * as S from "./style";
 import { PlayingButton, Vote, NotVote, PercentGuageBar } from "../../assets";
 import { ArrayProps } from "../../types/ArrayProps";
+import { useState } from 'react';
 
 const PlayContainer: React.FC<ArrayProps> = (
   {
@@ -22,27 +23,49 @@ const PlayContainer: React.FC<ArrayProps> = (
     BettingPoint,
   }
   ) => {
+  const [modal, setModal] = useState(false);
+  const [teamA, setTeamA] = useState('');
+  const [teamB, setTeamB] = useState('');
+  const [sameInput, setSameInput] = useState(false);
+  const [selectedTeam, setSelectedTeam] = useState("");
+  const [selectedSports, setSelectedSports] = useState("")
+
   const predictScore0 = parseInt(PredictScore[0]);
   const predictScore1 = parseInt(PredictScore[1]);
   const score0 = parseInt(Score[0]);
   const score1 = parseInt(Score[1]);
+
   const getEventText = () => {
     if (isFinal) {
-      return (
-        <S.EventTexts style={{color: "var(--Main, #23F69A)"}}>
-          결승전🔥
-        </S.EventTexts>
-      );
+      return <S.EventTexts style={{ color: 'var(--Main, #23F69A)' }}>결승전🔥</S.EventTexts>;
     } else {
       return isPredictGame ? (
-          <S.EventTexts style={{color: "var(--White, #FFF)"}}>
-            예선
-          </S.EventTexts>
+          <S.EventTexts style={{color: "var(--White, #FFF)"}}>예선</S.EventTexts>
         ) : (
-          <S.EventTexts style={{color: "var(--White, #FFF)"}}>
-            본선
-          </S.EventTexts>
+          <S.EventTexts style={{color: "var(--White, #FFF)"}}>본선</S.EventTexts>
         );
+    }
+  };
+
+  const onChangeInput = (e : any) => {
+    const {
+      target: { name, value },
+    } = e;
+
+    const filteredInput = value.replace(/\D/g, '');
+
+    if (name === 'TeamA') {
+      setTeamA(filteredInput);
+    } else if (name === 'TeamB') {
+      setTeamB(filteredInput);
+    }
+  };
+
+  const checkInput = () => {
+    if (teamA === teamB && teamA !== '' && teamB !== '') {
+      setSameInput(true);
+    } else {
+      setSameInput(false);
     }
   };
 
@@ -72,8 +95,66 @@ const PlayContainer: React.FC<ArrayProps> = (
     return BettingPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
+  const HandleModalOpen = (TeamName: string[]) => {
+    setSelectedTeam(`${TeamName[0]} - ${TeamName[1]}`);
+    setModal(true);
+  };
+
+  const ClickedSportsName = (SportsName: string) => {
+    setSelectedSports(`${SportsName}`);
+  }
+
   return (
     <>
+      {modal ? (
+          <S.ModalBackground>
+            <S.ModalContainer>
+              <S.ModalTextWrapper>
+                <S.ModalTextContainer>
+                  <S.ModalTitle>
+                    <S.ModalTitleContainer>{selectedSports} 경기에 투표 하시겠습니까?</S.ModalTitleContainer>
+                  </S.ModalTitle>
+                  <S.ModalNovelContainer>
+                    <S.ModalNovel>{selectedTeam} 팀의 경기 결과를 예측해 투표해 주세요.</S.ModalNovel>
+                  </S.ModalNovelContainer>
+                </S.ModalTextContainer>
+                <S.ModalInputContainer>
+                  <S.ModalInput
+                    name="TeamA"
+                    maxLength={2}
+                    type="text"
+                    value={teamA}
+                    onChange={onChangeInput}
+                    onBlur={checkInput}
+                  />
+                  <S.ModalInputText>:</S.ModalInputText>
+                  <S.ModalInput
+                    name="TeamB"
+                    maxLength={2}
+                    type="text"
+                    value={teamB}
+                    onChange={onChangeInput}
+                    onBlur={checkInput}
+                  />
+                </S.ModalInputContainer>
+                {sameInput && <S.ModalInputError>무승부 배팅은 불가능 합니다.</S.ModalInputError>}
+              </S.ModalTextWrapper>
+              <S.ModalButtonContainer>
+                <S.ModalCencleButton
+                  onClick={() => {
+                    setModal(!modal);
+                    setTeamA('');
+                    setTeamB('');
+                    setSameInput(false);
+                  }}
+                >
+                  아니오
+                </S.ModalCencleButton>
+                <S.ModalCheerButton>투표하기</S.ModalCheerButton>
+              </S.ModalButtonContainer>
+            </S.ModalContainer>
+          </S.ModalBackground>
+        ) : null}
       {!isFinish ? (
         <>
             <S.PlayingContainer
@@ -148,11 +229,22 @@ const PlayContainer: React.FC<ArrayProps> = (
               </S.TimeContainer>
   
               <div style={{ display: "flex", justifyContent: "center" }}>
-                {isLive ? (
-                  <PlayingButton />
-                ) : (
-                  isVoting ? <Vote /> : <NotVote />
-                )}
+              {isLive ? (
+                <PlayingButton />
+              ) : isVoting ? (
+                <label 
+                  onClick={() => {
+                    setModal(!modal)
+                    HandleModalOpen(TeamName)
+                    ClickedSportsName(SportsName)
+                  }} 
+                  style={{cursor: "pointer"}}
+                >
+                  <Vote />
+                </label>
+              ) : (
+                <NotVote/>
+              )}
               </div>
             </S.PlayingContainer>
             <></>

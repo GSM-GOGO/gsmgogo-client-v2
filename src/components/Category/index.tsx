@@ -12,11 +12,23 @@ const Category = () => {
       <S.CategoryLink to="/matches/soccer" style={currentPath === '/matches/soccer' ? { color: '#fff' } : undefined}>
         축구
       </S.CategoryLink>
-      <S.CategoryLink to="/matches/basketball" style={currentPath === '/matches/basketball' ? { color: '#fff' } : undefined}>
+      <S.CategoryLink
+        to="/matches/basketball"
+        style={currentPath === '/matches/basketball' ? { color: '#fff' } : undefined}
+      >
         농구
       </S.CategoryLink>
-      <S.CategoryLink to="/matches/volleyball" style={currentPath === '/matches/volleyball' ? { color: '#fff' } : undefined}>
+      <S.CategoryLink
+        to="/matches/volleyball"
+        style={currentPath === '/matches/volleyball' ? { color: '#fff' } : undefined}
+      >
         배구
+      </S.CategoryLink>
+      <S.CategoryLink
+        to="/matches/NomalMatch"
+        style={currentPath === '/matches/NomalMatch' ? { color: '#fff' } : undefined}
+      >
+        일반 경기
       </S.CategoryLink>
     </S.CategoryContainer>
   );

@@ -7,6 +7,7 @@ import Volleyball from './Pages/Category/Volleyball/index.tsx';
 import SoccerForm from './Pages/Formation/SoccerForm/index.tsx';
 import BasketForm from './Pages/Formation/BasketForm/index.tsx';
 import VolleyForm from './Pages/Formation/VolleyForm/index.tsx';
+import NomalMatch from './Pages/Category/Nomal/index.tsx';
 
 function App() {
   return (
@@ -27,6 +28,8 @@ function App() {
 
           <Route path="/matches/volleyball" element={<Volleyball />} />
           <Route path="/matches/volleyball/form" element={<VolleyForm />} />
+
+          <Route path="/matches/NomalMatch" element={<NomalMatch />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </Router>

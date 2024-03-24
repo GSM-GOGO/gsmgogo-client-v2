@@ -6,12 +6,14 @@ import * as S from "./style";
 interface Data {
   name: string;
   point: number;
+  isMe?: boolean;
 }
 
 const dataArray: Data[] = [
   {
     name: "1101 김순자",
     point: 10000,
+    isMe: true
   },
   {
     name: "1102 김덕자",
@@ -83,17 +85,23 @@ const Ranking = () => {
                 })}
             </S.LankWrapper>
             <S.ListWrapper>
-              <S.List>
-                <S.TextContainer>
-                  <S.Text>
-                    <S.Lank>4등</S.Lank>
-                    <S.Name>홍길동</S.Name>
-                  </S.Text>
-                </S.TextContainer>
-                <S.Text>
-                  <S.Point>10,000P</S.Point>
-                </S.Text>
-              </S.List>
+            {dataArray.map((item, index) => (
+  <>
+    {item.isMe && (
+      <S.List key={index}>
+        <S.TextContainer>
+          <S.Text>
+            <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
+            <S.Name>{item.name}</S.Name>
+          </S.Text>
+        </S.TextContainer>
+        <S.Text>
+          <S.Point>{item.point.toLocaleString()}P</S.Point>
+        </S.Text>
+      </S.List>
+    )}
+  </>
+))}
               <S.Stroke />
               {dataArray
                 .sort((a, b) => b.point - a.point)

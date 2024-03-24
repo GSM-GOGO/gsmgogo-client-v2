@@ -18,18 +18,17 @@ export const MainContainer = styled.div`
   gap: 1.5rem;
 `;
 
-export const LankWrapper = styled.div`
+export const LankWrapper = styled(Wrapper)`
   width: 100%;
-  display: flex;
   gap: 1.25rem;
-  justify-content: center;
   align-items: flex-end;
 `;
 
 export const LankContainer = styled.div`
   display: grid;
+  position: relative;
   gap: 0.5rem;
-  text-align:center;
+  text-align: center;
 `;
 
 export const ListWrapper = styled.div`
@@ -61,10 +60,8 @@ export const TextContainer = styled.div`
   align-items: center;
 `;
 
-export const Text = styled.div`
-  display: flex;
+export const Text = styled(TextContainer)`
   gap: 0.5rem;
-  align-items: center;
 `;
 
 export const Name = styled.p`
@@ -75,12 +72,18 @@ export const Name = styled.p`
   font-family: pretendard;
 `;
 
-export const Lank = styled.p<{rank?: boolean}>`
+export const Win = styled(Name)`
+  position: absolute;
+  bottom: 1rem;
+  justify-self: center;
+`;
+
+export const Lank = styled.p<{ rank?: boolean }>`
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
   font-family: pretendard;
-  color: ${props => props.rank ? "rgba(35, 246, 154, 1)":"rgba(183, 183, 190, 1)" };
+  color: ${(props) => (props.rank ? "rgba(35, 246, 154, 1)" : "rgba(183, 183, 190, 1)")};
 `;
 
 export const Point = styled.p`

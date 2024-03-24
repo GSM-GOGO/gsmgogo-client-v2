@@ -8,6 +8,4 @@ export { default as SoccerField } from './SoccerField';
 export { default as People } from './People';
 export { default as GreenStar } from './GreenStar';
 export { default as PercentGuageBar } from './PercentGuageBar';
-export { default as Lank1 } from './Lank1';
-export { default as Lank2 } from './Lank2';
-export { default as Lank3 } from './Lank3';
+export { default as Lank } from './Lank';

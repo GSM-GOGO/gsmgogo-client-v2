@@ -20,11 +20,35 @@ export const ContainerResponse = styled.div`
   flex-wrap: wrap;
 `;
 
+export const TeamTextContainer = styled.div`
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: flex;
+  gap: 0.5rem;
+`;
+
+export const TeamName = styled.p`
+  margin: 0;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-family: pretendard;
+`;
+
+export const TeamClass = styled.p`
+  margin: 0;
+  color: #6f6f7b;
+  font-size: 1rem;
+  font-weight: 400;
+  font-family: pretendard;
+  align-self: flex-end;
+`;
+
 export const ListWrapper = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 `;
 
 export const ListContainer = styled.div`
@@ -34,7 +58,7 @@ export const ListContainer = styled.div`
 export const List = styled.div`
   padding: 1.5rem 1rem;
   width: 100%;
-  height: 4.25rem;
+  /* height: 4.25rem; */
   border-radius: 0.75rem;
   font-size: 0.875rem;
   box-sizing: border-box;
@@ -45,29 +69,12 @@ export const List = styled.div`
   justify-content: space-between;
 `;
 
-export const TextContainer = styled.div`
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-`;
-export const TeamTextContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-`;
-
-export const TeamClass = styled.p`
+export const SportsText = styled.p`
   margin: 0;
-  color: #fff;
-  font-size: 1rem;
   font-weight: 600;
+  font-size: 1rem;
   font-family: pretendard;
-`;
-
-export const Stroke = styled.div`
-  width: 100%;
-  height: 0.0625rem;
-  background-color: #44444b;
+  color: #fff;
 `;
 
 export const CheckButton = styled.button`

@@ -40,9 +40,5 @@ export const CertificationNumberWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
-
-  h4{
-    cursor:pointer;
-  }
 `;
 

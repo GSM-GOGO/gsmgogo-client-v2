@@ -31,7 +31,7 @@ export const CategoryContainer = styled.div`
   }
 `
 
-export const Category = styled.p`
+export const Category = styled.div`
   font-family: Pretendard;
   font-size: 1.5rem;
   font-style: normal;

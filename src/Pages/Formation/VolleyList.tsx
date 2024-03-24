@@ -50,7 +50,7 @@ export const VolleyPlayersList: Players[] = [
     y: 215,
   },
   {
-    id: 8,
+    id: 9,
     name: "이진헌",
     x: 280,
     y: 215,

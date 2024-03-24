@@ -42,15 +42,29 @@ const Ranking = () => {
                 .sort((a, b) => b.point - a.point)
                 .slice(0, 3)
                 .sort((a, b) => (a.name > b.name ? 1 : -1))
-                .map((item, index) => (
-                  <S.LankContainer key={index}>
-                    <S.Name>{item.name}</S.Name>
-                    <S.Point>{item.point.toLocaleString()}P</S.Point>
-                    {index === 0 && <Lank3 />}
-                    {index === 1 && <Lank1 />}
-                    {index === 2 && <Lank2 />}
-                  </S.LankContainer>
-                ))}
+                .map((item, index) => {
+                  let rankName, rankPoint, rankComponent;
+                  if (index === 0) {
+                    rankName = dataArray[2].name;
+                    rankPoint = dataArray[2].point.toLocaleString();
+                    rankComponent = <Lank3 />;
+                  } else if (index === 1) {
+                    rankName = dataArray[0].name;
+                    rankPoint = dataArray[0].point.toLocaleString();
+                    rankComponent = <Lank1 />;
+                  } else if (index === 2) {
+                    rankName = dataArray[1].name;
+                    rankPoint = dataArray[1].point.toLocaleString();
+                    rankComponent = <Lank2 />;
+                  }
+                  return (
+                    <S.LankContainer key={index}>
+                      <S.Name>{rankName}</S.Name>
+                      <S.Point>{rankPoint}P</S.Point>
+                      {rankComponent}
+                    </S.LankContainer>
+                  );
+                })}
             </S.LankWrapper>
             <S.ListWrapper>
               <S.List>

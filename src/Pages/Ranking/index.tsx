@@ -1,4 +1,4 @@
-import { Lank } from "../../assets";
+import { RankBar } from "../../assets";
 import HeaderContainer from "../../components/HeaderContainer";
 import { Category, CategoryContainer } from "../Formation/style";
 import * as S from "./style";
@@ -13,7 +13,7 @@ const dataArray: Data[] = [
   {
     name: "1101 김순자",
     point: 10000,
-    isMe: true
+    isMe: true,
   },
   {
     name: "1102 김덕자",
@@ -25,9 +25,18 @@ const dataArray: Data[] = [
   },
   {
     name: "1106 김승자",
-    point: 99000,
+    point: 20000,
   },
 ];
+
+const topThreeData = dataArray.sort((a, b) => b.point - a.point).slice(0, 3);
+
+const firstPlacePoints = topThreeData[0].point;
+const secondPlacePoints = topThreeData[1].point;
+const thirdPlacePoints = topThreeData[2].point;
+
+const secondPlaceHeight = (260 / firstPlacePoints) * secondPlacePoints;
+const thirdPlaceHeight = (260 / firstPlacePoints) * thirdPlacePoints;
 
 const getRankInfo = (
   index: number,
@@ -44,7 +53,7 @@ const getRankInfo = (
   };
   rankInfo.rankName = index === 0 ? data[2].name : index === 1 ? data[0].name : data[1].name;
   rankInfo.rankPoint = index === 0 ? data[2].point.toLocaleString() : index === 1 ? data[0].point.toLocaleString() : data[1].point.toLocaleString();
-  rankInfo.rankComponent = index === 0 ? <Lank height={140} /> : index === 1 ? <Lank height={260} /> : <Lank height={200} />;
+  rankInfo.rankComponent = index === 0 ? <RankBar height={thirdPlaceHeight} /> : index === 1 ? <RankBar height={260} /> : <RankBar height={secondPlaceHeight} />;
   rankInfo.rank = index === 0 ? "3등" : index === 1 ? "1등" : "2등";
   return rankInfo;
 };
@@ -85,23 +94,23 @@ const Ranking = () => {
                 })}
             </S.LankWrapper>
             <S.ListWrapper>
-            {dataArray.map((item, index) => (
-  <>
-    {item.isMe && (
-      <S.List key={index}>
-        <S.TextContainer>
-          <S.Text>
-            <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
-            <S.Name>{item.name}</S.Name>
-          </S.Text>
-        </S.TextContainer>
-        <S.Text>
-          <S.Point>{item.point.toLocaleString()}P</S.Point>
-        </S.Text>
-      </S.List>
-    )}
-  </>
-))}
+              {dataArray.map((item, index) => (
+                <>
+                  {item.isMe && (
+                    <S.List key={index}>
+                      <S.TextContainer>
+                        <S.Text>
+                          <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
+                          <S.Name>{item.name}</S.Name>
+                        </S.Text>
+                      </S.TextContainer>
+                      <S.Text>
+                        <S.Point>{item.point.toLocaleString()}P</S.Point>
+                      </S.Text>
+                    </S.List>
+                  )}
+                </>
+              ))}
               <S.Stroke />
               {dataArray
                 .sort((a, b) => b.point - a.point)

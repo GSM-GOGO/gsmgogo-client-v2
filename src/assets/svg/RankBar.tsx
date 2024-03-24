@@ -1,4 +1,4 @@
-const Lank1 = ({height}) => {
+const RankBar = ({height}) => {
   return (
     <svg width="100" height={height} viewBox={`0 0 100 ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
@@ -15,4 +15,4 @@ const Lank1 = ({height}) => {
   );
 };
 
-export default Lank1;
+export default RankBar;

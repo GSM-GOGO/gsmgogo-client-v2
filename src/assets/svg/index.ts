@@ -8,4 +8,6 @@ export { default as SoccerField } from './SoccerField';
 export { default as People } from './People';
 export { default as GreenStar } from './GreenStar';
 export { default as PercentGuageBar } from './PercentGuageBar';
+export { default as RankBar } from './RankBar';
 export { default as OpenReview } from './OpenReview';
+//.

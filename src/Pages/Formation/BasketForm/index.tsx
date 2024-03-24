@@ -51,6 +51,7 @@ const BasketForm = () => {
                             <Draggable
                                 defaultPosition={{ x: player.x, y: player.y }}
                                 bounds={bounds}
+                                nodeRef={formationFieldRef}
                             >
                               <D.PlayerContainer style={{cursor: "pointer"}}>
                                   <People/>

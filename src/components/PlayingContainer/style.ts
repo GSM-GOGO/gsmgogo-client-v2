@@ -32,7 +32,7 @@ export const EventContainer = styled.div`
   gap: 0.75rem;
 `;
 
-export const EventTexts = styled.h2`
+export const EventTexts = styled.div`
   font-family: Pretendard;
   font-size: 1rem;
   font-style: normal;

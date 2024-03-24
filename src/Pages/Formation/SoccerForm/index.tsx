@@ -17,10 +17,6 @@ const SoccerForm = () => {
   useEffect(() => {
     if (formationFieldRef.current) {
       const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
-      console.log(left)
-      console.log(top)
-      console.log(right)
-      console.log(bottom)
       setBounds({ left: 20, top: 40, right: right - left - 55, bottom: bottom - top - 80});
     }
 }, []);
@@ -55,6 +51,7 @@ const SoccerForm = () => {
                             <Draggable
                                 defaultPosition={{ x: player.x, y: player.y }}
                                 bounds={bounds}
+                                nodeRef={formationFieldRef}
                             >
                               <D.PlayerContainer style={{cursor: "pointer"}}>
                                   <People/>

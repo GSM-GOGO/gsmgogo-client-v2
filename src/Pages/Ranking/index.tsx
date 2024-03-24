@@ -1,7 +1,7 @@
-import { RankBar } from "../../assets";
-import HeaderContainer from "../../components/HeaderContainer";
-import { Category, CategoryContainer } from "../Formation/style";
-import * as S from "./style";
+import { RankBar } from '../../assets';
+import HeaderContainer from '../../components/HeaderContainer';
+import { Category, CategoryContainer } from '../Formation/style';
+import * as S from './style';
 
 interface Data {
   name: string;
@@ -11,20 +11,20 @@ interface Data {
 
 const dataArray: Data[] = [
   {
-    name: "1101 김순자",
+    name: '1101 김순자',
     point: 10000,
     isMe: true,
   },
   {
-    name: "1102 김덕자",
+    name: '1102 김덕자',
     point: 11000,
   },
   {
-    name: "1105 김감자",
+    name: '1105 김감자',
     point: 1900,
   },
   {
-    name: "1106 김승자",
+    name: '1106 김승자',
     point: 20000,
   },
 ];
@@ -46,15 +46,27 @@ const getRankInfo = (
   }[]
 ) => {
   const rankInfo = {
-    rankName: "",
-    rankPoint: "",
+    rankName: '',
+    rankPoint: '',
     rankComponent: null as React.ReactNode,
-    rank: "",
+    rank: '',
   };
   rankInfo.rankName = index === 0 ? data[2].name : index === 1 ? data[0].name : data[1].name;
-  rankInfo.rankPoint = index === 0 ? data[2].point.toLocaleString() : index === 1 ? data[0].point.toLocaleString() : data[1].point.toLocaleString();
-  rankInfo.rankComponent = index === 0 ? <RankBar height={thirdPlaceHeight} /> : index === 1 ? <RankBar height={260} /> : <RankBar height={secondPlaceHeight} />;
-  rankInfo.rank = index === 0 ? "3등" : index === 1 ? "1등" : "2등";
+  rankInfo.rankPoint =
+    index === 0
+      ? data[2].point.toLocaleString()
+      : index === 1
+        ? data[0].point.toLocaleString()
+        : data[1].point.toLocaleString();
+  rankInfo.rankComponent =
+    index === 0 ? (
+      <RankBar height={thirdPlaceHeight} />
+    ) : index === 1 ? (
+      <RankBar height={260} />
+    ) : (
+      <RankBar height={secondPlaceHeight} />
+    );
+  rankInfo.rank = index === 0 ? '3등' : index === 1 ? '1등' : '2등';
   return rankInfo;
 };
 
@@ -64,8 +76,8 @@ const Ranking = () => {
       <HeaderContainer />
       <S.Wrapper>
         <S.Container>
-          <CategoryContainer style={{ marginBottom: "1.25rem" }}>
-            <Category style={{ color: "var(--White, #FFF)" }}>랭킹</Category>
+          <CategoryContainer style={{ marginBottom: '1.25rem' }}>
+            <Category style={{ color: 'var(--White, #FFF)' }}>랭킹</Category>
           </CategoryContainer>
           <S.MainContainer>
             <S.LankWrapper>
@@ -82,9 +94,9 @@ const Ranking = () => {
                       {rankComponent}
                       <S.Name
                         style={{
-                          position: "absolute",
-                          bottom: "1rem",
-                          justifySelf: "center",
+                          position: 'absolute',
+                          bottom: '1rem',
+                          justifySelf: 'center',
                         }}
                       >
                         {rank}

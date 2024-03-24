@@ -1,14 +1,49 @@
-import { OpenReview } from '../../../assets/index.ts';
+import { useState } from 'react';
+import { OpenReview, CloseReview } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import { useNavigate } from 'react-router-dom';
 
 const NomalForm = () => {
+  const [activeCategoryId, setActiveCategoryId] = useState(null);
+
+  const toggleCategory = (categoryId: any) => {
+    setActiveCategoryId(categoryId === activeCategoryId ? null : categoryId);
+  };
+
   const navigate = useNavigate();
 
-  const GoToForm = (sport: string) => {
-    navigate(`/matches/${sport}/form`);
-  };
+  // 테스트
+  const categories = [
+    {
+      id: 1,
+      name: '6인 7각',
+      candidate: [
+        '곽민성',
+        '권태연',
+        '김유준',
+        '김주은',
+        '김태윤',
+        '김현',
+        '박진우',
+        '방가온',
+        '손찬형',
+        '양동찬',
+        '오은찬',
+        '이성민',
+        '이예나',
+        '이진헌',
+        '전민혁',
+        '정태관',
+      ],
+    },
+    { id: 2, name: '줄파도타기', candidate: ['신희성', '김동학'] },
+    { id: 3, name: '미션달리기', candidate: ['김태윤', '정태관'] },
+    { id: 4, name: '농구 자유투 릴레이', candidate: ['김태윤', '정태관'] },
+    { id: 5, name: '줄다리기', candidate: ['김태윤', '정태관'] },
+    { id: 6, name: '이어달리기', candidate: ['김태윤', '정태관'] },
+  ];
+  // 테스트
 
   return (
     <>
@@ -21,21 +56,25 @@ const NomalForm = () => {
               <S.TeamClass>2학년 SW</S.TeamClass>
             </S.TeamTextContainer>
             <S.ListWrapper>
-              <S.ListContainer>
-                <S.List>
-                  <S.SportsText>6인 7각</S.SportsText>
-                  <OpenReview />
-                </S.List>
-              </S.ListContainer>
-              <S.ListContainer>
-                <S.List>
-                  <S.SportsText>6인 7각</S.SportsText>
-                  <S.ButtonContainer>
-                    <OpenReview />
-                  </S.ButtonContainer>
-                </S.List>
-              </S.ListContainer>
+              {categories.map((category) => (
+                <S.ListContainer key={category.id}>
+                  <S.List onClick={() => toggleCategory(category.id)}>
+                    <S.ListTitle>
+                      <S.SportsText>{category.name}</S.SportsText>
+                      {category.id === activeCategoryId ? <CloseReview /> : <OpenReview />}
+                    </S.ListTitle>
+                    {category.id === activeCategoryId && (
+                      <S.CandiateContainer>
+                        {category.candidate.map((candidate, index) => (
+                          <S.CandiateButton key={index}>{candidate}</S.CandiateButton>
+                        ))}
+                      </S.CandiateContainer>
+                    )}
+                  </S.List>
+                </S.ListContainer>
+              ))}
             </S.ListWrapper>
+            <S.ReturnButton onClick={() => navigate('/')}>돌아가기</S.ReturnButton>
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>

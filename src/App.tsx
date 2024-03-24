@@ -9,6 +9,7 @@ import BasketForm from './Pages/Formation/BasketForm/index.tsx';
 import VolleyForm from './Pages/Formation/VolleyForm/index.tsx';
 import NomalMatch from './Pages/Category/Nomal/index.tsx';
 import NomalForm from './Pages/Formation/NomalForm/index.tsx';
+import Register from './Pages/Register/index.tsx';
 
 function App() {
   return (
@@ -32,6 +33,8 @@ function App() {
 
           <Route path="/matches/NomalMatch" element={<NomalMatch />} />
           <Route path="/matches/NomalMatch/form" element={<NomalForm />} />
+
+          <Route path="/register" element={<Register />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </Router>

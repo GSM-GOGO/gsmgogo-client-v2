@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { OpenReview, CloseReview } from '../../../assets/index.ts';
+import { OpenReview, CloseReview } from '../../../assets';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import { useNavigate } from 'react-router-dom';

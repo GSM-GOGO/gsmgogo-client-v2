@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -18,12 +17,12 @@ export const ContainerResponse = styled.div`
   flex-direction: column;
   justify-content: space-around;
   flex-wrap: wrap;
-  align-items: center;
+  /* align-items: center; */
 `;
 
 export const TeamTextContainer = styled.div`
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 1.25rem;
+  margin-bottom: 2.5rem;
   display: flex;
   gap: 0.5rem;
 `;
@@ -50,7 +49,7 @@ export const ListWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 12px;
+  margin-bottom: 0.75rem;
 `;
 
 export const ListContainer = styled.div`
@@ -65,7 +64,7 @@ export const List = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
   background: #26262a;
 `;
 
@@ -85,19 +84,18 @@ export const CandiateContainer = styled.div`
 `;
 
 export const CandiateButton = styled.div`
-  width: Hug (74px) px;
-  height: Hug (38px) px;
-  padding: 8px 16px 8px 16px;
-  gap: 0px;
-  border-radius: 12px;
+  width: Hug (4.625rem);
+  height: Hug (2.375rem);
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
   opacity: 0px;
 
-  border: 1px solid #44444b;
+  border: 0.0625rem solid #44444b;
 
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
-  line-height: 22px;
+  line-height: 1.375rem;
   text-align: left;
 
   color: #b7b7be;
@@ -111,19 +109,26 @@ export const SportsText = styled.p`
   color: #fff;
 `;
 
+export const ReturnButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const ReturnButton = styled.button`
-  width: 320px;
-  height: 52px;
-  padding: 12px 32px;
+  width: 20rem;
+  height: 3.25rem;
+  padding: 0.75rem 2rem;
   background: #1c1c1f;
 
-  border-radius: 8px;
-  border: 1px solid #23f69a;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid #23f69a;
 
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
-  line-height: 26px;
+  line-height: 1.625rem;
   text-align: center;
   color: #23f69a;
 

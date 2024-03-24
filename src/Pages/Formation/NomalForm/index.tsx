@@ -74,7 +74,9 @@ const NomalForm = () => {
                 </S.ListContainer>
               ))}
             </S.ListWrapper>
-            <S.ReturnButton onClick={() => navigate('/')}>돌아가기</S.ReturnButton>
+            <S.ReturnButtonContainer>
+              <S.ReturnButton onClick={() => navigate('/')}>돌아가기</S.ReturnButton>
+            </S.ReturnButtonContainer>
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>

@@ -15,14 +15,14 @@ export const ContainerResponse = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  align-content: center;
   justify-content: space-around;
   flex-wrap: wrap;
+  /* align-items: center; */
 `;
 
 export const TeamTextContainer = styled.div`
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 1.25rem;
+  margin-bottom: 2.5rem;
   display: flex;
   gap: 0.5rem;
 `;
@@ -49,24 +49,56 @@ export const ListWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 1rem;
+  margin-bottom: 0.75rem;
 `;
 
 export const ListContainer = styled.div`
   display: flex;
+  flex-direction: column;
 `;
 
 export const List = styled.div`
   padding: 1.5rem 1rem;
   width: 100%;
-  /* height: 4.25rem; */
   border-radius: 0.75rem;
-  font-size: 0.875rem;
   box-sizing: border-box;
   display: flex;
-  align-items: center;
-
+  flex-direction: column;
+  gap: 1rem;
   background: #26262a;
+`;
+
+export const ListTitle = styled.div`
+  width: 100%;
+  display: flex;
   justify-content: space-between;
+  align-items: center;
+`;
+
+export const CandiateContainer = styled.div`
+  display: ${(props) => (props.active ? 'block' : 'none')};
+  width: 32.75rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+`;
+
+export const CandiateButton = styled.div`
+  width: Hug (4.625rem);
+  height: Hug (2.375rem);
+  padding: 0.5rem 1rem;
+  border-radius: 0.75rem;
+  opacity: 0px;
+
+  border: 0.0625rem solid #44444b;
+
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.375rem;
+  text-align: left;
+
+  color: #b7b7be;
 `;
 
 export const SportsText = styled.p`
@@ -77,40 +109,28 @@ export const SportsText = styled.p`
   color: #fff;
 `;
 
-export const CheckButton = styled.button`
+export const ReturnButtonContainer = styled.div`
+  width: 100%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  width: 5.0625rem;
-  height: 2.25rem;
-  background: transparent;
-  border: 0.0625rem solid #b7b7be;
-  color: #b7b7be;
-  cursor: pointer;
-  font-size: 0.875rem;
-  border-radius: 0.75rem;
-  padding: 1.0125rem 0;
-  font-weight: 400;
+  align-items: center;
 `;
 
-export const CheerButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 5.0625rem;
-  height: 2.25rem;
-  background: #23f69a;
-  border: none;
-  color: #1c1c1f;
-  cursor: pointer;
-  font-size: 0.875rem;
-  border-radius: 0.75rem;
-  padding: 1.0125rem 0;
-  font-weight: 400;
-`;
+export const ReturnButton = styled.button`
+  width: 20rem;
+  height: 3.25rem;
+  padding: 0.75rem 2rem;
+  background: #1c1c1f;
 
-export const ButtonContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid #23f69a;
+
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.625rem;
+  text-align: center;
+  color: #23f69a;
+
+  cursor: pointer;
 `;

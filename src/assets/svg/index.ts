@@ -12,3 +12,4 @@ export { default as RankBar } from './RankBar';
 export { default as OpenReview } from './OpenReview';
 export { default as Search } from './Search';
 export { default as XIcon } from './XIcon';
+export { default as CloseReview } from './CloseReview';

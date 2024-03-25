@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main, Minigame, Ranking, Signin, Signup } from './Pages';
-import { GlobalStyles } from './style/Globalstyles.ts';
-import Soccer from './Pages/Category/Soccer/index.tsx';
-import Basketball from './Pages/Category/Basketball/index.tsx';
-import Volleyball from './Pages/Category/Volleyball/index.tsx';
-import SoccerForm from './Pages/Formation/SoccerForm/index.tsx';
-import BasketForm from './Pages/Formation/BasketForm/index.tsx';
-import VolleyForm from './Pages/Formation/VolleyForm/index.tsx';
-import NomalMatch from './Pages/Category/Nomal/index.tsx';
-import NomalForm from './Pages/Formation/NomalForm/index.tsx';
-import Register from './Pages/Register/index.tsx';
-=======
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Main, Minigame, Ranking, Signin, Signup } from "./Pages";
 import { GlobalStyles } from "./style/Globalstyles.ts";
@@ -21,7 +7,7 @@ import VolleyForm from "./Pages/Formation/VolleyForm/index.tsx";
 import NomalMatch from "./Pages/Category/Nomal/index.tsx";
 import NomalForm from "./Pages/Formation/NomalForm/index.tsx";
 import Sports from './Pages/Category/Sports/index.tsx';
->>>>>>> develop
+import Register from "./Pages/Register/index.tsx";
 
 function App() {
   return (

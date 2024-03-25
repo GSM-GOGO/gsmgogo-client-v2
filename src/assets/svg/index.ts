@@ -13,8 +13,5 @@ export { default as OpenReview } from './OpenReview';
 export { default as Search } from './Search';
 export { default as XIcon } from './XIcon';
 export { default as CloseReview } from './CloseReview';
-<<<<<<< HEAD
-export { default as SmallXIcon } from './SmallXIcon';
-=======
 export { default as TeamAddButton } from './TeamAddButton';
->>>>>>> develop
+export { default as SmallXIcon } from './SmallXIcon';

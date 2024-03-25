@@ -56,17 +56,24 @@ const Register = () => {
   };
 
   const handleSearchNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchedName = e.target.value;
+    const searchedName = e.target.value.replace(/[^\uAC00-\uD7A3]/gi, '');
     setSearchedName(searchedName);
   };
 
   const handleMemberClick = (member: Data) => {
-    setSelectedMembers([...selectedMembers, member]);
+    if (!selectedMembers.some(selected => selected.name === member.name)) {
+      setSelectedMembers([...selectedMembers, member]);
+    }
   };
 
   const handleRemoveMember = (member: Data) => {
     setSelectedMembers(selectedMembers.filter(selected => selected !== member));
   };
+
+  const dividedSelectedMembers: Data[][] = [];
+  for (let i = 0; i < selectedMembers.length; i += 4) {
+    dividedSelectedMembers.push(selectedMembers.slice(i, i + 4));
+  }
 
   return(
     <>
@@ -142,22 +149,20 @@ const Register = () => {
                 <S.SubjectText>
                   팀원
                 </S.SubjectText>
-                {selectedMembers.length > 0 && (
-                  <div>
-                    <S.MemberSelected>
-                      {selectedMembers.map((member, index) => (
-                          <S.MemberSelectList key={index}>
-                            <S.MemberName>
-                              {member.name}
-                            </S.MemberName>
-                            <div style={{ cursor: "pointer", display: "flex" }} onClick={() => handleRemoveMember(member)}>
-                              <XIcon />
-                            </div>
-                          </S.MemberSelectList>
-                      ))}
-                      </S.MemberSelected>
-                  </div>
-              )}
+                {dividedSelectedMembers.map((group, groupIndex) => (
+                  <S.MemberSelected key={groupIndex}>
+                    {group.map((member, index) => (
+                      <S.MemberSelectList key={index}>
+                        <S.MemberName>
+                          {member.name}
+                        </S.MemberName>
+                        <div style={{ cursor: "pointer", display: "flex" }} onClick={() => handleRemoveMember(member)}>
+                          <XIcon />
+                        </div>
+                      </S.MemberSelectList>
+                    ))}
+                  </S.MemberSelected>
+                ))}
 
                 <S.TeamInputBox onClick={() => handleInputSelection('member')}
                 style={selectedInput === 'member' ? { border: '1px solid var(--Main, #23F69A)'} : undefined}>

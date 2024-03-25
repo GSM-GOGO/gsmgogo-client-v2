@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -25,6 +25,8 @@ export const ListWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 1.5rem;
+  height: calc(100vh - 9.75rem);
+  position: relative;
 `;
 
 export const ListContainer = styled.div`
@@ -228,4 +230,14 @@ export const ModalCheerButton = styled.div`
   font-size: 1.0625rem;
   font-weight: 400;
   font-family: pretendard;
+`;
+
+export const AddButton = styled.div`
+  cursor: pointer;
+
+  svg {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 1.5rem;
+  }
 `;

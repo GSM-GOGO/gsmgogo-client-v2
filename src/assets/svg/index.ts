@@ -11,3 +11,4 @@ export { default as PercentGuageBar } from './PercentGuageBar';
 export { default as RankBar } from './RankBar';
 export { default as OpenReview } from './OpenReview';
 export { default as CloseReview } from './CloseReview';
+export { default as TeamAddButton } from './TeamAddButton';

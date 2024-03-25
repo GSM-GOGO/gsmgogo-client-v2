@@ -223,3 +223,8 @@ export const MemberName = styled.span`
   font-weight: 600;
   line-height: 1.375rem;
 `
+
+export const overScroll = styled.div`
+  height: 35rem;
+  overflow: auto;
+`

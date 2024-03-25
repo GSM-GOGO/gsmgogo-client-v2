@@ -23,7 +23,25 @@ const dataArray: Data[] = [
   {
     name: "1105 김정희",
   },
+  {
+    name: "1106 김굽자",
+  },
+  {
+    name: "1107 김자자",
+  },
+  {
+    name: "1108 김주자",
+  },
+  {
+    name: "1109 김자주",
+  },
 ];
+
+const MAX_MEMBERS = {
+  축구: 8,
+  농구: 5,
+  배구: 9,
+};
 
 const Register = () => {
   const [selectedSport, setSelectedSport] = useState('축구');
@@ -37,13 +55,14 @@ const Register = () => {
     const timeoutId = setTimeout(() => {
       const foundNames = dataArray.filter(data => data.name.includes(searchedName));
       setSearchResults(foundNames);
-    }, 1000); // 2초 후에 검색 수행
+    }, 1000); 
 
-    return () => clearTimeout(timeoutId); // cleanup 함수를 이용하여 이펙트 정리
+    return () => clearTimeout(timeoutId);
   }, [searchedName]);
 
   const handleSportSelection = (sport : string) => {
     setSelectedSport(sport);
+    setSelectedMembers([]);
   };
 
   const handleInputSelection = (input : string) => {
@@ -61,8 +80,10 @@ const Register = () => {
   };
 
   const handleMemberClick = (member: Data) => {
-    if (!selectedMembers.some(selected => selected.name === member.name)) {
-      setSelectedMembers([...selectedMembers, member]);
+    if (selectedMembers.length < MAX_MEMBERS[selectedSport]) {
+      if (!selectedMembers.some(selected => selected.name === member.name)) {
+        setSelectedMembers([...selectedMembers, member]);
+      }
     }
   };
 
@@ -76,7 +97,7 @@ const Register = () => {
   }
 
   return(
-    <>
+    <div style={{overflow: 'hidden', height: '100%'}}>
       <HeaderContainer/>
       <S.Wrapper>
         <S.Container>
@@ -165,7 +186,7 @@ const Register = () => {
                 ))}
 
                 <S.TeamInputBox onClick={() => handleInputSelection('member')}
-                style={selectedInput === 'member' ? { border: '1px solid var(--Main, #23F69A)'} : undefined}>
+                  style={selectedInput === 'member' ? { border: '1px solid var(--Main, #23F69A)'} : undefined}>
                   <S.TeamInput 
                     type='text'
                     placeholder='이름으로 검색하세요'
@@ -177,7 +198,7 @@ const Register = () => {
                 </S.TeamInputBox>
               </S.TeamInputContainer>
               {searchedName !== '' && searchResults.length > 0 && (
-                <div>
+                <S.overScroll style={{height: '30rem'}}>
                   {searchResults.map((result, index) => (
                     <S.MapTeamMember key={index} onClick={() => handleMemberClick(result)}>
                       <S.MemberList>
@@ -185,11 +206,11 @@ const Register = () => {
                       </S.MemberList>
                     </S.MapTeamMember>
                   ))}
-                </div>
+                </S.overScroll>
               )}
               </>
             ) : (
-              <S.NormalTeamContainer>
+              <S.NormalTeamContainer style={{overflow: 'hidden'}}>
                 <S.TeamAssign>
                   <S.SubjectText>
                     팀 배정
@@ -212,9 +233,20 @@ const Register = () => {
                     </div>
                   </S.TeamInputBox>
                 </S.TeamInputContainer>
+
+                <S.overScroll>
+                  {dataArray.map((item, index) => (
+                    <div key={index} onClick={() => handleMemberClick(item)}>
+                      <S.MapTeamMember>
+                        <S.MemberList>
+                          {item.name}
+                        </S.MemberList>
+                      </S.MapTeamMember>
+                    </div>
+                  ))}
+                </S.overScroll>
               </S.NormalTeamContainer>
-            )}
-              
+              )}
 
                 
                 <div style={{display: "flex", justifyContent: "center", marginTop: "20rem"}}>
@@ -228,7 +260,7 @@ const Register = () => {
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>
-    </>
+    </div>
   )
 }
 

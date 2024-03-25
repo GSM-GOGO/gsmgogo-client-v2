@@ -210,3 +210,16 @@ export const MemberSelectList = styled.div`
   border-radius: 0.75rem;
   border: 1px solid var(--colors-gray-gray-800, #44444B);
 `
+
+export const MemberName = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  color: var(--Gray1, #B7B7BE);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.375rem;
+`

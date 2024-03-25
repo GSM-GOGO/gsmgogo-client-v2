@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
-import { Search } from '../../assets/index.ts';
+import { Search, XIcon } from '../../assets/index.ts';
 
 interface Data {
   name: string;
@@ -31,6 +31,7 @@ const Register = () => {
   const [teamName, setTeamName] = useState('');
   const [searchedName, setSearchedName] = useState('');
   const [searchResults, setSearchResults] = useState<Data[]>([]);
+  const [selectedMembers, setSelectedMembers] = useState<Data[]>([]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -57,6 +58,14 @@ const Register = () => {
   const handleSearchNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchedName = e.target.value;
     setSearchedName(searchedName);
+  };
+
+  const handleMemberClick = (member: Data) => {
+    setSelectedMembers([...selectedMembers, member]);
+  };
+
+  const handleRemoveMember = (member: Data) => {
+    setSelectedMembers(selectedMembers.filter(selected => selected !== member));
   };
 
   return(
@@ -133,6 +142,22 @@ const Register = () => {
                 <S.SubjectText>
                   팀원
                 </S.SubjectText>
+                {selectedMembers.length > 0 && (
+                  <div>
+                    <S.MemberSelected>
+                      {selectedMembers.map((member, index) => (
+                          <S.MemberSelectList key={index}>
+                            <S.MemberName>
+                              {member.name}
+                            </S.MemberName>
+                            <div style={{ cursor: "pointer", display: "flex" }} onClick={() => handleRemoveMember(member)}>
+                              <XIcon />
+                            </div>
+                          </S.MemberSelectList>
+                      ))}
+                      </S.MemberSelected>
+                  </div>
+              )}
 
                 <S.TeamInputBox onClick={() => handleInputSelection('member')}
                 style={selectedInput === 'member' ? { border: '1px solid var(--Main, #23F69A)'} : undefined}>
@@ -149,7 +174,7 @@ const Register = () => {
               {searchedName !== '' && searchResults.length > 0 && (
                 <div>
                   {searchResults.map((result, index) => (
-                    <S.MapTeamMember key={index}>
+                    <S.MapTeamMember key={index} onClick={() => handleMemberClick(result)}>
                       <S.MemberList>
                         {result.name}
                       </S.MemberList>

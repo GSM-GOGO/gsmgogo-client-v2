@@ -101,10 +101,10 @@ const Register = () => {
                     </S.SubjectOneText>
                   </S.SubjectOne>
 
-                  <S.SubjectOne onClick={() => handleSportSelection('야구')}
-                  style={selectedSport === '야구' ? { border: '1px solid var(--Main, #23F69A)',  background: 'rgba(35, 246, 154, 0.10)' } : undefined}>
-                    <S.SubjectOneText style={selectedSport === '야구' ? { color: 'var(--Main, #23F69A)' } : undefined}>
-                      야구
+                  <S.SubjectOne onClick={() => handleSportSelection('배구')}
+                  style={selectedSport === '배구' ? { border: '1px solid var(--Main, #23F69A)',  background: 'rgba(35, 246, 154, 0.10)' } : undefined}>
+                    <S.SubjectOneText style={selectedSport === '배구' ? { color: 'var(--Main, #23F69A)' } : undefined}>
+                      배구
                     </S.SubjectOneText>
                   </S.SubjectOne>
 

@@ -10,5 +10,8 @@ export { default as GreenStar } from './GreenStar';
 export { default as PercentGuageBar } from './PercentGuageBar';
 export { default as RankBar } from './RankBar';
 export { default as OpenReview } from './OpenReview';
+export { default as Search } from './Search';
+export { default as XIcon } from './XIcon';
 export { default as CloseReview } from './CloseReview';
 export { default as TeamAddButton } from './TeamAddButton';
+export { default as SmallXIcon } from './SmallXIcon';

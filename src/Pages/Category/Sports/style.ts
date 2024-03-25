@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -25,6 +25,8 @@ export const ListWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 1.5rem;
+  height: calc(100vh - 9.75rem);
+  position: relative;
 `;
 
 export const ListContainer = styled.div`
@@ -91,15 +93,15 @@ export const FormationButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 5.0625rem;
-  height: 2.25rem;
   background: transparent;
   border: 0.0625rem solid #b7b7be;
   color: #b7b7be;
   cursor: pointer;
+  font-family: Pretendard;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   border-radius: 0.75rem;
-  padding: 1.0125rem 0;
+  padding: 0.5rem 1.25rem;
   font-weight: 400;
 `;
 
@@ -107,15 +109,15 @@ export const CheerButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 5.0625rem;
-  height: 2.25rem;
   background: #23f69a;
   border: none;
   color: #1c1c1f;
   cursor: pointer;
+  font-family: Pretendard;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   border-radius: 0.75rem;
-  padding: 1.0125rem 0;
+  padding: 0.5rem 1.25rem;
   font-weight: 400;
 `;
 
@@ -228,4 +230,14 @@ export const ModalCheerButton = styled.div`
   font-size: 1.0625rem;
   font-weight: 400;
   font-family: pretendard;
+`;
+
+export const AddButton = styled.div`
+  cursor: pointer;
+
+  svg {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 1.5rem;
+  }
 `;

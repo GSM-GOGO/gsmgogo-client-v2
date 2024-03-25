@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -76,15 +76,15 @@ export const CheckButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 5.0625rem;
-  height: 2.25rem;
   background: transparent;
   border: 0.0625rem solid #b7b7be;
   color: #b7b7be;
   cursor: pointer;
+  font-family: Pretendard;
   font-size: 0.875rem;
+  line-height: 1.25rem;
   border-radius: 0.75rem;
-  padding: 1.0125rem 0;
+  padding: 0.5rem 1.25rem;
   font-weight: 400;
 `;
 
@@ -119,8 +119,6 @@ export const AddButton = styled.div`
     right: 1.5rem;
   }
 `;
-
-
 
 export const ModalBackground = styled.div`
   position: fixed;

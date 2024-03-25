@@ -21,7 +21,7 @@ export const ContainerResponse = styled.div`
 
 export const CategoryContainer = styled.div`
   margin-top: 1.25rem;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   display: flex;
   justify-content: space-between;
 `
@@ -40,6 +40,7 @@ export const SubjectContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 0.75rem;
+  margin-bottom: 4rem;
 `
 
 export const SubjectText = styled.div`
@@ -76,4 +77,45 @@ export const SubjectOneText = styled.p`
   font-weight: 400;
   line-height: 1.375rem;
   margin: 0;
+`
+
+export const TeamInputContainer = styled.div`
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 4rem;
+`
+
+export const TeamInputBox = styled.div`
+  display: flex;
+  width: 37.5rem;
+  padding: 1rem 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.75rem;
+  border: 1px solid var(--colors-gray-gray-800, #44444B);
+`
+
+export const TeamInput = styled.input`
+  width: 100%;
+  color: var(--White, #FFF);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem;
+  outline: none;
+  background: var(--Black, #1C1C1F);
+  border: none;
+`
+
+export const TeamInputText = styled.span`
+  color: var(--White, #FFF);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem;
 `

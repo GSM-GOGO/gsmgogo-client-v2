@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
+import { Search } from '../../assets/index.ts';
 
 const Register = () => {
   const [selectedSport, setSelectedSport] = useState('');
@@ -56,7 +57,39 @@ const Register = () => {
                   </S.SubjectOne>
 
                 </S.SubjectBox>
+
               </S.SubjectContainer>
+                <S.TeamInputContainer>
+                  <S.SubjectText>
+                    팀 이름
+                  </S.SubjectText>
+
+                  <S.TeamInputBox>
+                    <S.TeamInput 
+                      type='text'
+                      placeholder='팀 이름은 최대 8글자 입니다'
+                    >
+                    </S.TeamInput>
+                    <S.TeamInputText style={{color: "var(--White, #FFF)"}}>
+                      팀
+                    </S.TeamInputText>
+                  </S.TeamInputBox>
+                </S.TeamInputContainer>
+
+                <S.TeamInputContainer>
+                  <S.SubjectText>
+                    팀원
+                  </S.SubjectText>
+
+                  <S.TeamInputBox>
+                    <S.TeamInput 
+                      type='text'
+                      placeholder='이름으로 검색하세요'
+                    >
+                    </S.TeamInput>
+                    <Search/>
+                  </S.TeamInputBox>
+                </S.TeamInputContainer>
             </S.ContainerResponse>
           </S.ContainerResponse>
         </S.Container>

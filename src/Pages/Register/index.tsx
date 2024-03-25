@@ -91,6 +91,51 @@ const dataArray: Data[] = [
     gender: "woman",
     normals: [],
   },
+  {
+    name: "1110 김순순",
+    gender: "man",
+    normals: [],
+  },
+  {
+    name: "1111 김덕덕",
+    gender: "woman",
+    normals: [],
+  },
+  {
+    name: "1112 김감감",
+    gender: "man",
+    normals: [],
+  },
+  {
+    name: "1113 김승승",
+    gender: "man",
+    normals: [],
+  },
+  {
+    name: "1114 김정정",
+    gender: "woman",
+    normals: [],
+  },
+  {
+    name: "1115 김굽굽",
+    gender: "man",
+    normals: [],
+  },
+  {
+    name: "1116 김규구",
+    gender: "man",
+    normals: [],
+  },
+  {
+    name: "1117 김샤샷",
+    gender: "man",
+    normals: [],
+  },
+  {
+    name: "1118 김굳굳",
+    gender: "woman",
+    normals: [],
+  },
 ];
 
 const MAX_MEMBERS = {
@@ -143,6 +188,10 @@ const Register = () => {
 
   const handleSportSelection = (sport : string) => {
     setSelectedSport(sport);
+    setSelectedInput(''); // 팀 이름 input과 팀 검색 input 초기화
+    setTeamName(''); // 팀 이름 초기화
+    setSearchedName(''); // 팀 검색 input 초기화
+    setSearchResults([]); // 검색 결과 초기화
     setSelectedMembers([]);
   };
 
@@ -284,7 +333,7 @@ const Register = () => {
                 </S.TeamInputBox>
               </S.TeamInputContainer>
               {searchedName !== '' && searchResults.length > 0 && (
-                <S.overScroll style={{height: '30rem'}}>
+                <S.overScroll style={{height: '22.5em'}}>
                   {searchResults.map((result, index) => (
                     <S.MapTeamMember key={index} onClick={() => handleMemberClick(result)}>
                       <S.MemberList>

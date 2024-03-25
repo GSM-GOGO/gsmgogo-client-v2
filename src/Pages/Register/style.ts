@@ -278,3 +278,13 @@ export const MappingText = styled.div`
   align-items: flex-start;
   gap: 0.5rem;
 `
+
+export const OneNormalContainer = styled.div`
+  display: flex;
+  padding: 0.25rem 0.5rem 0.25rem 0.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background: rgba(183, 183, 190, 0.10);
+`

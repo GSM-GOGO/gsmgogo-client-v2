@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
-import { Search, XIcon } from '../../assets/index.ts';
+import { Search, SmallXIcon, XIcon } from '../../assets/index.ts';
 
 interface Data {
   name: string;
   gender: string;
+  normals: string[];
 }
 
 interface NormalType {
@@ -18,27 +19,27 @@ interface NormalType {
 const NormalArr: NormalType[] = [
   {
     normalSport: "줄다리기",
-    normalPeople: "20",
+    normalPeople: "0",
   },
   {
     normalSport: "농구 자유투 릴레이",
-    normalPeople: "30",
+    normalPeople: "0",
   },
   {
     normalSport: "미션달리기",
-    normalPeople: "2",
+    normalPeople: "0",
   },
   {
     normalSport: "6인 7각",
-    normalPeople: "12",
+    normalPeople: "0",
   },
   {
     normalSport: "줄파도타기",
-    normalPeople: "12",
+    normalPeople: "0",
   },
   {
     normalSport: "이어달리기",
-    normalPeople: "20",
+    normalPeople: "0",
     womanNum: "1",
     manNum: "1"
   },
@@ -48,38 +49,47 @@ const dataArray: Data[] = [
   {
     name: "1101 김순자",
     gender: "man",
+    normals: [],
   },
   {
     name: "1102 김덕자",
     gender: "woman",
+    normals: [],
   },
   {
     name: "1103 김감자",
     gender: "man",
+    normals: [],
   },
   {
     name: "1104 김승자",
     gender: "man",
+    normals: [],
   },
   {
     name: "1105 김정희",
     gender: "woman",
+    normals: [],
   },
   {
     name: "1106 김굽자",
     gender: "man",
+    normals: [],
   },
   {
     name: "1107 김자자",
     gender: "man",
+    normals: [],
   },
   {
     name: "1108 김주자",
     gender: "man",
+    normals: [],
   },
   {
     name: "1109 김자주",
     gender: "woman",
+    normals: [],
   },
 ];
 
@@ -316,7 +326,9 @@ const Register = () => {
                     <S.clickedNormal style={{ position: "absolute" }}>
                       <S.NormalObject>
                         {NormalArr.map((item, index) => (
-                          <S.MappingText key={index}>
+                          <S.MappingText key={index} onClick={() => {
+                            console.log(item)
+                          }}>
                             <S.OneNormalObj>
                               <S.OneNormalText>
                                 {item.normalSport}
@@ -334,21 +346,45 @@ const Register = () => {
 
                   {searchedName === '' || searchResults.length === 0 ? (
                     dataArray.map((item, index) => (
-                      <div key={index} onClick={toggleModal}>
-                        <S.MapTeamMember>
+                      <div key={index} onClick={() => {
+                        console.log(item); // 선택한 요소 정보 출력
+                        toggleModal();
+                      }}>
+                        <S.MapTeamMember style={{justifyContent: "space-between"}}>
                           <S.MemberList>
                             {item.name}
                           </S.MemberList>
+                          <S.OneNormalContainer style={{cursor: 'default'}}>
+                            <S.OneNormalText>
+                              6인 7각
+                            </S.OneNormalText>
+                            <div style={{display: 'flex', cursor: 'pointer', justifyContent: 'center'}}>
+                              <SmallXIcon/>
+                            </div>
+                          </S.OneNormalContainer>
                         </S.MapTeamMember>
                       </div>
                     ))
                   ) : (
                     searchResults.map((result, index) => (
-                      <S.MapTeamMember key={index} onClick={toggleModal}>
-                        <S.MemberList>
-                          {result.name}
-                        </S.MemberList>
-                      </S.MapTeamMember>
+                      <div key={index} onClick={() => {
+                        console.log(result); // 선택한 요소 정보 출력
+                        toggleModal();
+                      }}>
+                        <S.MapTeamMember style={{justifyContent: "space-between"}}>
+                          <S.MemberList>
+                            {result.name}
+                          </S.MemberList>
+                          <S.OneNormalContainer style={{cursor: 'default'}}>
+                            <S.OneNormalText>
+                              6인 7각
+                            </S.OneNormalText>
+                            <div style={{display: 'flex', cursor: 'pointer', justifyContent: 'center'}}>
+                              <SmallXIcon/>
+                            </div>
+                          </S.OneNormalContainer>
+                        </S.MapTeamMember>
+                      </div>
                     ))
                   )}
                 </S.overScroll>

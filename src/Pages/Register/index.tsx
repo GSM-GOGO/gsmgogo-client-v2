@@ -5,35 +5,81 @@ import { Search, XIcon } from '../../assets/index.ts';
 
 interface Data {
   name: string;
+  gender: string;
 }
+
+interface NormalType {
+  normalSport: string;
+  normalPeople: string;
+  womanNum?: string;
+  manNum?: string;
+}
+
+const NormalArr: NormalType[] = [
+  {
+    normalSport: "줄다리기",
+    normalPeople: "20",
+  },
+  {
+    normalSport: "농구 자유투 릴레이",
+    normalPeople: "30",
+  },
+  {
+    normalSport: "미션달리기",
+    normalPeople: "2",
+  },
+  {
+    normalSport: "6인 7각",
+    normalPeople: "12",
+  },
+  {
+    normalSport: "줄파도타기",
+    normalPeople: "12",
+  },
+  {
+    normalSport: "이어달리기",
+    normalPeople: "20",
+    womanNum: "1",
+    manNum: "1"
+  },
+];
 
 const dataArray: Data[] = [
   {
     name: "1101 김순자",
+    gender: "man",
   },
   {
     name: "1102 김덕자",
+    gender: "woman",
   },
   {
     name: "1103 김감자",
+    gender: "man",
   },
   {
     name: "1104 김승자",
+    gender: "man",
   },
   {
     name: "1105 김정희",
+    gender: "woman",
   },
   {
     name: "1106 김굽자",
+    gender: "man",
   },
   {
     name: "1107 김자자",
+    gender: "man",
   },
   {
     name: "1108 김주자",
+    gender: "man",
   },
   {
     name: "1109 김자주",
+    gender: "woman",
   },
 ];
 
@@ -50,6 +96,31 @@ const Register = () => {
   const [searchedName, setSearchedName] = useState('');
   const [searchResults, setSearchResults] = useState<Data[]>([]);
   const [selectedMembers, setSelectedMembers] = useState<Data[]>([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  useEffect(() => {
+    const handleOutsideClick = (e : any) => {
+      const modal = document.querySelector('.clickedNormal');
+      if (modal && !modal.contains(e.target) && e.target.closest('.clickedNormal') === null) {
+        setIsModalVisible(false);
+      }
+    };
+  
+    if (isModalVisible) {
+      document.addEventListener('click', handleOutsideClick);
+    } else {
+      document.removeEventListener('click', handleOutsideClick);
+    }
+  
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+    };
+  }, [isModalVisible]);
+
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -77,6 +148,10 @@ const Register = () => {
   const handleSearchNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchedName = e.target.value.replace(/[^\uAC00-\uD7A3]/gi, '');
     setSearchedName(searchedName);
+    // 검색어가 비어 있는 경우에도 모든 데이터를 보여주도록 설정
+    if (searchedName === '') {
+      setSearchResults(dataArray);
+    }
   };
 
   const handleMemberClick = (member: Data) => {
@@ -95,6 +170,7 @@ const Register = () => {
   for (let i = 0; i < selectedMembers.length; i += 4) {
     dividedSelectedMembers.push(selectedMembers.slice(i, i + 4));
   }
+  
 
   return(
     <div style={{overflow: 'hidden', height: '100%'}}>
@@ -226,8 +302,8 @@ const Register = () => {
                     <S.TeamInput 
                       type='text'
                       placeholder='이름으로 검색하세요'
-                    >
-                    </S.TeamInput>
+                      onChange={handleSearchNameChange}
+                    />
                     <div style={{cursor: "pointer"}}>
                       <Search/>
                     </div>
@@ -235,15 +311,46 @@ const Register = () => {
                 </S.TeamInputContainer>
 
                 <S.overScroll>
-                  {dataArray.map((item, index) => (
-                    <div key={index} onClick={() => handleMemberClick(item)}>
-                      <S.MapTeamMember>
+                {isModalVisible && (
+                  <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                    <S.clickedNormal style={{ position: "absolute" }}>
+                      <S.NormalObject>
+                        {NormalArr.map((item, index) => (
+                          <S.MappingText key={index}>
+                            <S.OneNormalObj>
+                              <S.OneNormalText>
+                                {item.normalSport}
+                              </S.OneNormalText>
+                              <S.OneNormalText>
+                                {`${item.normalPeople}/30`}
+                              </S.OneNormalText>
+                            </S.OneNormalObj>
+                          </S.MappingText>
+                        ))}
+                      </S.NormalObject>
+                    </S.clickedNormal>
+                  </div>
+                )}
+
+                  {searchedName === '' || searchResults.length === 0 ? (
+                    dataArray.map((item, index) => (
+                      <div key={index} onClick={toggleModal}>
+                        <S.MapTeamMember>
+                          <S.MemberList>
+                            {item.name}
+                          </S.MemberList>
+                        </S.MapTeamMember>
+                      </div>
+                    ))
+                  ) : (
+                    searchResults.map((result, index) => (
+                      <S.MapTeamMember key={index} onClick={toggleModal}>
                         <S.MemberList>
-                          {item.name}
+                          {result.name}
                         </S.MemberList>
                       </S.MapTeamMember>
-                    </div>
-                  ))}
+                    ))
+                  )}
                 </S.overScroll>
               </S.NormalTeamContainer>
               )}

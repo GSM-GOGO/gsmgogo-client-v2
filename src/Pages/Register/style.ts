@@ -225,6 +225,56 @@ export const MemberName = styled.span`
 `
 
 export const overScroll = styled.div`
-  height: 35rem;
+  height: 30rem;
   overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+`
+
+export const clickedNormal = styled.div`
+  display: inline-flex;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  border-radius: 0.75rem;
+  background: var(--colors-gray-gray-900, #26262A);
+  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.50);
+`
+
+export const NormalObject = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+`
+
+export const OneNormalObj = styled.div`
+  display: flex;
+  padding: 0.25rem 0.75rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 0.5rem;
+  background: rgba(183, 183, 190, 0.20);
+  cursor: pointer;
+`
+
+export const OneNormalText = styled.span`
+  color: var(--Gray1, #B7B7BE);
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125rem;
+`
+
+export const MappingText = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 `

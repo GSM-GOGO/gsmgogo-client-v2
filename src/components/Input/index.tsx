@@ -22,14 +22,25 @@ interface Props {
 
 export type userCount = {
   userCnt: number;
-}
+};
 
-export default function Input({ label, errors, message, register, type = "tel", maxLength, placeholder, readOnly, setError, reset }: Props) {
+export default function Input({
+  label,
+  errors,
+  message,
+  register,
+  type = "tel",
+  maxLength,
+  placeholder,
+  readOnly,
+  setError,
+  reset,
+}: Props) {
   const validtime = 10; // 인증번호 시간
   const [count, setCount] = useState(validtime);
   const [expired, setExpired] = useState(false);
   const [buttonDisabled, setButtonDisabled] = useState(false);
-  const [clickedCount, setClickedCount] = useState(0)
+  const [clickedCount, setClickedCount] = useState(0);
 
   useEffect(() => {
     if (count === 0) {
@@ -55,13 +66,13 @@ export default function Input({ label, errors, message, register, type = "tel", 
   };
 
   const userBtnClick = () => {
-    if(clickedCount < 3) {
-      console.log(clickedCount)
+    if (clickedCount < 3) {
+      console.log(clickedCount);
       setClickedCount((prev) => prev + 1);
     } else {
       console.log("초과");
     }
-  }
+  };
 
   return (
     <S.Wrapper>
@@ -72,16 +83,22 @@ export default function Input({ label, errors, message, register, type = "tel", 
             <h4>
               <Timer count={count} setCount={setCount} setError={setError} />
             </h4>
-            <h4 onClick={() => {
+            <h4
+              onClick={() => {
                 if (!buttonDisabled) {
                   resetTimer();
                   userBtnClick();
                 }
               }}
-              style={{ 
+              style={{
                 cursor: buttonDisabled ? "not-allowed" : "pointer",
-                color: buttonDisabled ? "var(--Error, #DF454A)" : "var(--Gray2, #6F6F7B)",
-              }}>재발송</h4>
+                color: buttonDisabled
+                  ? "var(--Error, #DF454A)"
+                  : "var(--Gray2, #6F6F7B)",
+              }}
+            >
+              재발송
+            </h4>
           </S.CertificationNumberWrapper>
         )}
       </S.Label>

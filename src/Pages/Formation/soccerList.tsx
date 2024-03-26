@@ -48,5 +48,5 @@ export const SoccerPlayersList: Players[] = [
     name: "김동연",
     x: 250,
     y: 375,
-  }
+  },
 ];

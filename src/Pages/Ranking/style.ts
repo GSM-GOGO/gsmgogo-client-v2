@@ -83,7 +83,8 @@ export const Lank = styled.p<{ rank?: boolean }>`
   font-size: 1rem;
   font-weight: 600;
   font-family: pretendard;
-  color: ${(props) => (props.rank ? "rgba(35, 246, 154, 1)" : "rgba(183, 183, 190, 1)")};
+  color: ${(props) =>
+    props.rank ? "rgba(35, 246, 154, 1)" : "rgba(183, 183, 190, 1)"};
 `;
 
 export const Point = styled.p`

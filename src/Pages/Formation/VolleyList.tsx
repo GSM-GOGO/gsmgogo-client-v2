@@ -54,5 +54,5 @@ export const VolleyPlayersList: Players[] = [
     name: "이진헌",
     x: 280,
     y: 215,
-  }
+  },
 ];

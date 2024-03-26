@@ -1,7 +1,6 @@
 import * as S from './style.ts';
 import { GAuthLogo, SignInLogo } from '../../assets';
 import '@msg-team/gauth-react/dist/index.css';
-
 import apiClient from '../../utils/libs/apiClient.ts';
 
 const Signin = () => {

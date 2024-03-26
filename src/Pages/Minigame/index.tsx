@@ -1,9 +1,7 @@
-import HeaderContainer from "../../components/HeaderContainer"
+import HeaderContainer from "../../components/HeaderContainer";
 
 const Minigame = () => {
-  return (
-    <HeaderContainer/>
-  )
-}
+  return <HeaderContainer />;
+};
 
-export default Minigame
+export default Minigame;

@@ -14,6 +14,10 @@ const NomalMatch = () => {
     navigate(`/matches/${sport}/form`);
   };
 
+  const GoRegister = () => {
+    navigate(`/register`);
+  };
+
   return (
     <>
       <HeaderContainer />
@@ -23,7 +27,9 @@ const NomalMatch = () => {
             <S.ModalContainer>
               <S.ModalTextContainer style={{ gap: "0" }}>
                 <S.ModalTitle>
-                  <S.ModalTitleContainer style={{ alignItems: "center" }}>팀을 등록하시겠습니까?</S.ModalTitleContainer>
+                  <S.ModalTitleContainer style={{ alignItems: "center" }}>
+                    팀을 등록하시겠습니까?
+                  </S.ModalTitleContainer>
                 </S.ModalTitle>
                 <S.ModalNovelContainer>
                   <S.ModalNovel style={{ color: "var(--Error, #DF454A)" }}>
@@ -33,8 +39,12 @@ const NomalMatch = () => {
                 </S.ModalNovelContainer>
               </S.ModalTextContainer>
               <S.ModalButtonContainer>
-                <S.ModalCencleButton onClick={() => setAddteam(!addteam)}>아니오</S.ModalCencleButton>
-                <S.ModalCheerButton onClick={()=>GoToForm("NomalMatch")}>팀구성하기</S.ModalCheerButton>
+                <S.ModalCencleButton onClick={() => setAddteam(!addteam)}>
+                  아니오
+                </S.ModalCencleButton>
+                <S.ModalCheerButton onClick={GoRegister}>
+                  팀구성하기
+                </S.ModalCheerButton>
               </S.ModalButtonContainer>
             </S.ModalContainer>
           </S.ModalBackground>
@@ -51,7 +61,9 @@ const NomalMatch = () => {
                       <S.TeamClass>소프트웨어 개발과</S.TeamClass>
                     </S.TeamTextContainer>
                   </S.TextContainer>
-                  <S.CheckButton onClick={() => GoToForm("NomalMatch")}>확인하기</S.CheckButton>
+                  <S.CheckButton onClick={() => GoToForm("NomalMatch")}>
+                    확인하기
+                  </S.CheckButton>
                 </S.List>
               </S.ListContainer>
               <S.Stroke />
@@ -64,7 +76,9 @@ const NomalMatch = () => {
                     </S.TeamTextContainer>
                   </S.TextContainer>
                   <S.ButtonContainer>
-                    <S.CheckButton onClick={() => GoToForm("NomalMatch")}>확인하기</S.CheckButton>
+                    <S.CheckButton onClick={() => GoToForm("NomalMatch")}>
+                      확인하기
+                    </S.CheckButton>
                   </S.ButtonContainer>
                 </S.List>
               </S.ListContainer>

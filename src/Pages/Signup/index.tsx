@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function SignUp() {
   const navigate = useNavigate();
-  
+
   const [showVerification, setShowVerification] = useState(false);
 
   const {
@@ -17,7 +17,7 @@ export default function SignUp() {
     formState: { errors },
     handleSubmit,
     setError,
-    reset
+    reset,
   } = useForm<FormData>({ mode: "onChange" });
 
   const onSubmit = (data: FormData) => {
@@ -40,9 +40,9 @@ export default function SignUp() {
     if (showVerification) {
       // 이전으로
       setShowVerification(false);
-      reset(); 
+      reset();
     } else {
-      navigate(`/`)
+      navigate(`/`);
     }
   };
 
@@ -50,7 +50,7 @@ export default function SignUp() {
     <S.Layout>
       <S.Wrapper>
         <S.Logo>
-          <Logo/>
+          <Logo />
         </S.Logo>
         <Form onSubmit={handleSubmit(onSubmit)}>
           <InputWrapper>
@@ -94,7 +94,11 @@ export default function SignUp() {
               <S.BeforeButton type="button" onClick={handleButtonClick}>
                 {showVerification ? "이전으로" : "넘어가기"}
               </S.BeforeButton>
-              <S.CertificationButton type="submit" SubmitOK={Object.keys(errors).length === 0} disabled={Object.keys(errors).length !== 0}>
+              <S.CertificationButton
+                type="submit"
+                SubmitOK={Object.keys(errors).length === 0}
+                disabled={Object.keys(errors).length !== 0}
+              >
                 {showVerification ? "인증하기" : "인증번호"}
               </S.CertificationButton>
             </S.ButtonContainer>

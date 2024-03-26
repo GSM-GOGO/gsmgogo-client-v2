@@ -32,9 +32,9 @@ export const SubmitWrapper = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-width: 100%;
-display: flex;
-gap: 10px;
+  width: 100%;
+  display: flex;
+  gap: 10px;
 `;
 
 export const StyledButton = styled.button`
@@ -53,8 +53,10 @@ export const BeforeButton = styled(StyledButton)`
 `;
 
 export const CertificationButton = styled(StyledButton)<{ SubmitOK?: boolean }>`
-  background: ${({ SubmitOK }) => (SubmitOK ? "rgba(35, 246, 154, 1)" : "rgba(68, 68, 75, 1)")};
-  color: ${({ SubmitOK }) => (SubmitOK ? "rgba(28, 28, 31, 1)" : "rgba(183, 183, 190, 1)")};
+  background: ${({ SubmitOK }) =>
+    SubmitOK ? "rgba(35, 246, 154, 1)" : "rgba(68, 68, 75, 1)"};
+  color: ${({ SubmitOK }) =>
+    SubmitOK ? "rgba(28, 28, 31, 1)" : "rgba(183, 183, 190, 1)"};
 `;
 
 export const SuccessButton = styled(StyledButton)`

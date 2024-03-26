@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const PlayingContainer = styled.div`
   display: flex;
@@ -117,17 +117,16 @@ export const TimeText = styled.p`
 export const GrayLine = styled.div`
   width: 37.5rem;
   height: 0.0625rem;
-  background: var(--colors-gray-gray-800, #44444B);
+  background: var(--colors-gray-gray-800, #44444b);
 `;
-
 
 export const PredictContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-radius: 0.75rem;
-  background: var(--colors-gray-gray-900, #26262A);
-`
+  background: var(--colors-gray-gray-900, #26262a);
+`;
 
 export const PercentBar = styled.div`
   display: flex;
@@ -155,7 +154,7 @@ export const PredictPointBox = styled.div`
 `;
 
 export const PredictText = styled.p`
-  color: var(--White, #FFF);
+  color: var(--White, #fff);
   font-family: Pretendard;
   font-size: 0.875rem;
   font-style: normal;

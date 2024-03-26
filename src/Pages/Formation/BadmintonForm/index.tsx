@@ -46,7 +46,7 @@ const BadmintonForm = () => {
               <S.Category
                 style={{ color: "var(--White, #FFF)", paddingRight: "1.5rem" }}
               >
-                어쩌구저쩌구팀 농구 포메이션
+                어쩌구저쩌구팀 배드민턴 포메이션
                 <D.MiniText>3학년 SW</D.MiniText>
               </S.Category>
               <S.Category style={{ color: "var(--Main, #23F69A)" }}>

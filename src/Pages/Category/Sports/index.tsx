@@ -22,6 +22,10 @@ const Sports = () => {
     navigate(`/matches/${sport}/form`);
   };
 
+  const GoRegister = () => {
+    navigate(`/register`);
+  };
+
   return (
     <>
       <HeaderContainer />
@@ -73,7 +77,7 @@ const Sports = () => {
                 <S.ModalCencleButton onClick={() => setAddteam(!addteam)}>
                   아니오
                 </S.ModalCencleButton>
-                <S.ModalCheerButton onClick={() => GoToForm(sport)}>
+                <S.ModalCheerButton onClick={GoRegister}>
                   팀구성하기
                 </S.ModalCheerButton>
               </S.ModalButtonContainer>

@@ -10,7 +10,7 @@ const dataArray: Array<ArrayProps> = [
     //1
     isPredictGame: true,
     isFinal: false,
-    SportsName: "농구",
+    SportsName: "축구",
     TeamName: ["쌲싹싺싺싹", "나이스나이스"],
     Grade: ["2학년 SW", "2학년 임베"],
     Time: ["00:00 ~ 12:45", "12:50 ~ 01:30"],
@@ -115,7 +115,7 @@ const dataArray: Array<ArrayProps> = [
     //6
     isPredictGame: false,
     isFinal: false,
-    SportsName: "농구",
+    SportsName: "야구",
     TeamName: ["나이스나이스3", "나이스나이스4"],
     Grade: ["1학년 SW", "1학년 SW"],
     Time: ["00:00 ~ 11:00", "12:50 ~ 11:00"],

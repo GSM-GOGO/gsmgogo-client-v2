@@ -14,6 +14,10 @@ const NomalMatch = () => {
     navigate(`/matches/${sport}/form`);
   };
 
+  const GoRegister = () => {
+    navigate(`/register`);
+  };
+
   return (
     <>
       <HeaderContainer />
@@ -38,7 +42,7 @@ const NomalMatch = () => {
                 <S.ModalCencleButton onClick={() => setAddteam(!addteam)}>
                   아니오
                 </S.ModalCencleButton>
-                <S.ModalCheerButton onClick={() => GoToForm("NomalMatch")}>
+                <S.ModalCheerButton onClick={GoRegister}>
                   팀구성하기
                 </S.ModalCheerButton>
               </S.ModalButtonContainer>

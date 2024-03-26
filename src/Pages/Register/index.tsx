@@ -140,7 +140,7 @@ const dataArray: Data[] = [
 
 const MAX_MEMBERS = {
   축구: 8,
-  농구: 5,
+  배드민턴: 2,
   배구: 9,
 };
 
@@ -276,9 +276,9 @@ const Register = () => {
                   </S.SubjectOne>
 
                   <S.SubjectOne
-                    onClick={() => handleSportSelection("농구")}
+                    onClick={() => handleSportSelection("배드민턴")}
                     style={
-                      selectedSport === "농구"
+                      selectedSport === "배드민턴"
                         ? {
                             border: "1px solid var(--Main, #23F69A)",
                             background: "rgba(35, 246, 154, 0.10)",
@@ -288,12 +288,12 @@ const Register = () => {
                   >
                     <S.SubjectOneText
                       style={
-                        selectedSport === "농구"
+                        selectedSport === "배드민턴"
                           ? { color: "var(--Main, #23F69A)" }
                           : undefined
                       }
                     >
-                      농구
+                      배드민턴
                     </S.SubjectOneText>
                   </S.SubjectOne>
 

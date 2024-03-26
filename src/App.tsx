@@ -2,11 +2,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Main, Minigame, Ranking, Signin, Signup } from "./Pages";
 import { GlobalStyles } from "./style/Globalstyles.ts";
 import SoccerForm from "./Pages/Formation/SoccerForm/index.tsx";
-import BasketForm from "./Pages/Formation/BasketForm/index.tsx";
 import VolleyForm from "./Pages/Formation/VolleyForm/index.tsx";
+import BadmintonForm from "./Pages/Formation/BadmintonForm/index.tsx";
 import NomalMatch from "./Pages/Category/Nomal/index.tsx";
 import NomalForm from "./Pages/Formation/NomalForm/index.tsx";
-import Sports from './Pages/Category/Sports/index.tsx';
+import Sports from "./Pages/Category/Sports/index.tsx";
 import Register from "./Pages/Register/index.tsx";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
           <Route path="/minigame" element={<Minigame />} />
           <Route path="/matches/soccer/form" element={<SoccerForm />} />
 
-          <Route path="/matches/basketball/form" element={<BasketForm />} />
+          <Route path="/matches/badminton/form" element={<BadmintonForm />} />
 
           <Route path="/matches/volleyball/form" element={<VolleyForm />} />
           <Route path="/matches/:sport" element={<Sports />} />

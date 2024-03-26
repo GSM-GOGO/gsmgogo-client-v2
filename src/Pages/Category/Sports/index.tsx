@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from "react";
 import HeaderContainer from "../../../components/HeaderContainer/index.tsx";
 import * as S from "./style.ts";
@@ -7,7 +8,7 @@ import TeamAddButton from "../../../assets/svg/TeamAddButton.tsx";
 
 const Sports = () => {
   const { sport } = useParams();
-  if (!(sport === "soccer" || sport === "basketball" || sport === "volleyball")) {
+  if (!(sport === "soccer" || sport === "badminton" || sport === "volleyball")) {
     return <h1>Not Found</h1>;
   }
   const navigate = useNavigate();

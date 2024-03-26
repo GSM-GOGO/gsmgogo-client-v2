@@ -13,10 +13,10 @@ const Category = () => {
         축구
       </S.CategoryLink>
       <S.CategoryLink
-        to="/matches/basketball"
-        style={currentPath === '/matches/basketball' ? { color: '#fff' } : undefined}
+        to="/matches/badminton"
+        style={currentPath === '/matches/badminton' ? { color: '#fff' } : undefined}
       >
-        농구
+        배드민턴
       </S.CategoryLink>
       <S.CategoryLink
         to="/matches/volleyball"

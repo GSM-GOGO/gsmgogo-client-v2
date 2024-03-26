@@ -34,7 +34,7 @@ const NormalArr: NormalType[] = [
     normalPeople: "0",
   },
   {
-    normalSport: "줄파도타기",
+    normalSport: '줄파도타기',
     normalPeople: "0",
   },
   {

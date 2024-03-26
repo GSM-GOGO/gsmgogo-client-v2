@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { People, VolleyField } from "../../../assets/index.ts";
+import { People } from "../../../assets/index.ts";
 import HeaderContainer from "../../../components/HeaderContainer/index.tsx";
 import * as S from "../style.ts";
-import { VolleyPlayersList } from "../VolleyList.tsx";
+import { BadmintonplayersList } from "../BadmintonList.tsx";
 import * as D from "./style.ts";
 import Draggable from "react-draggable";
+import BadmintonField from "../../../assets/png/BadmintonField.png";
 import { useNavigate } from "react-router-dom";
 
-const VolleyForm = () => {
+const BadmintonForm = () => {
   const [bounds, setBounds] = useState({
     left: 0,
     top: 0,
@@ -32,7 +33,7 @@ const VolleyForm = () => {
   }, []);
 
   const GoBackButton = () => {
-    navigate(`/matches/volleyball`);
+    navigate(`/matches/badminton`);
   };
 
   return (
@@ -45,7 +46,7 @@ const VolleyForm = () => {
               <S.Category
                 style={{ color: "var(--White, #FFF)", paddingRight: "1.5rem" }}
               >
-                어쩌구저쩌구팀 배구 포메이션
+                어쩌구저쩌구팀 배드민턴 포메이션
                 <D.MiniText>3학년 SW</D.MiniText>
               </S.Category>
               <S.Category style={{ color: "var(--Main, #23F69A)" }}>
@@ -56,10 +57,10 @@ const VolleyForm = () => {
             <S.ContainerResponse style={{ paddingBottom: "3.5rem" }}>
               <D.ImgBox
                 ref={formationFieldRef}
-                img={VolleyField}
+                img={BadmintonField}
                 style={{ position: "relative" }}
               >
-                {VolleyPlayersList.map((player) => (
+                {BadmintonplayersList.map((player) => (
                   <div key={player.id} style={{ position: "absolute" }}>
                     <div style={{ position: "relative" }}>
                       <Draggable
@@ -92,4 +93,4 @@ const VolleyForm = () => {
   );
 };
 
-export default VolleyForm;
+export default BadmintonForm;

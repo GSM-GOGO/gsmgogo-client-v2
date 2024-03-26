@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
 	body{
@@ -7,7 +7,6 @@ export const GlobalStyles = createGlobalStyle`
         height: 100vh;
         padding: 0;
         margin: 0;
-        overflow: hidden;
     };
 
     @font-face {

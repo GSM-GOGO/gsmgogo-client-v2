@@ -1,7 +1,7 @@
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 const IsLoggedIn = () => {
-  const [cookies] = useCookies(['refreshToken']);
+  const [cookies] = useCookies(["refreshToken"]);
   return cookies.refreshToken ? true : false;
 };
 

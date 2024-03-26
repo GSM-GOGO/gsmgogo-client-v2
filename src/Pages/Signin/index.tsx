@@ -1,12 +1,12 @@
-import * as S from './style.ts';
-import { GAuthLogo, SignInLogo } from '../../assets';
-import '@msg-team/gauth-react/dist/index.css';
+import * as S from "./style.ts";
+import { GAuthLogo, SignInLogo } from "../../assets";
+import "@msg-team/gauth-react/dist/index.css";
 
-import { useNavigate } from 'react-router-dom';
-import apiClient from '../../utils/libs/apiClient.ts';
-import { useEffect } from 'react';
-import IsLoggedIn from '../../utils/IsLoggedIn.ts';
-import { Login } from '../../utils/apis/auth.ts';
+import { useNavigate } from "react-router-dom";
+import apiClient from "../../utils/libs/apiClient.ts";
+import { useEffect } from "react";
+import IsLoggedIn from "../../utils/IsLoggedIn.ts";
+import { Login } from "../../utils/apis/auth.ts";
 
 const Signin = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Signin = () => {
   useEffect(() => {
     const checkLoggedIn = async () => {
       if (await IsLoggedIn()) {
-        navigate('/');
+        navigate("/");
       }
     };
     checkLoggedIn();
@@ -23,10 +23,10 @@ const Signin = () => {
 
   const handleSignIn = async () => {
     try {
-      const response = await apiClient.get('/auth/login');
+      const response = await apiClient.get("/auth/login");
       navigate(response.data);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
     }
   };
   return (

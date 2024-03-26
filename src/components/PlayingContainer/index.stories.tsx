@@ -1,6 +1,6 @@
-import PlayingContainer from './';
+import PlayingContainer from "./";
 
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
 const meta: Meta<typeof PlayingContainer> = {
   component: PlayingContainer,

@@ -8,17 +8,16 @@ interface TimerProps {
   setError?: UseFormSetError<FormData>;
 }
 
-const Timer: React.FC<TimerProps> = ({ count, setCount ,setError}) => {
-
+const Timer: React.FC<TimerProps> = ({ count, setCount, setError }) => {
   const formatTime = (time: number): string => {
     const minutes = Math.floor(time / 60);
     const seconds = time % 60;
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
 
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(count => count - 1);
+      setCount((count) => count - 1);
     }, 1000);
 
     if (count === 0) {
@@ -33,9 +32,7 @@ const Timer: React.FC<TimerProps> = ({ count, setCount ,setError}) => {
     return () => clearInterval(id);
   }, [count, setCount]);
 
-  return (
-    <>{formatTime(count)}</>
-  );
+  return <>{formatTime(count)}</>;
 };
 
 export default Timer;

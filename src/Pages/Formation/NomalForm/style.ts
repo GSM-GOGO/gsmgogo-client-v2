@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -76,7 +76,7 @@ export const ListTitle = styled.div`
 `;
 
 export const CandiateContainer = styled.div`
-  display: ${(props) => (props.active ? 'block' : 'none')};
+  display: ${(props) => (props.active ? "block" : "none")};
   width: 32.75rem;
   display: flex;
   gap: 1rem;

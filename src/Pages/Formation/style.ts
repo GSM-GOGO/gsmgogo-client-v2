@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -29,7 +29,7 @@ export const CategoryContainer = styled.div`
   @media (max-width: 1800px) {
     padding: 0.5rem 2rem;
   }
-`
+`;
 
 export const Category = styled.div`
   font-family: Pretendard;
@@ -50,17 +50,17 @@ export const BackButton = styled.button`
   gap: 0.5rem;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  border: 1px solid var(--Main, #23F69A);
-  background: var(--Black, #1C1C1F);
+  border: 1px solid var(--Main, #23f69a);
+  background: var(--Black, #1c1c1f);
   cursor: pointer;
-`
+`;
 
 export const BackText = styled.p`
-  color: var(--Main, #23F69A);
+  color: var(--Main, #23f69a);
   text-align: center;
   font-family: "Pretendard Variable";
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 600;
   line-height: 1.625rem;
-`
+`;

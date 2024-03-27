@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const CategoryContainer = styled.div`
   margin-top: 1.25rem;
@@ -14,4 +14,5 @@ export const CategoryLink = styled(Link)`
   font-family: pretendard;
   color: #6f6f7b;
   text-decoration: none;
+  line-height: 1.9375rem;
 `;

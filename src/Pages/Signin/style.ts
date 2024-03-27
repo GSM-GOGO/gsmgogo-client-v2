@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -50,4 +50,5 @@ export const GauthLoginButton = styled.button`
   font-weight: 600;
   outline: none;
   color: #23f69a;
+  line-height: 1.375rem;
 `;

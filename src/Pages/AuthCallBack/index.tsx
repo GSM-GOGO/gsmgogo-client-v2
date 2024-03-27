@@ -14,7 +14,10 @@ const AuthCallBack = () => {
     try {
       if (gauthCode) {
         const Response = await apiClient.get(`/auth/callback?code=${gauthCode}`);
-        console.log(Response);
+        const accessToken = Response.headers['authorization'];
+        const refreshToken = Response.headers['refresh-token'];
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
         if (Response.data.isSignup === false) {
           navigate('/signup');
         } else {

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -33,9 +33,11 @@ export const TeamName = styled.p`
   font-size: 1.5rem;
   font-weight: 600;
   font-family: pretendard;
+  line-height: 1.9375rem;
 `;
 
 export const TeamClass = styled.p`
+  line-height: 1.375rem;
   margin: 0;
   color: #6f6f7b;
   font-size: 1rem;
@@ -58,7 +60,7 @@ export const ListContainer = styled.div`
 `;
 
 export const List = styled.div`
-  padding: 1.5rem 1rem;
+  padding: 1rem 1.5rem;
   width: 100%;
   border-radius: 0.75rem;
   box-sizing: border-box;
@@ -76,7 +78,7 @@ export const ListTitle = styled.div`
 `;
 
 export const CandiateContainer = styled.div`
-  display: ${(props) => (props.active ? "block" : "none")};
+  display: ${(props) => (props.active ? 'block' : 'none')};
   width: 32.75rem;
   display: flex;
   gap: 1rem;
@@ -102,6 +104,7 @@ export const CandiateButton = styled.div`
 `;
 
 export const SportsText = styled.p`
+  line-height: 1.375rem;
   margin: 0;
   font-weight: 600;
   font-size: 1rem;

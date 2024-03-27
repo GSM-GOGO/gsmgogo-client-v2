@@ -44,6 +44,7 @@ export const StyledButton = styled.button`
   font-weight: 600;
   font-size: 18px;
   cursor: pointer;
+  border: none;
 `;
 
 export const BeforeButton = styled(StyledButton)`

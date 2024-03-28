@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -197,6 +197,11 @@ export const ModalNovel = styled.p`
   font-family: pretendard;
   color: #6f6f7b;
   line-height: 1.25rem;
+
+  &::after {
+    content: "팀은 한번 등록하면 변경 할 수 없습니다.";
+    color: var(--Error, #df454a);
+  }
 `;
 
 export const ModalButtonContainer = styled.div`

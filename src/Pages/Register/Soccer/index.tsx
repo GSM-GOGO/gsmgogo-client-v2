@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { People } from "../../../assets/index.ts";
 import HeaderContainer from "../../../components/HeaderContainer/index.tsx";
@@ -55,8 +54,6 @@ const Soccer = () => {
       position_y: data.y,
     };
     setParticipantPositions(updatedParticipantPositions);
-
-    console.log(`${id}, X: ${data.x}, ${data.y}`);
   };
 
   const postSoccerTeam = async () => {

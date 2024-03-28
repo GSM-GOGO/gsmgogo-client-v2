@@ -1,14 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { People } from "../../../assets/index.ts";
 import HeaderContainer from "../../../components/HeaderContainer/index.tsx";
-import * as S from "../style.ts";
-import { BadmintonplayersList } from "../BadmintonList.tsx";
-import * as D from "./style.ts";
+import * as S from "./style.ts";
 import Draggable from "react-draggable";
 import BadmintonField from "../../../assets/png/BadmintonField.png";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import apiClient from "../../../utils/libs/apiClient.ts";
 
-const BadmintonForm = () => {
+const Badminton = () => {
   const [bounds, setBounds] = useState({
     left: 0,
     top: 0,
@@ -17,7 +16,18 @@ const BadmintonForm = () => {
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
-  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { teamName, selectedMembers } = location.state;
+
+  const [participantPositions, setParticipantPositions] = useState([]);
+
+  const convertedMembers = selectedMembers.map((member, index) => ({
+    id: index + 1,
+    name: member.split(" ")[1],
+    x: [115, 305][index % 2],
+    y: [160, 160][index % 2],
+  }));
 
   useEffect(() => {
     if (formationFieldRef.current) {
@@ -32,8 +42,48 @@ const BadmintonForm = () => {
     }
   }, []);
 
-  const GoBackButton = () => {
-    navigate(`/matches/badminton`);
+  const handleDragStop = (id, e, data) => {
+    const participantIndex = convertedMembers.findIndex(
+      (participant) => participant.id === id
+    );
+
+    const updatedParticipantPositions = [...participantPositions];
+    updatedParticipantPositions[participantIndex] = {
+      id,
+      position_x: data.x,
+      position_y: data.y,
+    };
+    setParticipantPositions(updatedParticipantPositions);
+  };
+
+  const postBadmintonTeam = async () => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const participates = convertedMembers.map((player) => ({
+        user_id: player.id,
+        position_x: participantPositions[player.id - 1]?.position_x ?? player.x,
+        position_y: participantPositions[player.id - 1]?.position_y ?? player.y,
+      }));
+
+      await apiClient.post(
+        `/team/badminton`,
+        {
+          team_name: teamName,
+          participates: participates,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      console.log("error");
+    } finally {
+      alert(1);
+    }
   };
 
   return (
@@ -46,39 +96,36 @@ const BadmintonForm = () => {
               <S.Category
                 style={{ color: "var(--White, #FFF)", paddingRight: "1.5rem" }}
               >
-                어쩌구저쩌구팀 배드민턴 포메이션
-                <D.MiniText>3학년 SW</D.MiniText>
-              </S.Category>
-              <S.Category style={{ color: "var(--Main, #23F69A)" }}>
-                3승
+                {teamName}팀 배드민턴 포메이션
               </S.Category>
             </S.CategoryContainer>
 
             <S.ContainerResponse style={{ paddingBottom: "3.5rem" }}>
-              <D.ImgBox
+              <S.ImgBox
                 ref={formationFieldRef}
                 img={BadmintonField}
                 style={{ position: "relative" }}
               >
-                {BadmintonplayersList.map((player) => (
+                {convertedMembers.map((player) => (
                   <div key={player.id} style={{ position: "absolute" }}>
                     <div style={{ position: "relative" }}>
                       <Draggable
                         defaultPosition={{ x: player.x, y: player.y }}
                         bounds={bounds}
                         nodeRef={formationFieldRef}
+                        onStop={(e, data) => handleDragStop(player.id, e, data)}
                       >
-                        <D.PlayerContainer style={{ cursor: "pointer" }}>
+                        <S.PlayerContainer style={{ cursor: "pointer" }}>
                           <People />
-                          <D.PlayerText style={{ userSelect: "none" }}>
+                          <S.PlayerText style={{ userSelect: "none" }}>
                             {player.name}
-                          </D.PlayerText>
-                        </D.PlayerContainer>
+                          </S.PlayerText>
+                        </S.PlayerContainer>
                       </Draggable>
                     </div>
                   </div>
                 ))}
-              </D.ImgBox>
+              </S.ImgBox>
             </S.ContainerResponse>
           </S.ContainerResponse>
           <div
@@ -89,7 +136,7 @@ const BadmintonForm = () => {
               position: "relative",
             }}
           >
-            <S.BackButton onClick={GoBackButton}>
+            <S.BackButton onClick={postBadmintonTeam}>
               <S.BackText>돌아가기</S.BackText>
             </S.BackButton>
           </div>
@@ -99,4 +146,4 @@ const BadmintonForm = () => {
   );
 };
 
-export default BadmintonForm;
+export default Badminton;

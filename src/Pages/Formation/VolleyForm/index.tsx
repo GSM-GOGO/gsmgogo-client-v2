@@ -80,11 +80,18 @@ const VolleyForm = () => {
               </D.ImgBox>
             </S.ContainerResponse>
 
-            <S.ContainerResponse>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                top: "20rem",
+                position: "relative",
+              }}
+            >
               <S.BackButton onClick={GoBackButton}>
                 <S.BackText>돌아가기</S.BackText>
               </S.BackButton>
-            </S.ContainerResponse>
+            </div>
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>

@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const apiClient = axios.create({
   baseURL: import.meta.env.VITE_CLIENT_API,
-  // withCredentials: true,
 });
 
 apiClient.interceptors.response.use(
@@ -10,8 +9,16 @@ apiClient.interceptors.response.use(
   async (error) => {
     if (error.response && error.response.status === 403) {
       try {
-        await axios.get(`${import.meta.env.VITE_CLIENT_API}/auth/refresh`);
-        return axios.request(error.config);
+        const token = localStorage.getItem('refreshToken');
+        const Response = await apiClient.get(`/auth/refresh`, {
+          headers: {
+            'Refresh-Token': `${token}`,
+          },
+        });
+        const accessToken = Response.headers['authorization'];
+        const refreshToken = Response.headers['refresh-token'];
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
       } catch (refreshError) {
         window.location.href = '/signin';
       }

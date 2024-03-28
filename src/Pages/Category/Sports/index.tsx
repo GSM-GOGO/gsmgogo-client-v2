@@ -113,6 +113,9 @@ const Sports = () => {
                   <S.ModalNovelContainer>
                     <S.ModalNovel>
                       해당 팀의 경기 때 문자 알림을 받게 됩니다. <br />
+                      <div style={{ color: "var(--Error, #DF454A)" }}>
+                        팀은 한번 등록하면 변경 할 수 없습니다.
+                      </div>
                     </S.ModalNovel>
                   </S.ModalNovelContainer>
                 </S.ModalTextContainer>

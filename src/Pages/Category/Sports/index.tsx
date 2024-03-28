@@ -20,6 +20,7 @@ const Sports = () => {
 
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
+  const [selectedTeam, setSelectedTeam] = useState(null);
 
   useEffect(() => {
     const sportName = sport.toUpperCase();
@@ -44,7 +45,27 @@ const Sports = () => {
     getTeamList();
   }, [sport]);
 
-  console.log(teams);
+  const postFavoriteTeam = async (teamId) => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      await apiClient.post(
+        `/team/follow`,
+        {
+          team_id: teamId,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      console.log("error");
+    }
+  };
+
   const GoToForm = (sport: string) => {
     navigate(`/matches/${sport}/form`);
   };
@@ -53,17 +74,22 @@ const Sports = () => {
     navigate(`/register`);
   };
 
+  const handleCheerClick = (teamId, teamName) => {
+    setSelectedTeam({ id: teamId, name: teamName });
+    setCheer(true);
+  };
+
   return (
     <>
       <HeaderContainer />
       <S.Wrapper>
-        {cheer ? (
+        {cheer && selectedTeam && (
           <S.ModalBackground>
             <S.ModalContainer>
               <S.ModalTextContainer>
                 <S.ModalTitle>
                   <S.ModalTitleContainer>
-                    어쩌구저쩌구팀을
+                    {selectedTeam.name}팀을
                     <br />
                     응원 하시겠습니까?
                   </S.ModalTitleContainer>
@@ -75,14 +101,18 @@ const Sports = () => {
                 </S.ModalNovelContainer>
               </S.ModalTextContainer>
               <S.ModalButtonContainer>
-                <S.ModalCencleButton onClick={() => setCheer(!cheer)}>
+                <S.ModalCencleButton onClick={() => setCheer(false)}>
                   아니오
                 </S.ModalCencleButton>
-                <S.ModalCheerButton>응원하기</S.ModalCheerButton>
+                <S.ModalCheerButton
+                  onClick={() => postFavoriteTeam(selectedTeam.id)}
+                >
+                  응원하기
+                </S.ModalCheerButton>
               </S.ModalButtonContainer>
             </S.ModalContainer>
           </S.ModalBackground>
-        ) : null}
+        )}
         {addteam ? (
           <S.ModalBackground>
             <S.ModalContainer>
@@ -189,12 +219,28 @@ const Sports = () => {
                           <S.WinText>{team.win_count}승</S.WinText>
                         </S.TextContainer>
                         <S.ButtonContainer>
-                          <S.FormationButton onClick={() => GoToForm(sport)}>
+                          <S.FormationButton
+                            onClick={() => GoToForm(sport)}
+                            style={{
+                              border: team.follow
+                                ? "1px solid var(--Main, #23F69A)"
+                                : "",
+                              color: team.follow ? "var(--Main, #23F69A)" : "",
+                            }}
+                          >
                             포메이션
                           </S.FormationButton>
-                          <S.CheerButton onClick={() => setCheer(!cheer)}>
-                            응원하기
-                          </S.CheerButton>
+                          {team.follow === true ? (
+                            <></>
+                          ) : (
+                            <S.CheerButton
+                              onClick={() =>
+                                handleCheerClick(team.team_id, team.team_name)
+                              }
+                            >
+                              응원하기
+                            </S.CheerButton>
+                          )}
                         </S.ButtonContainer>
                       </S.List>
                     </S.ListContainer>

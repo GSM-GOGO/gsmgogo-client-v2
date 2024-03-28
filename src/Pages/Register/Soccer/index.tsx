@@ -1,10 +1,12 @@
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { People } from "../../../assets/index.ts";
 import HeaderContainer from "../../../components/HeaderContainer/index.tsx";
 import * as S from "./style.ts";
 import Draggable from "react-draggable";
 import Field from "../../../assets/png/Field.png";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import apiClient from "../../../utils/libs/apiClient.ts";
 
 const Soccer = () => {
   const [bounds, setBounds] = useState({
@@ -15,13 +17,12 @@ const Soccer = () => {
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
-  const navigate = useNavigate();
   const location = useLocation();
 
   const { teamName, selectedMembers } = location.state;
 
-  console.log(teamName);
-  console.log(selectedMembers);
+  const [participantPositions, setParticipantPositions] = useState([]);
+
   const convertedMembers = selectedMembers.map((member, index) => ({
     id: index + 1,
     name: member.split(" ")[1],
@@ -42,8 +43,51 @@ const Soccer = () => {
     }
   }, []);
 
-  const GoBackButton = () => {
-    navigate(`/matches/soccer`);
+  const handleDragStop = (id, e, data) => {
+    const participantIndex = convertedMembers.findIndex(
+      (participant) => participant.id === id
+    );
+
+    const updatedParticipantPositions = [...participantPositions];
+    updatedParticipantPositions[participantIndex] = {
+      id,
+      position_x: data.x,
+      position_y: data.y,
+    };
+    setParticipantPositions(updatedParticipantPositions);
+
+    console.log(`${id}, X: ${data.x}, ${data.y}`);
+  };
+
+  const postSoccerTeam = async () => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const participates = convertedMembers.map((player) => ({
+        user_id: player.id,
+        position_x: participantPositions[player.id - 1]?.position_x ?? player.x,
+        position_y: participantPositions[player.id - 1]?.position_y ?? player.y,
+      }));
+
+      await apiClient.post(
+        `/team`,
+        {
+          team_name: teamName,
+          team_type: "SOCCER",
+          participates: participates,
+        },
+        {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        }
+      );
+    } catch (e) {
+      console.log("error");
+    } finally {
+      alert(1);
+    }
   };
 
   return (
@@ -73,6 +117,7 @@ const Soccer = () => {
                         defaultPosition={{ x: player.x, y: player.y }}
                         bounds={bounds}
                         nodeRef={formationFieldRef}
+                        onStop={(e, data) => handleDragStop(player.id, e, data)}
                       >
                         <S.PlayerContainer style={{ cursor: "pointer" }}>
                           <People />
@@ -95,8 +140,8 @@ const Soccer = () => {
               position: "relative",
             }}
           >
-            <S.BackButton onClick={GoBackButton}>
-              <S.BackText>돌아가기</S.BackText>
+            <S.BackButton onClick={postSoccerTeam}>
+              <S.BackText>등록하기</S.BackText>
             </S.BackButton>
           </div>
         </S.Container>

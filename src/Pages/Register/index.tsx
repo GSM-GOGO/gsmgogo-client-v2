@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import HeaderContainer from "../../components/HeaderContainer/index.tsx";
 import * as S from "./style.ts";
 import { Search, SmallXIcon, XIcon } from "../../assets/index.ts";
+import { useNavigate } from "react-router-dom";
 
 interface Data {
   name: string;
@@ -152,6 +153,26 @@ const Register = () => {
   const [searchResults, setSearchResults] = useState<Data[]>([]);
   const [selectedMembers, setSelectedMembers] = useState<Data[]>([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const navigate = useNavigate();
+
+  const goSports = () => {
+    let sportPath = "";
+    if (selectedSport === "축구") {
+      sportPath = "soccer";
+    } else if (selectedSport === "배드민턴") {
+      sportPath = "badminton";
+    } else if (selectedSport === "배구") {
+      sportPath = "volleyball";
+    }
+    navigate(`/register/${sportPath}`, {
+      state: {
+        selectedSport: sportPath,
+        teamName: teamName,
+        selectedMembers: selectedMembers.map((member) => member.name),
+      },
+    });
+  };
 
   const toggleModal = () => {
     setIsModalVisible(!isModalVisible);
@@ -544,8 +565,34 @@ const Register = () => {
                   marginTop: "20rem",
                 }}
               >
-                <S.FormationBtn>
-                  <S.FormationText>
+                <S.FormationBtn
+                  disabled={
+                    selectedMembers.length !== MAX_MEMBERS[selectedSport] ||
+                    teamName === ""
+                  }
+                  onClick={goSports}
+                  style={{
+                    backgroundColor:
+                      selectedMembers.length === MAX_MEMBERS[selectedSport] &&
+                      teamName !== ""
+                        ? "var(--Main, #23F69A)"
+                        : undefined,
+                    cursor:
+                      selectedMembers.length === MAX_MEMBERS[selectedSport] &&
+                      teamName !== ""
+                        ? "pointer"
+                        : "not-allowed",
+                  }}
+                >
+                  <S.FormationText
+                    style={{
+                      color:
+                        selectedMembers.length === MAX_MEMBERS[selectedSport] &&
+                        teamName !== ""
+                          ? "var(--Black, #1C1C1F)"
+                          : "undefined",
+                    }}
+                  >
                     {selectedSport !== "일반경기"
                       ? "포메이션 짜기"
                       : "등록하기"}

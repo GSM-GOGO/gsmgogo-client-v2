@@ -70,7 +70,6 @@ const Volleyball = () => {
         `/team`,
         {
           team_name: teamName,
-          team_type: "SOCCER",
           participates: participates,
         },
         {

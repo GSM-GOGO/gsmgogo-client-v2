@@ -6,6 +6,10 @@ import Category from "../../../components/Category/index.tsx";
 import { useNavigate, useParams } from "react-router-dom";
 import TeamAddButton from "../../../assets/svg/TeamAddButton.tsx";
 import apiClient from "../../../utils/libs/apiClient.ts";
+import { ToastContainer, toast } from "react-toastify";
+import { Toaster } from "react-hot-toast";
+
+import "react-toastify/dist/ReactToastify.css";
 
 const Sports = () => {
   const { sport } = useParams();
@@ -61,8 +65,10 @@ const Sports = () => {
           withCredentials: true,
         }
       );
+      registerFollow();
     } catch (e) {
       console.log("error");
+      alreadyFollow();
     }
   };
 
@@ -77,6 +83,14 @@ const Sports = () => {
   const handleCheerClick = (teamId, teamName) => {
     setSelectedTeam({ id: teamId, name: teamName });
     setCheer(true);
+  };
+
+  const alreadyFollow = () => {
+    toast.error("이미 팀을 등록하였습니다!", { autoClose: 1000 });
+  };
+
+  const registerFollow = () => {
+    toast.success("팀이 등록되었습니다!", { autoClose: 1000 });
   };
 
   return (
@@ -255,6 +269,10 @@ const Sports = () => {
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </>
   );
 };

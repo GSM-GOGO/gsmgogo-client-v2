@@ -1,10 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import HeaderContainer from "../../../components/HeaderContainer/index.tsx";
 import * as S from "./style.ts";
 import Category from "../../../components/Category/index.tsx";
 import { useNavigate, useParams } from "react-router-dom";
 import TeamAddButton from "../../../assets/svg/TeamAddButton.tsx";
+import apiClient from "../../../utils/libs/apiClient.ts";
 
 const Sports = () => {
   const { sport } = useParams();
@@ -17,6 +18,26 @@ const Sports = () => {
 
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
+
+  useEffect(() => {
+    const sportName = sport.toUpperCase();
+    const getTeamList = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+
+        await apiClient.get(`/team?type=${sportName}`, {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        });
+      } catch (e) {
+        console.log("error");
+      }
+    };
+
+    getTeamList();
+  }, [sport]);
 
   const GoToForm = (sport: string) => {
     navigate(`/matches/${sport}/form`);

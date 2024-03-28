@@ -15,3 +15,4 @@ export { default as XIcon } from "./XIcon";
 export { default as CloseReview } from "./CloseReview";
 export { default as TeamAddButton } from "./TeamAddButton";
 export { default as SmallXIcon } from "./SmallXIcon";
+export { default as EmptyPlaying } from "./EmptyPlaying";

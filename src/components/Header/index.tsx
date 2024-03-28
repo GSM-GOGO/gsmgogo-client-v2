@@ -7,14 +7,9 @@ import apiClient from "../../utils/libs/apiClient";
 interface TextTypeProps {
   mainText: string;
   miniText: string[];
-  point: string;
 }
 
-const numberWithCommas = (x: string) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-};
-
-const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
+const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -53,9 +48,8 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
           },
           withCredentials: true,
         });
-        console.log(response);
 
-        setUserPoint(response.data);
+        setUserPoint(formatPoint(response.data.point));
       } catch (e) {
         console.log("error");
       }
@@ -64,6 +58,11 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
     getTeamList();
   }, []);
 
+  const formatPoint = (point: string) => {
+    return parseInt(point).toLocaleString(); // 숫자를 30,000 형식으로 변환
+  };
+
+  console.log(userPoint);
   return (
     <S.HeaderWrapper>
       {showModal && (
@@ -93,7 +92,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText, point }) => {
             color: "var(--Main, #23F69A)",
           }}
         >
-          {numberWithCommas(userPoint.point)}P
+          {userPoint}P
         </S.GoGoMiniText>
 
         <div style={{ cursor: "pointer" }} onClick={toggleModal}>

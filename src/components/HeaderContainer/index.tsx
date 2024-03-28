@@ -7,11 +7,7 @@ const HeaderContainer = () => {
     <>
       <GlobalStyles />
       <S.HeaderContainer>
-        <Header
-          mainText={"GSM GOGO"}
-          miniText={["랭킹", "미니게임"]}
-          point={"30000"}
-        />
+        <Header mainText={"GSM GOGO"} miniText={["랭킹", "미니게임"]} />
       </S.HeaderContainer>
     </>
   );

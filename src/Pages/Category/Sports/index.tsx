@@ -16,6 +16,8 @@ const Sports = () => {
   }
   const navigate = useNavigate();
 
+  const [teams, setTeams] = useState([]);
+
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
 
@@ -25,12 +27,15 @@ const Sports = () => {
       try {
         const token = localStorage.getItem("accessToken");
 
-        await apiClient.get(`/team?type=${sportName}`, {
+        const response = await apiClient.get(`/team?type=${sportName}`, {
           headers: {
             Authorization: token,
           },
           withCredentials: true,
         });
+        console.log(response);
+
+        setTeams(response.data);
       } catch (e) {
         console.log("error");
       }
@@ -39,6 +44,7 @@ const Sports = () => {
     getTeamList();
   }, [sport]);
 
+  console.log(teams);
   const GoToForm = (sport: string) => {
     navigate(`/matches/${sport}/form`);
   };
@@ -109,59 +115,68 @@ const Sports = () => {
           <S.ContainerResponse>
             <Category />
             <S.ListWrapper>
-              <S.ListContainer>
-                <S.List>
-                  <S.TextContainer>
-                    <S.TeamTextContainer>
-                      <S.TeamName>어쩌고저쩌고팀</S.TeamName>
-                      <S.TeamClass>3학년 2반</S.TeamClass>
-                    </S.TeamTextContainer>
-                    <S.WinText>3승</S.WinText>
-                  </S.TextContainer>
-                  <S.FormationButton onClick={() => GoToForm(sport)}>
-                    포메이션
-                  </S.FormationButton>
-                </S.List>
-              </S.ListContainer>
-              <S.Stroke />
-              <S.ListContainer>
-                <S.List>
-                  <S.TextContainer>
-                    <S.TeamTextContainer>
-                      <S.TeamName>어쩌고저쩌고팀</S.TeamName>
-                      <S.TeamClass>3학년 2반</S.TeamClass>
-                    </S.TeamTextContainer>
-                    <S.WinText>3승</S.WinText>
-                  </S.TextContainer>
-                  <S.ButtonContainer>
-                    <S.FormationButton onClick={() => GoToForm(sport)}>
-                      포메이션
-                    </S.FormationButton>
-                    <S.CheerButton onClick={() => setCheer(!cheer)}>
-                      응원하기
-                    </S.CheerButton>
-                  </S.ButtonContainer>
-                </S.List>
-              </S.ListContainer>
-              <S.ListContainer>
-                <S.List>
-                  <S.TextContainer>
-                    <S.TeamTextContainer>
-                      <S.TeamName>{sport}팀</S.TeamName>
-                      <S.TeamClass>3학년 2반</S.TeamClass>
-                    </S.TeamTextContainer>
-                    <S.WinText>3승</S.WinText>
-                  </S.TextContainer>
-                  <S.ButtonContainer>
-                    <S.FormationButton onClick={() => GoToForm("soccer")}>
-                      포메이션
-                    </S.FormationButton>
-                    <S.CheerButton onClick={() => setCheer(!cheer)}>
-                      응원하기
-                    </S.CheerButton>
-                  </S.ButtonContainer>
-                </S.List>
-              </S.ListContainer>
+              {teams.map((team: any) => (
+                <>
+                  {team.my_team === true ? (
+                    <>
+                      <S.ListContainer key={team.team_id}>
+                        <S.List>
+                          <S.TextContainer>
+                            <S.TeamTextContainer>
+                              <S.TeamName>{team.team_name}팀</S.TeamName>
+                              <S.TeamClass>
+                                {team.team_grade === "ONE"
+                                  ? "1학년"
+                                  : team.team_grade === "TWO"
+                                    ? "2학년"
+                                    : "3학년"}
+                                {team.team_class_type === "SW"
+                                  ? "소개과"
+                                  : "임베과"}
+                              </S.TeamClass>
+                            </S.TeamTextContainer>
+                            <S.WinText>{team.win_count}승</S.WinText>
+                          </S.TextContainer>
+                          <S.FormationButton onClick={() => GoToForm(sport)}>
+                            포메이션
+                          </S.FormationButton>
+                        </S.List>
+                      </S.ListContainer>
+                      <S.Stroke />
+                    </>
+                  ) : (
+                    <S.ListContainer key={team.team_id}>
+                      <S.List>
+                        <S.TextContainer>
+                          <S.TeamTextContainer>
+                            <S.TeamName>{team.team_name}팀</S.TeamName>
+                            <S.TeamClass>
+                              {team.team_grade === "ONE"
+                                ? "1학년"
+                                : team.team_grade === "TWO"
+                                  ? "2학년"
+                                  : "3학년"}
+                              {team.team_class_type === "SW"
+                                ? "소개과"
+                                : "임베과"}
+                            </S.TeamClass>
+                          </S.TeamTextContainer>
+                          <S.WinText>{team.win_count}승</S.WinText>
+                        </S.TextContainer>
+                        <S.ButtonContainer>
+                          <S.FormationButton onClick={() => GoToForm(sport)}>
+                            포메이션
+                          </S.FormationButton>
+                          <S.CheerButton onClick={() => setCheer(!cheer)}>
+                            응원하기
+                          </S.CheerButton>
+                        </S.ButtonContainer>
+                      </S.List>
+                    </S.ListContainer>
+                  )}
+                </>
+              ))}
+
               <S.AddButton onClick={() => setAddteam(!addteam)}>
                 <TeamAddButton />
               </S.AddButton>

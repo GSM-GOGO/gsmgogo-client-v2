@@ -58,7 +58,7 @@ export const SubjectBox = styled.div`
   gap: 1rem;
 `;
 
-export const SubjectOne = styled.div`
+export const SubjectOne = styled.div<{ selectedSport?: boolean }>`
   display: flex;
   padding: 0.5rem 1.25rem;
   justify-content: center;
@@ -67,9 +67,11 @@ export const SubjectOne = styled.div`
   border-radius: 0.75rem;
   border: 1px solid var(--Gray2, #6f6f7b);
   cursor: pointer;
+  border: ${(props) => (props.selectedSport ? "1px solid var(--Main, #23F69A)" : "")};
+  background: ${(props) => (props.selectedSport ? "rgba(35, 246, 154, 0.10)" : "")};
 `;
 
-export const SubjectOneText = styled.p`
+export const SubjectOneText = styled.p<{ selectedSport?: boolean }>`
   color: var(--Gray2, #6f6f7b);
   font-family: Pretendard;
   font-size: 1rem;
@@ -77,6 +79,7 @@ export const SubjectOneText = styled.p`
   font-weight: 400;
   line-height: 1.375rem;
   margin: 0;
+  color: ${(props) => (props.selectedSport ? "var(--Main, #23F69A)" : "var(--Gray2, #6F6F7B)")};
 `;
 
 export const TeamInputContainer = styled.div`
@@ -95,6 +98,9 @@ export const TeamInputBox = styled.div`
   align-items: center;
   border-radius: 0.75rem;
   border: 1px solid var(--colors-gray-gray-800, #44444b);
+  &:focus-within {
+    border: 1px solid var(--Main, #23f69a);
+  }
 `;
 
 export const TeamInput = styled.input`
@@ -170,7 +176,7 @@ export const TeamAssignSpan = styled.span`
   line-height: 1.25rem;
 `;
 
-export const MapTeamMember = styled.div`
+export const MapTeamMember = styled.div<{ Border?: boolean }>`
   display: flex;
   width: 37.5rem;
   padding: 1rem 1.5rem;
@@ -180,19 +186,21 @@ export const MapTeamMember = styled.div`
   background: var(--colors-gray-gray-900, #26262a);
   margin-bottom: 1rem;
   cursor: pointer;
+  border: ${({ Border }) =>Border ? " 1px solid var(--Main, #23F69A)" : ""};
 `;
 
 export const MemberList = styled.span`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--White, #fff);
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.375rem;
+width: 141px;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+color: var(--White, #fff);
+text-align: center;
+font-family: Pretendard;
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.375rem;
 `;
 
 export const MemberSelected = styled.div`
@@ -235,21 +243,20 @@ export const overScroll = styled.div`
 `;
 
 export const clickedNormal = styled.div`
-  display: inline-flex;
-  padding: 1rem;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 1.25rem;
-  border-radius: 0.75rem;
-  background: var(--colors-gray-gray-900, #26262a);
-  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.5);
+display: flex;
+  gap: 0.5rem;
+  height: 100%;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+      justify-content: right;
 `;
 
 export const NormalObject = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
+flex-direction: column;
+justify-content: center;
+align-items: flex-end;
+gap: 0.75rem;
 `;
 
 export const OneNormalObj = styled.div`
@@ -288,3 +295,13 @@ export const OneNormalContainer = styled.div`
   border-radius: 0.5rem;
   background: rgba(183, 183, 190, 0.1);
 `;
+
+export const OneNormalWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  height: 100%;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+  justify-content: right;
+`;
+

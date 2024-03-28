@@ -70,8 +70,7 @@ const Sports = () => {
                 </S.ModalTitle>
                 <S.ModalNovelContainer>
                   <S.ModalNovel>
-                    해당 팀의 경기 때 문자 알림을 받게 됩니다 <br />
-                    팀은 한 팀만 응원할 수 있습니다.
+                    해당 팀의 경기 때 문자 알림을 받게 됩니다. <br />
                   </S.ModalNovel>
                 </S.ModalNovelContainer>
               </S.ModalTextContainer>
@@ -145,7 +144,17 @@ const Sports = () => {
                             </S.TeamTextContainer>
                             <S.WinText>{team.win_count}승</S.WinText>
                           </S.TextContainer>
-                          <S.FormationButton onClick={() => GoToForm(sport)}>
+                          <S.FormationButton
+                            onClick={() => GoToForm(sport)}
+                            style={{
+                              border: team.follow
+                                ? "1px solid var(--Main, #23F69A)"
+                                : "",
+                              color: team.follow
+                                ? "1px solid var(--Main, #23F69A)"
+                                : "",
+                            }}
+                          >
                             포메이션
                           </S.FormationButton>
                         </S.List>

@@ -6,7 +6,7 @@ import Draggable from "react-draggable";
 import Field from "../../../assets/png/Field.png";
 import { useNavigate, useLocation } from "react-router-dom";
 
-const Badminton = () => {
+const Soccer = () => {
   const [bounds, setBounds] = useState({
     left: 0,
     top: 0,
@@ -18,11 +18,16 @@ const Badminton = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { teamName, selectedMembers, selecetedSport } = location.state;
+  const { teamName, selectedMembers } = location.state;
 
   console.log(teamName);
   console.log(selectedMembers);
-  console.log(selecetedSport);
+  const convertedMembers = selectedMembers.map((member, index) => ({
+    id: index + 1,
+    name: member.split(" ")[1],
+    x: [160, 80, 250, 50, 160, 280, 80, 250][index % 8],
+    y: [55, 150, 150, 250, 250, 250, 375, 375][index % 8],
+  }));
 
   useEffect(() => {
     if (formationFieldRef.current) {
@@ -51,11 +56,7 @@ const Badminton = () => {
               <S.Category
                 style={{ color: "var(--White, #FFF)", paddingRight: "1.5rem" }}
               >
-                어쩌구저쩌구팀 배드민턴 포메이션
-                <S.MiniText>3학년 SW</S.MiniText>
-              </S.Category>
-              <S.Category style={{ color: "var(--Main, #23F69A)" }}>
-                3승
+                {teamName}팀 축구 포메이션
               </S.Category>
             </S.CategoryContainer>
 
@@ -65,7 +66,7 @@ const Badminton = () => {
                 img={Field}
                 style={{ position: "relative" }}
               >
-                {BadmintonplayersList.map((player) => (
+                {convertedMembers.map((player) => (
                   <div key={player.id} style={{ position: "absolute" }}>
                     <div style={{ position: "relative" }}>
                       <Draggable
@@ -90,7 +91,7 @@ const Badminton = () => {
             style={{
               display: "flex",
               justifyContent: "center",
-              top: "20rem",
+              top: "5rem",
               position: "relative",
             }}
           >
@@ -104,4 +105,4 @@ const Badminton = () => {
   );
 };
 
-export default Badminton;
+export default Soccer;

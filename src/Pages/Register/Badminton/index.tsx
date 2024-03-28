@@ -4,7 +4,7 @@ import HeaderContainer from "../../../components/HeaderContainer/index.tsx";
 import * as S from "./style.ts";
 import Draggable from "react-draggable";
 import BadmintonField from "../../../assets/png/BadmintonField.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Badminton = () => {
   const [bounds, setBounds] = useState({
@@ -16,6 +16,18 @@ const Badminton = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { teamName, selectedMembers } = location.state;
+
+  console.log(teamName);
+  console.log(selectedMembers);
+  const convertedMembers = selectedMembers.map((member, index) => ({
+    id: index + 1,
+    name: member.split(" ")[1],
+    x: [115, 305][index % 2],
+    y: [160, 160][index % 2],
+  }));
 
   useEffect(() => {
     if (formationFieldRef.current) {
@@ -31,7 +43,7 @@ const Badminton = () => {
   }, []);
 
   const GoBackButton = () => {
-    navigate(`/matches/badminton`);
+    navigate(`/matches/soccer`);
   };
 
   return (
@@ -44,11 +56,7 @@ const Badminton = () => {
               <S.Category
                 style={{ color: "var(--White, #FFF)", paddingRight: "1.5rem" }}
               >
-                어쩌구저쩌구팀 배드민턴 포메이션
-                <S.MiniText>3학년 SW</S.MiniText>
-              </S.Category>
-              <S.Category style={{ color: "var(--Main, #23F69A)" }}>
-                3승
+                {teamName}팀 배드민턴 포메이션
               </S.Category>
             </S.CategoryContainer>
 
@@ -58,7 +66,7 @@ const Badminton = () => {
                 img={BadmintonField}
                 style={{ position: "relative" }}
               >
-                {BadmintonplayersList.map((player) => (
+                {convertedMembers.map((player) => (
                   <div key={player.id} style={{ position: "absolute" }}>
                     <div style={{ position: "relative" }}>
                       <Draggable

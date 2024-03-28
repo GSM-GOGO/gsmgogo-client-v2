@@ -85,7 +85,7 @@ const SoccerForm = () => {
               style={{
                 display: "flex",
                 justifyContent: "center",
-                top: "20rem",
+                top: "5rem",
                 position: "relative",
               }}
             >

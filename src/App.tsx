@@ -11,6 +11,7 @@ import Register from "./Pages/Register/index.tsx";
 import AuthCallBack from "./Pages/AuthCallBack/index.tsx";
 import Badminton from "./Pages/Register/Badminton/index.tsx";
 import Soccer from "./Pages/Register/Soccer/index.tsx";
+import Volleyball from "./Pages/Register/Volleyball/index.tsx";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/register/badminton" element={<Badminton />} />
           <Route path="/register/soccer" element={<Soccer />} />
+          <Route path="/register/volleyball" element={<Volleyball />} />
 
           <Route path="/auth/callback" element={<AuthCallBack />} />
           <Route path="*" element={<h1>Not Found</h1>} />

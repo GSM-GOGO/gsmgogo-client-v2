@@ -20,8 +20,8 @@ export const PlayerText = styled.p`
 `;
 
 export const ImgBox = styled.div<{ img: string }>`
-  width: 452px;
-  height: 319px;
+  width: 365px;
+  height: 550px;
   background: url(${({ img }) => img});
   background-repeat: no-repeat;
 `;
@@ -86,12 +86,12 @@ export const BackButton = styled.button`
   flex-shrink: 0;
   border-radius: 0.5rem;
   border: 1px solid var(--Main, #23f69a);
-  background: var(--Black, #1c1c1f);
+  background: var(--Main, #23f69a);
   cursor: pointer;
 `;
 
 export const BackText = styled.p`
-  color: var(--Main, #23f69a);
+  color: var(--Black, #1c1c1f);
   text-align: center;
   font-family: "Pretendard Variable";
   font-size: 1.125rem;

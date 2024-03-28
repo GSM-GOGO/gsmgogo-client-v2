@@ -123,7 +123,15 @@ const Sports = () => {
                         <S.List>
                           <S.TextContainer>
                             <S.TeamTextContainer>
-                              <S.TeamName>{team.team_name}팀</S.TeamName>
+                              <S.TeamName
+                                style={{
+                                  color: team.follow
+                                    ? "var(--Main, #23F69A)"
+                                    : "",
+                                }}
+                              >
+                                {team.team_name}팀
+                              </S.TeamName>
                               <S.TeamClass>
                                 {team.team_grade === "ONE"
                                   ? "1학년"
@@ -149,7 +157,15 @@ const Sports = () => {
                       <S.List>
                         <S.TextContainer>
                           <S.TeamTextContainer>
-                            <S.TeamName>{team.team_name}팀</S.TeamName>
+                            <S.TeamName
+                              style={{
+                                color: team.follow
+                                  ? "var(--Main, #23F69A)"
+                                  : "",
+                              }}
+                            >
+                              {team.team_name}팀
+                            </S.TeamName>
                             <S.TeamClass>
                               {team.team_grade === "ONE"
                                 ? "1학년"

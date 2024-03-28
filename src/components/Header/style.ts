@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -7,6 +7,7 @@ export const HeaderWrapper = styled.div`
   padding: 1rem 41.25rem;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 
   @media (max-width: 1800px) {
     padding: 1rem 2rem;
@@ -48,4 +49,27 @@ export const GoGoMiniLink = styled(Link)`
   margin: 0;
   color: #b7b7be;
   text-decoration: none;
+`;
+
+export const ModalWrapper = styled.div`
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  top: 48px;
+  right: 2rem;
+  box-sizing: border-box;
+  display: flex;
+  background-color: #26262a;
+  width: 96px;
+  height: 38px;
+  padding: 8px 20px 8px 20px;
+  border-radius: 12px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+  color: #fff;
+
+  cursor: pointer;
 `;

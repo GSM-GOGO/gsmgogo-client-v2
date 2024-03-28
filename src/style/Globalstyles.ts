@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 	body{
@@ -85,8 +85,7 @@ export const GlobalStyles = createGlobalStyle`
   font-family: 'Pretendard';
   font-weight: 100;
   font-display: swap;
-    src: local('Pretendard Thin'),
+  src: local('Pretendard Thin'),
     url('/fonts/woff2/Pretendard-Thin.woff2') format('woff2'),
     url('/fonts/woff/Pretendard-Thin.woff') format('woff');
-}
-`;
+}`;

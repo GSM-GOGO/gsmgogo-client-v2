@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -54,6 +54,7 @@ export const TextContainer = styled.div`
 `;
 
 export const WinText = styled.p`
+  line-height: 1.375rem;
   color: #23f69a;
   font-family: pretendard;
   font-size: 1rem;
@@ -68,6 +69,7 @@ export const TeamTextContainer = styled.div`
 `;
 
 export const TeamName = styled.p`
+  line-height: 1.375rem;
   margin: 0;
   color: #fff;
   font-size: 1rem;
@@ -76,6 +78,7 @@ export const TeamName = styled.p`
 `;
 
 export const TeamClass = styled.p`
+  line-height: 1.25rem;
   margin: 0;
   color: #6f6f7b;
   font-size: 0.875rem;
@@ -193,6 +196,7 @@ export const ModalNovel = styled.p`
   font-size: 0.875rem;
   font-family: pretendard;
   color: #6f6f7b;
+  line-height: 1.25rem;
 `;
 
 export const ModalButtonContainer = styled.div`
@@ -202,6 +206,7 @@ export const ModalButtonContainer = styled.div`
 `;
 
 export const ModalCencleButton = styled.div`
+  line-height: 1.375rem;
   border-top: 0.0206rem solid #545458a6;
   display: flex;
   align-items: center;
@@ -217,6 +222,7 @@ export const ModalCencleButton = styled.div`
 `;
 
 export const ModalCheerButton = styled.div`
+  line-height: 1.375rem;
   border-top: 0.0206rem solid #545458a6;
   border-left: 0.0206rem solid #545458a6;
   display: flex;

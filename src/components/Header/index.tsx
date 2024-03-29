@@ -3,6 +3,7 @@ import { ThreeDot } from "../../assets";
 import * as S from "./style";
 import { useEffect, useState } from "react";
 import apiClient from "../../utils/libs/apiClient";
+import useStorePoint from "../../utils/libs/storePoint";
 
 interface TextTypeProps {
   mainText: string;
@@ -11,12 +12,12 @@ interface TextTypeProps {
 
 const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   const navigate = useNavigate();
-
   const location = useLocation();
   const currentPath = location.pathname;
 
   const [showModal, setShowModal] = useState(false);
-  const [userPoint, setUserPoint] = useState("");
+  const userPoint = useStorePoint((state) => state.userPoint);
+  const setUserPoint = useStorePoint((state) => state.setUserPoint);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -59,7 +60,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   }, []);
 
   const formatPoint = (point: string) => {
-    return parseInt(point).toLocaleString(); // 숫자를 30,000 형식으로 변환
+    return parseInt(point).toLocaleString();
   };
 
   return (

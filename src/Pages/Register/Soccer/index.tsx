@@ -32,9 +32,9 @@ const Soccer = () => {
 
   const convertedMembers = selectedMembers.map((member, index) => ({
     id: selectedId[index],
-    name: member.split(' ')[1],
-    x: [160, 80, 250, 50, 160, 280, 80, 250][index % 8],
-    y: [55, 150, 150, 250, 250, 250, 375, 375][index % 8],
+    name: member,
+    x: [160, 80, 250, 50, 160, 280, 80, 250, 160][index % 9],
+    y: [55, 150, 150, 250, 250, 250, 375, 375, 375][index % 9],
   }));
 
   useEffect(() => {
@@ -66,9 +66,9 @@ const Soccer = () => {
       const token = localStorage.getItem('accessToken');
 
       const participates = convertedMembers.map((player) => ({
-        user_id: player.id,
-        position_x: participantPositions[player.id - 1]?.position_x ?? player.x,
-        position_y: participantPositions[player.id - 1]?.position_y ?? player.y,
+        user_id: String(player.id),
+        position_x: String(participantPositions.find((p) => p.id === player.id)?.position_x ?? player.x),
+        position_y: String(participantPositions.find((p) => p.id === player.id)?.position_y ?? player.y),
       }));
 
       await apiClient.post(

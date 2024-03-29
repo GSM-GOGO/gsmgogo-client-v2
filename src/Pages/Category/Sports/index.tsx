@@ -21,12 +21,25 @@ const Sports = () => {
   }
   const navigate = useNavigate();
 
-  const [teams, setTeams] = useState([]);
+  interface Team {
+    team_id: number;
+    team_name: string;
+    team_grade: 'ONE' | 'TWO' | 'THREE';
+    team_class_type: 'SW' | 'EB';
+    win_count: number;
+    follow: boolean;
+    my_team: boolean;
+    badminton_rank?: 'A' | 'B' | 'C' | 'D';
+  }
+
+  const initialTeams: Team[] = [];
+
+  const [teams, setTeams] = useState(initialTeams);
 
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
-  const [cheerTeam, setCheerTeam] = useState();
+  const [cheerTeam, setCheerTeam] = useState({});
 
   useEffect(() => {
     const sportName = sport.toUpperCase();
@@ -68,7 +81,7 @@ const Sports = () => {
     getCheerTeam();
   }, []);
 
-  const postFavoriteTeam = async (teamId) => {
+  const postFavoriteTeam = async (teamId: number) => {
     try {
       const token = localStorage.getItem('accessToken');
 
@@ -99,7 +112,7 @@ const Sports = () => {
     }
   };
 
-  const GoToForm = (sport: string, id: string) => {
+  const GoToForm = (sport: string, id: number) => {
     navigate(`/matches/${sport}/form`, {
       state: {
         teamId: id,
@@ -110,7 +123,7 @@ const Sports = () => {
     navigate(`/register`);
   };
 
-  const handleCheerClick = (teamId, teamName) => {
+  const handleCheerClick = (teamId: number, teamName: string) => {
     setSelectedTeam({ id: teamId, name: teamName });
     setCheer(true);
   };
@@ -180,7 +193,7 @@ const Sports = () => {
             <S.ContainerResponse>
               <Category />
               <S.ListWrapper>
-                {teams.map((team: any) => (
+                {teams.map((team) => (
                   <>
                     {team.my_team === true ? (
                       <>

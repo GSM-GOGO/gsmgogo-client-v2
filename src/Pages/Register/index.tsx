@@ -153,7 +153,7 @@ const Register = () => {
   };
 
   const handleSearchNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchedName = e.target.value.replace(/[^\uAC00-\uD7A3]/gi, '');
+    const searchedName = e.target.value;
     delayedSearch(searchedName);
   };
 

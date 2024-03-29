@@ -32,7 +32,7 @@ const Volleyball = () => {
 
   const convertedMembers = selectedMembers.map((member, index) => ({
     id: selectedId[index],
-    name: member.split(' ')[1],
+    name: member,
     x: [90, 185, 280, 90, 185, 280, 90, 185, 280][index % 9],
     y: [30, 30, 30, 130, 130, 130, 215, 215, 215][index % 9],
   }));
@@ -75,6 +75,7 @@ const Volleyball = () => {
         `/team`,
         {
           team_name: teamName,
+          team_type: 'VOLLEYBALL',
           participates: participates,
         },
         {

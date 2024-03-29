@@ -123,8 +123,6 @@ const BadmintonForm = () => {
     toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
   };
 
-  console.log(formData.participates);
-
   return (
     <>
       <HeaderContainer />
@@ -169,23 +167,6 @@ const BadmintonForm = () => {
                       </div>
                     </div>
                   ))}
-                {/* <div key={formData.participates[0].user_id} style={{ position: 'absolute' }}>
-                  <div style={{ position: 'relative' }}>
-                    <Draggable
-                      defaultPosition={{
-                        x: formData.participates[0].position_x,
-                        y: formData.participates[0].position_y,
-                      }}
-                      bounds={bounds}
-                      nodeRef={formationFieldRef}
-                    >
-                      <D.PlayerContainer style={{ cursor: 'pointer' }}>
-                        <People />
-                        <D.PlayerText style={{ userSelect: 'none' }}>{formData.participates[0].user_name}</D.PlayerText>
-                      </D.PlayerContainer>
-                    </Draggable>
-                  </div>
-                </div> */}
               </D.ImgBox>
             </S.ContainerResponse>
           </S.ContainerResponse>

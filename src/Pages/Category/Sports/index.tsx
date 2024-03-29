@@ -68,6 +68,8 @@ const Sports = () => {
     getCheerTeam();
   }, []);
 
+  console.log(cheerTeam);
+
   const postFavoriteTeam = async (teamId) => {
     try {
       const token = localStorage.getItem('accessToken');
@@ -206,7 +208,7 @@ const Sports = () => {
                               </S.FormationButton>
                               {team.follow === true ? (
                                 <></>
-                              ) : cheerTeam === null ? (
+                              ) : cheerTeam.team_id === null ? (
                                 <S.CheerButton onClick={() => handleCheerClick(team.team_id, team.team_name)}>
                                   응원하기
                                 </S.CheerButton>
@@ -257,7 +259,7 @@ const Sports = () => {
                               </S.FormationButton>
                               {team.follow === true ? (
                                 <></>
-                              ) : cheerTeam === null ? (
+                              ) : cheerTeam.team_id === null ? (
                                 <S.CheerButton onClick={() => handleCheerClick(team.team_id, team.team_name)}>
                                   응원하기
                                 </S.CheerButton>

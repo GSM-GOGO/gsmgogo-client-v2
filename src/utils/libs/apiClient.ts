@@ -7,7 +7,7 @@ const apiClient = axios.create({
 apiClient.interceptors.response.use(
   (response) => response,
   async (error) => {
-    if (error.response && error.response.status === 403) {
+    if (error.response && (error.response.status === 401 || error.response.status === 403)) {
       try {
         const token = localStorage.getItem('refreshToken');
         const Response = await apiClient.get(`/auth/refresh`, {
@@ -19,6 +19,8 @@ apiClient.interceptors.response.use(
         const refreshToken = Response.headers['refresh-token'];
         localStorage.setItem('accessToken', accessToken);
         localStorage.setItem('refreshToken', refreshToken);
+        error.config.headers['Authorization'] = accessToken;
+        return apiClient.request(error.config);
       } catch (refreshError) {
         window.location.href = '/signin';
       }

@@ -34,6 +34,10 @@ export const TeamName = styled.p`
   font-weight: 600;
   font-family: pretendard;
   line-height: 1.9375rem;
+
+  @media screen and (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const TeamClass = styled.p`
@@ -44,6 +48,10 @@ export const TeamClass = styled.p`
   font-weight: 400;
   font-family: pretendard;
   align-self: flex-end;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const ListWrapper = styled.div`
@@ -79,18 +87,19 @@ export const ListTitle = styled.div`
 
 export const CandiateContainer = styled.div`
   display: ${(props) => (props.active ? 'block' : 'none')};
-  width: 32.75rem;
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
 `;
 
 export const CandiateButton = styled.div`
-  width: Hug (4.625rem);
-  height: Hug (2.375rem);
-  padding: 0.5rem 1rem;
+  width: 4.625rem;
+  height: 2.375rem;
+  box-sizing: border-box;
+  padding: 0.5rem 0rem;
   border-radius: 0.75rem;
-  opacity: 0px;
+  display: flex;
+  justify-content: center;
 
   border: 0.0625rem solid #44444b;
 

@@ -26,6 +26,7 @@ const Sports = () => {
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const [cheerTeam, setCheerTeam] = useState();
 
   useEffect(() => {
     const sportName = sport.toUpperCase();
@@ -41,7 +42,6 @@ const Sports = () => {
         });
 
         setTeams(response.data);
-        console.log(teams);
       } catch (e) {
         console.log('error');
       }
@@ -49,6 +49,24 @@ const Sports = () => {
 
     getTeamList();
   }, [sport]);
+
+  useEffect(() => {
+    const getCheerTeam = async () => {
+      try {
+        const token = localStorage.getItem('accessToken');
+        const response = await apiClient.get(`/user/follow-team-id`, {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        });
+        setCheerTeam(response.data);
+      } catch (e) {
+        console.log('error');
+      }
+    };
+    getCheerTeam();
+  }, []);
 
   const postFavoriteTeam = async (teamId) => {
     try {
@@ -188,10 +206,12 @@ const Sports = () => {
                               </S.FormationButton>
                               {team.follow === true ? (
                                 <></>
-                              ) : (
+                              ) : cheerTeam === null ? (
                                 <S.CheerButton onClick={() => handleCheerClick(team.team_id, team.team_name)}>
                                   응원하기
                                 </S.CheerButton>
+                              ) : (
+                                <></>
                               )}
                             </S.ButtonContainer>
                           </S.List>
@@ -237,10 +257,12 @@ const Sports = () => {
                               </S.FormationButton>
                               {team.follow === true ? (
                                 <></>
-                              ) : (
+                              ) : cheerTeam === null ? (
                                 <S.CheerButton onClick={() => handleCheerClick(team.team_id, team.team_name)}>
                                   응원하기
                                 </S.CheerButton>
+                              ) : (
+                                <></>
                               )}
                             </S.ButtonContainer>
                           </S.List>

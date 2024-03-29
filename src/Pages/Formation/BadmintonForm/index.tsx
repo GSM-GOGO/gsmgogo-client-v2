@@ -6,7 +6,7 @@ import { BadmintonplayersList } from '../BadmintonList.tsx';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import BadmintonField from '../../../assets/png/BadmintonField.png';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const BadmintonForm = () => {
   const [bounds, setBounds] = useState({
@@ -18,6 +18,10 @@ const BadmintonForm = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { teamId } = location.state;
+  console.log(teamId);
 
   useEffect(() => {
     if (formationFieldRef.current) {

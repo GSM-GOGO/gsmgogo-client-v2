@@ -6,6 +6,7 @@ import Draggable from 'react-draggable';
 import BadmintonField from '../../../assets/png/BadmintonField.png';
 import { useLocation } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const Badminton = () => {
   const [bounds, setBounds] = useState({
@@ -15,6 +16,8 @@ const Badminton = () => {
     bottom: 0,
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
+
+  useAccessTokenCheck();
 
   const location = useLocation();
 

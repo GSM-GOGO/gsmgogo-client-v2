@@ -7,6 +7,7 @@ import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import BadmintonField from '../../../assets/png/BadmintonField.png';
 import { useNavigate, useLocation } from 'react-router-dom';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const BadmintonForm = () => {
   const [bounds, setBounds] = useState({
@@ -16,6 +17,8 @@ const BadmintonForm = () => {
     bottom: 0,
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
+
+  useAccessTokenCheck();
 
   const navigate = useNavigate();
   const location = useLocation();

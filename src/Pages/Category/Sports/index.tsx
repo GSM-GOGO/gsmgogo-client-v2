@@ -11,8 +11,10 @@ import { Toaster } from 'react-hot-toast';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { EmptyPlaying } from '../../../assets/index.ts';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const Sports = () => {
+  useAccessTokenCheck();
   const { sport } = useParams();
   if (!(sport === 'soccer' || sport === 'badminton' || sport === 'volleyball')) {
     return <h1>Not Found</h1>;

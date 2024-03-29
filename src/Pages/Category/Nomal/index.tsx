@@ -4,9 +4,12 @@ import Category from '../../../components/Category/index.tsx';
 import { useNavigate } from 'react-router-dom';
 import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import { useState } from 'react';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const NomalMatch = () => {
   const navigate = useNavigate();
+
+  useAccessTokenCheck();
 
   const [addteam, setAddteam] = useState(false);
 

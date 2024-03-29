@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '../../utils/libs/apiClient.ts';
 import Nomal from './nomal.tsx';
 import useStorePoint from '../../utils/libs/storePoint';
+import useAccessTokenCheck from '../../hook/useAccessTokenCheck.tsx';
 
 interface SportsData {
   user_id: number;
@@ -49,6 +50,7 @@ const Register = () => {
   const setIsLeader = useStorePoint((state) => state.setIsLeader);
 
   const navigate = useNavigate();
+  useAccessTokenCheck();
 
   const goSports = () => {
     let sportPath = '';

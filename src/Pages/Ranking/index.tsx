@@ -4,6 +4,7 @@ import HeaderContainer from '../../components/HeaderContainer';
 import apiClient from '../../utils/libs/apiClient';
 import { Category, CategoryContainer } from '../Formation/style';
 import * as S from './style';
+import useAccessTokenCheck from '../../hook/useAccessTokenCheck';
 
 interface Data {
   name: string;
@@ -73,6 +74,7 @@ const getRankInfo = (
 };
 
 const Ranking = () => {
+  useAccessTokenCheck();
   // const token = localStorage.getItem('refreshToken');
   // const config = {
   //   headers: {

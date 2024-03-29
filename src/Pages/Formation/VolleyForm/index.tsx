@@ -6,6 +6,7 @@ import { VolleyPlayersList } from '../VolleyList.tsx';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import { useNavigate } from 'react-router-dom';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const VolleyForm = () => {
   const [bounds, setBounds] = useState({
@@ -17,6 +18,8 @@ const VolleyForm = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
+
+  useAccessTokenCheck();
 
   useEffect(() => {
     if (formationFieldRef.current) {

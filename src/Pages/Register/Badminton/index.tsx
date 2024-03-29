@@ -7,6 +7,10 @@ import BadmintonField from '../../../assets/png/BadmintonField.png';
 import { useLocation } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const Badminton = () => {
   const [bounds, setBounds] = useState({
@@ -81,11 +85,19 @@ const Badminton = () => {
           withCredentials: true,
         }
       );
+      successCreateTeam();
     } catch (e) {
+      failCreateTeam();
       console.log('error');
-    } finally {
-      alert(1);
     }
+  };
+
+  const successCreateTeam = () => {
+    toast.error('팀 등록에 성공하였습니다!', { autoClose: 1000 });
+  };
+
+  const failCreateTeam = () => {
+    toast.success('팀 등록을 실패하였습니다!', { autoClose: 1000 });
   };
 
   return (
@@ -136,6 +148,10 @@ const Badminton = () => {
           </div>
         </S.Container>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </>
   );
 };

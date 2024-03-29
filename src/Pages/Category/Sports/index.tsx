@@ -72,10 +72,10 @@ const Sports = () => {
     }
   };
 
-  const GoToForm = (sport: string) => {
+  const GoToForm = (sport: string, id: string) => {
     navigate(`/matches/${sport}/form`, {
       state: {
-        teamId: teams.teamId,
+        teamId: id,
       },
     });
   };
@@ -176,7 +176,7 @@ const Sports = () => {
                               <S.WinText>{team.win_count}승</S.WinText>
                             </S.TextContainer>
                             <S.FormationButton
-                              onClick={() => GoToForm(sport)}
+                              onClick={() => GoToForm(sport, team.team_id)}
                               style={{
                                 border: team.follow ? '1px solid var(--Main, #23F69A)' : '',
                                 color: team.follow ? '1px solid var(--Main, #23F69A)' : '',

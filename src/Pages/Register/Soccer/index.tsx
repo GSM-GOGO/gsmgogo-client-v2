@@ -7,6 +7,10 @@ import Field from '../../../assets/png/Field.png';
 import { useLocation } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const Soccer = () => {
   const [bounds, setBounds] = useState({
@@ -80,19 +84,20 @@ const Soccer = () => {
           withCredentials: true,
         }
       );
+      successCreateTeam();
     } catch (e) {
+      failCreateTeam();
       console.log('error');
-    } finally {
-      alert(1);
     }
   };
 
-  const participates = convertedMembers.map((player) => ({
-    user_id: String(player.id),
-    position_x: String(participantPositions[player.id - 1]?.position_x ?? player.x),
-    position_y: String(participantPositions[player.id - 1]?.position_y ?? player.y),
-  }));
-  console.log(participates);
+  const successCreateTeam = () => {
+    toast.error('팀 등록에 성공하였습니다!', { autoClose: 1000 });
+  };
+
+  const failCreateTeam = () => {
+    toast.success('팀 등록을 실패하였습니다!', { autoClose: 1000 });
+  };
 
   return (
     <>
@@ -142,6 +147,10 @@ const Soccer = () => {
           </div>
         </S.Container>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </>
   );
 };

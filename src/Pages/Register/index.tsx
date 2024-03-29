@@ -59,11 +59,13 @@ const Register = () => {
     } else if (selectedSport === '배구') {
       sportPath = 'volleyball';
     }
+    const selectedMemberIds = selectedMembers.map((member) => member.user_id);
     navigate(`/register/${sportPath}`, {
       state: {
         selectedSport: sportPath,
         teamName: teamName,
         selectedMembers: selectedMembers.map((member) => member.user_name),
+        selectedId: selectedMemberIds,
       },
     });
   };
@@ -144,7 +146,7 @@ const Register = () => {
   };
 
   const handleTeamNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const newName = e.target.value.slice(0, 7);
+    const newName = e.target.value.slice(0, 6);
     setTeamName(newName);
   };
 
@@ -318,7 +320,7 @@ const Register = () => {
                   <S.TeamInputBox>
                     <S.TeamInput
                       type="text"
-                      placeholder="팀 이름은 최대 7글자 입니다"
+                      placeholder="팀 이름은 최대 6글자 입니다"
                       value={teamName}
                       onChange={handleTeamNameChange}
                     />

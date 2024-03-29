@@ -105,7 +105,6 @@ const Ranking = () => {
         <S.Container>
           <CategoryContainer style={{ marginBottom: '1.25rem' }}>
             <Category style={{ color: 'var(--White, #FFF)' }}>랭킹</Category>
-            <button>버튼</button>
           </CategoryContainer>
           <S.MainContainer>
             <S.LankWrapper>

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -51,6 +51,10 @@ export const TextContainer = styled.div`
   display: flex;
   gap: 1.5rem;
   align-items: center;
+
+  @media screen and (max-width: 500px) {
+    gap: 1rem;
+  }
 `;
 
 export const WinText = styled.p`
@@ -60,6 +64,10 @@ export const WinText = styled.p`
   font-size: 1rem;
   font-weight: 400;
   margin: 0;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const TeamTextContainer = styled.div`
@@ -75,6 +83,10 @@ export const TeamName = styled.p`
   font-size: 1rem;
   font-weight: 600;
   font-family: pretendard;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const TeamClass = styled.p`
@@ -84,6 +96,10 @@ export const TeamClass = styled.p`
   font-size: 0.875rem;
   font-weight: 400;
   font-family: pretendard;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.5rem;
+  }
 `;
 
 export const Stroke = styled.div`
@@ -106,6 +122,10 @@ export const FormationButton = styled.button`
   border-radius: 0.75rem;
   padding: 0.5rem 1.25rem;
   font-weight: 400;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const CheerButton = styled.button`
@@ -122,12 +142,20 @@ export const CheerButton = styled.button`
   border-radius: 0.75rem;
   padding: 0.5rem 1.25rem;
   font-weight: 400;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+
+  @media screen and (max-width: 500px) {
+    gap: 1.2rem;
+  }
 `;
 
 export const ModalBackground = styled.div`

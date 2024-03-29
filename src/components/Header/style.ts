@@ -23,12 +23,20 @@ export const GoGoText = styled.h1`
   font-weight: 600;
   line-height: 1.9375rem;
   margin: 0;
+
+  @media screen and (max-width: 500px) {
+    font-size: 1.2rem;
+  }
 `;
 
 export const TextBox = styled.div`
   display: flex;
   align-items: center;
   gap: 3rem;
+
+  @media screen and (max-width: 500px) {
+    gap: 1.5rem;
+  }
 `;
 
 export const GoGoMiniText = styled.p`
@@ -38,6 +46,10 @@ export const GoGoMiniText = styled.p`
   font-weight: 400;
   line-height: 1.375rem;
   margin: 0;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const GoGoMiniLink = styled(Link)`
@@ -49,27 +61,41 @@ export const GoGoMiniLink = styled(Link)`
   margin: 0;
   color: #b7b7be;
   text-decoration: none;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const ModalWrapper = styled.div`
   position: absolute;
   justify-content: center;
   align-items: center;
-  top: 48px;
+  top: 3rem;
   right: 2rem;
   box-sizing: border-box;
   display: flex;
   background-color: #26262a;
-  width: 96px;
-  height: 38px;
-  padding: 8px 20px 8px 20px;
-  border-radius: 12px;
+  width: 6rem;
+  height: 2rem;
+  padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+  border-radius: 0.75rem;
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 400;
-  line-height: 22px;
+  line-height: 1.375rem;
   text-align: left;
   color: #fff;
 
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
+
   cursor: pointer;
+`;
+
+export const SvgContainer = styled.div`
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;

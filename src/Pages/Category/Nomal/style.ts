@@ -65,6 +65,10 @@ export const TeamClass = styled.p`
   font-weight: 600;
   font-family: pretendard;
   line-height: 1.375rem;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.855rem;
+  }
 `;
 
 export const Stroke = styled.div`
@@ -87,6 +91,10 @@ export const CheckButton = styled.button`
   border-radius: 0.75rem;
   padding: 0.5rem 1.25rem;
   font-weight: 400;
+
+  @media screen and (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const ButtonContainer = styled.div`

@@ -87,9 +87,9 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
           {userPoint}P
         </S.GoGoMiniText>
 
-        <div style={{ cursor: 'pointer' }} onClick={toggleModal}>
+        <S.SvgContainer style={{ cursor: 'pointer' }} onClick={toggleModal}>
           <ThreeDot />
-        </div>
+        </S.SvgContainer>
       </S.TextBox>
     </S.HeaderWrapper>
   );

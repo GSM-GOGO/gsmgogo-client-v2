@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, Location, useNavigate } from 'react-router-dom';
-
-import * as S from './style.ts';
+import Loading from '../../components/Loading/index.tsx';
 import apiClient from '../../utils/libs/apiClient.ts';
 
 const AuthCallBack = () => {
@@ -31,7 +30,7 @@ const AuthCallBack = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  return <S.Text>콜백 되는 페이지</S.Text>;
+  return <Loading />;
 };
 
 export default AuthCallBack;

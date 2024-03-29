@@ -68,8 +68,6 @@ const Sports = () => {
     getCheerTeam();
   }, []);
 
-  console.log(cheerTeam);
-
   const postFavoriteTeam = async (teamId) => {
     try {
       const token = localStorage.getItem('accessToken');
@@ -86,10 +84,18 @@ const Sports = () => {
           withCredentials: true,
         }
       );
-      registerFollow();
+      setCheer(false);
+      window.location.reload();
+      setTimeout(() => {
+        registerFollow();
+      }, 500);
     } catch (e) {
       console.log('error');
-      alreadyFollow();
+      setCheer(false);
+      window.location.reload();
+      setTimeout(() => {
+        alreadyFollow();
+      }, 500);
     }
   };
 
@@ -110,11 +116,11 @@ const Sports = () => {
   };
 
   const alreadyFollow = () => {
-    toast.error('이미 팀을 등록하였습니다!', { autoClose: 1000 });
+    toast.error('이미 팀을 팔로우 하였습니다!', { autoClose: 1000 });
   };
 
   const registerFollow = () => {
-    toast.success('팀이 등록되었습니다!', { autoClose: 1000 });
+    toast.success('팀이 팔로우 되었습니다!', { autoClose: 1000 });
   };
 
   return (

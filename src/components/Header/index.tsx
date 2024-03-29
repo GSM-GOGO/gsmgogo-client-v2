@@ -62,7 +62,6 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
     return parseInt(point).toLocaleString(); // 숫자를 30,000 형식으로 변환
   };
 
-  console.log(userPoint);
   return (
     <S.HeaderWrapper>
       {showModal && (

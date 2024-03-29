@@ -7,6 +7,7 @@ import * as D from "./style.ts";
 import Draggable from "react-draggable";
 import FiledImg from "../../../assets/png/Field.png";
 import { useNavigate } from "react-router-dom";
+import apiClient from "../../../utils/libs/apiClient.ts";
 
 const SoccerForm = () => {
   const [bounds, setBounds] = useState({
@@ -15,6 +16,7 @@ const SoccerForm = () => {
     right: 0,
     bottom: 0,
   });
+  const [userInfo, setUserInfo] = useState(false);
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
@@ -30,6 +32,27 @@ const SoccerForm = () => {
         bottom: bottom - top - 80,
       });
     }
+  }, []);
+
+  useEffect(() => {
+    const getIsLeader = async () => {
+      try {
+        const token = localStorage.getItem("accessToken");
+
+        const response = await apiClient.get(`/user/is-leader`, {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        });
+
+        setUserInfo(response.data);
+      } catch (e) {
+        console.log("error");
+      }
+    };
+
+    getIsLeader();
   }, []);
 
   const GoBackButton = () => {

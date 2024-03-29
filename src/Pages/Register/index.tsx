@@ -474,12 +474,7 @@ const Register = () => {
                         <S.clickedNormal style={{ position: "absolute" }}>
                           <S.NormalObject>
                             {NormalArr.map((item, index) => (
-                              <S.MappingText
-                                key={index}
-                                onClick={() => {
-                                  console.log(item);
-                                }}
-                              >
+                              <S.MappingText key={index}>
                                 <S.OneNormalObj>
                                   <S.OneNormalText>
                                     {item.normalSport}
@@ -500,7 +495,6 @@ const Register = () => {
                           <div
                             key={index}
                             onClick={() => {
-                              console.log(item); // 선택한 요소 정보 출력
                               toggleModal();
                             }}
                           >
@@ -529,7 +523,6 @@ const Register = () => {
                           <div
                             key={index}
                             onClick={() => {
-                              console.log(result); // 선택한 요소 정보 출력
                               toggleModal();
                             }}
                           >

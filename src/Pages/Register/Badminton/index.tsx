@@ -137,7 +137,7 @@ const Badminton = () => {
             }}
           >
             <S.BackButton onClick={postBadmintonTeam}>
-              <S.BackText>돌아가기</S.BackText>
+              <S.BackText>등록하기</S.BackText>
             </S.BackButton>
           </div>
         </S.Container>

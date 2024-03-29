@@ -38,7 +38,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   };
 
   useEffect(() => {
-    const getTeamList = async () => {
+    const getUserPoint = async () => {
       try {
         const token = localStorage.getItem("accessToken");
 
@@ -55,7 +55,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
       }
     };
 
-    getTeamList();
+    getUserPoint();
   }, []);
 
   const formatPoint = (point: string) => {

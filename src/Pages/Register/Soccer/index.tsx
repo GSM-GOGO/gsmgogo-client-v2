@@ -6,6 +6,7 @@ import Draggable from 'react-draggable';
 import Field from '../../../assets/png/Field.png';
 import { useLocation } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const Soccer = () => {
   const [bounds, setBounds] = useState({
@@ -17,6 +18,8 @@ const Soccer = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const location = useLocation();
+
+  useAccessTokenCheck();
 
   const { teamName, selectedMembers, selectedId } = location.state;
 

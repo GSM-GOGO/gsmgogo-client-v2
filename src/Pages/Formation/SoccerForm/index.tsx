@@ -7,6 +7,7 @@ import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import FiledImg from '../../../assets/png/Field.png';
 import { useNavigate } from 'react-router-dom';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const SoccerForm = () => {
   const [bounds, setBounds] = useState({
@@ -18,6 +19,8 @@ const SoccerForm = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
+
+  useAccessTokenCheck();
 
   useEffect(() => {
     if (formationFieldRef.current) {

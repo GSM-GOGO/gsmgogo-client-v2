@@ -3,6 +3,7 @@ import { OpenReview, CloseReview } from '../../../assets';
 import HeaderContainer from '../../../components/HeaderContainer';
 import * as S from './style.ts';
 import { useNavigate } from 'react-router-dom';
+import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
 const NomalForm = () => {
   const [activeCategoryId, setActiveCategoryId] = useState(null);
@@ -12,6 +13,8 @@ const NomalForm = () => {
   };
 
   const navigate = useNavigate();
+
+  useAccessTokenCheck();
 
   // 테스트
   const categories = [

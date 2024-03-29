@@ -69,23 +69,32 @@ const Register = () => {
     const getSearch = async () => {
       try {
         const token = localStorage.getItem("accessToken");
-
+  
         const response = await apiClient.get(`/user?name=${searchedName}`, {
           headers: {
             Authorization: token,
           },
           withCredentials: true,
         });
-        const filteredResults = response.data.filter((result: SportsData) => !selectedMembers.some((selected) => selected.user_name === result.user_name));
-
+  
+        const sortedResults = response.data.sort((a, b) => {
+          const gradeComparison = Number[a.user_grade] - Number[b.user_grade];
+          if (gradeComparison !== 0) {
+            return gradeComparison;
+          }
+          return Number[a.user_class] - Number[b.user_class];
+        });
+        const filteredResults = sortedResults.filter((result) => !selectedMembers.some((selected) => selected.user_name === result.user_name));
+  
         setSearchResults(filteredResults);
       } catch (e) {
         console.log("error");
       }
     };
-
+  
     getSearch();
   }, [searchedName]);
+  
 
   const handleSportSelection = (sport: string) => {
     setSelectedSport(sport);
@@ -117,9 +126,20 @@ const Register = () => {
 
   const handleRemoveMember = (member: SportsData) => {
     setSelectedMembers(selectedMembers.filter((selected) => selected !== member));
-    setSearchResults([...searchResults, member]);
+  
+    const updatedSearchResults = [...searchResults, member];
+  
+    const sortedResults = updatedSearchResults.sort((a, b) => {
+      const gradeComparison = Number[a.user_grade] - Number[b.user_grade];
+      if (gradeComparison !== 0) {
+        return gradeComparison;
+      }
+      return Number[a.user_class] - Number[b.user_class];
+    });
+  
+    setSearchResults(sortedResults);
   };
-
+  
   const dividedSelectedMembers: SportsData[][] = [];
   for (let i = 0; i < selectedMembers.length; i += 4) {
     dividedSelectedMembers.push(selectedMembers.slice(i, i + 4));

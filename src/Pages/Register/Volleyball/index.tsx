@@ -4,7 +4,7 @@ import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Draggable from 'react-draggable';
 import VolleyField from '../../../assets/png/VolleyField.png';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import { ToastContainer, toast } from 'react-toastify';
@@ -24,6 +24,7 @@ const Volleyball = () => {
   useAccessTokenCheck();
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { teamName, selectedMembers, selectedId } = location.state;
 
@@ -83,19 +84,25 @@ const Volleyball = () => {
           withCredentials: true,
         }
       );
-      successCreateTeam();
+      navigate(`/matches/volleyball`);
+      setTimeout(() => {
+        successCreateTeam();
+      }, 500);
     } catch (e) {
-      failCreateTeam();
+      navigate(`/matches/volleyball`);
+      setTimeout(() => {
+        failCreateTeam();
+      }, 500);
       console.log('error');
     }
   };
 
   const successCreateTeam = () => {
-    toast.error('팀 등록에 성공하였습니다!', { autoClose: 1000 });
+    toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
   };
 
   const failCreateTeam = () => {
-    toast.success('팀 등록을 실패하였습니다!', { autoClose: 1000 });
+    toast.error('팀 등록을 실패하였습니다!', { autoClose: 1000 });
   };
 
   return (

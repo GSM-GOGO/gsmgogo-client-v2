@@ -20,7 +20,32 @@ const BadmintonForm = () => {
     right: 0,
     bottom: 0,
   });
-  const [formData, setFormData] = useState<{ team_id: number } | object>({});
+  const [formData, setFormData] = useState<{
+    team_id: number;
+    team_name: string;
+    team_type: 'SOCCER' | 'BADMINTON' | 'VOLLEYBALL';
+    team_grade: 'ONE' | 'TWO' | 'THREE';
+    team_class_type: 'SW' | 'EB';
+    author_me: boolean;
+    win_count: number;
+    participates: {
+      user_id: number;
+      user_name: string;
+      position_x: number;
+      position_y: number;
+    }[];
+    badminton_rank?: 'A' | 'B' | 'C' | 'D' | undefined;
+  }>({
+    team_id: 0,
+    team_name: '',
+    team_type: 'BADMINTON',
+    team_grade: 'ONE',
+    team_class_type: 'SW',
+    author_me: false,
+    win_count: 0,
+    participates: [],
+  });
+  ({});
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   useAccessTokenCheck();
@@ -98,6 +123,8 @@ const BadmintonForm = () => {
     toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
   };
 
+  console.log(formData.participates);
+
   return (
     <>
       <HeaderContainer />
@@ -125,12 +152,12 @@ const BadmintonForm = () => {
 
             <S.ContainerResponse style={{ paddingBottom: '3.5rem' }}>
               <D.ImgBox ref={formationFieldRef} img={BadmintonField} style={{ position: 'relative' }}>
-                {formData.participates &&
-                  formData.participates.map((player) => (
+                {formData.participates.length > 0 &&
+                  formData.participates.map((player, index) => (
                     <div key={player.user_id} style={{ position: 'absolute' }}>
                       <div style={{ position: 'relative' }}>
                         <Draggable
-                          defaultPosition={{ x: player.position_x, y: player.position_y }}
+                          defaultPosition={{ x: player.position_x + index, y: player.position_y + index }}
                           bounds={bounds}
                           nodeRef={formationFieldRef}
                         >
@@ -142,6 +169,23 @@ const BadmintonForm = () => {
                       </div>
                     </div>
                   ))}
+                {/* <div key={formData.participates[0].user_id} style={{ position: 'absolute' }}>
+                  <div style={{ position: 'relative' }}>
+                    <Draggable
+                      defaultPosition={{
+                        x: formData.participates[0].position_x,
+                        y: formData.participates[0].position_y,
+                      }}
+                      bounds={bounds}
+                      nodeRef={formationFieldRef}
+                    >
+                      <D.PlayerContainer style={{ cursor: 'pointer' }}>
+                        <People />
+                        <D.PlayerText style={{ userSelect: 'none' }}>{formData.participates[0].user_name}</D.PlayerText>
+                      </D.PlayerContainer>
+                    </Draggable>
+                  </div>
+                </div> */}
               </D.ImgBox>
             </S.ContainerResponse>
           </S.ContainerResponse>

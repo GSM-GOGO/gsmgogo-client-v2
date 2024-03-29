@@ -4,7 +4,7 @@ import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Draggable from 'react-draggable';
 import BadmintonField from '../../../assets/png/BadmintonField.png';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import { ToastContainer, toast } from 'react-toastify';
@@ -24,6 +24,7 @@ const Badminton = () => {
   useAccessTokenCheck();
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { teamName, selectedMembers, selectedId } = location.state;
 
@@ -54,11 +55,13 @@ const Badminton = () => {
     const participantIndex = convertedMembers.findIndex((participant) => participant.id === id);
 
     const updatedParticipantPositions = [...participantPositions];
+
     updatedParticipantPositions[participantIndex] = {
       id,
       position_x: data.x,
       position_y: data.y,
     };
+
     setParticipantPositions(updatedParticipantPositions);
   };
 
@@ -68,8 +71,8 @@ const Badminton = () => {
 
       const participates = convertedMembers.map((player) => ({
         user_id: String(player.id),
-        position_x: String(participantPositions[player.id - 1]?.position_x ?? player.x),
-        position_y: String(participantPositions[player.id - 1]?.position_y ?? player.y),
+        position_x: String(participantPositions.find((p) => p.id === player.id)?.position_x ?? player.x),
+        position_y: String(participantPositions.find((p) => p.id === player.id)?.position_y ?? player.y),
       }));
 
       await apiClient.post(
@@ -85,19 +88,25 @@ const Badminton = () => {
           withCredentials: true,
         }
       );
-      successCreateTeam();
+      navigate(`/matches/badminton`);
+      setTimeout(() => {
+        successCreateTeam();
+      }, 500);
     } catch (e) {
-      failCreateTeam();
+      navigate(`/matches/badminton`);
+      setTimeout(() => {
+        failCreateTeam();
+      }, 500);
       console.log('error');
     }
   };
 
   const successCreateTeam = () => {
-    toast.error('팀 등록에 성공하였습니다!', { autoClose: 1000 });
+    toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
   };
 
   const failCreateTeam = () => {
-    toast.success('팀 등록을 실패하였습니다!', { autoClose: 1000 });
+    toast.error('팀 등록을 실패하였습니다!', { autoClose: 1000 });
   };
 
   return (

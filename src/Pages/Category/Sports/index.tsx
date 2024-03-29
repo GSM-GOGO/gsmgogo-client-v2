@@ -39,7 +39,6 @@ const Sports = () => {
           },
           withCredentials: true,
         });
-        console.log(response);
 
         setTeams(response.data);
       } catch (e) {
@@ -280,16 +279,23 @@ const Sports = () => {
         <S.Wrapper>
           <S.Container>
             <Category />
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: "15rem",
-              }}
-            >
-              <EmptyPlaying />
-            </div>
+            <S.ContainerResponse>
+              <S.ListWrapper>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    marginTop: "15rem",
+                  }}
+                >
+                  <EmptyPlaying />
+                </div>
+                <S.AddButton onClick={() => setAddteam(!addteam)}>
+                  <TeamAddButton />
+                </S.AddButton>
+              </S.ListWrapper>
+            </S.ContainerResponse>
           </S.Container>
         </S.Wrapper>
       )}

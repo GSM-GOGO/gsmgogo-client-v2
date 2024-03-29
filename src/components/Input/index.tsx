@@ -1,10 +1,10 @@
-import { ReactElement, useEffect } from 'react';
-import { UseFormRegisterReturn, UseFormSetError } from 'react-hook-form';
-import * as S from './style';
-import { useState } from 'react';
-import Timer from '../Timer';
-import { FormData } from '../../types/FormDataType';
-import apiClient from '../../utils/libs/apiClient';
+import { ReactElement, useEffect } from "react";
+import { UseFormRegisterReturn, UseFormSetError } from "react-hook-form";
+import * as S from "./style";
+import { useState } from "react";
+import Timer from "../Timer";
+import { FormData } from "../../types/FormDataType";
+import apiClient from "../../utils/libs/apiClient";
 
 interface Props {
   label: string;
@@ -31,7 +31,7 @@ export default function Input({
   errors,
   message,
   register,
-  type = 'tel',
+  type = "tel",
   maxLength,
   placeholder,
   readOnly,
@@ -53,7 +53,7 @@ export default function Input({
     setCount(validtime);
     setExpired(false);
     if (setError) {
-      setError('verificationCode', { type: 'manual', message: '' });
+      setError("verificationCode", { type: "manual", message: "" });
     }
     if (reset) {
       reset();
@@ -62,9 +62,9 @@ export default function Input({
 
   return (
     <S.Wrapper>
-      <S.Label style={{ height: '15px' }}>
-        <div style={{ width: '70px' }}>{label}</div>
-        {label == '인증번호' && (
+      <S.Label style={{ height: "15px" }}>
+        <div style={{ width: "70px" }}>{label}</div>
+        {label == "인증번호" && (
           <S.CertificationNumberWrapper>
             <h4>
               <Timer count={count} setCount={setCount} setError={setError} />
@@ -73,7 +73,7 @@ export default function Input({
               onClick={async () => {
                 resetTimer();
                 try {
-                  const token = localStorage.getItem('accessToken');
+                  const token = localStorage.getItem("accessToken");
                   await apiClient.post(
                     `/auth/sms/test`,
                     {
@@ -86,9 +86,8 @@ export default function Input({
                     }
                   );
                 } catch (e) {
-                  alert('올바른 아이디와 비밀번호를 입력해주세요.');
+                  alert("올바른 아이디와 비밀번호를 입력해주세요.");
                 }
-                console.log(phoneNumber);
               }}
             >
               재발송

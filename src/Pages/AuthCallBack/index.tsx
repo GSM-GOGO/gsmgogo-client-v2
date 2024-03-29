@@ -30,7 +30,7 @@ const AuthCallBack = () => {
   useEffect(() => {
     fetchData();
   }, []);
-  return <Loading />;
+  return <Loading />; //
 };
 
 export default AuthCallBack;

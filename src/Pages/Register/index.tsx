@@ -199,6 +199,104 @@ const Register = () => {
                 <S.SubjectContainer>
                   <S.SubjectText>종목</S.SubjectText>
                   <S.SubjectBox>
+                    <S.SubjectOne
+                      onClick={() => handleSportSelection('배드민턴')}
+                      selectedSport={selectedSport === '배드민턴'}
+                    >
+                      <S.SubjectOneText selectedSport={selectedSport === '배드민턴'}>배드민턴</S.SubjectOneText>
+                    </S.SubjectOne>
+                  </S.SubjectBox>
+                </S.SubjectContainer>
+                <S.TeamInputContainer>
+                  <S.SubjectText>팀 이름</S.SubjectText>
+
+                  <S.TeamInputBox>
+                    <S.TeamInput
+                      type="text"
+                      placeholder="팀 이름은 최대 6글자 입니다"
+                      value={teamName}
+                      onChange={handleTeamNameChange}
+                    />
+                    <S.TeamInputText style={{ color: 'var(--White, #FFF)' }}>팀</S.TeamInputText>
+                  </S.TeamInputBox>
+                </S.TeamInputContainer>
+
+                <S.TeamInputContainer>
+                  <S.SubjectText>팀원</S.SubjectText>
+                  {dividedSelectedMembers.map((group, groupIndex) => (
+                    <S.MemberSelected key={groupIndex}>
+                      {group.map((member, index) => (
+                        <S.MemberSelectList key={index}>
+                          <S.MemberName>{member.user_name}</S.MemberName>
+                          <div
+                            style={{ cursor: 'pointer', display: 'flex' }}
+                            onClick={() => handleRemoveMember(member)}
+                          >
+                            <XIcon />
+                          </div>
+                        </S.MemberSelectList>
+                      ))}
+                    </S.MemberSelected>
+                  ))}
+
+                  <S.TeamInputBox>
+                    <S.TeamInput type="text" placeholder="이름으로 검색하세요" onChange={handleSearchNameChange} />
+                    <div style={{ cursor: 'pointer' }}>
+                      <Search />
+                    </div>
+                  </S.TeamInputBox>
+                </S.TeamInputContainer>
+                {searchedName !== '' && searchResults.length > 0 && (
+                  <S.overScroll style={{ height: '22.5em' }}>
+                    {searchResults.map((result, index) => (
+                      <S.MapTeamMember key={index} onClick={() => handleMemberClick(result)}>
+                        <S.MemberName>
+                          {Number[result.user_grade]}학년{Number[result.user_class]}반 {result.user_name}
+                        </S.MemberName>
+                      </S.MapTeamMember>
+                    ))}
+                  </S.overScroll>
+                )}
+
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    marginTop: '20rem',
+                  }}
+                >
+                  <S.FormationBtn
+                    disabled={selectedMembers.length !== MAX_MEMBERS[selectedSport] || teamName === ''}
+                    onClick={goSports}
+                    style={{
+                      backgroundColor:
+                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
+                          ? 'var(--Main, #23F69A)'
+                          : undefined,
+                      cursor:
+                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
+                          ? 'pointer'
+                          : 'not-allowed',
+                    }}
+                  >
+                    <S.FormationText
+                      style={{
+                        color:
+                          selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
+                            ? 'var(--Black, #1C1C1F)'
+                            : 'undefined',
+                      }}
+                    >
+                      {selectedSport !== '일반경기' ? '포메이션 짜기' : '등록하기'}
+                    </S.FormationText>
+                  </S.FormationBtn>
+                </div>
+              </S.ContainerResponse>
+            ) : (
+              <S.ContainerResponse>
+                <S.SubjectContainer>
+                  <S.SubjectText>종목</S.SubjectText>
+                  <S.SubjectBox>
                     {eventArr.map((item, i) => (
                       <S.SubjectOne
                         key={i}
@@ -265,104 +363,6 @@ const Register = () => {
                   </>
                 ) : (
                   <Nomal />
-                )}
-
-                <div
-                  style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    marginTop: '20rem',
-                  }}
-                >
-                  <S.FormationBtn
-                    disabled={selectedMembers.length !== MAX_MEMBERS[selectedSport] || teamName === ''}
-                    onClick={goSports}
-                    style={{
-                      backgroundColor:
-                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
-                          ? 'var(--Main, #23F69A)'
-                          : undefined,
-                      cursor:
-                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
-                          ? 'pointer'
-                          : 'not-allowed',
-                    }}
-                  >
-                    <S.FormationText
-                      style={{
-                        color:
-                          selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
-                            ? 'var(--Black, #1C1C1F)'
-                            : 'undefined',
-                      }}
-                    >
-                      {selectedSport !== '일반경기' ? '포메이션 짜기' : '등록하기'}
-                    </S.FormationText>
-                  </S.FormationBtn>
-                </div>
-              </S.ContainerResponse>
-            ) : (
-              <S.ContainerResponse>
-                <S.SubjectContainer>
-                  <S.SubjectText>종목</S.SubjectText>
-                  <S.SubjectBox>
-                    <S.SubjectOne
-                      onClick={() => handleSportSelection('배드민턴')}
-                      selectedSport={selectedSport === '배드민턴'}
-                    >
-                      <S.SubjectOneText selectedSport={selectedSport === '배드민턴'}>배드민턴</S.SubjectOneText>
-                    </S.SubjectOne>
-                  </S.SubjectBox>
-                </S.SubjectContainer>
-                <S.TeamInputContainer>
-                  <S.SubjectText>팀 이름</S.SubjectText>
-
-                  <S.TeamInputBox>
-                    <S.TeamInput
-                      type="text"
-                      placeholder="팀 이름은 최대 6글자 입니다"
-                      value={teamName}
-                      onChange={handleTeamNameChange}
-                    />
-                    <S.TeamInputText style={{ color: 'var(--White, #FFF)' }}>팀</S.TeamInputText>
-                  </S.TeamInputBox>
-                </S.TeamInputContainer>
-
-                <S.TeamInputContainer>
-                  <S.SubjectText>팀원</S.SubjectText>
-                  {dividedSelectedMembers.map((group, groupIndex) => (
-                    <S.MemberSelected key={groupIndex}>
-                      {group.map((member, index) => (
-                        <S.MemberSelectList key={index}>
-                          <S.MemberName>{member.user_name}</S.MemberName>
-                          <div
-                            style={{ cursor: 'pointer', display: 'flex' }}
-                            onClick={() => handleRemoveMember(member)}
-                          >
-                            <XIcon />
-                          </div>
-                        </S.MemberSelectList>
-                      ))}
-                    </S.MemberSelected>
-                  ))}
-
-                  <S.TeamInputBox>
-                    <S.TeamInput type="text" placeholder="이름으로 검색하세요" onChange={handleSearchNameChange} />
-                    <div style={{ cursor: 'pointer' }}>
-                      <Search />
-                    </div>
-                  </S.TeamInputBox>
-                </S.TeamInputContainer>
-                {searchedName !== '' && searchResults.length > 0 && (
-                  <S.overScroll style={{ height: '22.5em' }}>
-                    {searchResults.map((result, index) => (
-                      <S.MapTeamMember key={index} onClick={() => handleMemberClick(result)}>
-                        <S.MemberName>
-                          {Number[result.user_grade]}학년{Number[result.user_class]}반 {result.user_name}
-                        </S.MemberName>
-                      </S.MapTeamMember>
-                    ))}
-                  </S.overScroll>
                 )}
 
                 <div

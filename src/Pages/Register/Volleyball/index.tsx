@@ -83,6 +83,13 @@ const Volleyball = () => {
     }
   };
 
+  const participates = convertedMembers.map((player) => ({
+    user_id: String(player.id),
+    position_x: String(participantPositions[player.id - 1]?.position_x ?? player.x),
+    position_y: String(participantPositions[player.id - 1]?.position_y ?? player.y),
+  }));
+  console.log(participates);
+
   return (
     <>
       <HeaderContainer />

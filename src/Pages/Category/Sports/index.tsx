@@ -71,9 +71,12 @@ const Sports = () => {
   };
 
   const GoToForm = (sport: string) => {
-    navigate(`/matches/${sport}/form`);
+    navigate(`/matches/${sport}/form`, {
+      state: {
+        teamId: teams.teamId,
+      },
+    });
   };
-
   const GoRegister = () => {
     navigate(`/register`);
   };

@@ -20,7 +20,7 @@ type eventArrEnumType = '축구' | '배드민턴' | '배구' | '일반경기';
 const eventArr: eventArrEnumType[] = ['축구', '배드민턴', '배구', '일반경기'];
 
 const MAX_MEMBERS = {
-  축구: 8,
+  축구: 9,
   배드민턴: 2,
   배구: 9,
 };
@@ -91,7 +91,7 @@ const Register = () => {
       try {
         const token = localStorage.getItem('accessToken');
 
-        const response = await apiClient.get(`/user?name=${searchedName}`, {
+        const response = await apiClient.get(`/user/search?name=${searchedName}`, {
           headers: {
             Authorization: token,
           },

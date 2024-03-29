@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PlayerContainer = styled.div`
   display: inline-flex;
@@ -33,4 +33,30 @@ export const MiniText = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 1.375rem;
+`;
+
+export const DeleteBtn = styled.button`
+  display: flex;
+  width: 6.25rem;
+  height: 2.5rem;
+  padding: 0.75rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Gray2, #6f6f7b);
+  background: var(--Black, #1c1c1f);
+  cursor: pointer;
+`;
+
+export const DeleteText = styled.p`
+  color: var(--Gray2, #6f6f7b);
+  text-align: center;
+  font-family: 'Pretendard Variable';
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.125rem;
+  padding: 0;
 `;

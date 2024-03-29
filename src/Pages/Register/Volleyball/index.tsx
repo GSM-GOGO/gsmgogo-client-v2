@@ -4,9 +4,13 @@ import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Draggable from 'react-draggable';
 import VolleyField from '../../../assets/png/VolleyField.png';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 const Volleyball = () => {
   const [bounds, setBounds] = useState({
@@ -20,6 +24,7 @@ const Volleyball = () => {
   useAccessTokenCheck();
 
   const location = useLocation();
+  const navigate = useNavigate();
 
   const { teamName, selectedMembers, selectedId } = location.state;
 
@@ -79,19 +84,26 @@ const Volleyball = () => {
           withCredentials: true,
         }
       );
+      navigate(`/matches/volleyball`);
+      setTimeout(() => {
+        successCreateTeam();
+      }, 500);
     } catch (e) {
+      navigate(`/matches/volleyball`);
+      setTimeout(() => {
+        failCreateTeam();
+      }, 500);
       console.log('error');
-    } finally {
-      alert(1);
     }
   };
 
-  const participates = convertedMembers.map((player) => ({
-    user_id: String(player.id),
-    position_x: String(participantPositions[player.id - 1]?.position_x ?? player.x),
-    position_y: String(participantPositions[player.id - 1]?.position_y ?? player.y),
-  }));
-  console.log(participates);
+  const successCreateTeam = () => {
+    toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
+  };
+
+  const failCreateTeam = () => {
+    toast.error('팀 등록을 실패하였습니다!', { autoClose: 1000 });
+  };
 
   return (
     <>
@@ -141,6 +153,10 @@ const Volleyball = () => {
           </div>
         </S.Container>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </>
   );
 };

@@ -26,6 +26,7 @@ const Sports = () => {
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
   const [selectedTeam, setSelectedTeam] = useState(null);
+  const [cheerTeam, setCheerTeam] = useState();
 
   useEffect(() => {
     const sportName = sport.toUpperCase();
@@ -48,6 +49,24 @@ const Sports = () => {
 
     getTeamList();
   }, [sport]);
+
+  useEffect(() => {
+    const getCheerTeam = async () => {
+      try {
+        const token = localStorage.getItem('accessToken');
+        const response = await apiClient.get(`/user/follow-team-id`, {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        });
+        setCheerTeam(response.data);
+      } catch (e) {
+        console.log('error');
+      }
+    };
+    getCheerTeam();
+  }, []);
 
   const postFavoriteTeam = async (teamId) => {
     try {
@@ -175,58 +194,82 @@ const Sports = () => {
                               </S.TeamTextContainer>
                               <S.WinText>{team.win_count}승</S.WinText>
                             </S.TextContainer>
-                            <S.FormationButton
-                              onClick={() => GoToForm(sport, team.team_id)}
-                              style={{
-                                border: team.follow ? '1px solid var(--Main, #23F69A)' : '',
-                                color: team.follow ? '1px solid var(--Main, #23F69A)' : '',
-                              }}
-                            >
-                              포메이션
-                            </S.FormationButton>
+                            <S.ButtonContainer>
+                              <S.FormationButton
+                                onClick={() => GoToForm(sport, team.team_id)}
+                                style={{
+                                  border: team.follow ? '1px solid var(--Main, #23F69A)' : '',
+                                  color: team.follow ? 'var(--Main, #23F69A)' : '',
+                                }}
+                              >
+                                포메이션
+                              </S.FormationButton>
+                              {team.follow === true ? (
+                                <></>
+                              ) : cheerTeam === null ? (
+                                <S.CheerButton onClick={() => handleCheerClick(team.team_id, team.team_name)}>
+                                  응원하기
+                                </S.CheerButton>
+                              ) : (
+                                <></>
+                              )}
+                            </S.ButtonContainer>
                           </S.List>
                         </S.ListContainer>
                         <S.Stroke />
                       </>
                     ) : (
-                      <S.ListContainer key={team.team_id}>
-                        <S.List>
-                          <S.TextContainer>
-                            <S.TeamTextContainer>
-                              <S.TeamName
+                      <></>
+                    )}
+                  </>
+                ))}
+                {teams.map((team: any) => (
+                  <>
+                    {team.my_team === false ? (
+                      <>
+                        <S.ListContainer key={team.team_id}>
+                          <S.List>
+                            <S.TextContainer>
+                              <S.TeamTextContainer>
+                                <S.TeamName
+                                  style={{
+                                    color: team.follow ? 'var(--Main, #23F69A)' : '',
+                                  }}
+                                >
+                                  {team.team_name}팀
+                                </S.TeamName>
+                                <S.TeamClass>
+                                  {team.team_grade === 'ONE' ? '1학년' : team.team_grade === 'TWO' ? '2학년' : '3학년'}
+                                  {team.team_class_type === 'SW' ? '소개과' : '임베과'}
+                                </S.TeamClass>
+                              </S.TeamTextContainer>
+                              <S.WinText>{team.win_count}승</S.WinText>
+                            </S.TextContainer>
+                            <S.ButtonContainer>
+                              <S.FormationButton
+                                onClick={() => GoToForm(sport, team.team_id)}
                                 style={{
+                                  border: team.follow ? '1px solid var(--Main, #23F69A)' : '',
                                   color: team.follow ? 'var(--Main, #23F69A)' : '',
                                 }}
                               >
-                                {team.team_name}팀
-                              </S.TeamName>
-                              <S.TeamClass>
-                                {team.team_grade === 'ONE' ? '1학년' : team.team_grade === 'TWO' ? '2학년' : '3학년'}
-                                {team.team_class_type === 'SW' ? '소개과' : '임베과'}
-                              </S.TeamClass>
-                            </S.TeamTextContainer>
-                            <S.WinText>{team.win_count}승</S.WinText>
-                          </S.TextContainer>
-                          <S.ButtonContainer>
-                            <S.FormationButton
-                              onClick={() => GoToForm(sport)}
-                              style={{
-                                border: team.follow ? '1px solid var(--Main, #23F69A)' : '',
-                                color: team.follow ? 'var(--Main, #23F69A)' : '',
-                              }}
-                            >
-                              포메이션
-                            </S.FormationButton>
-                            {team.follow === true ? (
-                              <></>
-                            ) : (
-                              <S.CheerButton onClick={() => handleCheerClick(team.team_id, team.team_name)}>
-                                응원하기
-                              </S.CheerButton>
-                            )}
-                          </S.ButtonContainer>
-                        </S.List>
-                      </S.ListContainer>
+                                포메이션
+                              </S.FormationButton>
+                              {team.follow === true ? (
+                                <></>
+                              ) : cheerTeam === null ? (
+                                <S.CheerButton onClick={() => handleCheerClick(team.team_id, team.team_name)}>
+                                  응원하기
+                                </S.CheerButton>
+                              ) : (
+                                <></>
+                              )}
+                            </S.ButtonContainer>
+                          </S.List>
+                        </S.ListContainer>
+                      </>
+                    ) : (
+                      <></>
                     )}
                   </>
                 ))}

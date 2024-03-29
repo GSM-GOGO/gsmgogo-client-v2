@@ -1,108 +1,131 @@
 import { useEffect, useState } from 'react';
 import * as S from './style.ts';
 import { Search, SmallXIcon } from '../../assets/index.ts';
+import apiClient from '../../utils/libs/apiClient.ts';
 
 interface Data {
   id: number;
   name: string;
-  gender: string;
   normalSports: string[];
+  grade: number;
+  class: number;
+}
+
+interface UserListResponse {
+  user_id: number;
+  user_name: string;
+  user_grade: 'ONE' | 'TWO' | 'THREE';
+  user_class: 'ONE' | 'TWO' | 'THREE' | 'FOUR';
 }
 
 interface NormalType {
   normalSport: string;
   normalPeople: number;
-  womanNum?: number;
-  manNum?: number;
-  id?: number;
+  maxPeople: number;
 }
+
+type Numbertype = {
+  ONE: number;
+  TWO: number;
+  THREE: number;
+  FOUR: number;
+};
+
+const Number: Numbertype = {
+  ONE: 1,
+  TWO: 2,
+  THREE: 3,
+  FOUR: 4,
+};
+
+type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP';
+
+const TeamType: { [key: string]: NormalTeamType } = {
+  '이어달리기(남)': 'TOSS_RUN',
+  '이어달리기(여)': 'TOSS_RUN',
+  미션달리기: 'MISSION_RUN',
+  줄다리기: 'TUG_OF_WAR',
+  '농구 자유투 릴레이': 'FREE_THROW',
+  '단체 줄넘기': 'GROUP_ROPE_JUMP',
+};
 
 const Nomal = () => {
   const [NormalArr, setNormalArr] = useState<NormalType[]>([
     {
-      normalSport: '줄다리기',
+      normalSport: '단체 줄넘기',
       normalPeople: 0,
+      maxPeople: 10,
     },
     {
       normalSport: '농구 자유투 릴레이',
       normalPeople: 0,
+      maxPeople: 30,
     },
     {
       normalSport: '미션달리기',
       normalPeople: 0,
+      maxPeople: 6,
     },
     {
-      normalSport: '6인 7각',
+      normalSport: '줄다리기',
       normalPeople: 0,
+      maxPeople: 30,
     },
     {
-      normalSport: '줄파도타기',
+      normalSport: '이어달리기(남)',
       normalPeople: 0,
+      maxPeople: 3,
     },
     {
-      normalSport: '이어달리기',
+      normalSport: '이어달리기(여)',
       normalPeople: 0,
-      womanNum: 1,
-      manNum: 1,
+      maxPeople: 3,
     },
   ]);
 
-  const [dataArr, setDataArr] = useState<Data[]>([
-    {
-      id: 1,
-      name: '1101 김순자',
-      gender: 'man',
-      normalSports: [],
-    },
-    {
-      id: 2,
-      name: '1102 김덕자',
-      gender: 'woman',
-      normalSports: [],
-    },
-    {
-      id: 3,
-      name: '1103 김감자',
-      gender: 'man',
-      normalSports: [],
-    },
-    {
-      id: 4,
-      name: '1104 김승자',
-      gender: 'man',
-      normalSports: [],
-    },
-    {
-      id: 5,
-      name: '1105 김정희',
-      gender: 'woman',
-      normalSports: [],
-    },
-    {
-      id: 6,
-      name: '1106 김굽자',
-      gender: 'man',
-      normalSports: [],
-    },
-    {
-      id: 7,
-      name: '1107 김자자',
-      gender: 'man',
-      normalSports: [],
-    },
-    {
-      id: 8,
-      name: '1108 김주자',
-      gender: 'man',
-      normalSports: [],
-    },
-    {
-      id: 9,
-      name: '1109 김자주',
-      gender: 'woman',
-      normalSports: [],
-    },
-  ]);
+  const [dataArr, setDataArr] = useState<Data[]>([]);
+
+  useEffect(() => {
+    const getSearch = async () => {
+      try {
+        const token = localStorage.getItem('accessToken');
+        const response: UserListResponse[] = await apiClient.get(`/user`, {
+          headers: {
+            Authorization: token,
+          },
+          withCredentials: true,
+        });
+
+        const updatedDataArr = response.data.map((user) => {
+          console.log(user);
+          return {
+            id: user.user_id,
+            name: user.user_name,
+            normalSports: [],
+            class: Number[user.user_class],
+            grade: Number[user.user_grade],
+          };
+        });
+
+        updatedDataArr.sort((a, b) => {
+          if (a.grade !== b.grade) {
+            return a.grade - b.grade;
+          }
+          if (a.class !== b.class) {
+            return a.class - b.class;
+          }
+          return a.name.localeCompare(b.name);
+        });
+
+        setDataArr(updatedDataArr);
+        console.log(updatedDataArr);
+      } catch (e) {
+        console.log('error');
+      }
+    };
+
+    getSearch();
+  }, []);
 
   useEffect(() => {
     const updatedNormalArr = NormalArr.map((normal) => {
@@ -110,11 +133,6 @@ const Nomal = () => {
       dataArr.forEach((data) => {
         if (data.normalSports.includes(normal.normalSport)) {
           updatedNormal.normalPeople++;
-          if (data.gender === 'woman' && updatedNormal.womanNum !== undefined) {
-            updatedNormal.womanNum++;
-          } else if (data.gender === 'man' && updatedNormal.manNum !== undefined) {
-            updatedNormal.manNum++;
-          }
         }
       });
       return updatedNormal;
@@ -122,50 +140,31 @@ const Nomal = () => {
     setNormalArr(updatedNormalArr);
   }, []);
 
-  const checkSportInUser = (id: any, sport: string) => {
-    if (dataArr[id - 1]?.normalSports.includes(sport)) {
-      return true;
-    } else {
-      return false;
-    }
+  const checkSportInUser = (userId: number, sport: string) => {
+    const user = dataArr.find((user) => user.id === userId);
+    if (!user) return false;
+
+    return user.normalSports.includes(sport);
   };
 
   const toggleSportUser = (userId: number, sport: string) => {
-    const userIndex = userId - 1;
-    if (userIndex < 0 || userIndex >= dataArr.length) {
-      return;
-    }
+    const user = dataArr.find((user) => user.id === userId);
+    if (!user) return;
 
     const updatedDataArr = [...dataArr];
     const updatedNormalArr = [...NormalArr];
 
-    const sportIndex = updatedDataArr[userIndex].normalSports.indexOf(sport);
-    if (sportIndex === -1) {
-      updatedDataArr[userIndex].normalSports.push(sport);
+    const sportIndex = user.normalSports.indexOf(sport);
+    const normalIndex = updatedNormalArr.findIndex((normal) => normal.normalSport === sport);
+    const maxPeople = updatedNormalArr[normalIndex].maxPeople;
 
-      updatedNormalArr.forEach((normal) => {
-        if (normal.normalSport === sport) {
-          normal.normalPeople++;
-          if (updatedDataArr[userIndex].gender === 'woman' && normal.womanNum !== undefined) {
-            normal.womanNum++;
-          } else if (updatedDataArr[userIndex].gender === 'man' && normal.manNum !== undefined) {
-            normal.manNum++;
-          }
-        }
-      });
-    } else {
-      updatedDataArr[userIndex].normalSports.splice(sportIndex, 1);
+    if (sportIndex === -1 && updatedNormalArr[normalIndex].normalPeople < maxPeople) {
+      user.normalSports.push(sport);
 
-      updatedNormalArr.forEach((normal) => {
-        if (normal.normalSport === sport) {
-          normal.normalPeople--;
-          if (updatedDataArr[userIndex].gender === 'woman' && normal.womanNum !== undefined) {
-            normal.womanNum--;
-          } else if (updatedDataArr[userIndex].gender === 'man' && normal.manNum !== undefined) {
-            normal.manNum--;
-          }
-        }
-      });
+      updatedNormalArr[normalIndex].normalPeople++;
+    } else if (sportIndex !== -1) {
+      user.normalSports.splice(sportIndex, 1);
+      updatedNormalArr[normalIndex].normalPeople--;
     }
 
     setDataArr(updatedDataArr);
@@ -181,25 +180,46 @@ const Nomal = () => {
   const [toggleModalId, setToggleModalId] = useState<number>();
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      const foundNames = dataArr.filter((data) => data.name.includes(searchedName));
-      setSearchResults(foundNames);
-    }, 1000);
-
-    return () => clearTimeout(timeoutId);
-  }, [searchedName]);
+    const foundNames = dataArr.filter((data) => data.name.includes(searchedName));
+    setSearchResults(foundNames);
+  }, [searchedName, dataArr]);
 
   const handleSearchNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchedName = e.target.value.replace(/[^\uAC00-\uD7A3]/gi, '');
     setSearchedName(searchedName);
+    console.log('searchedName', searchedName);
     if (searchedName === '') {
       setSearchResults(dataArr);
     }
   };
 
-  useEffect(() => {
-    setSearchResults(dataArr);
-  }, [dataArr]);
+
+  const handleClickRegister = async () => {
+    try {
+      const userTeamData = dataArr.map((user) => ({
+        user_id: user.id,
+        team_types: user.normalSports.map((sport) => TeamType[sport]),
+      }));
+
+      const PostNormalTeam = async () => {
+        try {
+          const token = localStorage.getItem('accessToken');
+          await apiClient.post(`/team/normal`, userTeamData, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          });
+        } catch (e) {
+          console.log('error');
+        }
+      };
+      PostNormalTeam();
+      console.log(userTeamData);
+      console.log('등록되었습니다.');
+    } catch (error) {
+      console.error('등록 중 오류가 발생했습니다.', error);
+    }
+  };
 
   return (
     <S.NormalTeamContainer style={{ overflow: 'hidden' }}>
@@ -207,6 +227,13 @@ const Nomal = () => {
         <S.SubjectText>팀 배정</S.SubjectText>
         <S.TeamAssignSpan>클릭한 뒤 원하는 종목을 배정할 수 있어요</S.TeamAssignSpan>
       </S.TeamAssign>
+      <button
+        onClick={() => {
+          handleClickRegister();
+        }}
+      >
+        등록
+      </button>
 
       <S.TeamInputContainer>
         <S.TeamInputBox>
@@ -221,6 +248,7 @@ const Nomal = () => {
           <div
             key={index}
             onClick={() => {
+              console.log('ddfs', dataArritem); // 선택한 요소 정보 출력
               toggleModal();
               setToggleModalId(dataArritem.id);
             }}
@@ -229,7 +257,9 @@ const Nomal = () => {
               Border={isModalVisible && dataArritem.id == toggleModalId}
               style={{ justifyContent: 'space-between', position: 'relative' }}
             >
-              <S.MemberList>{dataArritem.name}</S.MemberList>
+              <S.MemberList>
+                {dataArritem.grade}학년{dataArritem.class}반 {dataArritem.name}
+              </S.MemberList>
               {dataArritem.id != toggleModalId && (
                 <S.OneNormalWrapper>
                   {dataArritem.normalSports.map((item, index) => (
@@ -255,21 +285,23 @@ const Nomal = () => {
                     {NormalArr.map((i, index) => (
                       <S.MappingText
                         key={index}
-                        onClick={(e) => {
+                        onClick={() => {
+                          console.log(i.normalSport);
                           setToggleModalId(i.id);
                           toggleSportUser(dataArritem.id, i.normalSport);
-                          setIsModalVisible(true);
                         }}
                       >
                         <S.OneNormalObj
                           style={{
                             background: checkSportInUser(dataArritem.id, i.normalSport)
                               ? 'rgba(35, 246, 154, 0.20)'
-                              : '',
+                              : i.normalPeople == i.maxPeople
+                                ? 'none'
+                                : '',
                           }}
                         >
                           <S.OneNormalText>{i.normalSport}</S.OneNormalText>
-                          <S.OneNormalText>{`${i.normalPeople}/30`}</S.OneNormalText>
+                          <S.OneNormalText>{`${i.normalPeople}/${i.maxPeople}`}</S.OneNormalText>
                         </S.OneNormalObj>
                       </S.MappingText>
                     ))}

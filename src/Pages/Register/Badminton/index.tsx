@@ -22,12 +22,15 @@ const Badminton = () => {
 
   const [participantPositions, setParticipantPositions] = useState([]);
 
-  const convertedMembers = selectedMembers.map((member, index) => ({
-    id: index + 1,
-    name: member.split(" ")[1],
-    x: [115, 305][index % 2],
-    y: [160, 160][index % 2],
-  }));
+  const convertedMembers = selectedMembers.map((member, index) => {
+    return {
+      id: index + 1,
+      name: member,
+      x: [115, 305][index % 2],
+      y: [160, 160][index % 2],
+    };
+  });
+  
 
   useEffect(() => {
     if (formationFieldRef.current) {

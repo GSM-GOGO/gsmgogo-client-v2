@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface RankBarProps {
+interface Props {
   height: number;
 }
 
-const RankBar: React.FC<RankBarProps> = ({ height }) => {
+const RankBar: React.FC<Props> = ({ height }) => {
   return (
     <svg width="100" height={height} viewBox={`0 0 100 ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

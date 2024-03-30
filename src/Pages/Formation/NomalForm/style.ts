@@ -120,8 +120,7 @@ interface ContainerProps {
 }
 
 export const CandiateContainer = styled.div<ContainerProps>`
-  display: ${(props) => (props.active ? 'block' : 'none')};
-  display: flex;
+  display: ${(props) => (props.active ? 'flex' : 'none')};
   gap: 1rem;
   flex-wrap: wrap;
 `;

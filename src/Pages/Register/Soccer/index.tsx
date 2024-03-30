@@ -46,7 +46,7 @@ const Soccer = () => {
     }
   }, []);
 
-  const handleDragStop = (id: number, e: DraggableEvent, data: DraggableData) => {
+  const handleDragStop = (id: number, _e: DraggableEvent, data: DraggableData) => {
     const participantIndex = convertedMembers.findIndex((participant: { id: number }) => participant.id === id);
 
     const updatedParticipantPositions: { id: number; position_x: number; position_y: number }[] = [

@@ -5,6 +5,7 @@ import * as S from './style';
 import { ArrayProps } from '../../types/ArrayProps.ts';
 import Category from '../../components/Category/index.tsx';
 import useAccessTokenCheck from '../../hook/useAccessTokenCheck.tsx';
+import { EmptyPlaying } from '../../assets/index.ts';
 
 const dataArray: Array<ArrayProps> = [
   {
@@ -171,6 +172,9 @@ const Main = () => {
             }}
           >
             <WeatherContainer />
+            <div style={{ marginTop: '9.25rem' }}>
+              <EmptyPlaying />
+            </div>
             <S.MainContainer>
               {dataArray.map((data, index) => (
                 <PlayingContainer

@@ -1,101 +1,103 @@
-import * as S from './style';
-import { PlayingButton, Vote, NotVote, PercentGuageBar } from '../../assets';
+// import * as S from './style';
+// import { PlayingButton, Vote, NotVote, PercentGuageBar } from '../../assets';
 import { ArrayProps } from '../../types/ArrayProps';
-import { useState } from 'react';
+// import { useState } from 'react';
 
-const PlayContainer: React.FC<ArrayProps> = ({
-  isPredictGame,
-  isFinal,
-  SportsName,
-  TeamName,
-  Grade,
-  Time,
-  isLive,
-  isVoting,
-  isFavorite,
-  isFinish,
-  Winning,
-  Percent,
-  Score,
-  PredictScore,
-  isPredict,
-  BettingPoint,
-}) => {
-  const [modal, setModal] = useState(false);
-  const [teamA, setTeamA] = useState('');
-  const [teamB, setTeamB] = useState('');
-  const [sameInput, setSameInput] = useState(false);
-  const [selectedTeam, setSelectedTeam] = useState('');
-  const [selectedSports, setSelectedSports] = useState('');
+const PlayContainer: React.FC<ArrayProps> = () =>
+  // {
+  //   isPredictGame,
+  //   isFinal,
+  //   SportsName,
+  //   TeamName,
+  //   Grade,
+  //   Time,
+  //   isLive,
+  //   isVoting,
+  //   isFavorite,
+  //   isFinish,
+  //   Winning,
+  //   Percent,
+  //   Score,
+  //   PredictScore,
+  //   isPredict,
+  //   BettingPoint,
+  // }
+  {
+    // const [modal, setModal] = useState(false);
+    // const [teamA, setTeamA] = useState('');
+    // const [teamB, setTeamB] = useState('');
+    // const [sameInput, setSameInput] = useState(false);
+    // const [selectedTeam, setSelectedTeam] = useState('');
+    // const [selectedSports, setSelectedSports] = useState('');
 
-  const predictScore0 = parseInt(PredictScore[0]);
-  const predictScore1 = parseInt(PredictScore[1]);
-  const score0 = parseInt(Score[0]);
-  const score1 = parseInt(Score[1]);
+    // const predictScore0 = parseInt(PredictScore[0]);
+    // const predictScore1 = parseInt(PredictScore[1]);
+    // const score0 = parseInt(Score[0]);
+    // const score1 = parseInt(Score[1]);
 
-  const getEventText = () => {
-    if (isFinal) {
-      return <S.EventTexts style={{ color: 'var(--Main, #23F69A)' }}>결승전🔥</S.EventTexts>;
-    } else {
-      return isPredictGame ? (
-        <S.EventTexts style={{ color: 'var(--White, #FFF)' }}>예선</S.EventTexts>
-      ) : (
-        <S.EventTexts style={{ color: 'var(--White, #FFF)' }}>본선</S.EventTexts>
-      );
-    }
-  };
+    // const getEventText = () => {
+    //   if (isFinal) {
+    //     return <S.EventTexts style={{ color: 'var(--Main, #23F69A)' }}>결승전🔥</S.EventTexts>;
+    //   } else {
+    //     return isPredictGame ? (
+    //       <S.EventTexts style={{ color: 'var(--White, #FFF)' }}>예선</S.EventTexts>
+    //     ) : (
+    //       <S.EventTexts style={{ color: 'var(--White, #FFF)' }}>본선</S.EventTexts>
+    //     );
+    //   }
+    // };
 
-  const onChangeInput = (e: { target: { name: string; value: string } }) => {
-    const {
-      target: { name, value },
-    } = e;
+    // const onChangeInput = (e: { target: { name: string; value: string } }) => {
+    //   const {
+    //     target: { name, value },
+    //   } = e;
 
-    const filteredInput = value.replace(/\D/g, '');
+    //   const filteredInput = value.replace(/\D/g, '');
 
-    if (name === 'TeamA') {
-      setTeamA(filteredInput);
-    } else if (name === 'TeamB') {
-      setTeamB(filteredInput);
-    }
-  };
+    //   if (name === 'TeamA') {
+    //     setTeamA(filteredInput);
+    //   } else if (name === 'TeamB') {
+    //     setTeamB(filteredInput);
+    //   }
+    // };
 
-  const handleButton = () => {
-    if (teamA === teamB && teamA !== '' && teamB !== '') {
-      setSameInput(true);
-    } else if (teamA !== '' && teamB !== '') {
-      setSameInput(false);
-    }
-  };
+    // const handleButton = () => {
+    //   if (teamA === teamB && teamA !== '' && teamB !== '') {
+    //     setSameInput(true);
+    //   } else if (teamA !== '' && teamB !== '') {
+    //     setSameInput(false);
+    //   }
+    // };
 
-  const SuccesOfFail = () => {
-    if (predictScore0 === score0 && predictScore1 === score1) {
-      return <S.EventTexts style={{ color: 'var(--Main, #23F69A)' }}>대성공🔥</S.EventTexts>;
-    } else if (
-      (predictScore0 > predictScore1 && score0 > score1) ||
-      (predictScore0 < predictScore1 && score0 < score1)
-    ) {
-      return <S.EventTexts style={{ color: 'var(--colors-main-main-200, #A7FBD7)' }}>성공</S.EventTexts>;
-    } else {
-      return <S.EventTexts style={{ color: 'var(--Error, #DF454A)' }}>실패</S.EventTexts>;
-    }
-  };
+    // const SuccesOfFail = () => {
+    //   if (predictScore0 === score0 && predictScore1 === score1) {
+    //     return <S.EventTexts style={{ color: 'var(--Main, #23F69A)' }}>대성공🔥</S.EventTexts>;
+    //   } else if (
+    //     (predictScore0 > predictScore1 && score0 > score1) ||
+    //     (predictScore0 < predictScore1 && score0 < score1)
+    //   ) {
+    //     return <S.EventTexts style={{ color: 'var(--colors-main-main-200, #A7FBD7)' }}>성공</S.EventTexts>;
+    //   } else {
+    //     return <S.EventTexts style={{ color: 'var(--Error, #DF454A)' }}>실패</S.EventTexts>;
+    //   }
+    // };
 
-  const FormatBettingPoint = (BettingPoint: string) => {
-    return BettingPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  };
+    // const FormatBettingPoint = (BettingPoint: string) => {
+    //   return BettingPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    // };
 
-  const HandleModalOpen = (TeamName: string[]) => {
-    setSelectedTeam(`${TeamName[0]} - ${TeamName[1]}`);
-    setModal(true);
-  };
+    // const HandleModalOpen = (TeamName: string[]) => {
+    //   setSelectedTeam(`${TeamName[0]} - ${TeamName[1]}`);
+    //   setModal(true);
+    // };
 
-  const ClickedSportsName = (SportsName: string) => {
-    setSelectedSports(`${SportsName}`);
-  };
+    // const ClickedSportsName = (SportsName: string) => {
+    //   setSelectedSports(`${SportsName}`);
+    // };
 
-  return (
-    <>
-      {modal ? (
+    return (
+      <>
+        {/* {modal ? (
         <S.ModalBackground>
           <S.ModalContainer>
             <S.ModalTextWrapper>
@@ -237,7 +239,7 @@ const PlayContainer: React.FC<ArrayProps> = ({
                 <S.PercentBar>
                   <S.GradeText style={{ color: 'var(--Gray1, #B7B7BE)' }}>{Percent[0]}</S.GradeText>
                   {/* 동적변환가능한 퍼센트게이지바 */}
-                  <PercentGuageBar percent={Percent[0]} />
+        {/* <PercentGuageBar percent={Percent[0]} />
 
                   <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{Percent[1]}</S.GradeText>
                 </S.PercentBar>
@@ -259,8 +261,8 @@ const PlayContainer: React.FC<ArrayProps> = ({
 
               <S.PlayingContainer>
                 <S.UnderTextBox>
-                  <S.WinORLosestyled>
-                    {SuccesOfFail()}
+                  <S.WinORLosestyled> */}
+        {/* {SuccesOfFail()}
 
                     <S.PercentBar>
                       <S.PredictText style={{ fontWeight: '400' }}>예측 투표</S.PredictText>
@@ -338,7 +340,7 @@ const PlayContainer: React.FC<ArrayProps> = ({
                 <S.PercentBar>
                   <S.GradeText style={{ color: 'var(--Gray1, #B7B7BE)' }}>{Percent[0]}</S.GradeText>
                   {/* 동적변환가능한 퍼센트게이지바 */}
-                  <PercentGuageBar percent={Percent[0]} />
+        {/* <PercentGuageBar percent={Percent[0]} />
 
                   <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{Percent[1]}</S.GradeText>
                 </S.PercentBar>
@@ -360,9 +362,9 @@ const PlayContainer: React.FC<ArrayProps> = ({
             </S.PredictContainer>
           )}
         </>
-      )}
-    </>
-  );
-};
+      )} */}
+      </>
+    );
+  };
 
 export default PlayContainer;

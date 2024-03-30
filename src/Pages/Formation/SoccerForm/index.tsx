@@ -6,7 +6,6 @@ import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import FiledImg from '../../../assets/png/Field.png';
 import { useNavigate, useLocation } from 'react-router-dom';
-import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
@@ -47,8 +46,6 @@ const SoccerForm = () => {
   const location = useLocation();
 
   const { teamId } = location.state;
-
-  useAccessTokenCheck();
 
   useEffect(() => {
     if (formationFieldRef.current) {

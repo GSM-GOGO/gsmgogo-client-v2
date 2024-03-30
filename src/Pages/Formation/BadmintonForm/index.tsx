@@ -6,7 +6,6 @@ import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import BadmintonField from '../../../assets/png/BadmintonField.png';
 import { useNavigate, useLocation } from 'react-router-dom';
-import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
@@ -48,8 +47,6 @@ const BadmintonForm = () => {
   ({});
   const [deleteTeam, setdeleteTeam] = useState(false);
   const formationFieldRef = useRef<HTMLDivElement>(null);
-
-  useAccessTokenCheck();
 
   const navigate = useNavigate();
   const location = useLocation();

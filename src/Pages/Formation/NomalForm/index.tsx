@@ -3,7 +3,6 @@ import { OpenReview, CloseReview } from '../../../assets';
 import HeaderContainer from '../../../components/HeaderContainer';
 import * as S from './style.ts';
 import { useNavigate } from 'react-router-dom';
-import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import { useParams } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
@@ -16,8 +15,6 @@ const NomalForm = () => {
   };
 
   const navigate = useNavigate();
-
-  useAccessTokenCheck();
 
   const [teamList, setTeamList] = useState([]);
 

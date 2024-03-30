@@ -1,17 +1,13 @@
-import axios from 'axios';
 import { RankBar } from '../../assets';
 import HeaderContainer from '../../components/HeaderContainer';
 import apiClient from '../../utils/libs/apiClient';
 import { Category, CategoryContainer } from '../Formation/style';
 import * as S from './style';
-import useAccessTokenCheck from '../../hook/useAccessTokenCheck';
 import { useEffect, useState } from 'react';
 
 const Ranking = () => {
-  useAccessTokenCheck();
-
   const [RankData, setRankData] = useState<any[]>([]);
-  const [myId, setMyId] = useState(null); 
+  const [myId, setMyId] = useState(null);
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -49,7 +45,6 @@ const Ranking = () => {
     fetchMyId();
   }, []);
 
-
   const topThreeDatatest = RankData.length > 0 ? RankData.sort((a, b) => b.user_point - a.user_point).slice(0, 3) : [];
 
   const firstPlacePointstest = topThreeDatatest.length > 0 ? topThreeDatatest[0].user_point : 0;
@@ -72,7 +67,7 @@ const Ranking = () => {
       rankComponent: null as React.ReactNode,
       rank: '',
     };
-  
+
     if (index === 0 && data.length > 2) {
       rankInfotest.rankName = data[2].user_name;
       rankInfotest.rankPoint = data[2].user_point.toLocaleString();
@@ -89,10 +84,9 @@ const Ranking = () => {
       rankInfotest.rankComponent = <RankBar height={secondPlaceHeighttest} />;
       rankInfotest.rank = '2등';
     }
-  
+
     return rankInfotest;
   };
-  
 
   return (
     <>
@@ -130,7 +124,7 @@ const Ranking = () => {
             <S.ListWrapper>
               {RankData.map((item, index) => (
                 <>
-                  {item.user_id==myId && (
+                  {item.user_id == myId && (
                     <S.List key={index}>
                       <S.TextContainer>
                         <S.Text>
@@ -147,7 +141,7 @@ const Ranking = () => {
               ))}
               <S.Stroke />
               {RankData.sort((a, b) => b.user_point - a.user_point).map((item, index) => (
-                <S.List myrank={item.user_id==myId} key={index}>
+                <S.List myrank={item.user_id == myId} key={index}>
                   <S.TextContainer>
                     <S.Text>
                       <S.Lank rank={index < 3}>{index + 1}등</S.Lank>

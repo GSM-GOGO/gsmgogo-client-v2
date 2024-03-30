@@ -13,6 +13,17 @@ import 'react-toastify/dist/ReactToastify.css';
 import { EmptyPlaying } from '../../../assets/index.ts';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
+interface Team {
+  team_id: number;
+  team_name: string;
+  team_grade: 'ONE' | 'TWO' | 'THREE';
+  team_class_type: 'SW' | 'EB';
+  win_count: number;
+  follow: boolean;
+  my_team: boolean;
+  badminton_rank?: 'A' | 'B' | 'C' | 'D';
+}
+
 const Sports = () => {
   useAccessTokenCheck();
   const { sport } = useParams();
@@ -20,17 +31,6 @@ const Sports = () => {
     return <h1>Not Found</h1>;
   }
   const navigate = useNavigate();
-
-  interface Team {
-    team_id: number;
-    team_name: string;
-    team_grade: 'ONE' | 'TWO' | 'THREE';
-    team_class_type: 'SW' | 'EB';
-    win_count: number;
-    follow: boolean;
-    my_team: boolean;
-    badminton_rank?: 'A' | 'B' | 'C' | 'D';
-  }
 
   const initialTeams: Team[] = [];
 

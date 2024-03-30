@@ -7,17 +7,24 @@ import { useEffect, useState } from 'react';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import apiClient from '../../../utils/libs/apiClient.ts';
 
+interface Team {
+  team_id: number;
+  team_name: string;
+  team_grade: 'ONE' | 'TWO' | 'THREE';
+  team_class_type: 'SW' | 'EB';
+  win_count: number;
+  follow: boolean;
+  my_team: boolean;
+  badminton_rank?: 'A' | 'B' | 'C' | 'D';
+}
+
 const NomalMatch = () => {
   const navigate = useNavigate();
 
   useAccessTokenCheck();
 
   const [addteam, setAddteam] = useState(false);
-  const [teamList, setTeamList] = useState([]);
-
-  const GoToForm = (sport: string) => {
-    navigate(`/matches/${sport}/form`);
-  };
+  const [teamList, setTeamList] = useState<Team[]>([]);
 
   const GoRegister = () => {
     navigate(`/register`);
@@ -99,7 +106,7 @@ const NomalMatch = () => {
                 </>
               ))}
 
-              {teamList.map((team: any) => (
+              {teamList.map((team) => (
                 <>
                   {team.my_team === false ? (
                     <>

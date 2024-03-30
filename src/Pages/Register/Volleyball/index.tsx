@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
-import Draggable from 'react-draggable';
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import VolleyField from '../../../assets/png/VolleyField.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
@@ -19,14 +19,22 @@ const Volleyball = () => {
     bottom: 0,
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
-  const [participantPositions, setParticipantPositions] = useState([]);
+  
+  interface ParticipantPosition {
+    id: number;
+    position_x: number;
+    position_y: number;
+  }
+  const [participantPositions, setParticipantPositions] = useState<ParticipantPosition[]>([]);
 
   const location = useLocation();
   const navigate = useNavigate();
 
   const { teamName, selectedMembers, selectedId } = location.state;
 
-  const convertedMembers = selectedMembers.map((member, index) => ({
+  console.log(selectedMembers);
+
+  const convertedMembers = selectedMembers.map((member: string, index: number) => ({
     id: selectedId[index],
     name: member,
     x: [90, 185, 280, 90, 185, 280, 90, 185, 280][index % 9],
@@ -45,8 +53,10 @@ const Volleyball = () => {
     }
   }, []);
 
-  const handleDragStop = (id, e, data) => {
-    const participantIndex = convertedMembers.findIndex((participant) => participant.id === id);
+
+  const handleDragStop = (id: any, _e: DraggableEvent, data: DraggableData) => {
+
+    const participantIndex = convertedMembers.findIndex((participant: { id: any; }) => participant.id === id);
 
     if (participantIndex !== -1) {
       const updatedParticipantPositions = [...participantPositions];
@@ -65,7 +75,7 @@ const Volleyball = () => {
     try {
       const token = localStorage.getItem('accessToken');
 
-      const participates = convertedMembers.map((player) => {
+      const participates = convertedMembers.map((player: { id: any; x: any; y: any; }) => {
         const participantPosition = participantPositions.find((p) => p?.id === player.id);
         return {
           user_id: String(player.id),
@@ -123,7 +133,7 @@ const Volleyball = () => {
 
             <S.ContainerResponse style={{ paddingBottom: '3.5rem' }}>
               <S.ImgBox ref={formationFieldRef} img={VolleyField} style={{ position: 'relative' }}>
-                {convertedMembers.map((player) => (
+                {convertedMembers.map((player: { id: Key | null | undefined; x: any; y: any; name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) => (
                   <div key={player.id} style={{ position: 'absolute' }}>
                     <div style={{ position: 'relative' }}>
                       <Draggable

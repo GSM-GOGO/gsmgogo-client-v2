@@ -12,6 +12,25 @@ import { Toaster } from 'react-hot-toast';
 
 import 'react-toastify/dist/ReactToastify.css';
 
+interface Participate {
+  user_id: number;
+  user_name: string;
+  position_x: number;
+  position_y: number;
+}
+
+interface FormData {
+  team_id: number;
+  team_name: string;
+  team_type: 'SOCCER' | 'BADMINTON' | 'VOLLEYBALL';
+  team_grade: 'ONE' | 'TWO' | 'THREE';
+  team_class_type: 'SW' | 'EB';
+  author_me: boolean;
+  win_count: number;
+  participates: Participate[];
+  badminton_rank?: 'A' | 'B' | 'C' | 'D';
+}
+
 const VolleyForm = () => {
   const [bounds, setBounds] = useState({
     left: 0,
@@ -19,7 +38,7 @@ const VolleyForm = () => {
     right: 0,
     bottom: 0,
   });
-  const [formData, setFormData] = useState<{ team_id: number } | object>({});
+  const [formData, setFormData] = useState<FormData | null>(null);
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
@@ -107,25 +126,25 @@ const VolleyForm = () => {
               <S.Category style={{ color: 'var(--White, #FFF)', paddingRight: '1.5rem' }}>
                 어쩌구저쩌구팀 배구 포메이션
                 <D.MiniText>
-                  {formData.team_grade === 'ONE' ? '1' : formData.team_grade === 'TWO' ? '2' : '3'}학년{' '}
-                  {formData.team_class_type === 'SW' ? 'SW' : formData.team_class_type === 'EB' ? '임베' : ''}
+                  {formData?.team_grade === 'ONE' ? '1' : formData?.team_grade === 'TWO' ? '2' : '3'}학년{' '}
+                  {formData?.team_class_type === 'SW' ? 'SW' : formData?.team_class_type === 'EB' ? '임베' : ''}
                 </D.MiniText>
               </S.Category>
               <S.Category style={{ color: 'var(--Main, #23F69A)' }}>
-                {formData.author_me === true ? (
+                {formData?.author_me === true ? (
                   <D.DeleteBtn onClick={deleteMyTeam}>
                     <D.DeleteText>삭제하기</D.DeleteText>
                   </D.DeleteBtn>
                 ) : (
-                  <S.Category style={{ color: 'var(--Main, #23F69A)' }}>{formData.win_count}승</S.Category>
+                  <S.Category style={{ color: 'var(--Main, #23F69A)' }}>{formData?.win_count}승</S.Category>
                 )}
               </S.Category>
             </S.CategoryContainer>
 
             <S.ContainerResponse style={{ paddingBottom: '3.5rem' }}>
               <D.ImgBox ref={formationFieldRef} img={VolleyField} style={{ position: 'relative' }}>
-                {formData.participates &&
-                  formData.participates.map((player) => (
+                {formData?.participates &&
+                  formData?.participates.map((player) => (
                     <div key={player.user_id} style={{ position: 'absolute' }}>
                       <div style={{ position: 'relative' }}>
                         <Draggable

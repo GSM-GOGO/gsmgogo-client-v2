@@ -24,6 +24,15 @@ interface Team {
   badminton_rank?: 'A' | 'B' | 'C' | 'D';
 }
 
+interface SelectedTeam {
+  id: number;
+  name: string;
+}
+
+interface CheerTeam {
+  team_id?: number;
+}
+
 const Sports = () => {
   useAccessTokenCheck();
   const { sport } = useParams();
@@ -38,8 +47,8 @@ const Sports = () => {
 
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
-  const [selectedTeam, setSelectedTeam] = useState(null);
-  const [cheerTeam, setCheerTeam] = useState({});
+  const [selectedTeam, setSelectedTeam] = useState<SelectedTeam | null>(null);
+  const [cheerTeam, setCheerTeam] = useState<CheerTeam>({});
 
   useEffect(() => {
     const sportName = sport.toUpperCase();
@@ -250,7 +259,7 @@ const Sports = () => {
                     </>
                   ))}
                 </>
-                {teams.map((team: any) => (
+                {teams.map((team) => (
                   <>
                     {team.my_team === false ? (
                       <>

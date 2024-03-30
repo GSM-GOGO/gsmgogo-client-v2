@@ -69,11 +69,11 @@ const Volleyball = () => {
       const token = localStorage.getItem('accessToken');
 
       const participates = convertedMembers.map((player) => {
-        const participantPosition = participantPositions.find((p) => p.id === player.id);
+        const participantPosition = participantPositions.find((p) => p?.id === player.id);
         return {
           user_id: String(player.id),
-          position_x: String(participantPosition?.position_x ?? player.x),
-          position_y: String(participantPosition?.position_y ?? player.y),
+          position_x: participantPosition?.position_x ?? player.x,
+          position_y: participantPosition?.position_y ?? player.y,
         };
       });
 

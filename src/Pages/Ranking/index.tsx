@@ -147,7 +147,7 @@ const Ranking = () => {
               ))}
               <S.Stroke />
               {RankData.sort((a, b) => b.user_point - a.user_point).map((item, index) => (
-                <S.List key={index}>
+                <S.List myrank={item.user_id==myId} key={index}>
                   <S.TextContainer>
                     <S.Text>
                       <S.Lank rank={index < 3}>{index + 1}등</S.Lank>

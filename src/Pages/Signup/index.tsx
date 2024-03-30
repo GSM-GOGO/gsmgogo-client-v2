@@ -82,7 +82,23 @@ export default function SignUp() {
       setShowVerification(false);
       reset();
     } else {
+      handleSkip();
+    }
+  };
+
+  const handleSkip = async () => {
+    try {
+      const token = localStorage.getItem('accessToken');
+      await apiClient.patch(`/auth/sms/skip`, {
+        headers: {
+          Authorization: token,
+        },
+        withCredentials: true,
+      });
       navigate(`/`);
+    } catch (e) {
+      const errorMessage = e.response.data.message;
+      toast.error(errorMessage);
     }
   };
 
@@ -147,6 +163,10 @@ export default function SignUp() {
           </SubmitWrapper>
         </Form>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </S.Layout>
   );
 }

@@ -63,7 +63,6 @@ export const SubjectOne = styled.div<{ selectedSport?: boolean }>`
   padding: 0.5rem 1.25rem;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
   border-radius: 0.75rem;
   border: 1px solid var(--Gray2, #6f6f7b);
   cursor: pointer;
@@ -190,7 +189,7 @@ export const MapTeamMember = styled.div<{ Border?: boolean }>`
 `;
 
 export const MemberList = styled.span`
-width: 141px;
+width: 200px;
 display: flex;
 align-items: center;
 gap: 0.5rem;
@@ -247,7 +246,6 @@ display: flex;
   gap: 0.5rem;
   height: 100%;
   flex-wrap: wrap;
-  margin-left: 2rem;
       justify-content: right;
 `;
 
@@ -301,7 +299,6 @@ export const OneNormalWrapper = styled.div`
   gap: 0.5rem;
   height: 100%;
   flex-wrap: wrap;
-  margin-left: 2rem;
   justify-content: right;
 `;
 

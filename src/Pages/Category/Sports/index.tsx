@@ -13,6 +13,26 @@ import 'react-toastify/dist/ReactToastify.css';
 import { EmptyPlaying } from '../../../assets/index.ts';
 import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 
+interface Team {
+  team_id: number;
+  team_name: string;
+  team_grade: 'ONE' | 'TWO' | 'THREE';
+  team_class_type: 'SW' | 'EB';
+  win_count: number;
+  follow: boolean;
+  my_team: boolean;
+  badminton_rank?: 'A' | 'B' | 'C' | 'D';
+}
+
+interface SelectedTeam {
+  id: number;
+  name: string;
+}
+
+interface CheerTeam {
+  team_id?: number;
+}
+
 const Sports = () => {
   useAccessTokenCheck();
   const { sport } = useParams();
@@ -21,25 +41,14 @@ const Sports = () => {
   }
   const navigate = useNavigate();
 
-  interface Team {
-    team_id: number;
-    team_name: string;
-    team_grade: 'ONE' | 'TWO' | 'THREE';
-    team_class_type: 'SW' | 'EB';
-    win_count: number;
-    follow: boolean;
-    my_team: boolean;
-    badminton_rank?: 'A' | 'B' | 'C' | 'D';
-  }
-
   const initialTeams: Team[] = [];
 
   const [teams, setTeams] = useState(initialTeams);
 
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
-  const [selectedTeam, setSelectedTeam] = useState(null);
-  const [cheerTeam, setCheerTeam] = useState({});
+  const [selectedTeam, setSelectedTeam] = useState<SelectedTeam | null>(null);
+  const [cheerTeam, setCheerTeam] = useState<CheerTeam>({});
 
   useEffect(() => {
     const sportName = sport.toUpperCase();
@@ -250,7 +259,7 @@ const Sports = () => {
                     </>
                   ))}
                 </>
-                {teams.map((team: any) => (
+                {teams.map((team) => (
                   <>
                     {team.my_team === false ? (
                       <>

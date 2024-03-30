@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
 import * as S from './style.ts';
 import { GAuthLogo, SignInLogo } from '../../assets';
 import '@msg-team/gauth-react/dist/index.css';
 import apiClient from '../../utils/libs/apiClient.ts';
+import { useState } from 'react';
 
 const Signin = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);

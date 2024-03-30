@@ -1,12 +1,12 @@
-const RankBar = ({ height }) => {
+import React from 'react';
+
+interface Props {
+  height: number;
+}
+
+const RankBar: React.FC<Props> = ({ height }) => {
   return (
-    <svg
-      width="100"
-      height={height}
-      viewBox={`0 0 100 ${height}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="100" height={height} viewBox={`0 0 100 ${height}`} fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d={`M0 20C0 8.9543 8.95431 0 20 0H80C91.0457 0 100 8.95431 100 20V${height - 4}C100 ${height - 1.791} 98.2091 ${height} 96 ${height}H4C1.79086 ${height} 0 ${height - 1.791} 0 ${height - 4}V20Z`}
         fill="url(#paint0_linear_388_5976)"

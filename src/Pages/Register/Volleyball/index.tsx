@@ -69,11 +69,11 @@ const Volleyball = () => {
       const token = localStorage.getItem('accessToken');
 
       const participates = convertedMembers.map((player) => {
-        const participantPosition = participantPositions.find((p) => p.id === player.id);
+        const participantPosition = participantPositions.find((p) => p?.id === player.id);
         return {
           user_id: String(player.id),
-          position_x: String(participantPosition?.position_x ?? player.x),
-          position_y: String(participantPosition?.position_y ?? player.y),
+          position_x: participantPosition?.position_x ?? player.x,
+          position_y: participantPosition?.position_y ?? player.y,
         };
       });
 
@@ -100,7 +100,7 @@ const Volleyball = () => {
       setTimeout(() => {
         failCreateTeam();
       }, 500);
-      console.log('error');
+      console.error(e);
     }
   };
 
@@ -120,7 +120,7 @@ const Volleyball = () => {
           <S.ContainerResponse>
             <S.CategoryContainer>
               <S.Category style={{ color: 'var(--White, #FFF)', paddingRight: '1.5rem' }}>
-                {teamName}팀 배구 포메이션
+                {teamName}팀 축구 포메이션
               </S.Category>
             </S.CategoryContainer>
 
@@ -150,7 +150,7 @@ const Volleyball = () => {
             style={{
               display: 'flex',
               justifyContent: 'center',
-              top: '20rem',
+              top: '5rem',
               position: 'relative',
             }}
           >

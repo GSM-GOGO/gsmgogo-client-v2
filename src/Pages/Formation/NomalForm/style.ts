@@ -20,11 +20,40 @@ export const ContainerResponse = styled.div`
   /* align-items: center; */
 `;
 
-export const TeamTextContainer = styled.div`
+export const TeamTitleContainer = styled.div`
   margin-top: 1.25rem;
   margin-bottom: 2.5rem;
   display: flex;
+  justify-content: space-between;
+`;
+
+export const TeamTextContainer = styled.div`
+  display: flex;
   gap: 0.5rem;
+`;
+
+export const DeleteButton = styled.button`
+  display: flex;
+  width: 6.25rem;
+  height: 2.5rem;
+  padding: 0.75rem 1rem;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  border: 1px solid var(--Gray2, #6f6f7b);
+  background: var(--Black, #1c1c1f);
+  cursor: pointer;
+
+  color: var(--Gray2, #6f6f7b);
+  text-align: center;
+  font-family: 'Pretendard Variable';
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.125rem;
+  padding: 0;
 `;
 
 export const TeamName = styled.p`
@@ -34,6 +63,7 @@ export const TeamName = styled.p`
   font-weight: 600;
   font-family: pretendard;
   line-height: 1.9375rem;
+  align-self: center;
 
   @media screen and (max-width: 500px) {
     font-size: 1.2rem;

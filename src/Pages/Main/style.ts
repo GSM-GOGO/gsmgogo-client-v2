@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 40.5rem;
-  @media (max-width: 650px) {
+  /* @media (max-width: 650px) {
     width: 35rem;
   }
   @media (max-width: 550px) {
@@ -16,7 +16,7 @@ export const Container = styled.div`
   }
   @media (max-width: 550px) {
     width: 27.5rem;
-  }
+  } */
 `;
 
 export const MainContainer = styled.div`

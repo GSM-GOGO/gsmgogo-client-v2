@@ -5,14 +5,17 @@ import * as S from './style';
 import { useState } from 'react';
 import { Logo } from '../../assets/svg';
 import { FormData } from '../../types/FormDataType';
-import { useAsyncError, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import apiClient from '../../utils/libs/apiClient';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function SignUp() {
   const navigate = useNavigate();
 
   const [showVerification, setShowVerification] = useState(false);
   const [phoneNumber, setPhoneNuber] = useState('');
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const {
     register,
     formState: { errors },
@@ -22,6 +25,9 @@ export default function SignUp() {
   } = useForm<FormData>({ mode: 'onChange' });
 
   const onSubmit = async (data: FormData) => {
+    if (isButtonDisabled) return;
+
+    setIsButtonDisabled(true);
     if (!showVerification) {
       setPhoneNuber(data.phoneNumber);
       try {
@@ -39,8 +45,13 @@ export default function SignUp() {
         );
 
         setShowVerification(true);
-      } catch (e) {
-        alert('올바른 아이디와 비밀번호를 입력해주세요.');
+      } catch (e: any) {
+        const errorMessage = e.response.data.message;
+        toast.error(errorMessage);
+      } finally {
+        setTimeout(() => {
+          setIsButtonDisabled(false);
+        }, 2000);
       }
     } else {
       const verificationCode = data.verificationCode.toString();
@@ -57,15 +68,11 @@ export default function SignUp() {
           type: 'manual',
           message: '인증번호가 올바르지 않습니다',
         });
+      } finally {
+        setTimeout(() => {
+          setIsButtonDisabled(false);
+        }, 2000);
       }
-      // if (data.verificationCode !== '123456') {
-      //   setError('verificationCode', {
-      //     type: 'manual',
-      //     message: '인증번호가 올바르지 않습니다',
-      //   });
-      // } else {
-      //   console.log('인증번호가 제출되었습니다', data.verificationCode);
-      // }
     }
   };
 
@@ -81,6 +88,7 @@ export default function SignUp() {
 
   return (
     <S.Layout>
+      <ToastContainer autoClose={2000} />
       <S.Wrapper>
         <S.Logo>
           <Logo />
@@ -131,7 +139,7 @@ export default function SignUp() {
               <S.CertificationButton
                 type="submit"
                 SubmitOK={Object.keys(errors).length === 0}
-                disabled={Object.keys(errors).length !== 0}
+                disabled={Object.keys(errors).length !== 0 || isButtonDisabled}
               >
                 {showVerification ? '인증하기' : '인증번호'}
               </S.CertificationButton>

@@ -194,8 +194,8 @@ const Register = () => {
   const TeamType: { [key: string]: NormalTeamType } = {
     '이어달리기(남3,여3)': 'TOSS_RUN',
     '이어달리기(여)': 'TOSS_RUN',
-    '미션달리기': 'MISSION_RUN',
-    '줄다리기': 'TUG_OF_WAR',
+    미션달리기: 'MISSION_RUN',
+    줄다리기: 'TUG_OF_WAR',
     '농구 자유투 릴레이': 'FREE_THROW',
     '단체 줄넘기': 'GROUP_ROPE_JUMP',
   };
@@ -219,12 +219,12 @@ const Register = () => {
               Authorization: `${token}`,
             },
           });
+          navigate('/matches/NomalMatch');
         } catch (e) {
           console.log('error');
           const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
 
           toast.error(errorMessage, { autoClose: 5000 });
-
         }
       };
       PostNormalTeam();
@@ -489,7 +489,7 @@ const Register = () => {
       <ToastContainer autoClose={1000} />
       <div>
         <Toaster position="top-right" reverseOrder={true} />
-      </div>  
+      </div>
     </div>
   );
 };

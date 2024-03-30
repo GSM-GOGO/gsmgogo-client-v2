@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 import apiClient from '../../utils/libs/apiClient.ts';
 import Nomal from './nomal.tsx';
 import useStorePoint from '../../utils/libs/storePoint';
-import useAccessTokenCheck from '../../hook/useAccessTokenCheck.tsx';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 
@@ -52,7 +51,6 @@ const Register = () => {
   const setIsLeader = useStorePoint((state) => state.setIsLeader);
   const [allSportsFull, setAllSportsFull] = useState(false);
   const navigate = useNavigate();
-  useAccessTokenCheck();
 
   const goSports = () => {
     console.log(1);

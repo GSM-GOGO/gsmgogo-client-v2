@@ -5,7 +5,6 @@ import * as S from '../style.ts';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import { useNavigate, useLocation } from 'react-router-dom';
-import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
@@ -45,8 +44,6 @@ const VolleyForm = () => {
   const location = useLocation();
 
   const { teamId } = location.state;
-
-  useAccessTokenCheck();
 
   useEffect(() => {
     if (formationFieldRef.current) {

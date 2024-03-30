@@ -6,7 +6,6 @@ import Draggable from 'react-draggable';
 import VolleyField from '../../../assets/png/VolleyField.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
-import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 
@@ -21,8 +20,6 @@ const Volleyball = () => {
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
   const [participantPositions, setParticipantPositions] = useState([]);
-
-  useAccessTokenCheck();
 
   const location = useLocation();
   const navigate = useNavigate();

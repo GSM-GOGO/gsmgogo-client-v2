@@ -42,16 +42,17 @@ export const ListContainer = styled.div`
   display: flex;
 `;
 
-export const List = styled.div`
-  padding: 1rem 1.3rem;
-  width: 100%;
-  border-radius: 0.75rem;
-  font-size: 0.875rem;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  background: #26262a;
-  justify-content: space-between;
+export const List = styled.div<{ myrank: boolean }>`
+padding: 1rem 1.3rem;
+margin: 0 1rem;
+border-radius: 0.75rem;
+font-size: 0.875rem;
+box-sizing: border-box;
+display: flex;
+align-items: center;
+background: #26262a;
+justify-content: space-between;
+border: ${(props) => (props.myrank ? '1px solid var(--Main, #23F69A)' : 'none')};
 `;
 
 export const TextContainer = styled.div`
@@ -95,8 +96,7 @@ export const Point = styled.p`
 `;
 
 export const Stroke = styled.div`
-  width: 100%;
+  margin: 0.3rem 1rem;
   height: 0.0625rem;
   background-color: #44444b;
-  margin: 0.3rem 0;
 `;

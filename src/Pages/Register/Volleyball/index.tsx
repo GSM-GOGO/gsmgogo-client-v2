@@ -20,6 +20,7 @@ const Volleyball = () => {
     bottom: 0,
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
+  const [participantPositions, setParticipantPositions] = useState([]);
 
   useAccessTokenCheck();
 
@@ -27,8 +28,6 @@ const Volleyball = () => {
   const navigate = useNavigate();
 
   const { teamName, selectedMembers, selectedId } = location.state;
-
-  const [participantPositions, setParticipantPositions] = useState([]);
 
   const convertedMembers = selectedMembers.map((member, index) => ({
     id: selectedId[index],
@@ -52,24 +51,31 @@ const Volleyball = () => {
   const handleDragStop = (id, e, data) => {
     const participantIndex = convertedMembers.findIndex((participant) => participant.id === id);
 
-    const updatedParticipantPositions = [...participantPositions];
-    updatedParticipantPositions[participantIndex] = {
-      id,
-      position_x: data.x,
-      position_y: data.y,
-    };
-    setParticipantPositions(updatedParticipantPositions);
+    if (participantIndex !== -1) {
+      const updatedParticipantPositions = [...participantPositions];
+      updatedParticipantPositions[participantIndex] = {
+        id,
+        position_x: data.x,
+        position_y: data.y,
+      };
+      setParticipantPositions(updatedParticipantPositions);
+    } else {
+      console.error(`Participant with id ${id} not found.`);
+    }
   };
 
   const postVolleyballTeam = async () => {
     try {
       const token = localStorage.getItem('accessToken');
 
-      const participates = convertedMembers.map((player) => ({
-        user_id: player.id,
-        position_x: participantPositions[player.id - 1]?.position_x ?? player.x,
-        position_y: participantPositions[player.id - 1]?.position_y ?? player.y,
-      }));
+      const participates = convertedMembers.map((player) => {
+        const participantPosition = participantPositions.find((p) => p.id === player.id);
+        return {
+          user_id: String(player.id),
+          position_x: String(participantPosition?.position_x ?? player.x),
+          position_y: String(participantPosition?.position_y ?? player.y),
+        };
+      });
 
       await apiClient.post(
         `/team`,

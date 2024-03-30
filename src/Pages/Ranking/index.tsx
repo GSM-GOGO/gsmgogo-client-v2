@@ -101,7 +101,7 @@ const Ranking = () => {
               {RankData.sort((a, b) => b.user_point - a.user_point)
                 .slice(0, 3)
                 .sort((a, b) => (a.user_name > b.user_name ? 1 : -1))
-                .map((item, index) => {
+                .map((_, index) => {
                   const { rankName, rankPoint, rankComponent, rank } = getRankInfotest(index, RankData);
                   return (
                     <S.LankContainer key={index}>
@@ -124,8 +124,8 @@ const Ranking = () => {
             <S.ListWrapper>
               {RankData.map((item, index) => (
                 <>
-                  {item.user_id == myId && (
-                    <S.List key={index}>
+                  {item.user_id === myId && (
+                    <S.List myrank={item.user_id === myId} key={index}>
                       <S.TextContainer>
                         <S.Text>
                           <S.Lank rank={index < 3}>{index + 1}등</S.Lank>

@@ -115,7 +115,11 @@ export const ListTitle = styled.div`
   align-items: center;
 `;
 
-export const CandiateContainer = styled.div`
+interface ContainerProps {
+  active: boolean;
+}
+
+export const CandiateContainer = styled.div<ContainerProps>`
   display: ${(props) => (props.active ? 'block' : 'none')};
   display: flex;
   gap: 1rem;

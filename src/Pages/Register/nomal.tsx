@@ -39,10 +39,11 @@ const Number: Numbertype = {
 };
 
 
+
 interface NomalProps {
   dataArr: Data[];
-  setAllSportsFull: boolean;
   setDataArr: React.Dispatch<React.SetStateAction<Data[]>>;
+  setAllSportsFull: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) => {
@@ -78,15 +79,14 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
     const getSearch = async () => {
       try {
         const token = localStorage.getItem('accessToken');
-        const response: UserListResponse[] = await apiClient.get(`/user`, {
+        const response: { data: UserListResponse[] }  = await apiClient.get(`/user`, {
           headers: {
             Authorization: token,
           },
           withCredentials: true,
         });
 
-        const updatedDataArr = response.data.map((user) => {
-          console.log(user);
+        const updatedDataArr = response.data.map((user: UserListResponse) => {
           return {
             id: user.user_id,
             name: user.user_name,
@@ -95,6 +95,7 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
             grade: Number[user.user_grade],
           };
         });
+        
 
         updatedDataArr.sort((a, b) => {
           if (a.grade !== b.grade) {
@@ -247,8 +248,7 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
                       <S.MappingText
                         key={index}
                         onClick={() => {
-                          console.log(i.normalSport);
-                          setToggleModalId(i.id);
+                          console.log("i",i);
                           toggleSportUser(dataArritem.id, i.normalSport);
                         }}
                       >

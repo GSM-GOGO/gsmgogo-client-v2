@@ -97,7 +97,7 @@ export default function SignUp() {
       });
       navigate(`/`);
     } catch (e) {
-      console.log(e);
+      console.log(e); //
     }
   };
 

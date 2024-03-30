@@ -38,6 +38,7 @@ const VolleyForm = () => {
     right: 0,
     bottom: 0,
   });
+  const [deleteTeam, setdeleteTeam] = useState(false);
   const [formData, setFormData] = useState<FormData | null>(null);
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
@@ -120,11 +121,32 @@ const VolleyForm = () => {
     <>
       <HeaderContainer />
       <S.Wrapper>
+        {deleteTeam ? (
+          <D.ModalBackground>
+            <D.ModalContainer>
+              <D.ModalTextContainer style={{ gap: '0' }}>
+                <D.ModalTitle>
+                  <D.ModalTitleContainer style={{ alignItems: 'center' }}>팀을 삭제하시겠습니까?</D.ModalTitleContainer>
+                </D.ModalTitle>
+                <D.ModalNovelContainer>
+                  <D.ModalNovel style={{ color: 'var(--Error, #DF454A)' }}>
+                    팀을 삭제한다면
+                    <br /> 팀을 다시 볼 수 없습니다
+                  </D.ModalNovel>
+                </D.ModalNovelContainer>
+              </D.ModalTextContainer>
+              <D.ModalButtonContainer>
+                <D.ModalCencleButton onClick={() => setdeleteTeam(!deleteTeam)}>아니오</D.ModalCencleButton>
+                <D.ModalCheerButton onClick={deleteMyTeam}>삭제하기</D.ModalCheerButton>
+              </D.ModalButtonContainer>
+            </D.ModalContainer>
+          </D.ModalBackground>
+        ) : null}
         <S.Container>
           <S.ContainerResponse>
             <S.CategoryContainer>
               <S.Category style={{ color: 'var(--White, #FFF)', paddingRight: '1.5rem' }}>
-                어쩌구저쩌구팀 배구 포메이션
+                {formData?.team_name}팀 배구 포메이션
                 <D.MiniText>
                   {formData?.team_grade === 'ONE' ? '1' : formData?.team_grade === 'TWO' ? '2' : '3'}학년{' '}
                   {formData?.team_class_type === 'SW' ? 'SW' : formData?.team_class_type === 'EB' ? '임베' : ''}
@@ -132,7 +154,7 @@ const VolleyForm = () => {
               </S.Category>
               <S.Category style={{ color: 'var(--Main, #23F69A)' }}>
                 {formData?.author_me === true ? (
-                  <D.DeleteBtn onClick={deleteMyTeam}>
+                  <D.DeleteBtn onClick={() => setdeleteTeam(!deleteTeam)}>
                     <D.DeleteText>삭제하기</D.DeleteText>
                   </D.DeleteBtn>
                 ) : (

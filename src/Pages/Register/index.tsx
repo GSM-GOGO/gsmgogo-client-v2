@@ -55,6 +55,7 @@ const Register = () => {
   useAccessTokenCheck();
 
   const goSports = () => {
+    console.log(1);
     let sportPath = '';
     if (selectedSport === '축구') {
       sportPath = 'soccer';
@@ -63,6 +64,7 @@ const Register = () => {
     } else if (selectedSport === '배구') {
       sportPath = 'volleyball';
     }
+    console.log(1);
     const selectedMemberIds = selectedMembers.map((member) => member.user_id);
     navigate(`/register/${sportPath}`, {
       state: {
@@ -331,7 +333,7 @@ const Register = () => {
                         teamName === ''
                       }
                       onClick={() => {
-                        selectedSport !== '일반경기' ? goSports : handleClickRegister();
+                        selectedSport !== '일반경기' ? goSports() : handleClickRegister();
                       }}
                       style={{
                         backgroundColor:

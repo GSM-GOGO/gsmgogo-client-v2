@@ -4,7 +4,6 @@ import WeatherContainer from '../../components/WeatherContainer/index.tsx';
 import * as S from './style';
 import { ArrayProps } from '../../types/ArrayProps.ts';
 import Category from '../../components/Category/index.tsx';
-import useAccessTokenCheck from '../../hook/useAccessTokenCheck.tsx';
 
 const dataArray: Array<ArrayProps> = [
   {
@@ -156,7 +155,6 @@ const dataArray: Array<ArrayProps> = [
 ];
 
 const Main = () => {
-  useAccessTokenCheck();
   return (
     <>
       <HeaderContainer />

@@ -6,7 +6,6 @@ import Draggable from 'react-draggable';
 import Field from '../../../assets/png/Field.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
-import useAccessTokenCheck from '../../../hook/useAccessTokenCheck.tsx';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 
@@ -23,8 +22,6 @@ const Soccer = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-
-  useAccessTokenCheck();
 
   const { teamName, selectedMembers, selectedId } = location.state;
 

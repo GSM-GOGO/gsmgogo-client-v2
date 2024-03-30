@@ -38,18 +38,14 @@ const Number: Numbertype = {
   FOUR: 4,
 };
 
-type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP';
 
-const TeamType: { [key: string]: NormalTeamType } = {
-  '이어달리기(남)': 'TOSS_RUN',
-  '이어달리기(여)': 'TOSS_RUN',
-  미션달리기: 'MISSION_RUN',
-  줄다리기: 'TUG_OF_WAR',
-  '농구 자유투 릴레이': 'FREE_THROW',
-  '단체 줄넘기': 'GROUP_ROPE_JUMP',
-};
+interface NomalProps {
+  dataArr: Data[];
+  setAllSportsFull: boolean;
+  setDataArr: React.Dispatch<React.SetStateAction<Data[]>>;
+}
 
-const Nomal = () => {
+const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) => {
   const [NormalArr, setNormalArr] = useState<NormalType[]>([
     {
       normalSport: '단체 줄넘기',
@@ -72,18 +68,11 @@ const Nomal = () => {
       maxPeople: 30,
     },
     {
-      normalSport: '이어달리기(남)',
+      normalSport: '이어달리기(남3,여3)',
       normalPeople: 0,
-      maxPeople: 3,
-    },
-    {
-      normalSport: '이어달리기(여)',
-      normalPeople: 0,
-      maxPeople: 3,
+      maxPeople: 6,
     },
   ]);
-
-  const [dataArr, setDataArr] = useState<Data[]>([]);
 
   useEffect(() => {
     const getSearch = async () => {
@@ -193,33 +182,12 @@ const Nomal = () => {
     }
   };
 
-
-  const handleClickRegister = async () => {
-    try {
-      const userTeamData = dataArr.map((user) => ({
-        user_id: user.id,
-        team_types: user.normalSports.map((sport) => TeamType[sport]),
-      }));
-
-      const PostNormalTeam = async () => {
-        try {
-          const token = localStorage.getItem('accessToken');
-          await apiClient.post(`/team/normal`, userTeamData, {
-            headers: {
-              Authorization: `${token}`,
-            },
-          });
-        } catch (e) {
-          console.log('error');
-        }
-      };
-      PostNormalTeam();
-      console.log(userTeamData);
-      console.log('등록되었습니다.');
-    } catch (error) {
-      console.error('등록 중 오류가 발생했습니다.', error);
-    }
-  };
+  useEffect(() => {
+    const allSportsFull = NormalArr.every((sport) => sport.normalPeople === sport.maxPeople);
+    setAllSportsFull(allSportsFull);
+  }, [NormalArr]);
+  
+  
 
   return (
     <S.NormalTeamContainer style={{ overflow: 'hidden' }}>
@@ -227,13 +195,6 @@ const Nomal = () => {
         <S.SubjectText>팀 배정</S.SubjectText>
         <S.TeamAssignSpan>클릭한 뒤 원하는 종목을 배정할 수 있어요</S.TeamAssignSpan>
       </S.TeamAssign>
-      <button
-        onClick={() => {
-          handleClickRegister();
-        }}
-      >
-        등록
-      </button>
 
       <S.TeamInputContainer>
         <S.TeamInputBox>
@@ -248,7 +209,7 @@ const Nomal = () => {
           <div
             key={index}
             onClick={() => {
-              console.log('ddfs', dataArritem); // 선택한 요소 정보 출력
+              console.log('ddfs', dataArritem); 
               toggleModal();
               setToggleModalId(dataArritem.id);
             }}

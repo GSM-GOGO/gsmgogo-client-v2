@@ -7,6 +7,8 @@ import apiClient from '../../utils/libs/apiClient.ts';
 import Nomal from './nomal.tsx';
 import useStorePoint from '../../utils/libs/storePoint';
 import useAccessTokenCheck from '../../hook/useAccessTokenCheck.tsx';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
 
 interface SportsData {
   user_id: number;
@@ -48,7 +50,7 @@ const Register = () => {
   const [selectedMembers, setSelectedMembers] = useState<SportsData[]>([]);
   const isLeader = useStorePoint((state) => state.leader);
   const setIsLeader = useStorePoint((state) => state.setIsLeader);
-
+  const [allSportsFull, setAllSportsFull] = useState(false);
   const navigate = useNavigate();
   useAccessTokenCheck();
 
@@ -187,6 +189,52 @@ const Register = () => {
     dividedSelectedMembers.push(selectedMembers.slice(i, i + 4));
   }
 
+  type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP';
+
+  const TeamType: { [key: string]: NormalTeamType } = {
+    '이어달리기(남3,여3)': 'TOSS_RUN',
+    '이어달리기(여)': 'TOSS_RUN',
+    '미션달리기': 'MISSION_RUN',
+    '줄다리기': 'TUG_OF_WAR',
+    '농구 자유투 릴레이': 'FREE_THROW',
+    '단체 줄넘기': 'GROUP_ROPE_JUMP',
+  };
+
+  const [dataArr, setDataArr] = useState<Data[]>([]);
+
+  const handleClickRegister = async () => {
+    console.log('실행');
+    console.log(dataArr);
+    try {
+      const userTeamData = dataArr.map((user) => ({
+        user_id: user.id,
+        team_types: user.normalSports.map((sport) => TeamType[sport]),
+      }));
+
+      const PostNormalTeam = async () => {
+        try {
+          const token = localStorage.getItem('accessToken');
+          await apiClient.post(`/team/normal`, userTeamData, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          });
+        } catch (e) {
+          console.log('error');
+          const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+
+          toast.error(errorMessage, { autoClose: 5000 });
+
+        }
+      };
+      PostNormalTeam();
+      console.log(userTeamData);
+      console.log('등록되었습니다.');
+    } catch (error) {
+      console.error('등록 중 오류가 발생했습니다.', error);
+    }
+  };
+
   return (
     <div style={{ overflow: 'hidden', height: '100%' }}>
       <HeaderContainer />
@@ -266,7 +314,7 @@ const Register = () => {
                     )}
                   </>
                 ) : (
-                  <Nomal />
+                  <Nomal dataArr={dataArr} setDataArr={setDataArr} setAllSportsFull={setAllSportsFull} />
                 )}
 
                 <div
@@ -276,31 +324,60 @@ const Register = () => {
                     marginTop: '20rem',
                   }}
                 >
-                  <S.FormationBtn
-                    disabled={selectedMembers.length !== MAX_MEMBERS[selectedSport] || teamName === ''}
-                    onClick={goSports}
-                    style={{
-                      backgroundColor:
-                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
-                          ? 'var(--Main, #23F69A)'
-                          : undefined,
-                      cursor:
-                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
-                          ? 'pointer'
-                          : 'not-allowed',
-                    }}
-                  >
-                    <S.FormationText
+                  {selectedSport !== '일반경기' ? (
+                    <S.FormationBtn
+                      disabled={
+                        (selectedSport !== '일반경기' && selectedMembers.length !== MAX_MEMBERS[selectedSport]) ||
+                        teamName === ''
+                      }
+                      onClick={() => {
+                        selectedSport !== '일반경기' ? goSports : handleClickRegister();
+                      }}
                       style={{
-                        color:
-                          selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
-                            ? 'var(--Black, #1C1C1F)'
-                            : 'undefined',
+                        backgroundColor:
+                          selectedSport == '일반경기' ||
+                          (selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== '')
+                            ? 'var(--Main, #23F69A)'
+                            : undefined,
+                        cursor:
+                          selectedSport == '일반경기' ||
+                          (selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== '')
+                            ? 'pointer'
+                            : 'not-allowed',
                       }}
                     >
-                      {selectedSport !== '일반경기' ? '포메이션 짜기' : '등록하기'}
-                    </S.FormationText>
-                  </S.FormationBtn>
+                      <S.FormationText
+                        style={{
+                          color:
+                            selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
+                              ? 'var(--Black, #1C1C1F)'
+                              : 'undefined',
+                        }}
+                      >
+                        {selectedSport !== '일반경기' ? '포메이션 짜기' : '등록하기'}
+                      </S.FormationText>
+                    </S.FormationBtn>
+                  ) : (
+                    <S.FormationBtn
+                      onClick={() => {
+                        handleClickRegister();
+                      }}
+                      // disabled={allSportsFull && selectedSport == '일반경기'}
+                      style={{
+                        backgroundColor:
+                          allSportsFull && selectedSport == '일반경기' ? 'var(--Main, #23F69A)' : undefined,
+                        cursor: allSportsFull && selectedSport == '일반경기' ? 'pointer' : 'not-allowed',
+                      }}
+                    >
+                      <S.FormationText
+                        style={{
+                          color: allSportsFull && selectedSport == '일반경기' ? 'var(--Black, #1C1C1F)' : 'undefined',
+                        }}
+                      >
+                        등록하기
+                      </S.FormationText>
+                    </S.FormationBtn>
+                  )}
                 </div>
               </S.ContainerResponse>
             ) : (
@@ -366,7 +443,6 @@ const Register = () => {
                     ))}
                   </S.overScroll>
                 )}
-
                 <div
                   style={{
                     display: 'flex',
@@ -375,15 +451,20 @@ const Register = () => {
                   }}
                 >
                   <S.FormationBtn
-                    disabled={selectedMembers.length !== MAX_MEMBERS[selectedSport] || teamName === ''}
+                    disabled={
+                      (selectedSport !== '일반경기' && selectedMembers.length !== MAX_MEMBERS[selectedSport]) ||
+                      teamName === ''
+                    }
                     onClick={goSports}
                     style={{
                       backgroundColor:
-                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
+                        selectedSport == '일반경기' ||
+                        (selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== '')
                           ? 'var(--Main, #23F69A)'
                           : undefined,
                       cursor:
-                        selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
+                        selectedSport == '일반경기' ||
+                        (selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== '')
                           ? 'pointer'
                           : 'not-allowed',
                     }}
@@ -393,7 +474,7 @@ const Register = () => {
                         color:
                           selectedMembers.length === MAX_MEMBERS[selectedSport] && teamName !== ''
                             ? 'var(--Black, #1C1C1F)'
-                            : 'undefined',
+                            : undefined,
                       }}
                     >
                       {selectedSport !== '일반경기' ? '포메이션 짜기' : '등록하기'}
@@ -405,6 +486,10 @@ const Register = () => {
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>  
     </div>
   );
 };

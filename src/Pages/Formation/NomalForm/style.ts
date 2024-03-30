@@ -115,9 +115,12 @@ export const ListTitle = styled.div`
   align-items: center;
 `;
 
-export const CandiateContainer = styled.div`
-  display: ${(props) => (props.active ? 'block' : 'none')};
-  display: flex;
+interface ContainerProps {
+  active: boolean;
+}
+
+export const CandiateContainer = styled.div<ContainerProps>`
+  display: ${(props) => (props.active ? 'flex' : 'none')};
   gap: 1rem;
   flex-wrap: wrap;
 `;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
-import { Search, SmallXIcon, XIcon } from '../../assets/index.ts';
+import { Search, XIcon } from '../../assets/index.ts';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../../utils/libs/apiClient.ts';
 import Nomal from './nomal.tsx';
@@ -16,23 +16,29 @@ interface SportsData {
   user_class: string;
 }
 
+interface Data {
+  id: number;
+  name: string;
+  normalSports: string[];
+  grade: number;
+  class: number;
+}
+
 type eventArrEnumType = '축구' | '배드민턴' | '배구' | '일반경기';
 
 const eventArr: eventArrEnumType[] = ['축구', '배드민턴', '배구', '일반경기'];
 
-const MAX_MEMBERS = {
+
+type Numbertype = {
+  [key: string]: number;
+
+};
+
+const MAX_MEMBERS:Numbertype = {
   축구: 9,
   배드민턴: 2,
   배구: 9,
 };
-
-type Numbertype = {
-  ONE: number;
-  TWO: number;
-  THREE: number;
-  FOUR: number;
-};
-
 const Number: Numbertype = {
   ONE: 1,
   TWO: 2,
@@ -42,7 +48,6 @@ const Number: Numbertype = {
 
 const Register = () => {
   const [selectedSport, setSelectedSport] = useState('축구');
-  const [selectedInput, setSelectedInput] = useState('');
   const [teamName, setTeamName] = useState('');
   const [searchedName, setSearchedName] = useState('');
   const [searchResults, setSearchResults] = useState<SportsData[]>([]);
@@ -100,7 +105,7 @@ const Register = () => {
           withCredentials: true,
         });
 
-        const sortedResults = response.data.sort((a, b) => {
+        const sortedResults: any = response.data.sort((a: { user_grade: string; user_class: string; }, b: { user_grade: string; user_class: string; }) => {
           const gradeComparison = Number[a.user_grade] - Number[b.user_grade];
           if (gradeComparison !== 0) {
             return gradeComparison;
@@ -108,7 +113,7 @@ const Register = () => {
           return Number[a.user_class] - Number[b.user_class];
         });
         const filteredResults = sortedResults.filter(
-          (result) => !selectedMembers.some((selected) => selected.user_name === result.user_name)
+          (result: { user_name: string; }) => !selectedMembers.some((selected) => selected.user_name === result.user_name)
         );
 
         setSearchResults(filteredResults);
@@ -142,7 +147,6 @@ const Register = () => {
 
   const handleSportSelection = (sport: string) => {
     setSelectedSport(sport);
-    setSelectedInput(''); // 팀 이름 input과 팀 검색 input 초기화
     setTeamName(''); // 팀 이름 초기화
     setSearchedName(''); // 팀 검색 input 초기화
     setSearchResults([]); // 검색 결과 초기화
@@ -208,7 +212,7 @@ const Register = () => {
     try {
       const userTeamData = dataArr.map((user) => ({
         user_id: user.id,
-        team_types: user.normalSports.map((sport) => TeamType[sport]),
+        team_types: user.normalSports.map((sport: string) => TeamType[sport]),
       }));
 
       const PostNormalTeam = async () => {
@@ -220,7 +224,7 @@ const Register = () => {
             },
           });
           navigate('/matches/NomalMatch');
-        } catch (e) {
+        } catch (e: any) {
           console.log('error');
           const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
 

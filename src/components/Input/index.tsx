@@ -20,7 +20,7 @@ interface Props {
   setError?: UseFormSetError<FormData>;
   reset?: (values?: FormData) => void;
   resendLimitMessage?: string;
-  phoneNumber: string;
+  phoneNumber?: string;
 }
 
 export default function Input({

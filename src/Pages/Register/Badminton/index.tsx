@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
-import Draggable from 'react-draggable';
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import BadmintonField from '../../../assets/png/BadmintonField.png';
 import { useLocation, useNavigate } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
@@ -25,9 +25,15 @@ const Badminton = () => {
 
   const { teamName, selectedMembers, selectedId } = location.state;
 
-  const [participantPositions, setParticipantPositions] = useState([]);
+  interface ParticipantPosition {
+    id: number;
+    position_x: number;
+    position_y: number;
+  }
+  const [participantPositions, setParticipantPositions] = useState<ParticipantPosition[]>([]);
 
-  const convertedMembers = selectedMembers.map((member, index) => {
+
+  const convertedMembers = selectedMembers.map((member: string, index: number) => {
     return {
       id: selectedId[index],
       name: member,
@@ -48,8 +54,8 @@ const Badminton = () => {
     }
   }, []);
 
-  const handleDragStop = (id, e, data) => {
-    const participantIndex = convertedMembers.findIndex((participant) => participant.id === id);
+  const handleDragStop = (id: any, _e: DraggableEvent, data: DraggableData) => {
+    const participantIndex = convertedMembers.findIndex((participant: { id: any; }) => participant.id === id);
 
     const updatedParticipantPositions = [...participantPositions];
 
@@ -66,7 +72,7 @@ const Badminton = () => {
     try {
       const token = localStorage.getItem('accessToken');
 
-      const participates = convertedMembers.map((player) => {
+      const participates = convertedMembers.map((player: { id: any; x: any; y: any; }) => {
         const participantPosition = participantPositions.find((p) => p?.id === player.id);
         return {
           user_id: String(player.id),
@@ -123,7 +129,7 @@ const Badminton = () => {
 
             <S.ContainerResponse style={{ paddingBottom: '3.5rem' }}>
               <S.ImgBox ref={formationFieldRef} img={BadmintonField} style={{ position: 'relative' }}>
-                {convertedMembers.map((player) => (
+                {convertedMembers.map((player: { id: number; x: number; y: number; name: string; }) => (
                   <div key={player.id} style={{ position: 'absolute' }}>
                     <div style={{ position: 'relative' }}>
                       <Draggable

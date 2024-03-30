@@ -97,8 +97,7 @@ export default function SignUp() {
       });
       navigate(`/`);
     } catch (e) {
-      const errorMessage = e.response.data.message;
-      toast.error(errorMessage);
+      console.log(e); //
     }
   };
 
@@ -163,10 +162,6 @@ export default function SignUp() {
           </SubmitWrapper>
         </Form>
       </S.Wrapper>
-      <ToastContainer autoClose={1000} />
-      <div>
-        <Toaster position="top-right" reverseOrder={true} />
-      </div>
     </S.Layout>
   );
 }

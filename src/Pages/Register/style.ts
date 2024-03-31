@@ -222,7 +222,6 @@ export const MemberList = styled.span`
 
 export const MemberSelected = styled.div`
   display: flex;
-  width: 37.5rem;
   align-items: flex-start;
   gap: 0.75rem;
 `;

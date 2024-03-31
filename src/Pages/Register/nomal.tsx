@@ -38,8 +38,6 @@ const Number: Numbertype = {
   FOUR: 4,
 };
 
-
-
 interface NomalProps {
   dataArr: Data[];
   setDataArr: React.Dispatch<React.SetStateAction<Data[]>>;
@@ -79,13 +77,17 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
     const getSearch = async () => {
       try {
         const token = localStorage.getItem('accessToken');
-        const response: { data: UserListResponse[] }  = await apiClient.get(`/user`, {
+        const response: { data: UserListResponse[] } = await apiClient.get(`/user`, {
           headers: {
             Authorization: token,
           },
           withCredentials: true,
         });
-
+        const sesetNormalArr = NormalArr.map((normal) => ({
+          ...normal,
+          normalPeople: 0,
+        }));
+        setNormalArr(sesetNormalArr);
         const updatedDataArr = response.data.map((user: UserListResponse) => {
           return {
             id: user.user_id,
@@ -95,7 +97,6 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
             grade: Number[user.user_grade],
           };
         });
-        
 
         updatedDataArr.sort((a, b) => {
           if (a.grade !== b.grade) {
@@ -187,8 +188,6 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
     const allSportsFull = NormalArr.every((sport) => sport.normalPeople === sport.maxPeople);
     setAllSportsFull(allSportsFull);
   }, [NormalArr]);
-  
-  
 
   return (
     <S.NormalTeamContainer style={{ overflow: 'hidden' }}>
@@ -210,7 +209,7 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
           <div
             key={index}
             onClick={() => {
-              console.log('ddfs', dataArritem); 
+              console.log('ddfs', dataArritem);
               toggleModal();
               setToggleModalId(dataArritem.id);
             }}
@@ -248,7 +247,7 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
                       <S.MappingText
                         key={index}
                         onClick={() => {
-                          console.log("i",i);
+                          console.log('i', i);
                           toggleSportUser(dataArritem.id, i.normalSport);
                         }}
                       >

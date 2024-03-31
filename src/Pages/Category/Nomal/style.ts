@@ -20,13 +20,14 @@ export const ContainerResponse = styled.div`
   flex-wrap: wrap;
 `;
 
-export const ListWrapper = styled.div`
+export const ListWrapper = styled.div<{ center?: boolean }>`
   display: flex;
   width: 100%;
   flex-direction: column;
   gap: 1.5rem;
   height: calc(100vh - 9.75rem);
   position: relative;
+  place-items: ${(props) => props.center ? 'center' : 'initial'};
 `;
 
 export const ListContainer = styled.div`

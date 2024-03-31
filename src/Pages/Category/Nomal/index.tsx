@@ -73,7 +73,7 @@ const NomalMatch = () => {
         <S.Container>
           <S.ContainerResponse>
             <Category />
-            <S.ListWrapper>
+            <S.ListWrapper center={teamList.length == 0}>
               {teamList.length !== 0 ? (
                 <>
                   {teamList.map((team) => (

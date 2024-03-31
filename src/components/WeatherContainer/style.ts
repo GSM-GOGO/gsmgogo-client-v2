@@ -15,10 +15,10 @@ export const WeatherWrapper = styled.div`
     gap: 1.75rem;
   }
   @media (max-width: 550px) {
-    gap: 1.5rem;
+    gap: 1.25rem;
   }
   @media (max-width: 450px) {
-    gap: 1.25rem;
+    gap: 0.75rem;
   }
 `;
 

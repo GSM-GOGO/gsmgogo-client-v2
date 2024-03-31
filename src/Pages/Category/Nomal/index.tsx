@@ -22,7 +22,7 @@ const NomalMatch = () => {
 
   const [addteam, setAddteam] = useState(false);
   const [teamList, setTeamList] = useState<Team[]>([]);
-
+  //
   const GoRegister = () => {
     navigate(`/register`);
   };

@@ -90,6 +90,11 @@ export const ListWrapper = styled.div`
   flex-direction: column;
   gap: 1rem;
   margin-bottom: 0.75rem;
+
+  
+  @media screen and (max-width: 680px) {
+    margin: 0 1rem 0.75rem 1rem;
+  }
 `;
 
 export const ListContainer = styled.div`

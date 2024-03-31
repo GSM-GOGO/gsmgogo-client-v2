@@ -55,6 +55,10 @@ export const List = styled.div`
 
   background: #26262a;
   justify-content: space-between;
+  
+  @media screen and (max-width: 680px) {
+    margin: 0 1rem;
+  }
 `;
 
 export const TextContainer = styled.div`

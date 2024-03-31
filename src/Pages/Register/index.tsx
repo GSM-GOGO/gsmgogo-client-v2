@@ -218,7 +218,9 @@ const Register = () => {
             },
           });
           navigate('/matches/NomalMatch');
-          toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
+          setTimeout(() => {
+            toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
+          }, 500);
         } catch (e: any) {
           const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
           setTimeout(() => {

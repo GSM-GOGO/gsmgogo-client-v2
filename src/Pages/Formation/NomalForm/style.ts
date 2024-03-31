@@ -7,7 +7,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 40.5rem;
+  width: 100%;
+  max-width: 40.5rem;
 `;
 
 export const ContainerResponse = styled.div`
@@ -91,7 +92,6 @@ export const ListWrapper = styled.div`
   gap: 1rem;
   margin-bottom: 0.75rem;
 
-  
   @media screen and (max-width: 680px) {
     margin: 0 1rem 0.75rem 1rem;
   }

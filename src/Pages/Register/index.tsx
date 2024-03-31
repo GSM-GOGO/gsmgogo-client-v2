@@ -274,7 +274,9 @@ const Register = () => {
                           value={teamName}
                           onChange={handleTeamNameChange}
                         />
-                        <S.TeamInputText style={{ color: 'var(--White, #FFF)' }}>팀</S.TeamInputText>
+                        <S.TeamInputText style={{ color: 'var(--White, #FFF)' }}>
+                          {selectedSport === '축구' ? 'FC' : '팀'}
+                        </S.TeamInputText>
                       </S.TeamInputBox>
                     </S.TeamInputContainer>
 

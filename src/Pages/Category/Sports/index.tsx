@@ -200,7 +200,8 @@ const Sports = () => {
                                         color: team.follow ? 'var(--Main, #23F69A)' : '',
                                       }}
                                     >
-                                      {team.team_name}팀
+                                      {team.team_name}
+                                      {sport === 'soccer'?'FC':'팀'}
                                     </S.TeamName>
                                     <S.TeamClass>
                                       {team.badminton_rank ? (
@@ -272,7 +273,8 @@ const Sports = () => {
                                       color: team.follow ? 'var(--Main, #23F69A)' : '',
                                     }}
                                   >
-                                    {team.team_name}팀
+                                  {team.team_name}
+                                  {sport === 'soccer'?'FC':'팀'}
                                   </S.TeamName>
                                   <S.TeamClass>
                                     {team.badminton_rank ? (

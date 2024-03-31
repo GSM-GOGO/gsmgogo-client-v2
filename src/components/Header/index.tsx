@@ -4,9 +4,6 @@ import * as S from './style';
 import { useEffect, useState } from 'react';
 import apiClient from '../../utils/libs/apiClient';
 import useStorePoint from '../../utils/libs/storePoint';
-import { ToastContainer, toast } from 'react-toastify';
-import { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
 
 interface TextTypeProps {
   mainText: string;
@@ -47,8 +44,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
         });
 
         setUserPoint(formatPoint(response.data.point));
-      } catch () {
-      }
+      } catch (e) {}
     };
 
     getUserPoint();
@@ -88,10 +84,6 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
           </S.SvgContainer>
         </S.TextBox>
       </S.HeaderWrapper>
-      <ToastContainer autoClose={1000} />
-      <div>
-        <Toaster position="top-right" reverseOrder={true} />
-      </div>
     </>
   );
 };

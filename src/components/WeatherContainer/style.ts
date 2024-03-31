@@ -7,7 +7,6 @@ export const WeatherWrapper = styled.div`
   display: inline-flex;
   align-items: flex-start;
   justify-content: center;
-  width: 40.5rem;
   gap: 2rem;
   margin-bottom: 2.5rem;
   @media (max-width: 650px) {

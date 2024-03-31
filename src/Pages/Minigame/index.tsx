@@ -1,13 +1,14 @@
 import { EmptyPlaying } from '../../assets/svg/index.ts';
 import HeaderContainer from '../../components/HeaderContainer';
+import * as S from './style';
 
 const Minigame = () => {
   return (
     <>
       <HeaderContainer />
-      <div>
+      <S.SvgContainer>
         <EmptyPlaying />
-      </div>
+      </S.SvgContainer>
     </>
   );
 };

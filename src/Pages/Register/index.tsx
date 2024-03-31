@@ -235,7 +235,7 @@ const Register = () => {
   };
 
   return (
-    <div style={{ overflow: 'hidden', height: '100%' }}>
+    <div>
       <HeaderContainer />
       <S.Wrapper>
         <S.Container>

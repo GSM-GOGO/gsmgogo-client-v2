@@ -186,87 +186,89 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
   }, [NormalArr]);
 
   return (
-    <S.NormalTeamContainer style={{ overflow: 'hidden' }}>
-      <S.TeamAssign>
-        <S.SubjectText>팀 배정</S.SubjectText>
-        <S.TeamAssignSpan>클릭한 뒤 원하는 종목을 배정할 수 있어요</S.TeamAssignSpan>
-      </S.TeamAssign>
+    <div>
+      <S.NormalTeamContainer style={{ overflow: 'hidden' }}>
+        <S.TeamAssign>
+          <S.SubjectText>팀 배정</S.SubjectText>
+          <S.TeamAssignSpan>클릭한 뒤 원하는 종목을 배정할 수 있어요</S.TeamAssignSpan>
+        </S.TeamAssign>
 
-      <S.TeamInputContainer>
-        <S.TeamInputBox>
-          <S.TeamInput type="text" placeholder="이름으로 검색하세요" onChange={handleSearchNameChange} />
-          <div style={{ cursor: 'pointer' }}>
-            <Search />
-          </div>
-        </S.TeamInputBox>
-      </S.TeamInputContainer>
-      <S.overScroll style={{ overflow: 'scroll' }}>
-        {(searchedName === '' || searchResults.length === 0 ? dataArr : searchResults).map((dataArritem, index) => (
-          <div
-            key={index}
-            onClick={() => {
-              toggleModal();
-              setToggleModalId(dataArritem.id);
-            }}
-          >
-            <S.MapTeamMember
-              Border={isModalVisible && dataArritem.id == toggleModalId}
-              style={{ justifyContent: 'space-between', position: 'relative' }}
+        <S.TeamInputContainer>
+          <S.TeamInputBox>
+            <S.TeamInput type="text" placeholder="이름으로 검색하세요" onChange={handleSearchNameChange} />
+            <div style={{ cursor: 'pointer' }}>
+              <Search />
+            </div>
+          </S.TeamInputBox>
+        </S.TeamInputContainer>
+        <S.overScroll style={{ overflow: 'scroll' }}>
+          {(searchedName === '' || searchResults.length === 0 ? dataArr : searchResults).map((dataArritem, index) => (
+            <div
+              key={index}
+              onClick={() => {
+                toggleModal();
+                setToggleModalId(dataArritem.id);
+              }}
             >
-              <S.MemberList>
-                {dataArritem.grade}학년{dataArritem.class}반 {dataArritem.name}
-              </S.MemberList>
-              {dataArritem.id != toggleModalId && (
-                <S.OneNormalWrapper>
-                  {dataArritem.normalSports.map((item, index) => (
-                    <S.OneNormalContainer key={index} style={{ cursor: 'default' }}>
-                      <S.OneNormalText>{item}</S.OneNormalText>
-                      <div
-                        style={{ display: 'flex', cursor: 'pointer', justifyContent: 'center' }}
-                        onClick={(e) => {
-                          toggleSportUser(dataArritem.id, item);
-                          e.stopPropagation();
-                        }}
-                      >
-                        <SmallXIcon />
-                      </div>
-                    </S.OneNormalContainer>
-                  ))}
-                </S.OneNormalWrapper>
-              )}
-
-              {isModalVisible && dataArritem.id == toggleModalId && (
-                <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <S.clickedNormal>
-                    {NormalArr.map((i, index) => (
-                      <S.MappingText
-                        key={index}
-                        onClick={() => {
-                          toggleSportUser(dataArritem.id, i.normalSport);
-                        }}
-                      >
-                        <S.OneNormalObj
-                          style={{
-                            background: checkSportInUser(dataArritem.id, i.normalSport)
-                              ? 'rgba(35, 246, 154, 0.20)'
-                              : i.normalPeople == i.maxPeople
-                                ? 'none'
-                                : '',
+              <S.MapTeamMember
+                Border={isModalVisible && dataArritem.id == toggleModalId}
+                style={{ justifyContent: 'space-between', position: 'relative' }}
+              >
+                <S.MemberList>
+                  {dataArritem.grade}학년{dataArritem.class}반 {dataArritem.name}
+                </S.MemberList>
+                {dataArritem.id != toggleModalId && (
+                  <S.OneNormalWrapper>
+                    {dataArritem.normalSports.map((item, index) => (
+                      <S.OneNormalContainer key={index} style={{ cursor: 'default' }}>
+                        <S.OneNormalText>{item}</S.OneNormalText>
+                        <div
+                          style={{ display: 'flex', cursor: 'pointer', justifyContent: 'center' }}
+                          onClick={(e) => {
+                            toggleSportUser(dataArritem.id, item);
+                            e.stopPropagation();
                           }}
                         >
-                          <S.OneNormalText>{i.normalSport}</S.OneNormalText>
-                          <S.OneNormalText>{`${i.normalPeople}/${i.maxPeople}`}</S.OneNormalText>
-                        </S.OneNormalObj>
-                      </S.MappingText>
+                          <SmallXIcon />
+                        </div>
+                      </S.OneNormalContainer>
                     ))}
-                  </S.clickedNormal>
-                </div>
-              )}
-            </S.MapTeamMember>
-          </div>
-        ))}
-      </S.overScroll>
-    </S.NormalTeamContainer>
+                  </S.OneNormalWrapper>
+                )}
+
+                {isModalVisible && dataArritem.id == toggleModalId && (
+                  <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <S.clickedNormal>
+                      {NormalArr.map((i, index) => (
+                        <S.MappingText
+                          key={index}
+                          onClick={() => {
+                            toggleSportUser(dataArritem.id, i.normalSport);
+                          }}
+                        >
+                          <S.OneNormalObj
+                            style={{
+                              background: checkSportInUser(dataArritem.id, i.normalSport)
+                                ? 'rgba(35, 246, 154, 0.20)'
+                                : i.normalPeople == i.maxPeople
+                                  ? 'none'
+                                  : '',
+                            }}
+                          >
+                            <S.OneNormalText>{i.normalSport}</S.OneNormalText>
+                            <S.OneNormalText>{`${i.normalPeople}/${i.maxPeople}`}</S.OneNormalText>
+                          </S.OneNormalObj>
+                        </S.MappingText>
+                      ))}
+                    </S.clickedNormal>
+                  </div>
+                )}
+              </S.MapTeamMember>
+            </div>
+          ))}
+        </S.overScroll>
+      </S.NormalTeamContainer>
+    </div>
   );
 };
 

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { People } from '../../../assets/index.ts';
+import { PeopleIcon } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
 import * as D from './style.ts';
@@ -187,12 +187,15 @@ const BadmintonForm = () => {
                     <div key={player.user_id} style={{ position: 'absolute' }}>
                       <div style={{ position: 'relative' }}>
                         <Draggable
-                          defaultPosition={{ x: player.position_x + index, y: player.position_y + index }}
+                          defaultPosition={{
+                            x: window.innerWidth < 560 ? player.position_x * 0.7 + index : player.position_x + index,
+                            y: window.innerWidth < 560 ? player.position_y * 0.9 + index : player.position_y + index,
+                          }}
                           bounds={bounds}
                           nodeRef={formationFieldRef}
                         >
                           <D.PlayerContainer style={{ cursor: 'pointer' }}>
-                            <People />
+                            <D.UserImg src={PeopleIcon} alt="" />
                             <D.PlayerText style={{ userSelect: 'none' }}>{player.user_name}</D.PlayerText>
                           </D.PlayerContainer>
                         </Draggable>

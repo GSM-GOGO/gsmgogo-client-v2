@@ -149,8 +149,24 @@ const BadmintonForm = () => {
               <S.Category style={{ color: 'var(--White, #FFF)', paddingRight: '1.5rem' }}>
                 {formData.team_name}팀 배드민턴 포메이션
                 <D.MiniText>
-                  {formData.team_grade === 'ONE' ? '1' : formData.team_grade === 'TWO' ? '2' : '3'}학년{' '}
-                  {formData.team_class_type === 'SW' ? 'SW' : formData.team_class_type === 'EB' ? '임베' : ''}
+                  {formData.badminton_rank ? (
+                    <>
+                      {formData.badminton_rank === 'A'
+                        ? 'A조'
+                        : formData.badminton_rank === 'B'
+                          ? 'B조'
+                          : formData.badminton_rank === 'C'
+                            ? 'C조'
+                            : formData.badminton_rank === 'D'
+                              ? '여자조'
+                              : ''}
+                    </>
+                  ) : (
+                    <>
+                      {formData.team_grade === 'ONE' ? '1' : formData.team_grade === 'TWO' ? '2' : '3'}학년{' '}
+                      {formData.team_class_type === 'SW' ? 'SW' : formData.team_class_type === 'EB' ? '임베' : ''}
+                    </>
+                  )}
                 </D.MiniText>
               </S.Category>
               <S.Category style={{ color: 'var(--Main, #23F69A)' }}>

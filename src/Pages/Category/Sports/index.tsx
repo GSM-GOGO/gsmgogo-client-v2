@@ -203,12 +203,28 @@ const Sports = () => {
                                       {team.team_name}팀
                                     </S.TeamName>
                                     <S.TeamClass>
-                                      {team.team_grade === 'ONE'
-                                        ? '1학년'
-                                        : team.team_grade === 'TWO'
-                                          ? '2학년'
-                                          : '3학년'}
-                                      {team.team_class_type === 'SW' ? '소개과' : '임베과'}
+                                      {team.badminton_rank ? (
+                                        <>
+                                          {team.badminton_rank === 'A'
+                                            ? 'A조'
+                                            : team.badminton_rank === 'B'
+                                              ? 'B조'
+                                              : team.badminton_rank === 'C'
+                                                ? 'C조'
+                                                : team.badminton_rank === 'D'
+                                                  ? '여자조'
+                                                  : ''}
+                                        </>
+                                      ) : (
+                                        <>
+                                          {team.team_grade === 'ONE'
+                                            ? '1학년'
+                                            : team.team_grade === 'TWO'
+                                              ? '2학년'
+                                              : '3학년'}
+                                          {team.team_class_type === 'SW' ? '소개과' : '임베과'}
+                                        </>
+                                      )}
                                     </S.TeamClass>
                                   </S.TeamTextContainer>
                                   <S.WinText>{team.win_count}승</S.WinText>
@@ -259,12 +275,28 @@ const Sports = () => {
                                     {team.team_name}팀
                                   </S.TeamName>
                                   <S.TeamClass>
-                                    {team.team_grade === 'ONE'
-                                      ? '1학년'
-                                      : team.team_grade === 'TWO'
-                                        ? '2학년'
-                                        : '3학년'}
-                                    {team.team_class_type === 'SW' ? '소개과' : '임베과'}
+                                    {team.badminton_rank ? (
+                                      <>
+                                        {team.badminton_rank === 'A'
+                                          ? 'A조'
+                                          : team.badminton_rank === 'B'
+                                            ? 'B조'
+                                            : team.badminton_rank === 'C'
+                                              ? 'C조'
+                                              : team.badminton_rank === 'D'
+                                                ? '여자조'
+                                                : ''}
+                                      </>
+                                    ) : (
+                                      <>
+                                        {team.team_grade === 'ONE'
+                                          ? '1학년'
+                                          : team.team_grade === 'TWO'
+                                            ? '2학년'
+                                            : '3학년'}
+                                        {team.team_class_type === 'SW' ? '소개과' : '임베과'}
+                                      </>
+                                    )}
                                   </S.TeamClass>
                                 </S.TeamTextContainer>
                                 <S.WinText>{team.win_count}승</S.WinText>

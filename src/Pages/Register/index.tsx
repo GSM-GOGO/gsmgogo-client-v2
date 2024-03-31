@@ -267,7 +267,7 @@ const Register = () => {
                       <S.TeamInputBox>
                         <S.TeamInput
                           type="text"
-                          placeholder="팀 이름은 최대 7글자 입니다"
+                          placeholder="팀 이름은 최대 6글자 입니다"
                           value={teamName}
                           onChange={handleTeamNameChange}
                         />

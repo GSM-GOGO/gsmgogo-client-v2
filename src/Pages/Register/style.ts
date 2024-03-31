@@ -7,8 +7,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  max-width: 40.5rem;
-  width: 100%;
+  width: 40.5rem;
 `;
 
 export const ContainerResponse = styled.div`
@@ -58,7 +57,7 @@ export const SubjectBox = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 1rem;
-  
+
   @media screen and (max-width: 445px) {
     gap: 0.5rem;
   }
@@ -170,7 +169,7 @@ export const FormationText = styled.p`
 `;
 
 export const NormalTeamContainer = styled.div`
-width:100%;
+  width: 100%;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -235,6 +234,10 @@ export const MemberSelectList = styled.div`
   align-items: center;
   border-radius: 0.75rem;
   border: 1px solid var(--colors-gray-gray-800, #44444b);
+
+  @media (max-width: 500px) {
+    padding: 0.25rem 0.5rem 0.25rem 0.5rem;
+  }
 `;
 
 export const MemberName = styled.span`
@@ -248,10 +251,15 @@ export const MemberName = styled.span`
   font-style: normal;
   font-weight: 600;
   line-height: 1.375rem;
+
+  @media (max-width: 500px) {
+    font-weight: 400;
+    font-size: 0.75rem;
+  }
 `;
 
 export const overScroll = styled.div`
-width: 100%;
+  width: 100%;
   height: 30rem;
   overflow: auto;
   ::-webkit-scrollbar {

@@ -73,9 +73,7 @@ const NomalForm = () => {
         },
       });
       navigate('/matches/NomalMatch');
-      setTimeout(() => {
-        toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
-      }, 500);
+      toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
     } catch (e: ErrorResponse | any) {
       const errorMessage = e.response?.data?.message || '알 수 없는 오류가 일어났습니다.';
       toast.error(errorMessage);

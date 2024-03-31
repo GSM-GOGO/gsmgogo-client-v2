@@ -9,13 +9,13 @@ export const SvgContainer = styled.div`
 
   @media (max-width: 650px) {
     margin-top: 12.5em;
-    width: 30rem;
+    width: auto;
   }
   @media (max-width: 500px) {
-    width: 27.5rem;
+    width: auto;
   }
   @media (max-width: 450px) {
-    margin-top: 7rem;
-    width: 20rem;
+    margin-top: 6.5rem;
+    width: auto;
   }
 `;

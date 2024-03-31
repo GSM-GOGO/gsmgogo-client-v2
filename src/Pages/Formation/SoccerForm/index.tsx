@@ -193,7 +193,6 @@ const SoccerForm = () => {
                           nodeRef={formationFieldRef}
                         >
                           <D.PlayerContainer style={{ cursor: 'pointer' }}>
-                            ㄴ
                             <D.UserImg src={PeopleIcon} alt="" />
                             <D.PlayerText style={{ userSelect: 'none' }}>{player.user_name}</D.PlayerText>
                           </D.PlayerContainer>

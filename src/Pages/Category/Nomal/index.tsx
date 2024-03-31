@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import { useEffect, useState } from 'react';
 import apiClient from '../../../utils/libs/apiClient.ts';
+import { EmptyPlaying } from '../../../assets/index.ts';
 
 interface Team {
   team_id: number;
@@ -66,68 +67,85 @@ const NomalMatch = () => {
           </S.ModalContainer>
         </S.ModalBackground>
       ) : null}
+
       <HeaderContainer />
       <S.Wrapper>
         <S.Container>
           <S.ContainerResponse>
             <Category />
             <S.ListWrapper>
-              {teamList.map((team) => (
+              {teamList.length !== 0 ? (
                 <>
-                  {team.my_team === true ? (
+                  {teamList.map((team) => (
                     <>
-                      <S.ListContainer>
-                        <S.List>
-                          <S.TextContainer>
-                            <S.TeamTextContainer>
-                              <S.TeamClass>
-                                {team.team_grade === 'ONE' ? '1학년' : team.team_grade === 'TWO' ? '2학년' : '3학년'}
-                              </S.TeamClass>
-                              <S.TeamClass>
-                                {team.team_class_type === 'SW' ? '소프트웨어 개발과' : '임베디드 개발과'}
-                              </S.TeamClass>
-                            </S.TeamTextContainer>
-                          </S.TextContainer>
-                          <S.CheckButton onClick={() => navigate(`/matches/NomalMatch/form/${team.team_id}`)}>
-                            확인하기
-                          </S.CheckButton>
-                        </S.List>
-                      </S.ListContainer>
-                      <S.Stroke />
+                      {team.my_team === true ? (
+                        <>
+                          <S.ListContainer>
+                            <S.List>
+                              <S.TextContainer>
+                                <S.TeamTextContainer>
+                                  <S.TeamClass>
+                                    {team.team_grade === 'ONE'
+                                      ? '1학년'
+                                      : team.team_grade === 'TWO'
+                                        ? '2학년'
+                                        : '3학년'}
+                                  </S.TeamClass>
+                                  <S.TeamClass>
+                                    {team.team_class_type === 'SW' ? '소프트웨어 개발과' : '임베디드 개발과'}
+                                  </S.TeamClass>
+                                </S.TeamTextContainer>
+                              </S.TextContainer>
+                              <S.CheckButton onClick={() => navigate(`/matches/NomalMatch/form/${team.team_id}`)}>
+                                확인하기
+                              </S.CheckButton>
+                            </S.List>
+                          </S.ListContainer>
+                          <S.Stroke />
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </>
-                  ) : (
-                    <></>
-                  )}
-                </>
-              ))}
+                  ))}
 
-              {teamList.map((team) => (
-                <>
-                  {team.my_team === false ? (
+                  {teamList.map((team) => (
                     <>
-                      <S.ListContainer>
-                        <S.List>
-                          <S.TextContainer>
-                            <S.TeamTextContainer>
-                              <S.TeamClass>
-                                {team.team_grade === 'ONE' ? '1학년' : team.team_grade === 'TWO' ? '2학년' : '3학년'}
-                              </S.TeamClass>
-                              <S.TeamClass>소프트웨어 개발과</S.TeamClass>
-                            </S.TeamTextContainer>
-                          </S.TextContainer>
-                          <S.ButtonContainer>
-                            <S.CheckButton onClick={() => navigate(`/matches/NomalMatch/form/${team.team_id}`)}>
-                              확인하기
-                            </S.CheckButton>
-                          </S.ButtonContainer>
-                        </S.List>
-                      </S.ListContainer>
+                      {team.my_team === false ? (
+                        <>
+                          <S.ListContainer>
+                            <S.List>
+                              <S.TextContainer>
+                                <S.TeamTextContainer>
+                                  <S.TeamClass>
+                                    {team.team_grade === 'ONE'
+                                      ? '1학년'
+                                      : team.team_grade === 'TWO'
+                                        ? '2학년'
+                                        : '3학년'}
+                                  </S.TeamClass>
+                                  <S.TeamClass>소프트웨어 개발과</S.TeamClass>
+                                </S.TeamTextContainer>
+                              </S.TextContainer>
+                              <S.ButtonContainer>
+                                <S.CheckButton onClick={() => navigate(`/matches/NomalMatch/form/${team.team_id}`)}>
+                                  확인하기
+                                </S.CheckButton>
+                              </S.ButtonContainer>
+                            </S.List>
+                          </S.ListContainer>
+                        </>
+                      ) : (
+                        <></>
+                      )}
                     </>
-                  ) : (
-                    <></>
-                  )}
+                  ))}
                 </>
-              ))}
+              ) : (
+                <S.SvgContainer>
+                  <EmptyPlaying />
+                </S.SvgContainer>
+              )}
               <S.AddButton onClick={() => setAddteam(!addteam)}>
                 <TeamAddButton />
               </S.AddButton>

@@ -1,19 +1,21 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 export const Container = styled.div`
-  width: 40.5rem;
+  max-width: 40.5rem;
+  width: 100%;
 `;
 
 export const ContainerResponse = styled.div`
   width: 100%;
   height: 100%;
+  box-sizing: border-box;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -56,32 +58,46 @@ export const SubjectBox = styled.div`
   display: flex;
   align-items: flex-start;
   gap: 1rem;
+  
+  @media screen and (max-width: 445px) {
+    gap: 0.5rem;
+  }
+  @media screen and (max-width: 420px) {
+    gap: 0.3rem;
+  }
 `;
 
 export const SubjectOne = styled.div<{ selectedSport?: boolean }>`
   display: flex;
   padding: 0.5rem 1.25rem;
+  @media screen and (max-width: 380px) {
+    padding: 0.5rem 1rem;
+  }
   justify-content: center;
   align-items: center;
   border-radius: 0.75rem;
   border: 1px solid var(--Gray2, #6f6f7b);
   cursor: pointer;
-  border: ${(props) => (props.selectedSport ? "1px solid var(--Main, #23F69A)" : "")};
-  background: ${(props) => (props.selectedSport ? "rgba(35, 246, 154, 0.10)" : "")};
+  border: ${(props) => (props.selectedSport ? '1px solid var(--Main, #23F69A)' : '')};
+  background: ${(props) => (props.selectedSport ? 'rgba(35, 246, 154, 0.10)' : '')};
 `;
 
 export const SubjectOneText = styled.p<{ selectedSport?: boolean }>`
   color: var(--Gray2, #6f6f7b);
   font-family: Pretendard;
   font-size: 1rem;
+  @media screen and (max-width: 445px) {
+    font-size: 0.8rem;
+  }
   font-style: normal;
   font-weight: 400;
   line-height: 1.375rem;
   margin: 0;
-  color: ${(props) => (props.selectedSport ? "var(--Main, #23F69A)" : "var(--Gray2, #6F6F7B)")};
+  color: ${(props) => (props.selectedSport ? 'var(--Main, #23F69A)' : 'var(--Gray2, #6F6F7B)')};
 `;
 
 export const TeamInputContainer = styled.div`
+  width: 100%;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -91,12 +107,13 @@ export const TeamInputContainer = styled.div`
 
 export const TeamInputBox = styled.div`
   display: flex;
-  width: 37.5rem;
+  width: 100%;
   padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
   border-radius: 0.75rem;
   border: 1px solid var(--colors-gray-gray-800, #44444b);
+  box-sizing: border-box;
   &:focus-within {
     border: 1px solid var(--Main, #23f69a);
   }
@@ -145,7 +162,7 @@ export const FormationBtn = styled.button`
 export const FormationText = styled.p`
   color: var(--Gray1, #b7b7be);
   text-align: center;
-  font-family: "Pretendard Variable";
+  font-family: 'Pretendard Variable';
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 600;
@@ -153,6 +170,7 @@ export const FormationText = styled.p`
 `;
 
 export const NormalTeamContainer = styled.div`
+width:100%;
   display: inline-flex;
   flex-direction: column;
   align-items: flex-start;
@@ -177,7 +195,8 @@ export const TeamAssignSpan = styled.span`
 
 export const MapTeamMember = styled.div<{ Border?: boolean }>`
   display: flex;
-  width: 37.5rem;
+  box-sizing: border-box;
+  width: 100%;
   padding: 1rem 1.5rem;
   align-items: center;
   gap: 0.625rem;
@@ -185,21 +204,21 @@ export const MapTeamMember = styled.div<{ Border?: boolean }>`
   background: var(--colors-gray-gray-900, #26262a);
   margin-bottom: 1rem;
   cursor: pointer;
-  border: ${({ Border }) =>Border ? " 1px solid var(--Main, #23F69A)" : ""};
+  border: ${({ Border }) => (Border ? ' 1px solid var(--Main, #23F69A)' : '')};
 `;
 
 export const MemberList = styled.span`
-width: 200px;
-display: flex;
-align-items: center;
-gap: 0.5rem;
-color: var(--White, #fff);
-text-align: center;
-font-family: Pretendard;
-font-size: 1rem;
-font-style: normal;
-font-weight: 400;
-line-height: 1.375rem;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--White, #fff);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem;
 `;
 
 export const MemberSelected = styled.div`
@@ -232,6 +251,7 @@ export const MemberName = styled.span`
 `;
 
 export const overScroll = styled.div`
+width: 100%;
   height: 30rem;
   overflow: auto;
   ::-webkit-scrollbar {
@@ -242,19 +262,19 @@ export const overScroll = styled.div`
 `;
 
 export const clickedNormal = styled.div`
-display: flex;
+  display: flex;
   gap: 0.5rem;
   height: 100%;
   flex-wrap: wrap;
-      justify-content: right;
+  justify-content: right;
 `;
 
 export const NormalObject = styled.div`
   display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: flex-end;
-gap: 0.75rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 0.75rem;
 `;
 
 export const OneNormalObj = styled.div`
@@ -301,4 +321,3 @@ export const OneNormalWrapper = styled.div`
   flex-wrap: wrap;
   justify-content: right;
 `;
-

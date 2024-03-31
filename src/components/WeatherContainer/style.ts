@@ -8,7 +8,6 @@ export const WeatherWrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
-  width: 40.5rem;
 
   margin-bottom: 2.5rem;
   @media (max-width: 650px) {

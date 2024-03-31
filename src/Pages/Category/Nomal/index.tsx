@@ -40,11 +40,7 @@ const NomalMatch = () => {
           },
         });
         setTeamList(response.data);
-      } catch (e: any) {
-        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-        setTimeout(() => {
-          toast.error(errorMessage, { autoClose: 1000 });
-        }, 500);
+      } catch () {
       }
     };
 

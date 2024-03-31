@@ -101,9 +101,7 @@ const Sports = () => {
       );
       setCheer(false);
       window.location.reload();
-      setTimeout(() => {
-        registerFollow();
-      }, 500);
+      registerFollow();
     } catch (e) {
       setCheer(false);
       window.location.reload();

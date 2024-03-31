@@ -6,6 +6,9 @@ import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+
+import 'react-toastify/dist/ReactToastify.css';
 
 type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP';
 
@@ -19,6 +22,7 @@ interface ErrorResponse {
 
 const NomalForm = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null); // activeCategoryId 타입 수정
+  const [deleteTeam, setdeleteTeam] = useState(false);
 
   const toggleCategory = (categoryId: number) => {
     setActiveCategoryId(categoryId === activeCategoryId ? null : categoryId);
@@ -58,7 +62,7 @@ const NomalForm = () => {
     fetchNormal();
   }, [id]);
 
-  const deleteTeam = async () => {
+  const deleteMyTeam = async () => {
     try {
       const token = localStorage.getItem('accessToken');
 
@@ -69,9 +73,11 @@ const NomalForm = () => {
         },
       });
       navigate('/matches/NomalMatch');
-      toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
+      setTimeout(() => {
+        toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
+      }, 500);
     } catch (e: ErrorResponse | any) {
-      const errorMessage = e.response?.data?.message || 'Unexpected error occurred';
+      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 일어났습니다.';
       toast.error(errorMessage);
     }
   };
@@ -89,7 +95,27 @@ const NomalForm = () => {
       {id}
       <HeaderContainer />
       <S.Wrapper>
-        <ToastContainer autoClose={2000} />
+        {deleteTeam ? (
+          <S.ModalBackground>
+            <S.ModalContainer>
+              <S.ModalTextContainer style={{ gap: '0' }}>
+                <S.ModalTitle>
+                  <S.ModalTitleContainer style={{ alignItems: 'center' }}>팀을 삭제하시겠습니까?</S.ModalTitleContainer>
+                </S.ModalTitle>
+                <S.ModalNovelContainer>
+                  <S.ModalNovel style={{ color: 'var(--Error, #DF454A)' }}>
+                    팀을 삭제한다면
+                    <br /> 팀을 다시 볼 수 없습니다
+                  </S.ModalNovel>
+                </S.ModalNovelContainer>
+              </S.ModalTextContainer>
+              <S.ModalButtonContainer>
+                <S.ModalCencleButton onClick={() => setdeleteTeam(!deleteTeam)}>아니오</S.ModalCencleButton>
+                <S.ModalCheerButton onClick={deleteMyTeam}>삭제하기</S.ModalCheerButton>
+              </S.ModalButtonContainer>
+            </S.ModalContainer>
+          </S.ModalBackground>
+        ) : null}
         <S.Container>
           <S.ContainerResponse>
             <S.TeamTitleContainer>
@@ -100,7 +126,9 @@ const NomalForm = () => {
                 </S.TeamName>
               </S.TeamTextContainer>
 
-              {teamList.author_me === true ? <S.DeleteButton onClick={deleteTeam}>삭제하기</S.DeleteButton> : null}
+              {teamList.author_me === true ? (
+                <S.DeleteButton onClick={() => setdeleteTeam(!deleteTeam)}>삭제하기</S.DeleteButton>
+              ) : null}
             </S.TeamTitleContainer>
             <S.ListWrapper>
               {teamList.team_list?.map((category, index) => (
@@ -129,6 +157,10 @@ const NomalForm = () => {
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </>
   );
 };

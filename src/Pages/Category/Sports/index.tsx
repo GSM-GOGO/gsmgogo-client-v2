@@ -101,7 +101,9 @@ const Sports = () => {
       );
       setCheer(false);
       window.location.reload();
-      registerFollow();
+      setTimeout(() => {
+        registerFollow();
+      }, 500);
     } catch (e) {
       setCheer(false);
       window.location.reload();
@@ -201,7 +203,7 @@ const Sports = () => {
                                       }}
                                     >
                                       {team.team_name}
-                                      {sport === 'soccer'?'FC':'팀'}
+                                      {sport === 'soccer' ? 'FC' : '팀'}
                                     </S.TeamName>
                                     <S.TeamClass>
                                       {team.badminton_rank ? (
@@ -273,8 +275,8 @@ const Sports = () => {
                                       color: team.follow ? 'var(--Main, #23F69A)' : '',
                                     }}
                                   >
-                                  {team.team_name}
-                                  {sport === 'soccer'?'FC':'팀'}
+                                    {team.team_name}
+                                    {sport === 'soccer' ? 'FC' : '팀'}
                                   </S.TeamName>
                                   <S.TeamClass>
                                     {team.badminton_rank ? (

@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 const Ranking = () => {
   const [RankData, setRankData] = useState<any[]>([]);
   const [myId, setMyId] = useState(null);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,6 +24,7 @@ const Ranking = () => {
 
     fetchData();
   }, []);
+
   useEffect(() => {
     const fetchMyId = async () => {
       try {

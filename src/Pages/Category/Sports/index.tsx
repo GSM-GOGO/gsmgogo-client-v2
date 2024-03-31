@@ -78,12 +78,7 @@ const Sports = () => {
           withCredentials: true,
         });
         setCheerTeam(response.data);
-      } catch (e: any) {
-        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-        setTimeout(() => {
-          toast.error(errorMessage, { autoClose: 1000 });
-        }, 500);
-      }
+      } catch (e) {}
     };
     getCheerTeam();
   }, []);
@@ -109,13 +104,9 @@ const Sports = () => {
       setTimeout(() => {
         registerFollow();
       }, 500);
-    } catch (e: any) {
+    } catch (e) {
       setCheer(false);
       window.location.reload();
-      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-      setTimeout(() => {
-        toast.error(errorMessage, { autoClose: 1000 });
-      }, 500);
     }
   };
 

@@ -2,9 +2,6 @@ import { useEffect, useState } from 'react';
 import * as S from './style.ts';
 import { Search, SmallXIcon } from '../../assets/index.ts';
 import apiClient from '../../utils/libs/apiClient.ts';
-import { ToastContainer, toast } from 'react-toastify';
-import { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
 
 interface Data {
   id: number;
@@ -269,10 +266,6 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
           </div>
         ))}
       </S.overScroll>
-      <ToastContainer autoClose={1000} />
-      <div>
-        <Toaster position="top-right" reverseOrder={true} />
-      </div>
     </S.NormalTeamContainer>
   );
 };

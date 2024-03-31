@@ -4,8 +4,10 @@ import HeaderContainer from '../../components/HeaderContainer';
 const Minigame = () => {
   return (
     <>
-      <HeaderContainer />;
-      <EmptyPlaying />
+      <HeaderContainer />
+      <div>
+        <EmptyPlaying />
+      </div>
     </>
   );
 };

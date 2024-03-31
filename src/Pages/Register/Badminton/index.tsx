@@ -32,7 +32,6 @@ const Badminton = () => {
   }
   const [participantPositions, setParticipantPositions] = useState<ParticipantPosition[]>([]);
 
-
   const convertedMembers = selectedMembers.map((member: string, index: number) => {
     return {
       id: selectedId[index],
@@ -55,7 +54,7 @@ const Badminton = () => {
   }, []);
 
   const handleDragStop = (id: any, _e: DraggableEvent, data: DraggableData) => {
-    const participantIndex = convertedMembers.findIndex((participant: { id: any; }) => participant.id === id);
+    const participantIndex = convertedMembers.findIndex((participant: { id: any }) => participant.id === id);
 
     const updatedParticipantPositions = [...participantPositions];
 
@@ -72,7 +71,7 @@ const Badminton = () => {
     try {
       const token = localStorage.getItem('accessToken');
 
-      const participates = convertedMembers.map((player: { id: any; x: any; y: any; }) => {
+      const participates = convertedMembers.map((player: { id: any; x: any; y: any }) => {
         const participantPosition = participantPositions.find((p) => p?.id === player.id);
         return {
           user_id: String(player.id),
@@ -98,21 +97,17 @@ const Badminton = () => {
       setTimeout(() => {
         successCreateTeam();
       }, 500);
-    } catch (e) {
+    } catch (e: any) {
       navigate(`/matches/badminton`);
+      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       setTimeout(() => {
-        failCreateTeam();
+        toast.error(errorMessage, { autoClose: 1000 });
       }, 500);
-      console.log('error');
     }
   };
 
   const successCreateTeam = () => {
     toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
-  };
-
-  const failCreateTeam = () => {
-    toast.error('팀 등록을 실패하였습니다!', { autoClose: 1000 });
   };
 
   return (
@@ -129,7 +124,7 @@ const Badminton = () => {
 
             <S.ContainerResponse style={{ paddingBottom: '3.5rem' }}>
               <S.ImgBox ref={formationFieldRef} img={BadmintonField} style={{ position: 'relative' }}>
-                {convertedMembers.map((player: { id: number; x: number; y: number; name: string; }) => (
+                {convertedMembers.map((player: { id: number; x: number; y: number; name: string }) => (
                   <div key={player.id} style={{ position: 'absolute' }}>
                     <div style={{ position: 'relative' }}>
                       <Draggable

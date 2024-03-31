@@ -170,9 +170,9 @@ const Main = () => {
             }}
           >
             <WeatherContainer />
-            <div style={{ marginTop: '9.25rem' }}>
+            <S.SvgContainer>
               <EmptyPlaying />
-            </div>
+            </S.SvgContainer>
             <S.MainContainer>
               {dataArray.map((data, index) => (
                 <PlayingContainer

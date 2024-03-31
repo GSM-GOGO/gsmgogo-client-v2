@@ -5,9 +5,20 @@ export const CategoryContainer = styled.div`
   margin-top: 1.25rem;
   margin-bottom: 2.5rem;
   display: flex;
+  /* width: 40.5rem; */
   gap: 1.75rem;
   @media screen and (max-width: 500px) {
     gap: 1.2rem;
+  }
+  /* @media screen and (max-width: 700px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  } */
+  @media (max-width: 450px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 `;
 
@@ -20,6 +31,6 @@ export const CategoryLink = styled(Link)`
   line-height: 1.9375rem;
 
   @media screen and (max-width: 500px) {
-    font-size: 1rem;
+    font-size: 1.25rem;
   }
 `;

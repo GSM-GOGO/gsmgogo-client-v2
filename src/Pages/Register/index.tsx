@@ -8,6 +8,7 @@ import Nomal from './nomal.tsx';
 import useStorePoint from '../../utils/libs/storePoint';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface SportsData {
   user_id: number;
@@ -28,13 +29,11 @@ type eventArrEnumType = '축구' | '배드민턴' | '배구' | '일반경기';
 
 const eventArr: eventArrEnumType[] = ['축구', '배드민턴', '배구', '일반경기'];
 
-
 type Numbertype = {
   [key: string]: number;
-
 };
 
-const MAX_MEMBERS:Numbertype = {
+const MAX_MEMBERS: Numbertype = {
   축구: 9,
   배드민턴: 2,
   배구: 9,
@@ -58,7 +57,6 @@ const Register = () => {
   const navigate = useNavigate();
 
   const goSports = () => {
-    console.log(1);
     let sportPath = '';
     if (selectedSport === '축구') {
       sportPath = 'soccer';
@@ -67,7 +65,6 @@ const Register = () => {
     } else if (selectedSport === '배구') {
       sportPath = 'volleyball';
     }
-    console.log(1);
     const selectedMemberIds = selectedMembers.map((member) => member.user_id);
     navigate(`/register/${sportPath}`, {
       state: {
@@ -105,21 +102,22 @@ const Register = () => {
           withCredentials: true,
         });
 
-        const sortedResults: any = response.data.sort((a: { user_grade: string; user_class: string; }, b: { user_grade: string; user_class: string; }) => {
-          const gradeComparison = Number[a.user_grade] - Number[b.user_grade];
-          if (gradeComparison !== 0) {
-            return gradeComparison;
+        const sortedResults: any = response.data.sort(
+          (a: { user_grade: string; user_class: string }, b: { user_grade: string; user_class: string }) => {
+            const gradeComparison = Number[a.user_grade] - Number[b.user_grade];
+            if (gradeComparison !== 0) {
+              return gradeComparison;
+            }
+            return Number[a.user_class] - Number[b.user_class];
           }
-          return Number[a.user_class] - Number[b.user_class];
-        });
+        );
         const filteredResults = sortedResults.filter(
-          (result: { user_name: string; }) => !selectedMembers.some((selected) => selected.user_name === result.user_name)
+          (result: { user_name: string }) =>
+            !selectedMembers.some((selected) => selected.user_name === result.user_name)
         );
 
         setSearchResults(filteredResults);
-      } catch (e) {
-        console.log('error');
-      }
+      } catch (e) {}
     };
 
     getSearch();
@@ -137,9 +135,7 @@ const Register = () => {
           withCredentials: true,
         });
         setIsLeader(response.data.leader);
-      } catch (e) {
-        console.log('error');
-      }
+      } catch (e) {}
     };
 
     getIsLeader();
@@ -207,8 +203,6 @@ const Register = () => {
   const [dataArr, setDataArr] = useState<Data[]>([]);
 
   const handleClickRegister = async () => {
-    console.log('실행');
-    console.log(dataArr);
     try {
       const userTeamData = dataArr.map((user) => ({
         user_id: user.id,
@@ -225,22 +219,23 @@ const Register = () => {
           });
           navigate('/matches/NomalMatch');
         } catch (e: any) {
-          console.log('error');
           const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-
-          toast.error(errorMessage, { autoClose: 5000 });
+          setTimeout(() => {
+            toast.error(errorMessage, { autoClose: 1000 });
+          }, 500);
         }
       };
       PostNormalTeam();
-      console.log(userTeamData);
-      console.log('등록되었습니다.');
-    } catch (error) {
-      console.error('등록 중 오류가 발생했습니다.', error);
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      setTimeout(() => {
+        toast.error(errorMessage, { autoClose: 1000 });
+      }, 500);
     }
   };
 
   return (
-    <div style={{ overflow: 'hidden', height: '100%' }}>
+    <div>
       <HeaderContainer />
       <S.Wrapper>
         <S.Container>

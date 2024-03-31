@@ -17,11 +17,8 @@ const Ranking = () => {
             Authorization: `${token}`,
           },
         });
-        console.log(response.data);
         setRankData(response.data);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
 
     fetchData();
@@ -35,11 +32,8 @@ const Ranking = () => {
             Authorization: `${token}`,
           },
         });
-        console.log(response.data);
         setMyId(response.data.user_id);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
 
     fetchMyId();

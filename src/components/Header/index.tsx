@@ -44,9 +44,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
         });
 
         setUserPoint(formatPoint(response.data.point));
-      } catch (e) {
-        console.log('error');
-      }
+      } catch (e) {}
     };
 
     getUserPoint();
@@ -57,34 +55,36 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   };
 
   return (
-    <S.HeaderWrapper>
-      {showModal && <S.ModalWrapper onClick={handleLogout}>로그아웃</S.ModalWrapper>}
-      <S.GoGoText onClick={() => navigate(`/`)} style={{ cursor: 'pointer' }}>
-        {mainText}
-      </S.GoGoText>
+    <>
+      <S.HeaderWrapper>
+        {showModal && <S.ModalWrapper onClick={handleLogout}>로그아웃</S.ModalWrapper>}
+        <S.GoGoText onClick={() => navigate(`/`)} style={{ cursor: 'pointer' }}>
+          {mainText}
+        </S.GoGoText>
 
-      <S.TextBox>
-        <S.GoGoMiniLink to="/ranking" style={currentPath === '/ranking' ? { color: '#23F69A' } : undefined}>
-          {miniText[0]}
-        </S.GoGoMiniLink>
+        <S.TextBox>
+          <S.GoGoMiniLink to="/ranking" style={currentPath === '/ranking' ? { color: '#23F69A' } : undefined}>
+            {miniText[0]}
+          </S.GoGoMiniLink>
 
-        <S.GoGoMiniLink to="/minigame" style={currentPath === '/minigame' ? { color: '#23F69A' } : undefined}>
-          {miniText[1]}
-        </S.GoGoMiniLink>
+          <S.GoGoMiniLink to="/minigame" style={currentPath === '/minigame' ? { color: '#23F69A' } : undefined}>
+            {miniText[1]}
+          </S.GoGoMiniLink>
 
-        <S.GoGoMiniText
-          style={{
-            color: 'var(--Main, #23F69A)',
-          }}
-        >
-          {userPoint}P
-        </S.GoGoMiniText>
+          <S.GoGoMiniText
+            style={{
+              color: 'var(--Main, #23F69A)',
+            }}
+          >
+            {userPoint}P
+          </S.GoGoMiniText>
 
-        <S.SvgContainer style={{ cursor: 'pointer' }} onClick={toggleModal}>
-          <ThreeDot />
-        </S.SvgContainer>
-      </S.TextBox>
-    </S.HeaderWrapper>
+          <S.SvgContainer style={{ cursor: 'pointer' }} onClick={toggleModal}>
+            <ThreeDot />
+          </S.SvgContainer>
+        </S.TextBox>
+      </S.HeaderWrapper>
+    </>
   );
 };
 

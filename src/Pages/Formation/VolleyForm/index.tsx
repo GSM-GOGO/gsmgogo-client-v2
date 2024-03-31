@@ -69,9 +69,7 @@ const VolleyForm = () => {
           withCredentials: true,
         });
         setFormData(response.data);
-      } catch (e) {
-        console.log('error');
-      }
+      } catch (e) {}
     };
     getBadmintonForm();
   }, []);
@@ -98,7 +96,6 @@ const VolleyForm = () => {
       setTimeout(() => {
         deleteTeamFail();
       }, 500);
-      console.log('error');
     }
   };
 

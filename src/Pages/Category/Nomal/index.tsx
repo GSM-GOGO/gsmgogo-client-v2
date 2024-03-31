@@ -22,7 +22,7 @@ const NomalMatch = () => {
 
   const [addteam, setAddteam] = useState(false);
   const [teamList, setTeamList] = useState<Team[]>([]);
-
+  //
   const GoRegister = () => {
     navigate(`/register`);
   };
@@ -37,9 +37,7 @@ const NomalMatch = () => {
           },
         });
         setTeamList(response.data);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
 
     fetchNormal();

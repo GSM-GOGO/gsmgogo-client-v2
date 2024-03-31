@@ -6,8 +6,18 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
-export const Container = styled.div`
+export const WidthContainer = styled.div`
   width: 40.5rem;
+`;
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 `;
 
 export const ContainerResponse = styled.div`
@@ -273,5 +283,24 @@ export const AddButton = styled.div`
     position: absolute;
     bottom: 2.5rem;
     right: 1.5rem;
+  }
+`;
+
+export const SvgContainer = styled.div`
+  margin-top: 15rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (max-width: 650px) {
+    margin-top: 12.5em;
+    width: 30rem;
+  }
+  @media (max-width: 500px) {
+    width: 27.5rem;
+  }
+  @media (max-width: 450px) {
+    margin-top: 2rem;
+    width: 20rem;
   }
 `;

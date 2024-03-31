@@ -52,17 +52,13 @@ const NomalForm = () => {
           },
         });
         setTeamList(response.data);
-      } catch (e) {
-        console.log(e);
-      }
+      } catch (e) {}
     };
 
     fetchNormal();
   }, [id]);
 
   const deleteTeam = async () => {
-    console.log('hi');
-    console.log(teamId);
     try {
       const token = localStorage.getItem('accessToken');
 

@@ -70,9 +70,7 @@ const SoccerForm = () => {
           withCredentials: true,
         });
         setFormData(response.data);
-      } catch (e) {
-        console.log('error');
-      }
+      } catch (e) {}
     };
     getBadmintonForm();
   }, []);
@@ -99,7 +97,6 @@ const SoccerForm = () => {
       setTimeout(() => {
         deleteTeamFail();
       }, 500);
-      console.log('error');
     }
   };
 

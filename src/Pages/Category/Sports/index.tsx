@@ -344,17 +344,10 @@ const Sports = () => {
             <S.Container>
               <Category />
               <S.ContainerResponse>
-                <S.ListWrapper>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      marginTop: '15rem',
-                    }}
-                  >
+                <S.ListWrapper style={{ alignItems: 'center' }}>
+                  <S.SvgContainer>
                     <EmptyPlaying />
-                  </div>
+                  </S.SvgContainer>
                   <S.AddButton onClick={() => setAddteam(!addteam)}>
                     <TeamAddButton />
                   </S.AddButton>

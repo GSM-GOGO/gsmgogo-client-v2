@@ -8,15 +8,18 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 40.5rem;
-  /* @media (max-width: 650px) {
+  @media (max-width: 650px) {
     width: 35rem;
   }
   @media (max-width: 550px) {
     width: 30rem;
   }
-  @media (max-width: 550px) {
+  @media (max-width: 500px) {
     width: 27.5rem;
-  } */
+  }
+  @media (max-width: 450px) {
+    width: 25rem;
+  }
 `;
 
 export const MainContainer = styled.div`
@@ -24,4 +27,22 @@ export const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+`;
+
+export const SvgContainer = styled.div`
+  margin-top: 9.25rem;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 650px) {
+    margin-top: 7.5rem;
+    width: 30rem;
+  }
+  @media (max-width: 500px) {
+    width: 27.5rem;
+  }
+  @media (max-width: 450px) {
+    margin-top: 2rem;
+    width: 20rem;
+  }
 `;

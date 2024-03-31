@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface DateContainerProps {
   selected?: boolean;
@@ -6,16 +6,18 @@ interface DateContainerProps {
 export const WeatherWrapper = styled.div`
   display: inline-flex;
   align-items: flex-start;
-  gap: 1.5rem;
+  justify-content: center;
+  width: 40.5rem;
+  gap: 2rem;
   margin-bottom: 2.5rem;
   @media (max-width: 650px) {
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
   @media (max-width: 550px) {
-    gap: 1rem;
+    gap: 1.25rem;
   }
   @media (max-width: 450px) {
-    gap: 0.75rem;
+    gap: 1rem;
   }
 `;
 
@@ -27,8 +29,7 @@ export const DateContainer = styled.div<DateContainerProps>`
   gap: 0.5rem;
   cursor: pointer;
 
-  color: ${(props) =>
-    props.selected ? "var(--White, #FFF)" : "var(--Gray2, #6F6F7B)"};
+  color: ${(props) => (props.selected ? 'var(--White, #FFF)' : 'var(--Gray2, #6F6F7B)')};
 `;
 
 export const DayText = styled.p`

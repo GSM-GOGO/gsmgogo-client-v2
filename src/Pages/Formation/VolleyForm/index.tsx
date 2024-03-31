@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { People, VolleyField } from '../../../assets/index.ts';
+import { PeopleIcon, VolleyField } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
 import * as D from './style.ts';
@@ -56,6 +56,29 @@ const VolleyForm = () => {
         bottom: bottom - top - 65,
       });
     }
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (formationFieldRef.current) {
+        const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
+        setBounds({
+          left: 20,
+          top: 40,
+          right: right - left - 55,
+          bottom: bottom - top - 80,
+        });
+      }
+    };
+
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      // Remove event listener when component unmounts
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   useEffect(() => {
@@ -164,12 +187,15 @@ const VolleyForm = () => {
                     <div key={player.user_id} style={{ position: 'absolute' }}>
                       <div style={{ position: 'relative' }}>
                         <Draggable
-                          defaultPosition={{ x: player.position_x, y: player.position_y }}
+                          defaultPosition={{
+                            x: window.innerWidth < 410 ? player.position_x * 0.8 : player.position_x,
+                            y: window.innerWidth < 410 ? player.position_y * 0.9 : player.position_y,
+                          }}
                           bounds={bounds}
                           nodeRef={formationFieldRef}
                         >
                           <D.PlayerContainer style={{ cursor: 'pointer' }}>
-                            <People />
+                            <D.UserImg src={PeopleIcon} alt="" />
                             <D.PlayerText style={{ userSelect: 'none' }}>{player.user_name}</D.PlayerText>
                           </D.PlayerContainer>
                         </Draggable>

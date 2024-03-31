@@ -124,7 +124,9 @@ const NomalMatch = () => {
                                         ? '2학년'
                                         : '3학년'}
                                   </S.TeamClass>
-                                  <S.TeamClass>소프트웨어 개발과</S.TeamClass>
+                                  <S.TeamClass>
+                                    {team.team_class_type === 'SW' ? '소프트웨어 개발과' : '임베디드 개발과'}
+                                  </S.TeamClass>
                                 </S.TeamTextContainer>
                               </S.TextContainer>
                               <S.ButtonContainer>

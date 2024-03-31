@@ -24,6 +24,12 @@ export const ImgBox = styled.div<{ img: string }>`
   height: 550px;
   background: url(${({ img }) => img});
   background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  @media screen and (max-width: 480px) {
+    width: calc(365px - 10%);
+  }
 `;
 
 export const MiniText = styled.p`
@@ -176,5 +182,15 @@ export const AddButton = styled.div`
     position: absolute;
     bottom: 2.5rem;
     right: 1.5rem;
+  }
+`;
+
+export const UserImg = styled.img<{ src: string }>`
+  width: 1.375rem;
+  height: 1.5rem;
+
+  @media screen and (max-width: 480px) {
+    width: calc(1.375rem - 10%);
+    height: calc(1.5rem - 10%);
   }
 `;

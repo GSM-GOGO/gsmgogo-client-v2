@@ -46,8 +46,10 @@ export default function SignUp() {
 
         setShowVerification(true);
       } catch (e: any) {
-        const errorMessage = e.response.data.message;
-        toast.error(errorMessage);
+        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+        setTimeout(() => {
+          toast.error(errorMessage, { autoClose: 1000 });
+        }, 500);
       } finally {
         setTimeout(() => {
           setIsButtonDisabled(false);
@@ -63,11 +65,18 @@ export default function SignUp() {
           },
         });
         navigate('/');
-      } catch (e) {
+        setTimeout(() => {
+          toast.success('메시지 인증에 성공하였습니다!', { autoClose: 1000 });
+        }, 500);
+      } catch (e: any) {
         setError('verificationCode', {
           type: 'manual',
           message: '인증번호가 올바르지 않습니다',
         });
+        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+        setTimeout(() => {
+          toast.error(errorMessage, { autoClose: 1000 });
+        }, 500);
       } finally {
         setTimeout(() => {
           setIsButtonDisabled(false);
@@ -96,8 +105,11 @@ export default function SignUp() {
         withCredentials: true,
       });
       navigate(`/`);
-    } catch (e) {
-      console.log(e); //
+    } catch (e: any) {
+      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      setTimeout(() => {
+        toast.error(errorMessage, { autoClose: 1000 });
+      }, 500);
     }
   };
 

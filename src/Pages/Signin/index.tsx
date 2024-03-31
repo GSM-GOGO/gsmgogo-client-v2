@@ -3,6 +3,9 @@ import { GAuthLogo, SignInLogo } from '../../assets';
 import '@msg-team/gauth-react/dist/index.css';
 import apiClient from '../../utils/libs/apiClient.ts';
 import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signin = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -15,8 +18,11 @@ const Signin = () => {
     try {
       const response = await apiClient.get('/auth/login');
       window.location.href = response.data.redirect;
-    } catch (error) {
-      console.error('Error fetching data:', error);
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      setTimeout(() => {
+        toast.error(errorMessage, { autoClose: 1000 });
+      }, 500);
     } finally {
       setTimeout(() => {
         setIsSigningIn(false);
@@ -35,6 +41,10 @@ const Signin = () => {
           </S.GauthLoginButton>
         </S.ContainerResponse>
       </S.Container>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </S.Wrapper>
   );
 };

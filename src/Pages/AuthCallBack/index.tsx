@@ -23,14 +23,16 @@ const AuthCallBack = () => {
           navigate('/');
         }
       }
-    } catch (error) {
-      console.error('An error occurred:', error);
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     fetchData();
   }, []);
-  return <Loading />;
+  return (
+    <>
+      <Loading />;
+    </>
+  );
 };
 
 export default AuthCallBack;

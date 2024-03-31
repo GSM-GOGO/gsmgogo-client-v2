@@ -6,8 +6,18 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
+export const WidthContainer = styled.div`
+  width: 40.5rem;
+`;
+
 export const Container = styled.div`
-  width: 35rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 `;
 
 export const ContainerResponse = styled.div`

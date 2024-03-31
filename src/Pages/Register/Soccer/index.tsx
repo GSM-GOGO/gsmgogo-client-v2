@@ -25,8 +25,10 @@ const Soccer = () => {
 
   const { teamName, selectedMembers, selectedId } = location.state;
 
-  const [participantPositions, setParticipantPositions] = useState<{ id: number; position_x: number; position_y: number; }[]>([]);
-  
+  const [participantPositions, setParticipantPositions] = useState<
+    { id: number; position_x: number; position_y: number }[]
+  >([]);
+
   const convertedMembers = selectedMembers.map((member: string, index: number) => ({
     id: selectedId[index],
     name: member,
@@ -92,21 +94,17 @@ const Soccer = () => {
       setTimeout(() => {
         successCreateTeam();
       }, 500);
-    } catch (e) {
+    } catch (e: any) {
       navigate(`/matches/soccer`);
+      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       setTimeout(() => {
-        failCreateTeam();
+        toast.error(errorMessage, { autoClose: 1000 });
       }, 500);
-      console.error(e);
     }
   };
 
   const successCreateTeam = () => {
     toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
-  };
-
-  const failCreateTeam = () => {
-    toast.error('팀 등록을 실패하였습니다!', { autoClose: 1000 });
   };
 
   return (
@@ -123,7 +121,7 @@ const Soccer = () => {
 
             <S.ContainerResponse style={{ paddingBottom: '3.5rem' }}>
               <S.ImgBox ref={formationFieldRef} img={Field} style={{ position: 'relative' }}>
-                {convertedMembers.map((player: { id: number; x: number; y: number; name: string; }) => (
+                {convertedMembers.map((player: { id: number; x: number; y: number; name: string }) => (
                   <div key={player.id} style={{ position: 'absolute' }}>
                     <div style={{ position: 'relative' }}>
                       <Draggable

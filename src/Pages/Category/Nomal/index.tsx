@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import { useEffect, useState } from 'react';
 import apiClient from '../../../utils/libs/apiClient.ts';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Team {
   team_id: number;
@@ -37,8 +40,11 @@ const NomalMatch = () => {
           },
         });
         setTeamList(response.data);
-      } catch (e) {
-        console.log(e);
+      } catch (e: any) {
+        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+        setTimeout(() => {
+          toast.error(errorMessage, { autoClose: 1000 });
+        }, 500);
       }
     };
 
@@ -137,6 +143,10 @@ const NomalMatch = () => {
           </S.ContainerResponse>
         </S.Container>
       </S.Wrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </>
   );
 };

@@ -19,7 +19,7 @@ const Volleyball = () => {
     bottom: 0,
   });
   const formationFieldRef = useRef<HTMLDivElement>(null);
-  
+
   interface ParticipantPosition {
     id: number;
     position_x: number;
@@ -31,8 +31,6 @@ const Volleyball = () => {
   const navigate = useNavigate();
 
   const { teamName, selectedMembers, selectedId } = location.state;
-
-  console.log(selectedMembers);
 
   const convertedMembers = selectedMembers.map((member: string, index: number) => ({
     id: selectedId[index],
@@ -53,10 +51,8 @@ const Volleyball = () => {
     }
   }, []);
 
-
   const handleDragStop = (id: any, _e: DraggableEvent, data: DraggableData) => {
-
-    const participantIndex = convertedMembers.findIndex((participant: { id: any; }) => participant.id === id);
+    const participantIndex = convertedMembers.findIndex((participant: { id: any }) => participant.id === id);
 
     if (participantIndex !== -1) {
       const updatedParticipantPositions = [...participantPositions];
@@ -66,8 +62,6 @@ const Volleyball = () => {
         position_y: data.y,
       };
       setParticipantPositions(updatedParticipantPositions);
-    } else {
-      console.error(`Participant with id ${id} not found.`);
     }
   };
 
@@ -75,7 +69,7 @@ const Volleyball = () => {
     try {
       const token = localStorage.getItem('accessToken');
 
-      const participates = convertedMembers.map((player: { id: any; x: any; y: any; }) => {
+      const participates = convertedMembers.map((player: { id: any; x: any; y: any }) => {
         const participantPosition = participantPositions.find((p) => p?.id === player.id);
         return {
           user_id: String(player.id),
@@ -102,21 +96,17 @@ const Volleyball = () => {
       setTimeout(() => {
         successCreateTeam();
       }, 500);
-    } catch (e) {
+    } catch (e: any) {
       navigate(`/matches/volleyball`);
+      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       setTimeout(() => {
-        failCreateTeam();
+        toast.error(errorMessage, { autoClose: 1000 });
       }, 500);
-      console.error(e);
     }
   };
 
   const successCreateTeam = () => {
     toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
-  };
-
-  const failCreateTeam = () => {
-    toast.error('팀 등록을 실패하였습니다!', { autoClose: 1000 });
   };
 
   return (
@@ -133,23 +123,38 @@ const Volleyball = () => {
 
             <S.ContainerResponse style={{ paddingBottom: '3.5rem' }}>
               <S.ImgBox ref={formationFieldRef} img={VolleyField} style={{ position: 'relative' }}>
-                {convertedMembers.map((player: { id: Key | null | undefined; x: any; y: any; name: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }) => (
-                  <div key={player.id} style={{ position: 'absolute' }}>
-                    <div style={{ position: 'relative' }}>
-                      <Draggable
-                        defaultPosition={{ x: player.x, y: player.y }}
-                        bounds={bounds}
-                        nodeRef={formationFieldRef}
-                        onStop={(e, data) => handleDragStop(player.id, e, data)}
-                      >
-                        <S.PlayerContainer style={{ cursor: 'pointer' }}>
-                          <People />
-                          <S.PlayerText style={{ userSelect: 'none' }}>{player.name}</S.PlayerText>
-                        </S.PlayerContainer>
-                      </Draggable>
+                {convertedMembers.map(
+                  (player: {
+                    id: Key | null | undefined;
+                    x: any;
+                    y: any;
+                    name:
+                      | string
+                      | number
+                      | boolean
+                      | ReactElement<any, string | JSXElementConstructor<any>>
+                      | Iterable<ReactNode>
+                      | ReactPortal
+                      | null
+                      | undefined;
+                  }) => (
+                    <div key={player.id} style={{ position: 'absolute' }}>
+                      <div style={{ position: 'relative' }}>
+                        <Draggable
+                          defaultPosition={{ x: player.x, y: player.y }}
+                          bounds={bounds}
+                          nodeRef={formationFieldRef}
+                          onStop={(e, data) => handleDragStop(player.id, e, data)}
+                        >
+                          <S.PlayerContainer style={{ cursor: 'pointer' }}>
+                            <People />
+                            <S.PlayerText style={{ userSelect: 'none' }}>{player.name}</S.PlayerText>
+                          </S.PlayerContainer>
+                        </Draggable>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  )
+                )}
               </S.ImgBox>
             </S.ContainerResponse>
           </S.ContainerResponse>

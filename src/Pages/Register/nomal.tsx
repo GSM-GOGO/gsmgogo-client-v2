@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import * as S from './style.ts';
 import { Search, SmallXIcon } from '../../assets/index.ts';
 import apiClient from '../../utils/libs/apiClient.ts';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Data {
   id: number;
@@ -109,9 +112,11 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
         });
 
         setDataArr(updatedDataArr);
-        console.log(updatedDataArr);
-      } catch (e) {
-        console.log('error');
+      } catch (e: any) {
+        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+        setTimeout(() => {
+          toast.error(errorMessage, { autoClose: 1000 });
+        }, 500);
       }
     };
 
@@ -178,7 +183,6 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
   const handleSearchNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const searchedName = e.target.value.replace(/[^\uAC00-\uD7A3]/gi, '');
     setSearchedName(searchedName);
-    console.log('searchedName', searchedName);
     if (searchedName === '') {
       setSearchResults(dataArr);
     }
@@ -209,7 +213,6 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
           <div
             key={index}
             onClick={() => {
-              console.log('ddfs', dataArritem);
               toggleModal();
               setToggleModalId(dataArritem.id);
             }}
@@ -247,7 +250,6 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
                       <S.MappingText
                         key={index}
                         onClick={() => {
-                          console.log('i', i);
                           toggleSportUser(dataArritem.id, i.normalSport);
                         }}
                       >
@@ -272,6 +274,10 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
           </div>
         ))}
       </S.overScroll>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
     </S.NormalTeamContainer>
   );
 };

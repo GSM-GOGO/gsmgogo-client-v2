@@ -4,6 +4,9 @@ import * as S from './style';
 import { useEffect, useState } from 'react';
 import apiClient from '../../utils/libs/apiClient';
 import useStorePoint from '../../utils/libs/storePoint';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface TextTypeProps {
   mainText: string;
@@ -44,8 +47,11 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
         });
 
         setUserPoint(formatPoint(response.data.point));
-      } catch (e) {
-        console.log('error');
+      } catch (e: any) {
+        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+        setTimeout(() => {
+          toast.error(errorMessage, { autoClose: 1000 });
+        }, 500);
       }
     };
 
@@ -57,34 +63,40 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   };
 
   return (
-    <S.HeaderWrapper>
-      {showModal && <S.ModalWrapper onClick={handleLogout}>로그아웃</S.ModalWrapper>}
-      <S.GoGoText onClick={() => navigate(`/`)} style={{ cursor: 'pointer' }}>
-        {mainText}
-      </S.GoGoText>
+    <>
+      <S.HeaderWrapper>
+        {showModal && <S.ModalWrapper onClick={handleLogout}>로그아웃</S.ModalWrapper>}
+        <S.GoGoText onClick={() => navigate(`/`)} style={{ cursor: 'pointer' }}>
+          {mainText}
+        </S.GoGoText>
 
-      <S.TextBox>
-        <S.GoGoMiniLink to="/ranking" style={currentPath === '/ranking' ? { color: '#23F69A' } : undefined}>
-          {miniText[0]}
-        </S.GoGoMiniLink>
+        <S.TextBox>
+          <S.GoGoMiniLink to="/ranking" style={currentPath === '/ranking' ? { color: '#23F69A' } : undefined}>
+            {miniText[0]}
+          </S.GoGoMiniLink>
 
-        <S.GoGoMiniLink to="/minigame" style={currentPath === '/minigame' ? { color: '#23F69A' } : undefined}>
-          {miniText[1]}
-        </S.GoGoMiniLink>
+          <S.GoGoMiniLink to="/minigame" style={currentPath === '/minigame' ? { color: '#23F69A' } : undefined}>
+            {miniText[1]}
+          </S.GoGoMiniLink>
 
-        <S.GoGoMiniText
-          style={{
-            color: 'var(--Main, #23F69A)',
-          }}
-        >
-          {userPoint}P
-        </S.GoGoMiniText>
+          <S.GoGoMiniText
+            style={{
+              color: 'var(--Main, #23F69A)',
+            }}
+          >
+            {userPoint}P
+          </S.GoGoMiniText>
 
-        <S.SvgContainer style={{ cursor: 'pointer' }} onClick={toggleModal}>
-          <ThreeDot />
-        </S.SvgContainer>
-      </S.TextBox>
-    </S.HeaderWrapper>
+          <S.SvgContainer style={{ cursor: 'pointer' }} onClick={toggleModal}>
+            <ThreeDot />
+          </S.SvgContainer>
+        </S.TextBox>
+      </S.HeaderWrapper>
+      <ToastContainer autoClose={1000} />
+      <div>
+        <Toaster position="top-right" reverseOrder={true} />
+      </div>
+    </>
   );
 };
 

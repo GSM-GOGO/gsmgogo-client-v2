@@ -46,7 +46,6 @@ export const SvgContainer = styled.div`
     width: 27.5rem;
   }
   @media (max-width: 450px) {
-    margin-top: 2rem;
     width: 20rem;
   }
 `;

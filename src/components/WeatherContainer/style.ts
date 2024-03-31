@@ -8,15 +8,17 @@ export const WeatherWrapper = styled.div`
   align-items: flex-start;
   justify-content: center;
   gap: 2rem;
+  width: 40.5rem;
+
   margin-bottom: 2.5rem;
   @media (max-width: 650px) {
-    gap: 1.5rem;
+    gap: 1.75rem;
   }
   @media (max-width: 550px) {
-    gap: 1.25rem;
+    gap: 1.5rem;
   }
   @media (max-width: 450px) {
-    gap: 1rem;
+    gap: 1.25rem;
   }
 `;
 

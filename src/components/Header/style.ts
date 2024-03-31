@@ -4,15 +4,10 @@ import styled from 'styled-components';
 export const HeaderWrapper = styled.div`
   display: flex;
   width: 40.5rem;
-  padding: 1rem 41.25rem;
+  height: 3.9375rem;
   justify-content: space-between;
   align-items: center;
   position: relative;
-
-  @media (max-width: 1800px) {
-    padding: 1rem 2rem;
-    font-size: 1.5rem;
-  }
 `;
 
 export const GoGoText = styled.h1`
@@ -72,13 +67,13 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
   top: 3rem;
-  right: 2rem;
+  right: 0.0625rem;
   box-sizing: border-box;
   display: flex;
   background-color: #26262a;
   width: 6rem;
   height: 2rem;
-  padding: 0.5rem 1.25rem 0.5rem 1.25rem;
+  padding: 0.5rem 1rem 0.5rem 1rem;
   border-radius: 0.75rem;
   font-family: Pretendard;
   font-size: 1rem;

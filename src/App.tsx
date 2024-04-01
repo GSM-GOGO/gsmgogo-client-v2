@@ -12,7 +12,7 @@ import AuthCallBack from './Pages/AuthCallBack/index.tsx';
 import Badminton from './Pages/Register/Badminton/index.tsx';
 import Soccer from './Pages/Register/Soccer/index.tsx';
 import Volleyball from './Pages/Register/Volleyball/index.tsx';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider, QueryClient } from 'react-query';
 import Header from './components/Header/index.tsx';
 import styled from 'styled-components';
 

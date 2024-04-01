@@ -30,8 +30,8 @@ function App() {
           <Route path="/matches/volleyball/form" element={<VolleyForm />} />
           <Route path="/matches/:sport" element={<Sports />} />
 
-          <Route path="/matches/nomal/match" element={<NomalMatch />} />
-          <Route path="/matches/nomal/match/form/:id" element={<NomalForm />} />
+          <Route path="/matches/NomalMatch" element={<NomalMatch />} />
+          <Route path="/matches/NomalMatch/form/:id" element={<NomalForm />} />
 
           <Route path="/register" element={<Register />} />
           <Route path="/register/badminton" element={<Badminton />} />

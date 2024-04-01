@@ -96,7 +96,7 @@ const NomalMatch = () => {
                                   </S.TeamClass>
                                 </S.TeamTextContainer>
                               </S.TextContainer>
-                              <S.CheckButton onClick={() => navigate(`/matches/NomalMatch/form/${team.team_id}`)}>
+                              <S.CheckButton onClick={() => navigate(`/matches/nomal-match/form/${team.team_id}`)}>
                                 확인하기
                               </S.CheckButton>
                             </S.List>
@@ -130,7 +130,7 @@ const NomalMatch = () => {
                                 </S.TeamTextContainer>
                               </S.TextContainer>
                               <S.ButtonContainer>
-                                <S.CheckButton onClick={() => navigate(`/matches/NomalMatch/form/${team.team_id}`)}>
+                                <S.CheckButton onClick={() => navigate(`/matches/nomal-match/form/${team.team_id}`)}>
                                   확인하기
                                 </S.CheckButton>
                               </S.ButtonContainer>

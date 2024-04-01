@@ -217,7 +217,7 @@ const Register = () => {
               Authorization: `${token}`,
             },
           });
-          navigate('/matches/NomalMatch');
+          navigate('/matches/nomal-match');
           setTimeout(() => {
             toast.success('팀 등록에 성공하였습니다!', { autoClose: 1000 });
           }, 500);

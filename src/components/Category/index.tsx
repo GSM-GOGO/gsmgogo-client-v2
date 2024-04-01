@@ -37,9 +37,9 @@ const Category = () => {
         배구
       </S.CategoryLink>
       <S.CategoryLink
-        to="/matches/NomalMatch"
+        to="/matches/nomal-match"
         style={
-          currentPath === "/matches/NomalMatch" ? { color: "#fff" } : undefined
+          currentPath === "/matches/nomal-match" ? { color: "#fff" } : undefined
         }
       >
         일반 경기

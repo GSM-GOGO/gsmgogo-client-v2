@@ -41,7 +41,7 @@ const Sports = () => {
 
   const initialTeams: Team[] = [];
 
-  const [teams, setTeams] = useState(initialTeams);
+  const [teams, setTeams] = useState<Team[]>(initialTeams);
 
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
@@ -65,6 +65,10 @@ const Sports = () => {
     };
 
     getTeamList();
+
+    return () => {
+      setTeams([]);
+    };
   }, [sport]);
 
   useEffect(() => {

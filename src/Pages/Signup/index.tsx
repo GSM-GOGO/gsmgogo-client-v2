@@ -153,7 +153,6 @@ export default function SignUp() {
                     message: '인증번호는 6자리의 숫자로 입력해주세요',
                   },
                 })}
-                resendLimitMessage="재발송 3번 초과 시 24시간 후 시도할 수 있습니다"
                 phoneNumber={phoneNumber}
               />
             )}

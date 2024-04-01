@@ -20,7 +20,6 @@ interface Props {
   readOnly?: boolean;
   setError?: UseFormSetError<FormData>;
   reset?: (values?: FormData) => void;
-  resendLimitMessage?: string;
   phoneNumber?: string;
 }
 
@@ -35,7 +34,6 @@ export default function Input({
   readOnly,
   setError,
   reset,
-  resendLimitMessage,
   phoneNumber,
 }: Props) {
   const validtime = 300;
@@ -124,7 +122,6 @@ export default function Input({
           />
         </S.InputWrapper>
         <S.Label erroredStyle={errors}>{errors && message}</S.Label>
-        {resendLimitMessage && <S.Label>{resendLimitMessage}</S.Label>}
       </S.Wrapper>
       <ToastContainer autoClose={1000} />
       <div>

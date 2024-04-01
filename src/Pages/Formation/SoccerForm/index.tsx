@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
-import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
@@ -134,7 +133,6 @@ const SoccerForm = () => {
 
   return (
     <>
-      <HeaderContainer />
       <S.Wrapper>
         {deleteTeam ? (
           <D.ModalBackground>

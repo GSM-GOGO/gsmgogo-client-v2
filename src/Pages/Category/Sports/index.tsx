@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react';
-import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -136,7 +135,6 @@ const Sports = () => {
 
   return (
     <>
-      <HeaderContainer />
       {teams.length !== 0 ? (
         <S.Wrapper>
           {cheer && selectedTeam && (

@@ -1,4 +1,3 @@
-import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
 import { useNavigate } from 'react-router-dom';
@@ -68,7 +67,6 @@ const NomalMatch = () => {
         </S.ModalBackground>
       ) : null}
 
-      <HeaderContainer />
       <S.Wrapper>
         <S.Container>
           <S.ContainerResponse>

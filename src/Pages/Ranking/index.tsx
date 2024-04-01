@@ -1,5 +1,4 @@
 import { RankBar } from '../../assets';
-import HeaderContainer from '../../components/HeaderContainer';
 import apiClient from '../../utils/libs/apiClient';
 import { Category, CategoryContainer } from '../Formation/style';
 import * as S from './style';
@@ -107,7 +106,6 @@ const Ranking = () => {
 
   return (
     <>
-      <HeaderContainer />
       <S.Wrapper>
         <S.Container>
           <CategoryContainer style={{ marginBottom: '1.25rem' }}>
@@ -119,10 +117,16 @@ const Ranking = () => {
                 .slice(0, 3)
                 .sort((a, b) => (a.user_name > b.user_name ? 1 : -1))
                 .map((_, index) => {
-                  const { rankName, rankPoint,rankClass,rankGrade, rankComponent, rank } = getRankInfotest(index, RankData);
+                  const { rankName, rankPoint, rankClass, rankGrade, rankComponent, rank } = getRankInfotest(
+                    index,
+                    RankData
+                  );
                   return (
                     <S.LankContainer key={index}>
-                      <S.Name> {Number[rankGrade]}-{Number[rankClass]} {rankName}</S.Name>
+                      <S.Name>
+                        {' '}
+                        {Number[rankGrade]}-{Number[rankClass]} {rankName}
+                      </S.Name>
                       <S.Point>{rankPoint}P</S.Point>
                       {rankComponent}
                       <S.Name

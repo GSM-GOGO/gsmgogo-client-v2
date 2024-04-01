@@ -52,7 +52,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
 
       getUserPoint();
     }
-  }, [hasFetchedUserPoint, setUserPoint]);
+  }, [hasFetchedUserPoint, setUserPoint, userPoint]);
 
   const formatPoint = (point: string) => {
     return parseInt(point).toLocaleString();

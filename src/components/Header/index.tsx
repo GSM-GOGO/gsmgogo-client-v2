@@ -18,6 +18,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   const [showModal, setShowModal] = useState(false);
   const userPoint = useStorePoint((state) => state.userPoint);
   const setUserPoint = useStorePoint((state) => state.setUserPoint);
+  const [hasFetchedUserPoint, setHasFetchedUserPoint] = useState(false);
 
   const toggleModal = () => {
     setShowModal(!showModal);
@@ -32,23 +33,26 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   };
 
   useEffect(() => {
-    const getUserPoint = async () => {
-      try {
-        const token = localStorage.getItem('accessToken');
+    if (!hasFetchedUserPoint) {
+      const getUserPoint = async () => {
+        try {
+          const token = localStorage.getItem('accessToken');
 
-        const response = await apiClient.get(`/user/my-point`, {
-          headers: {
-            Authorization: token,
-          },
-          withCredentials: true,
-        });
+          const response = await apiClient.get(`/user/my-point`, {
+            headers: {
+              Authorization: token,
+            },
+            withCredentials: true,
+          });
 
-        setUserPoint(formatPoint(response.data.point));
-      } catch (e) {}
-    };
+          setUserPoint(formatPoint(response.data.point));
+          setHasFetchedUserPoint(true);
+        } catch (e) {}
+      };
 
-    getUserPoint();
-  }, []);
+      getUserPoint();
+    }
+  }, [hasFetchedUserPoint, setUserPoint]);
 
   const formatPoint = (point: string) => {
     return parseInt(point).toLocaleString();

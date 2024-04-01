@@ -33,7 +33,7 @@ export default function SignUp() {
       try {
         const token = localStorage.getItem('accessToken');
         await apiClient.post(
-          `/auth/sms/test`,
+          `/auth/sms`,
           {
             phone_number: data.phoneNumber,
           },

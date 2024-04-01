@@ -184,13 +184,3 @@ export const AddButton = styled.div`
     right: 1.5rem;
   }
 `;
-
-export const UserImg = styled.img<{ src: string }>`
-  width: 1.375rem;
-  height: 1.5rem;
-
-  @media screen and (max-width: 560px) {
-    width: calc(1.375rem - 10%);
-    height: calc(1.5rem - 10%);
-  }
-`;

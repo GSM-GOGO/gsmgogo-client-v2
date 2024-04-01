@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { PeopleIcon, VolleyField } from '../../../assets/index.ts';
+import { People, VolleyField } from '../../../assets/index.ts';
 import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
 import * as D from './style.ts';
@@ -195,7 +195,7 @@ const VolleyForm = () => {
                           nodeRef={formationFieldRef}
                         >
                           <D.PlayerContainer style={{ cursor: 'pointer' }}>
-                            <D.UserImg src={PeopleIcon} alt="" />
+                            <People />
                             <D.PlayerText style={{ userSelect: 'none' }}>{player.user_name}</D.PlayerText>
                           </D.PlayerContainer>
                         </Draggable>

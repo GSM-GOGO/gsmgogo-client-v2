@@ -2,45 +2,68 @@ import { RankBar } from '../../assets';
 import apiClient from '../../utils/libs/apiClient';
 import { Category, CategoryContainer } from '../Formation/style';
 import * as S from './style';
-import { useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import LoadingContent from '../../components/Loading/content';
 
-const Ranking = () => {
-  const [RankData, setRankData] = useState<any[]>([]);
-  const [myId, setMyId] = useState(null);
+const Ranking = ()=>{
+  return (
+    <>
+      <S.Wrapper>
+        <S.Container>
+          <CategoryContainer style={{ marginBottom: '1.25rem' }}>
+            <Category style={{ color: 'var(--White, #FFF)' }}>랭킹</Category>
+          </CategoryContainer>
+          <Content/>
+        </S.Container>
+      </S.Wrapper>
+    </>
+  );
+}
+const Content = () => {
+  const {
+    data: RankData,
+    isLoading: isRankLoading
+  } = useQuery(
+    'rankData',
+    async () => {
+      const token = localStorage.getItem('accessToken');
+      const response = await apiClient.get('/rank', {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      return response.data;
+    },
+    {
+      cacheTime: 300000,
+      staleTime: Infinity,
+    }
+  );
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const token = localStorage.getItem('accessToken');
-        const response = await apiClient.get(`/rank`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-        setRankData(response.data);
-      } catch (e) {}
-    };
+  const {
+    data: myId,
+    isLoading: isMyIdLoading
+  } = useQuery(
+    'myId',
+    async () => {
+      const token = localStorage.getItem('accessToken');
+      const response = await apiClient.get('/user/my-id', {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      return response.data.user_id;
+    },
+    {
+      cacheTime: Infinity,
+      staleTime: Infinity,
+    }
+  );
 
-    fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchMyId = async () => {
-      try {
-        const token = localStorage.getItem('accessToken');
-        const response = await apiClient.get(`/user/my-id`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-        setMyId(response.data.user_id);
-      } catch (e) {}
-    };
-
-    fetchMyId();
-  }, []);
-
-  const topThreeDatatest = RankData.length > 0 ? RankData.sort((a, b) => b.user_point - a.user_point).slice(0, 3) : [];
+  if (isRankLoading || isMyIdLoading) return <LoadingContent/>;
+  if (!RankData || !myId) return null; 
+  
+  const topThreeDatatest = RankData.length > 0 ? RankData.sort((a: { user_point: number; }, b: { user_point: number; }) => b.user_point - a.user_point).slice(0, 3) : [];
 
   const firstPlacePointstest = topThreeDatatest.length > 0 ? topThreeDatatest[0].user_point : 0;
   const secondPlacePointstest = topThreeDatatest.length > 1 ? topThreeDatatest[1].user_point : 0;
@@ -106,17 +129,12 @@ const Ranking = () => {
 
   return (
     <>
-      <S.Wrapper>
-        <S.Container>
-          <CategoryContainer style={{ marginBottom: '1.25rem' }}>
-            <Category style={{ color: 'var(--White, #FFF)' }}>랭킹</Category>
-          </CategoryContainer>
           <S.MainContainer>
             <S.LankWrapper>
-              {RankData.sort((a, b) => b.user_point - a.user_point)
+              {RankData.sort((a: { user_point: number; }, b: { user_point: number; }) => b.user_point - a.user_point)
                 .slice(0, 3)
-                .sort((a, b) => (a.user_name > b.user_name ? 1 : -1))
-                .map((_, index) => {
+                .sort((a: { user_name: number; }, b: { user_name: number; }) => (a.user_name > b.user_name ? 1 : -1))
+                .map((_: any, index: number) => {
                   const { rankName, rankPoint, rankClass, rankGrade, rankComponent, rank } = getRankInfotest(
                     index,
                     RankData
@@ -143,7 +161,7 @@ const Ranking = () => {
                 })}
             </S.LankWrapper>
             <S.ListWrapper>
-              {RankData.map((item, index) => (
+              {RankData.map((item: { user_id: number; user_grade: string; user_class: string; user_name: string; user_point:number; }, index: number) => (
                 <>
                   {item.user_id === myId && (
                     <S.List myrank={item.user_id === myId} key={index}>
@@ -164,7 +182,7 @@ const Ranking = () => {
                 </>
               ))}
               <S.Stroke />
-              {RankData.sort((a, b) => b.user_point - a.user_point).map((item, index) => (
+              {RankData.sort((a: { user_point: number; }, b: { user_point: number; }) => b.user_point - a.user_point).map((item: { user_id: number; user_grade: string; user_class: string; user_name: string; user_point:number; }, index: number) => (
                 <S.List myrank={item.user_id == myId} key={index}>
                   <S.TextContainer>
                     <S.Text>
@@ -182,8 +200,6 @@ const Ranking = () => {
               ))}
             </S.ListWrapper>
           </S.MainContainer>
-        </S.Container>
-      </S.Wrapper>
     </>
   );
 };

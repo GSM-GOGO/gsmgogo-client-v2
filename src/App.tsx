@@ -12,37 +12,177 @@ import AuthCallBack from './Pages/AuthCallBack/index.tsx';
 import Badminton from './Pages/Register/Badminton/index.tsx';
 import Soccer from './Pages/Register/Soccer/index.tsx';
 import Volleyball from './Pages/Register/Volleyball/index.tsx';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
+import Header from './components/Header/index.tsx';
+import styled from 'styled-components';
+
+const queryClient = new QueryClient();
+
+export const HeaderContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <GlobalStyles />
       <Router>
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/ranking" element={<Ranking />} />
-          <Route path="/minigame" element={<Minigame />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Main />
+              </>
+            }
+          />
+          <Route
+            path="/ranking"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Ranking />
+              </>
+            }
+          />
+          <Route
+            path="/minigame"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Minigame />
+              </>
+            }
+          />
+          <Route
+            path="/matches/soccer/form"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <SoccerForm />
+              </>
+            }
+          />
+          <Route
+            path="/matches/badminton/form"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <BadmintonForm />
+              </>
+            }
+          />
+          <Route
+            path="/matches/volleyball/form"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <VolleyForm />
+              </>
+            }
+          />
 
-          <Route path="/matches/soccer/form" element={<SoccerForm />} />
-          <Route path="/matches/badminton/form" element={<BadmintonForm />} />
-          <Route path="/matches/volleyball/form" element={<VolleyForm />} />
-          <Route path="/matches/:sport" element={<Sports />} />
+          <Route
+            path="/matches/:sport"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Sports />
+              </>
+            }
+          />
+          <Route
+            path="/matches/nomal-match"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <NomalMatch />
+              </>
+            }
+          />
+          <Route
+            path="/matches/nomal-match/form/:id"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <NomalForm />
+              </>
+            }
+          />
 
-          <Route path="/matches/nomal-match" element={<NomalMatch />} />
-          <Route path="/matches/nomal-match/form/:id" element={<NomalForm />} />
-
-          <Route path="/register" element={<Register />} />
-          <Route path="/register/badminton" element={<Badminton />} />
-          <Route path="/register/soccer" element={<Soccer />} />
-          <Route path="/register/volleyball" element={<Volleyball />} />
+          <Route
+            path="/register"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Register />
+              </>
+            }
+          />
+          <Route
+            path="/register/badminton"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Badminton />
+              </>
+            }
+          />
+          <Route
+            path="/register/soccer"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Soccer />
+              </>
+            }
+          />
+          <Route
+            path="/register/volleyball"
+            element={
+              <>
+                <HeaderContainer>
+                  <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                </HeaderContainer>
+                <Volleyball />
+              </>
+            }
+          />
 
           <Route path="/auth/callback" element={<AuthCallBack />} />
+
+          <Route path="/signin" element={<Signin />} />
+          <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<h1>Not Found</h1>} />
         </Routes>
       </Router>
-    </>
+    </QueryClientProvider>
   );
 }
 

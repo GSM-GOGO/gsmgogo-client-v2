@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react';
-import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -41,7 +40,7 @@ const Sports = () => {
 
   const initialTeams: Team[] = [];
 
-  const [teams, setTeams] = useState(initialTeams);
+  const [teams, setTeams] = useState<Team[]>(initialTeams);
 
   const [cheer, setCheer] = useState(false);
   const [addteam, setAddteam] = useState(false);
@@ -65,6 +64,10 @@ const Sports = () => {
     };
 
     getTeamList();
+
+    return () => {
+      setTeams([]);
+    };
   }, [sport]);
 
   useEffect(() => {
@@ -132,7 +135,6 @@ const Sports = () => {
 
   return (
     <>
-      <HeaderContainer />
       {teams.length !== 0 ? (
         <S.Wrapper>
           {cheer && selectedTeam && (

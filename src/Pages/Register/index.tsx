@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import { Search, XIcon } from '../../assets/index.ts';
 import { useNavigate } from 'react-router-dom';
@@ -239,7 +238,6 @@ const Register = () => {
 
   return (
     <div>
-      <HeaderContainer />
       <S.Wrapper>
         <S.Container>
           <S.ContainerResponse>

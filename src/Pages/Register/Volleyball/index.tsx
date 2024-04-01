@@ -1,6 +1,5 @@
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from 'react';
 import { People } from '../../../assets/index.ts';
-import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from './style.ts';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import VolleyField from '../../../assets/png/VolleyField.png';
@@ -111,7 +110,6 @@ const Volleyball = () => {
 
   return (
     <>
-      <HeaderContainer />
       <S.Wrapper>
         <S.Container>
           <S.ContainerResponse>

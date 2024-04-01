@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { People, VolleyField } from '../../../assets/index.ts';
-import HeaderContainer from '../../../components/HeaderContainer/index.tsx';
 import * as S from '../style.ts';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
@@ -136,7 +135,6 @@ const VolleyForm = () => {
 
   return (
     <>
-      <HeaderContainer />
       <S.Wrapper>
         {deleteTeam ? (
           <D.ModalBackground>

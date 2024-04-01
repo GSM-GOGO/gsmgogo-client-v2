@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { OpenReview, CloseReview } from '../../../assets';
-import HeaderContainer from '../../../components/HeaderContainer';
 import * as S from './style.ts';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -93,7 +92,6 @@ const NomalForm = () => {
   return (
     <>
       {id}
-      <HeaderContainer />
       <S.Wrapper>
         {deleteTeam ? (
           <S.ModalBackground>

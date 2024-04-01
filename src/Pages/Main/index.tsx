@@ -1,4 +1,3 @@
-import HeaderContainer from '../../components/HeaderContainer/index.tsx';
 import PlayingContainer from '../../components/PlayingContainer/index.tsx';
 import WeatherContainer from '../../components/WeatherContainer/index.tsx';
 import * as S from './style';
@@ -158,7 +157,6 @@ const dataArray: Array<ArrayProps> = [
 const Main = () => {
   return (
     <>
-      <HeaderContainer />
       <S.Wrapper>
         <S.Container>
           <Category />

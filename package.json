@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@msg-team/gauth-react": "^1.4.1",
+    "@tanstack/react-query": "^5.28.9",
     "@vitejs/plugin-react-swc": "^3.6.0",
     "axios": "^1.6.8",
     "react": "^18.2.0",

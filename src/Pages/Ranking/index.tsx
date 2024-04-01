@@ -148,7 +148,7 @@ const Ranking = () => {
                           <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
                           <S.Name>
                             {' '}
-                            {Number[item.user_grade]}학년{Number[item.user_class]}반 {item.user_name}
+                            {Number[item.user_grade]}-{Number[item.user_class]} {item.user_name}
                           </S.Name>
                         </S.Text>
                       </S.TextContainer>
@@ -167,7 +167,7 @@ const Ranking = () => {
                       <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
                       <S.Name>
                         {' '}
-                        {Number[item.user_grade]}학년{Number[item.user_class]}반 {item.user_name}
+                        {Number[item.user_grade]}-{Number[item.user_class]} {item.user_name}
                       </S.Name>
                     </S.Text>
                   </S.TextContainer>

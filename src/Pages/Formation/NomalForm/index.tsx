@@ -72,7 +72,7 @@ const NomalForm = () => {
           Authorization: token,
         },
       });
-      navigate('/matches/NomalMatch');
+      navigate('/matches/nomal-match');
       setTimeout(() => {
         toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
       }, 500);

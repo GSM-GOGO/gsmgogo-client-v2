@@ -10,7 +10,7 @@ import { Toaster } from 'react-hot-toast';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { EmptyPlaying } from '../../../assets/index.ts';
-
+import Notfound from '../../../components/Loading/Notfound.tsx';
 interface Team {
   team_id: number;
   team_name: string;
@@ -34,7 +34,7 @@ interface CheerTeam {
 const Sports = () => {
   const { sport } = useParams();
   if (!(sport === 'soccer' || sport === 'badminton' || sport === 'volleyball')) {
-    return <h1>Not Found</h1>;
+    return <Notfound/>;
   }
   const navigate = useNavigate();
 

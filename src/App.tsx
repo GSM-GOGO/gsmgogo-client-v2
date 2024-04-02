@@ -15,6 +15,7 @@ import Volleyball from './Pages/Register/Volleyball/index.tsx';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import Header from './components/Header/index.tsx';
 import styled from 'styled-components';
+import Notfound from './components/Loading/Notfound.tsx';
 
 const queryClient = new QueryClient();
 
@@ -179,7 +180,7 @@ function App() {
 
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="*" element={<h1>Not Found</h1>} />
+          <Route path="*" element={<Notfound/>} />
         </Routes>
       </Router>
     </QueryClientProvider>

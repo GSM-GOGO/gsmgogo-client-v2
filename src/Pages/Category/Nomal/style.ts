@@ -111,7 +111,10 @@ export const ButtonContainer = styled.div`
 
 export const AddButton = styled.div`
   cursor: pointer;
-
+  position: fixed;
+  bottom: 0;
+  max-width: 40.5rem;
+  width: 100%;
   svg {
     position: absolute;
     bottom: 2.5rem;

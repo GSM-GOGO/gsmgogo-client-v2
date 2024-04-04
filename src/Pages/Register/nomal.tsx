@@ -52,6 +52,11 @@ const Nomal: React.FC<NomalProps> = ({ dataArr, setDataArr, setAllSportsFull }) 
       maxPeople: 10,
     },
     {
+      normalSport: '8자 줄넘기',
+      normalPeople: 0,
+      maxPeople: 20,
+    },
+    {
       normalSport: '농구 자유투 릴레이',
       normalPeople: 0,
       maxPeople: 30,

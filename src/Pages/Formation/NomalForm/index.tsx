@@ -9,7 +9,7 @@ import { Toaster } from 'react-hot-toast';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP';
+type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP' | 'CROSS_ROPE_JUMP';
 
 interface ErrorResponse {
   response: {
@@ -87,6 +87,7 @@ const NomalForm = () => {
     TUG_OF_WAR: '줄다리기',
     FREE_THROW: '농구 자유투 릴레이',
     GROUP_ROPE_JUMP: '단체 줄넘기',
+    CROSS_ROPE_JUMP: '8자 줄넘기',
   };
 
   return (

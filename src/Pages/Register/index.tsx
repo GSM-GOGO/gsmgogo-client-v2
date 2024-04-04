@@ -188,15 +188,21 @@ const Register = () => {
     dividedSelectedMembers.push(selectedMembers.slice(i, i + 4));
   }
 
-  type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP';
+  type NormalTeamType =
+    | 'TOSS_RUN'
+    | 'MISSION_RUN'
+    | 'TUG_OF_WAR'
+    | 'FREE_THROW'
+    | 'GROUP_ROPE_JUMP'
+    | 'CROSS_ROPE_JUMP';
 
   const TeamType: { [key: string]: NormalTeamType } = {
-    '이어달리기(남3,여3)': 'TOSS_RUN',
-    '이어달리기(여)': 'TOSS_RUN',
+    '이어달리기(남4,여2)': 'TOSS_RUN',
     미션달리기: 'MISSION_RUN',
     줄다리기: 'TUG_OF_WAR',
     '농구 자유투 릴레이': 'FREE_THROW',
     '단체 줄넘기': 'GROUP_ROPE_JUMP',
+    '8자 줄넘기': 'CROSS_ROPE_JUMP',
   };
 
   const [dataArr, setDataArr] = useState<Data[]>([]);

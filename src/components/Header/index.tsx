@@ -26,10 +26,22 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
 
   const Navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
-    Navigate('/signin');
+  const handleLogout = async () => {
+    try {
+      const accessToken = localStorage.getItem('accessToken');
+
+      await apiClient.delete(`/auth/logout`, {
+        headers: {
+          Authorization: accessToken,
+        },
+        withCredentials: true,
+      });
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      Navigate('/signin');
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

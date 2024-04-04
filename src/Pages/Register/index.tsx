@@ -33,7 +33,7 @@ type Numbertype = {
 };
 
 const MAX_MEMBERS: Numbertype = {
-  축구: 9,
+  축구: 8,
   배드민턴: 2,
   배구: 9,
 };

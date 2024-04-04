@@ -4,7 +4,7 @@ import * as S from '../style.ts';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import FiledImg from '../../../assets/png/Field.png';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
@@ -42,9 +42,10 @@ const SoccerForm = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
-  const { teamId } = location.state;
+  const { id } = useParams();
+
+  const teamId = id;
 
   useEffect(() => {
     if (formationFieldRef.current) {

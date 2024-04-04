@@ -3,7 +3,7 @@ import { People, VolleyField } from '../../../assets/index.ts';
 import * as S from '../style.ts';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
@@ -41,9 +41,9 @@ const VolleyForm = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
 
   const navigate = useNavigate();
-  const location = useLocation();
+  const { id } = useParams();
 
-  const { teamId } = location.state;
+  const teamId = id;
 
   useEffect(() => {
     if (formationFieldRef.current) {

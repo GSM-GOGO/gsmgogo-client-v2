@@ -34,7 +34,7 @@ interface CheerTeam {
 const Sports = () => {
   const { sport } = useParams();
   if (!(sport === 'soccer' || sport === 'badminton' || sport === 'volleyball')) {
-    return <Notfound/>;
+    return <Notfound />;
   }
   const navigate = useNavigate();
 
@@ -114,11 +114,7 @@ const Sports = () => {
   };
 
   const GoToForm = (sport: string, id: number) => {
-    navigate(`/matches/${sport}/form`, {
-      state: {
-        teamId: id,
-      },
-    });
+    navigate(`/matches/${sport}/form/${id}`, {});
   };
   const GoRegister = () => {
     navigate(`/register`);

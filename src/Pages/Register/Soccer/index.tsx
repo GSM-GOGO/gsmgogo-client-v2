@@ -31,8 +31,8 @@ const Soccer = () => {
   const convertedMembers = selectedMembers.map((member: string, index: number) => ({
     id: selectedId[index],
     name: member,
-    x: [160, 80, 250, 50, 160, 280, 80, 250, 160][index % 9],
-    y: [55, 150, 150, 250, 250, 250, 375, 375, 375][index % 9],
+    x: [160, 80, 250, 50, 160, 280, 80, 250][index % 8],
+    y: [55, 150, 150, 250, 250, 250, 375, 375][index % 8],
   }));
 
   useEffect(() => {

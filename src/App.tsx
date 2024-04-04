@@ -66,7 +66,7 @@ function App() {
               }
             />
             <Route
-              path="/matches/soccer/form"
+              path="/matches/soccer/form/:id"
               element={
                 <>
                   <HeaderContainer>
@@ -77,7 +77,7 @@ function App() {
               }
             />
             <Route
-              path="/matches/badminton/form"
+              path="/matches/badminton/form/:id"
               element={
                 <>
                   <HeaderContainer>
@@ -88,7 +88,7 @@ function App() {
               }
             />
             <Route
-              path="/matches/volleyball/form"
+              path="/matches/volleyball/form/:id"
               element={
                 <>
                   <HeaderContainer>

@@ -22,6 +22,7 @@ interface ErrorResponse {
 const NomalForm = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null); // activeCategoryId 타입 수정
   const [deleteTeam, setdeleteTeam] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const toggleCategory = (categoryId: number) => {
     setActiveCategoryId(categoryId === activeCategoryId ? null : categoryId);
@@ -55,7 +56,10 @@ const NomalForm = () => {
           },
         });
         setTeamList(response.data);
-      } catch (e) {}
+      } catch (e) {
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchNormal();
@@ -89,6 +93,10 @@ const NomalForm = () => {
     GROUP_ROPE_JUMP: '단체 줄넘기',
     CROSS_ROPE_JUMP: '8자 줄넘기',
   };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>

@@ -16,7 +16,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import Header from './components/Header/index.tsx';
 import styled from 'styled-components';
 import Notfound from './components/Loading/Notfound.tsx';
-import { PrivateRoute } from './utils/libs/PrivateRoute.tsx';
+import { PrivateRoute } from './apis/PrivateRoute.tsx';
 
 const queryClient = new QueryClient();
 

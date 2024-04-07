@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { Logo } from '../../assets/svg';
 import { FormData } from '../../types/FormDataType';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '../../utils/libs/apiClient';
+import apiClient from '../../apis/apiClient';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

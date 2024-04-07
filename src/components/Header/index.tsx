@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { ThreeDot } from '../../assets';
 import * as S from './style';
 import { useEffect, useState } from 'react';
-import apiClient from '../../utils/libs/apiClient';
+import apiClient from '../../apis/apiClient';
 import useStorePoint from '../../utils/libs/storePoint';
 
 interface TextTypeProps {

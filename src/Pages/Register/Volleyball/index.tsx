@@ -4,7 +4,7 @@ import * as S from './style.ts';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
 import VolleyField from '../../../assets/png/VolleyField.png';
 import { useLocation, useNavigate } from 'react-router-dom';
-import apiClient from '../../../utils/libs/apiClient.ts';
+import apiClient from '../../../apis/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 

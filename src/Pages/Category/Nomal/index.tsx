@@ -3,7 +3,7 @@ import Category from '../../../components/Category/index.tsx';
 import { useNavigate } from 'react-router-dom';
 import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import { useEffect, useState } from 'react';
-import apiClient from '../../../utils/libs/apiClient.ts';
+import apiClient from '../../../apis/apiClient.ts';
 import { EmptyPlaying } from '../../../assets/index.ts';
 
 interface Team {

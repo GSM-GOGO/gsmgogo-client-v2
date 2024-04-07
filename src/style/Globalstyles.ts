@@ -1,10 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
-import '../fonts/woff/PretendardWoff.css';
-import '../fonts/woff2/PretendardWoff2.css';
+import '../assets/fonts/woff/PretendardWoff.css';
+import '../assets/fonts/woff2/PretendardWoff2.css';
 
 export const GlobalStyles = createGlobalStyle`
 	body{
-	      overflow-x: hidden;
+        overflow-x: hidden;
         background: var(--Black, #1C1C1F);
         width: 100vw;
         height: 100vh;

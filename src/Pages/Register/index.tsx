@@ -97,11 +97,9 @@ const Register = () => {
 
         if (selectedSport === '배드민턴') {
           endpoint += '&type=BADMINTON';
-        }
-        else if(selectedSport === '배구'){
+        } else if (selectedSport === '배구') {
           endpoint += '&type=VOLLEYBALL';
-        }
-        else if(selectedSport === '축구'){
+        } else if (selectedSport === '축구') {
           endpoint += '&type=SOCCER';
         }
 

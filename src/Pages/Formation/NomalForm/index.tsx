@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 
 import 'react-toastify/dist/ReactToastify.css';
+import LoadingContent from '../../../components/Loading/content.tsx';
 
 type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP' | 'CROSS_ROPE_JUMP';
 
@@ -22,6 +23,8 @@ interface ErrorResponse {
 const NomalForm = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null); // activeCategoryId 타입 수정
   const [deleteTeam, setdeleteTeam] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   const toggleCategory = (categoryId: number) => {
     setActiveCategoryId(categoryId === activeCategoryId ? null : categoryId);
@@ -55,7 +58,13 @@ const NomalForm = () => {
           },
         });
         setTeamList(response.data);
-      } catch (e) {}
+      } catch (e: any) {
+        if (e.response?.status === 404) {
+          setNotFound(true);
+        }
+      } finally {
+        setLoading(false);
+      }
     };
 
     fetchNormal();
@@ -90,9 +99,16 @@ const NomalForm = () => {
     CROSS_ROPE_JUMP: '8자 줄넘기',
   };
 
+  if (loading) {
+    return <LoadingContent />;
+  }
+
+  if (notFound) {
+    navigate(`/matches-unknown`);
+  }
+
   return (
     <>
-      {id}
       <S.Wrapper>
         {deleteTeam ? (
           <S.ModalBackground>

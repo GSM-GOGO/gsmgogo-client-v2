@@ -93,8 +93,13 @@ const Register = () => {
     const getSearch = async () => {
       try {
         const token = localStorage.getItem('accessToken');
+        let searchUrl = `/user/search?name=${searchedName}`;
 
-        const response = await apiClient.get(`/user/search?name=${searchedName}`, {
+        if (selectedSport === '배드민턴') {
+          searchUrl += '&type=BADMINTON';
+        }
+
+        const response = await apiClient.get(searchUrl, {
           headers: {
             Authorization: token,
           },

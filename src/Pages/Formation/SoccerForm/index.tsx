@@ -93,7 +93,7 @@ const SoccerForm = () => {
           withCredentials: true,
         });
         setFormData(response.data);
-      } catch (e) {
+      } catch (e: any) {
         if (e.response?.status === 404) {
           setNotFound(true);
         }

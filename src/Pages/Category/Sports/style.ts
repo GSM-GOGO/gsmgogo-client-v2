@@ -37,6 +37,11 @@ export const ListWrapper = styled.div`
   gap: 1.5rem;
   height: calc(100vh - 9.75rem);
   position: relative;
+
+  @media screen and (max-width: 680px) {
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
 `;
 
 export const ListContainer = styled.div`
@@ -55,10 +60,6 @@ export const List = styled.div`
 
   background: #26262a;
   justify-content: space-between;
-
-  @media screen and (max-width: 680px) {
-    margin: 0 1rem;
-  }
 `;
 
 export const TextContainer = styled.div`
@@ -114,6 +115,10 @@ export const TeamClass = styled.p`
   @media screen and (max-width: 500px) {
     font-size: 0.5rem;
   }
+`;
+
+export const StrokeContainer = styled.div`
+  width: 100%;
 `;
 
 export const Stroke = styled.div`

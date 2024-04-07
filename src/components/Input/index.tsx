@@ -3,7 +3,7 @@ import { UseFormRegisterReturn, UseFormSetError } from 'react-hook-form';
 import * as S from './style';
 import Timer from '../Timer';
 import { FormData } from '../../types/FormDataType';
-import apiClient from '../../utils/libs/apiClient';
+import apiClient from '../../apis/apiClient';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';

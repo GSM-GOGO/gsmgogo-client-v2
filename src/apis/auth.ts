@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation, Location, useNavigate } from 'react-router-dom';
-import apiClient from '../libs/apiClient';
+import apiClient from './apiClient';
 
 export function Login() {
   const navigate = useNavigate();

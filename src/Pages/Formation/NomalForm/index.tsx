@@ -3,7 +3,7 @@ import { OpenReview, CloseReview } from '../../../assets';
 import * as S from './style.ts';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import apiClient from '../../../utils/libs/apiClient.ts';
+import apiClient from '../../../apis/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 

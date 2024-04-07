@@ -5,7 +5,7 @@ import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import LoadingContent from '../../../components/Loading/content.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import apiClient from '../../../utils/libs/apiClient.ts';
+import apiClient from '../../../apis/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 

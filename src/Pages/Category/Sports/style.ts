@@ -139,7 +139,7 @@ export const FormationButton = styled.button`
 
   @media screen and (max-width: 500px) {
     font-size: 0.75rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
   }
 `;
 
@@ -160,7 +160,7 @@ export const CheerButton = styled.button`
 
   @media screen and (max-width: 500px) {
     font-size: 0.75rem;
-    padding: 0.5rem 1rem;
+    padding: 0.5rem;
   }
 `;
 

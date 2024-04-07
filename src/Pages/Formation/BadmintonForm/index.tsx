@@ -4,6 +4,7 @@ import * as S from '../style.ts';
 import * as D from './style.ts';
 import Draggable from 'react-draggable';
 import BadmintonField from '../../../assets/png/BadmintonField.png';
+import LoadingContent from '../../../components/Loading/content.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
@@ -46,6 +47,8 @@ const BadmintonForm = () => {
   ({});
   const [deleteTeam, setdeleteTeam] = useState(false);
   const formationFieldRef = useRef<HTMLDivElement>(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -75,7 +78,13 @@ const BadmintonForm = () => {
           withCredentials: true,
         });
         setFormData(response.data);
-      } catch (e) {}
+      } catch (e) {
+        if (e.response?.status === 404) {
+          setNotFound(true);
+        }
+      } finally {
+        setLoading(false);
+      }
     };
     getBadmintonForm();
   }, []);
@@ -116,6 +125,14 @@ const BadmintonForm = () => {
   const deleteTeamSuccess = () => {
     toast.success('팀이 삭제되었습니다!', { autoClose: 1000 });
   };
+
+  if (loading) {
+    return <LoadingContent />;
+  }
+
+  if (notFound) {
+    navigate(`/matches-unknown`);
+  }
 
   return (
     <>

@@ -24,6 +24,7 @@ const NomalForm = () => {
   const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null); // activeCategoryId 타입 수정
   const [deleteTeam, setdeleteTeam] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   const toggleCategory = (categoryId: number) => {
     setActiveCategoryId(categoryId === activeCategoryId ? null : categoryId);
@@ -57,7 +58,10 @@ const NomalForm = () => {
           },
         });
         setTeamList(response.data);
-      } catch (e) {
+      } catch (e: any) {
+        if (e.response?.status === 404) {
+          setNotFound(true);
+        }
       } finally {
         setLoading(false);
       }
@@ -97,6 +101,10 @@ const NomalForm = () => {
 
   if (loading) {
     return <LoadingContent />;
+  }
+
+  if (notFound) {
+    navigate(`/matches-unknown`);
   }
 
   return (

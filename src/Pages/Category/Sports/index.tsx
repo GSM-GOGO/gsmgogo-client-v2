@@ -252,7 +252,9 @@ const Sports = () => {
                                 </S.ButtonContainer>
                               </S.List>
                             </S.ListContainer>
-                            <S.Stroke />
+                            <S.StrokeContainer>
+                              <S.Stroke />
+                            </S.StrokeContainer>
                           </>
                         ) : (
                           <></>

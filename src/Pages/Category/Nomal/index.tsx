@@ -99,7 +99,9 @@ const NomalMatch = () => {
                               </S.CheckButton>
                             </S.List>
                           </S.ListContainer>
-                          <S.Stroke />
+                          <S.StrokeContainer>
+                            <S.Stroke />
+                          </S.StrokeContainer>
                         </>
                       ) : (
                         <></>

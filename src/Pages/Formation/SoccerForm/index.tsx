@@ -51,18 +51,7 @@ const SoccerForm = () => {
   const teamId = id;
 
   useEffect(() => {
-    if (formationFieldRef.current) {
-      const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
-      setBounds({
-        left: 20,
-        top: 40,
-        right: right - left - 55,
-        bottom: bottom - top - 80,
-      });
-    }
-
-    // Add event listener to track viewport size changes
-    const handleResize = () => {
+    const updateBounds = () => {
       if (formationFieldRef.current) {
         const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
         setBounds({
@@ -71,15 +60,12 @@ const SoccerForm = () => {
           right: right - left - 55,
           bottom: bottom - top - 80,
         });
+      } else {
+        setTimeout(updateBounds, 500);
       }
     };
 
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      // Remove event listener when component unmounts
-      window.removeEventListener('resize', handleResize);
-    };
+    updateBounds();
   }, []);
 
   useEffect(() => {

@@ -42,6 +42,7 @@ const VolleyForm = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [disableDrag, setDisableDrag] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -86,6 +87,18 @@ const VolleyForm = () => {
       }
     };
     getVolleyForm();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDisableDrag(window.innerWidth < 500);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const deleteMyTeam = async () => {
@@ -192,6 +205,7 @@ const VolleyForm = () => {
                           }}
                           bounds={bounds}
                           nodeRef={formationFieldRef}
+                          disabled={disableDrag}
                         >
                           <D.PlayerContainer style={{ cursor: 'pointer' }}>
                             <People />

@@ -49,6 +49,7 @@ const BadmintonForm = () => {
   const formationFieldRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
+  const [disableDrag, setDisableDrag] = useState(false);
 
   const navigate = useNavigate();
   const { id } = useParams();
@@ -93,6 +94,18 @@ const BadmintonForm = () => {
       }
     };
     getBadmintonForm();
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDisableDrag(window.innerWidth < 500);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   const deleteMyTeam = async () => {
@@ -215,7 +228,7 @@ const BadmintonForm = () => {
                           }}
                           bounds={bounds}
                           nodeRef={formationFieldRef}
-                          // disabled={true}
+                          disabled={disableDrag}
                         >
                           <D.PlayerContainer style={{ cursor: 'pointer' }}>
                             <People />

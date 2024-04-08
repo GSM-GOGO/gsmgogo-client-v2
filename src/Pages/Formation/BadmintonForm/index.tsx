@@ -56,15 +56,21 @@ const BadmintonForm = () => {
   const teamId = id;
 
   useEffect(() => {
-    if (formationFieldRef.current) {
-      const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
-      setBounds({
-        left: 20,
-        top: 20,
-        right: right - left - 55,
-        bottom: bottom - top - 65,
-      });
-    }
+    const updateBounds = () => {
+      if (formationFieldRef.current) {
+        const { left, top, right, bottom } = formationFieldRef.current.getBoundingClientRect();
+        setBounds({
+          left: 20,
+          top: 20,
+          right: right - left - 55,
+          bottom: bottom - top - 65,
+        });
+      } else {
+        setTimeout(updateBounds, 500);
+      }
+    };
+
+    updateBounds();
   }, []);
 
   useEffect(() => {
@@ -209,6 +215,7 @@ const BadmintonForm = () => {
                           }}
                           bounds={bounds}
                           nodeRef={formationFieldRef}
+                          // disabled={true}
                         >
                           <D.PlayerContainer style={{ cursor: 'pointer' }}>
                             <People />

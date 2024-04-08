@@ -1,7 +1,7 @@
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
 import { useNavigate } from 'react-router-dom';
-import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
+// import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import { useEffect, useState } from 'react';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { EmptyPlaying } from '../../../assets/index.ts';
@@ -148,9 +148,9 @@ const NomalMatch = () => {
                   <EmptyPlaying />
                 </S.SvgContainer>
               )}
-              <S.AddButton onClick={() => setAddteam(!addteam)}>
+              {/* <S.AddButton onClick={() => setAddteam(!addteam)}>
                 <TeamAddButton />
-              </S.AddButton>
+              </S.AddButton> */}
             </S.ListWrapper>
           </S.ContainerResponse>
         </S.Container>

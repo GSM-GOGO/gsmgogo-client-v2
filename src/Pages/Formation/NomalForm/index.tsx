@@ -141,9 +141,9 @@ const NomalForm = () => {
                 </S.TeamName>
               </S.TeamTextContainer>
 
-              {teamList.author_me === true ? (
+              {/* {teamList.author_me === true ? (
                 <S.DeleteButton onClick={() => setdeleteTeam(!deleteTeam)}>삭제하기</S.DeleteButton>
-              ) : null}
+              ) : null} */}
             </S.TeamTitleContainer>
             <S.ListWrapper>
               {teamList.team_list?.map((category, index) => (

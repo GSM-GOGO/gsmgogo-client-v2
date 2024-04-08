@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
+// import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
@@ -334,9 +334,9 @@ const Sports = () => {
                     </>
                   ))}
 
-                  <S.AddButton onClick={() => setAddteam(!addteam)}>
+                  {/* <S.AddButton onClick={() => setAddteam(!addteam)}>
                     <TeamAddButton />
-                  </S.AddButton>
+                  </S.AddButton> */}
                 </S.ListWrapper>
               </S.ContainerResponse>
             </S.Container>
@@ -376,9 +376,9 @@ const Sports = () => {
                     <S.SvgContainer>
                       <EmptyPlaying />
                     </S.SvgContainer>
-                    <S.AddButton onClick={() => setAddteam(!addteam)}>
+                    {/* <S.AddButton onClick={() => setAddteam(!addteam)}>
                       <TeamAddButton />
-                    </S.AddButton>
+                    </S.AddButton> */}
                   </S.ListWrapper>
                 </S.ContainerResponse>
               </S.Container>

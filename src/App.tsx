@@ -7,11 +7,11 @@ import BadmintonForm from './Pages/Formation/BadmintonForm/index.tsx';
 import NomalMatch from './Pages/Category/Nomal/index.tsx';
 import NomalForm from './Pages/Formation/NomalForm/index.tsx';
 import Sports from './Pages/Category/Sports/index.tsx';
-import Register from './Pages/Register/index.tsx';
+// import Register from './Pages/Register/index.tsx';
 import AuthCallBack from './Pages/AuthCallBack/index.tsx';
-import Badminton from './Pages/Register/Badminton/index.tsx';
-import Soccer from './Pages/Register/Soccer/index.tsx';
-import Volleyball from './Pages/Register/Volleyball/index.tsx';
+// import Badminton from './Pages/Register/Badminton/index.tsx';
+// import Soccer from './Pages/Register/Soccer/index.tsx';
+// import Volleyball from './Pages/Register/Volleyball/index.tsx';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import Header from './components/Header/index.tsx';
 import styled from 'styled-components';
@@ -133,7 +133,7 @@ function App() {
               }
             />
 
-            <Route
+            {/* <Route
               path="/register"
               element={
                 <>
@@ -176,7 +176,7 @@ function App() {
                   <Volleyball />
                 </>
               }
-            />
+            /> */}
           </Route>
 
           <Route path="/auth/callback" element={<AuthCallBack />} />

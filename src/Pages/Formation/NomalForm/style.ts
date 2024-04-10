@@ -90,7 +90,6 @@ export const ListWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 1rem;
-  margin-bottom: 0.75rem;
 `;
 
 export const ListContainer = styled.div`
@@ -160,6 +159,7 @@ export const ReturnButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 2rem;
 `;
 
 export const ReturnButton = styled.button`

@@ -3,8 +3,8 @@
   "short_name": "GSM-GOGO",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "var(--Black, #1C1C1F)",
-  "theme_color": "var(--Black, #1C1C1F)",
+  "background_color": "pink",
+  "theme_color": "pink",
   "icons": [
     {
       "src": "icons/icon-48x48.png",

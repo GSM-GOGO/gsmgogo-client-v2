@@ -98,13 +98,18 @@ const PlayContainer = ({ date }: { date: Date }) =>
     // console.log(matches);
     // console.log(matchResult);
 
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [matches, setMatches] = useState<Match[]>([]);
     const [matchResult, setMatchResult] = useState<MatchResult>([]);
     const [modal, setModal] = useState(false);
     const [teamA, setTeamA] = useState('');
     const [teamB, setTeamB] = useState('');
     const [sameInput, setSameInput] = useState(false);
+    const [point, setPoint] = useState('');
+    const [selectedTeam, setSelectedTeam] = useState('');
+    const [selectedSports, setSelectedSports] = useState('');
+    const [nextModal, setNextModal] = useState(false);
+    const [matchId, setMatchId] = useState<number | undefined>();
 
     const dates = useMemo(() => {
       const today = new Date();
@@ -129,6 +134,77 @@ const PlayContainer = ({ date }: { date: Date }) =>
       setSelectedDate(date);
     }, []);
 
+    const onChangeInput = (e: { target: { name: string; value: string } }) => {
+      const {
+        target: { name, value },
+      } = e;
+
+      const filteredInput = value.replace(/\D/g, '');
+
+      if (name === 'TeamA') {
+        setTeamA(filteredInput);
+      } else if (name === 'TeamB') {
+        setTeamB(filteredInput);
+      }
+    };
+
+    const onPointInput = (e: { target: { value: string } }) => {
+      const {
+        target: { value },
+      } = e;
+
+      const filteredInput = value.replace(/\D/g, '');
+
+      setPoint(filteredInput);
+    };
+
+    const handleButton = () => {
+      if (teamA === teamB && teamA !== '' && teamB !== '') {
+        setSameInput(true);
+      } else if (teamA !== '' && teamB !== '') {
+        setSameInput(false);
+        setNextModal(true);
+      }
+    };
+
+    const handleBettingClick = (
+      match_id: number | undefined,
+      team_a_score: string,
+      team_b_score: string,
+      bet_point: string
+    ) => {
+      if (match_id !== undefined) {
+        try {
+          const token = localStorage.getItem('accessToken');
+
+          apiClient.post(
+            `/bet`,
+            {
+              match_id: Number(match_id),
+              bet_point: Number(bet_point),
+              team_a_score: Number(team_a_score),
+              team_b_score: Number(team_b_score),
+            },
+            {
+              headers: {
+                Authorization: token,
+              },
+              withCredentials: true,
+            }
+          );
+        } catch (e) {}
+      }
+    };
+
+    const HandleModalOpen = (TeamName1: string, TeamName2: string) => {
+      setSelectedTeam(`${TeamName1} - ${TeamName2}`);
+      setModal(true);
+    };
+
+    const ClickedSportsName = (SportsName: string) => {
+      setSelectedSports(`${SportsName}`);
+    };
+
     useEffect(() => {
       if (selectedDate) {
         const month = selectedDate.getMonth() + 1;
@@ -151,7 +227,6 @@ const PlayContainer = ({ date }: { date: Date }) =>
         fetchData();
       }
     }, [selectedDate]);
-    console.log(matches);
 
     const formatMapping = () => {
       return matches.map((match) => {
@@ -250,7 +325,13 @@ const PlayContainer = ({ date }: { date: Date }) =>
           }
         };
 
-        const getUserVote = () => {
+        const bettingClick = (match_id: number | undefined) => {
+          if (match_id !== undefined) {
+            setMatchId(match_id);
+          }
+        };
+
+        const getUserVote = (match: Match) => {
           if (match.is_vote === false) {
             return (
               <label
@@ -258,6 +339,7 @@ const PlayContainer = ({ date }: { date: Date }) =>
                   setModal(!modal);
                   HandleModalOpen(match.team_a_name, match.team_b_name);
                   ClickedSportsName(sportName);
+                  bettingClick(match.match_id);
                 }}
                 style={{ cursor: 'pointer' }}
               >
@@ -267,9 +349,11 @@ const PlayContainer = ({ date }: { date: Date }) =>
               </label>
             );
           } else if (match.is_vote === true) {
-            <S.VoteConatiner style={{ border: '1px solid var(--colors-main-main-900, #045D36)' }}>
-              <S.VoteText style={{ color: 'var(--colors-main-main-900, #045D36)' }}>투표</S.VoteText>
-            </S.VoteConatiner>;
+            return (
+              <S.VoteConatiner style={{ border: '1px solid var(--colors-main-main-900, #045D36)' }}>
+                <S.VoteText style={{ color: 'var(--colors-main-main-900, #045D36)' }}>투표</S.VoteText>
+              </S.VoteConatiner>
+            );
           }
         };
 
@@ -326,37 +410,10 @@ const PlayContainer = ({ date }: { date: Date }) =>
               </S.OneTimeBox>
             </S.TimeContainer>
 
-            <div style={{ display: 'flex', justifyContent: 'center' }}>{getUserVote()}</div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>{getUserVote(match)}</div>
           </S.PlayingContainer>
         );
       });
-    };
-
-    const [selectedTeam, setSelectedTeam] = useState('');
-    const [selectedSports, setSelectedSports] = useState('');
-    const [nextModal, setNextModal] = useState(false);
-
-    const onChangeInput = (e: { target: { name: string; value: string } }) => {
-      const {
-        target: { name, value },
-      } = e;
-
-      const filteredInput = value.replace(/\D/g, '');
-
-      if (name === 'TeamA') {
-        setTeamA(filteredInput);
-      } else if (name === 'TeamB') {
-        setTeamB(filteredInput);
-      }
-    };
-
-    const handleButton = () => {
-      if (teamA === teamB && teamA !== '' && teamB !== '') {
-        setSameInput(true);
-      } else if (teamA !== '' && teamB !== '') {
-        setSameInput(false);
-        setNextModal(true);
-      }
     };
 
     // const SuccesOfFail = () => {
@@ -375,15 +432,6 @@ const PlayContainer = ({ date }: { date: Date }) =>
     // const FormatBettingPoint = (BettingPoint: string) => {
     //   return BettingPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     // };
-
-    const HandleModalOpen = (TeamName1: string, TeamName2: string) => {
-      setSelectedTeam(`${TeamName1} - ${TeamName2}`);
-      setModal(true);
-    };
-
-    const ClickedSportsName = (SportsName: string) => {
-      setSelectedSports(`${SportsName}`);
-    };
 
     return (
       <>
@@ -416,7 +464,13 @@ const PlayContainer = ({ date }: { date: Date }) =>
                   </S.ModalInputContainer>
                 ) : (
                   <S.ModalPointContainer>
-                    <S.ModalPointInput type="text" placeholder="마이너스 불가능" />
+                    <S.ModalPointInput
+                      type="text"
+                      placeholder="마이너스 불가능"
+                      maxLength={24}
+                      value={point}
+                      onChange={onPointInput}
+                    />
                     <S.PText>P</S.PText>
                   </S.ModalPointContainer>
                 )}
@@ -429,6 +483,7 @@ const PlayContainer = ({ date }: { date: Date }) =>
                     setModal(!modal);
                     setTeamA('');
                     setTeamB('');
+                    setPoint('');
                     setSameInput(false);
                     setNextModal(false);
                   }}
@@ -438,9 +493,7 @@ const PlayContainer = ({ date }: { date: Date }) =>
                 {nextModal === false ? (
                   <S.ModalCheerButton onClick={handleButton}>다음</S.ModalCheerButton>
                 ) : (
-                  <S.ModalCheerButton
-                  // onClick={handleButton}
-                  >
+                  <S.ModalCheerButton onClick={() => handleBettingClick(matchId, teamA, teamB, point)}>
                     베팅하기
                   </S.ModalCheerButton>
                 )}
@@ -453,7 +506,7 @@ const PlayContainer = ({ date }: { date: Date }) =>
             <S.DateContainer
               key={index}
               onClick={() => handleDateClick(date)}
-              selected={selectedDate === date || (selectedDate === null && index === 0)}
+              selected={date.getDate() === selectedDate.getDate()}
             >
               <S.DayText>{dayOfWeek[index]}</S.DayText>
               <S.DayText>{date.getDate()}일</S.DayText>

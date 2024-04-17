@@ -18,6 +18,9 @@ interface Match {
   team_b_name: string;
   team_b_grade?: 'ONE' | 'TWO' | 'THREE';
   team_b_class_type?: 'SW' | 'EB';
+  badminton_rank?: 'A' | 'B' | 'C' | 'D';
+  badminton_a_participate_names: string; // 신희성/신희성
+  badminton_b_participate_names: string;
   match_start_at: string; // Format: "0000-00-00T00:00:00"
   match_end_at: string; // Format: "0000-00-00T00:00:00"
   is_vote: boolean;
@@ -98,6 +101,10 @@ const PlayContainer = ({ date }: { date: Date }) =>
     const [selectedDate, setSelectedDate] = useState<Date | null>(null);
     const [matches, setMatches] = useState<Match[]>([]);
     const [matchResult, setMatchResult] = useState<MatchResult>([]);
+    const [modal, setModal] = useState(false);
+    const [teamA, setTeamA] = useState('');
+    const [teamB, setTeamB] = useState('');
+    const [sameInput, setSameInput] = useState(false);
 
     const dates = useMemo(() => {
       const today = new Date();
@@ -122,13 +129,11 @@ const PlayContainer = ({ date }: { date: Date }) =>
       setSelectedDate(date);
     }, []);
 
-    // 선택한 날짜가 변경될 때마다 실행되는 useEffect
     useEffect(() => {
       if (selectedDate) {
-        const month = selectedDate.getMonth() + 1; // 월 추출
-        const day = selectedDate.getDate(); // 일 추출
+        const month = selectedDate.getMonth() + 1;
+        const day = selectedDate.getDate();
 
-        // API 요청 보내기
         const fetchData = async () => {
           try {
             const token = localStorage.getItem('accessToken');
@@ -143,37 +148,28 @@ const PlayContainer = ({ date }: { date: Date }) =>
           } catch (error) {}
         };
 
-        fetchData(); // fetchData 함수 호출
+        fetchData();
       }
     }, [selectedDate]);
+    console.log(matches);
 
     const formatMapping = () => {
       return matches.map((match) => {
         const sportType = match.match_type;
-        let sportName = '';
-        if (sportType === 'BADMINTON') {
-          sportName = '배드민턴';
-        } else if (sportType === 'SOCCER') {
-          sportName = '축구';
-        } else if (sportType === 'VOLLEYBALL') {
-          sportName = '배구';
-        }
-        // match_start_at에서 오는 날짜 및 시간 문자열
         const dateTimeString = match.match_start_at;
         const endTimeString = match.match_end_at;
+        const teamGradeA = match.badminton_a_participate_names;
+        const teamGradeB = match.badminton_b_participate_names;
 
-        // ISO 8601 형식으로 파싱하여 JavaScript Date 객체 생성
         const dateTime = new Date(dateTimeString);
         const matchEnd = new Date(endTimeString);
 
-        // 시간과 분 추출
         const hours = dateTime.getHours();
         const minutes = dateTime.getMinutes();
 
         const endHours = matchEnd.getHours();
         const endMinutes = matchEnd.getMinutes();
 
-        // 시간과 분을 두 자리 숫자로 포맷팅
         const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
         const endFormatted = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
 
@@ -182,7 +178,67 @@ const PlayContainer = ({ date }: { date: Date }) =>
         const votingStartHours = votingStart.getHours();
         const votingStartMinutes = votingStart.getMinutes();
         const votingStartFormatted = `${votingStartHours.toString().padStart(2, '0')}:${votingStartMinutes.toString().padStart(2, '0')}`;
-        // 변환된 시간을 반환하거나 필요한 곳에 사용할 수 있음
+
+        let sportName = '';
+        let gradeInfoA = '';
+        let gradeInfoB = '';
+
+        const getSportName = () => {
+          if (sportType === 'BADMINTON') {
+            sportName = '배드민턴';
+
+            if (match.badminton_rank === 'D') {
+              return (
+                <S.EventTexts style={{ color: '#FFF' }}>
+                  여자 <br /> {sportName}
+                </S.EventTexts>
+              );
+            } else {
+              return (
+                <S.EventTexts style={{ color: '#FFF' }}>
+                  {match.badminton_rank}팀
+                  <br /> {sportName}
+                </S.EventTexts>
+              );
+            }
+          } else if (sportType === 'SOCCER') {
+            sportName = '축구';
+            return <S.EventTexts style={{ color: '#FFF' }}>{sportName}</S.EventTexts>;
+          } else if (sportType === 'VOLLEYBALL') {
+            sportName = '배구';
+            return <S.EventTexts style={{ color: '#FFF' }}>{sportName}</S.EventTexts>;
+          }
+        };
+
+        if (sportType === 'BADMINTON') {
+          gradeInfoA = teamGradeA;
+          gradeInfoB = teamGradeB;
+        } else {
+          if (match.team_a_class_type === 'SW') {
+            gradeInfoA += 'SW';
+          } else if (match.team_a_class_type === 'EB') {
+            gradeInfoA += '임베';
+          }
+          if (match.team_a_grade === 'ONE') {
+            gradeInfoA += ' 1학년';
+          } else if (match.team_a_grade === 'TWO') {
+            gradeInfoA += ' 2학년';
+          } else if (match.team_a_grade === 'THREE') {
+            gradeInfoA += ' 3학년';
+          }
+          if (match.team_b_class_type === 'SW') {
+            gradeInfoB += 'SW';
+          } else if (match.team_b_class_type === 'EB') {
+            gradeInfoB += '임베';
+          }
+          if (match.team_b_grade === 'ONE') {
+            gradeInfoB += ' 1학년';
+          } else if (match.team_b_grade === 'TWO') {
+            gradeInfoB += ' 2학년';
+          } else if (match.team_b_grade === 'THREE') {
+            gradeInfoB += ' 3학년';
+          }
+        }
 
         const getEventText = () => {
           if (match.match_level === 'FINAL') {
@@ -191,6 +247,29 @@ const PlayContainer = ({ date }: { date: Date }) =>
             return <S.EventTexts>본선</S.EventTexts>;
           } else if (match.match_level === 'TRYOUT') {
             return <S.EventTexts>예선</S.EventTexts>;
+          }
+        };
+
+        const getUserVote = () => {
+          if (match.is_vote === false) {
+            return (
+              <label
+                onClick={() => {
+                  setModal(!modal);
+                  HandleModalOpen(match.team_a_name, match.team_b_name);
+                  ClickedSportsName(sportName);
+                }}
+                style={{ cursor: 'pointer' }}
+              >
+                <S.VoteConatiner style={{ background: 'var(--Main, #23F69A)' }}>
+                  <S.VoteText style={{ color: 'var(--Black, #1C1C1F)' }}>투표</S.VoteText>
+                </S.VoteConatiner>
+              </label>
+            );
+          } else if (match.is_vote === true) {
+            <S.VoteConatiner style={{ border: '1px solid var(--colors-main-main-900, #045D36)' }}>
+              <S.VoteText style={{ color: 'var(--colors-main-main-900, #045D36)' }}>투표</S.VoteText>
+            </S.VoteConatiner>;
           }
         };
 
@@ -205,22 +284,28 @@ const PlayContainer = ({ date }: { date: Date }) =>
             <S.MainContainer>
               <S.EventContainer>
                 {getEventText()}
-                <S.EventTexts style={{ color: '#FFF' }}>{sportName}</S.EventTexts>
+                {getSportName()}
               </S.EventContainer>
 
               <S.GradeBox>
                 <S.OneGrade key={match.team_a_id}>
                   <S.ForMedia>
-                    <S.TeamName style={{ color: '#FFF' }}>{match.team_a_name}팀</S.TeamName>
+                    <S.GradeContainer>
+                      <S.TeamName style={{ color: '#FFF' }}>{match.team_a_name}팀</S.TeamName>
+                      <S.TeamName style={{ color: '#FFF' }}>{match.team_a_bet}%</S.TeamName>
+                    </S.GradeContainer>
                   </S.ForMedia>
-                  <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{match.team_a_grade}</S.GradeText>
+                  <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText>
                 </S.OneGrade>
 
                 <S.OneGrade key={match.team_b_id}>
                   <S.ForMedia>
-                    <S.TeamName style={{ color: '#FFF' }}>{match.team_b_name}팀</S.TeamName>
+                    <S.GradeContainer>
+                      <S.TeamName style={{ color: '#FFF' }}>{match.team_b_name}팀</S.TeamName>
+                      <S.TeamName style={{ color: '#FFF' }}>{match.team_b_bet}%</S.TeamName>
+                    </S.GradeContainer>
                   </S.ForMedia>
-                  <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{match.team_a_grade}</S.GradeText>
+                  <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText>
                 </S.OneGrade>
               </S.GradeBox>
             </S.MainContainer>
@@ -241,67 +326,38 @@ const PlayContainer = ({ date }: { date: Date }) =>
               </S.OneTimeBox>
             </S.TimeContainer>
 
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              {/* {isLive ? (
-                  <PlayingButton />
-                ) : isVoting ? ( */}
-              <label
-                // onClick={() => {
-                //   setModal(!modal);
-                //   HandleModalOpen(TeamName);
-                //   ClickedSportsName(SportsName);
-                // }}
-                style={{ cursor: 'pointer' }}
-              >
-                <Vote />
-              </label>
-              {/* ) : (
-                  <NotVote />
-                )} */}
-            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>{getUserVote()}</div>
           </S.PlayingContainer>
         );
       });
     };
 
-    // const startTime = new Date(matches.match_start_at); // 문자열을 Date 객체로 변환
-    // const hours = startTime.getHours(); // 시간 추출
-    // const minutes = startTime.getMinutes(); // 분 추출
-    // const formattedTime = `${hours < 10 ? '0' : ''}${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
+    const [selectedTeam, setSelectedTeam] = useState('');
+    const [selectedSports, setSelectedSports] = useState('');
+    const [nextModal, setNextModal] = useState(false);
 
-    // const [modal, setModal] = useState(false);
-    // const [teamA, setTeamA] = useState('');
-    // const [teamB, setTeamB] = useState('');
-    // const [sameInput, setSameInput] = useState(false);
-    // const [selectedTeam, setSelectedTeam] = useState('');
-    // const [selectedSports, setSelectedSports] = useState('');
+    const onChangeInput = (e: { target: { name: string; value: string } }) => {
+      const {
+        target: { name, value },
+      } = e;
 
-    // const predictScore0 = parseInt(PredictScore[0]);
-    // const predictScore1 = parseInt(PredictScore[1]);
-    // const score0 = parseInt(Score[0]);
-    // const score1 = parseInt(Score[1]);
+      const filteredInput = value.replace(/\D/g, '');
 
-    // const onChangeInput = (e: { target: { name: string; value: string } }) => {
-    //   const {
-    //     target: { name, value },
-    //   } = e;
+      if (name === 'TeamA') {
+        setTeamA(filteredInput);
+      } else if (name === 'TeamB') {
+        setTeamB(filteredInput);
+      }
+    };
 
-    //   const filteredInput = value.replace(/\D/g, '');
-
-    //   if (name === 'TeamA') {
-    //     setTeamA(filteredInput);
-    //   } else if (name === 'TeamB') {
-    //     setTeamB(filteredInput);
-    //   }
-    // };
-
-    // const handleButton = () => {
-    //   if (teamA === teamB && teamA !== '' && teamB !== '') {
-    //     setSameInput(true);
-    //   } else if (teamA !== '' && teamB !== '') {
-    //     setSameInput(false);
-    //   }
-    // };
+    const handleButton = () => {
+      if (teamA === teamB && teamA !== '' && teamB !== '') {
+        setSameInput(true);
+      } else if (teamA !== '' && teamB !== '') {
+        setSameInput(false);
+        setNextModal(true);
+      }
+    };
 
     // const SuccesOfFail = () => {
     //   if (predictScore0 === score0 && predictScore1 === score1) {
@@ -320,18 +376,18 @@ const PlayContainer = ({ date }: { date: Date }) =>
     //   return BettingPoint.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     // };
 
-    // const HandleModalOpen = (TeamName: string[]) => {
-    //   setSelectedTeam(`${TeamName[0]} - ${TeamName[1]}`);
-    //   setModal(true);
-    // };
+    const HandleModalOpen = (TeamName1: string, TeamName2: string) => {
+      setSelectedTeam(`${TeamName1} - ${TeamName2}`);
+      setModal(true);
+    };
 
-    // const ClickedSportsName = (SportsName: string) => {
-    //   setSelectedSports(`${SportsName}`);
-    // };
+    const ClickedSportsName = (SportsName: string) => {
+      setSelectedSports(`${SportsName}`);
+    };
 
     return (
       <>
-        {/* {modal ? (
+        {modal ? (
           <S.ModalBackground>
             <S.ModalContainer>
               <S.ModalTextWrapper>
@@ -340,14 +396,31 @@ const PlayContainer = ({ date }: { date: Date }) =>
                     <S.ModalTitleContainer>{selectedSports} 경기에 투표 하시겠습니까?</S.ModalTitleContainer>
                   </S.ModalTitle>
                   <S.ModalNovelContainer>
-                    <S.ModalNovel>{selectedTeam} 팀의 경기 결과를 예측해 투표해 주세요.</S.ModalNovel>
+                    <S.ModalNovel>
+                      {nextModal === false ? (
+                        <>
+                          {selectedTeam} 팀의 <br />
+                          경기 결과를 예측해 투표해 주세요.
+                        </>
+                      ) : (
+                        <>예측한 결과에 걸 포인트를 입력해주세요</>
+                      )}
+                    </S.ModalNovel>
                   </S.ModalNovelContainer>
                 </S.ModalTextContainer>
-                <S.ModalInputContainer>
-                  <S.ModalInput name="TeamA" maxLength={2} type="text" value={teamA} onChange={onChangeInput} />
-                  <S.ModalInputText>:</S.ModalInputText>
-                  <S.ModalInput name="TeamB" maxLength={2} type="text" value={teamB} onChange={onChangeInput} />
-                </S.ModalInputContainer>
+                {nextModal === false ? (
+                  <S.ModalInputContainer>
+                    <S.ModalInput name="TeamA" maxLength={2} type="text" value={teamA} onChange={onChangeInput} />
+                    <S.ModalInputText>:</S.ModalInputText>
+                    <S.ModalInput name="TeamB" maxLength={2} type="text" value={teamB} onChange={onChangeInput} />
+                  </S.ModalInputContainer>
+                ) : (
+                  <S.ModalPointContainer>
+                    <S.ModalPointInput type="text" placeholder="마이너스 불가능" />
+                    <S.PText>P</S.PText>
+                  </S.ModalPointContainer>
+                )}
+
                 {sameInput && <S.ModalInputError>무승부 배팅은 불가능 합니다.</S.ModalInputError>}
               </S.ModalTextWrapper>
               <S.ModalButtonContainer>
@@ -357,19 +430,24 @@ const PlayContainer = ({ date }: { date: Date }) =>
                     setTeamA('');
                     setTeamB('');
                     setSameInput(false);
+                    setNextModal(false);
                   }}
                 >
                   아니오
                 </S.ModalCencleButton>
-                <S.ModalCheerButton
-                // onClick={handleButton}
-                >
-                  투표하기
-                </S.ModalCheerButton>
+                {nextModal === false ? (
+                  <S.ModalCheerButton onClick={handleButton}>다음</S.ModalCheerButton>
+                ) : (
+                  <S.ModalCheerButton
+                  // onClick={handleButton}
+                  >
+                    베팅하기
+                  </S.ModalCheerButton>
+                )}
               </S.ModalButtonContainer>
             </S.ModalContainer>
           </S.ModalBackground>
-        ) : null} */}
+        ) : null}
         <S.WeatherWrapper>
           {dates.map((date, index) => (
             <S.DateContainer

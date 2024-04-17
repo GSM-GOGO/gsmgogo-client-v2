@@ -65,10 +65,16 @@ export const TeamName = styled.h3`
 `;
 
 export const ForMedia = styled.div`
-  width: 6.25rem;
+  width: 8.5rem;
   @media (max-width: 650px) {
-    width: 5rem;
+    width: 6.5rem;
   }
+`;
+
+export const GradeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;
 
 export const GradeText = styled.p`
@@ -366,4 +372,49 @@ export const MainContainers = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
+`;
+
+export const VoteConatiner = styled.div`
+  display: flex;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.75rem;
+`;
+
+export const VoteText = styled.p`
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin: 0;
+`;
+
+export const ModalPointContainer = styled.div`
+  display: flex;
+  width: 14.375rem;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const ModalPointInput = styled.input`
+  display: flex;
+  width: 100%;
+  padding: 0.8125rem 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5.4375rem;
+  border-radius: 0.5rem;
+  background: var(--colors-gray-gray-900, #26262a);
+  border: none;
+  outline: none;
+  color: #fff;
+`;
+
+export const PText = styled.span`
+  position: absolute;
+  color: #fff;
+  margin-right: 1rem;
 `;

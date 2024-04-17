@@ -7,17 +7,17 @@ export const WeatherWrapper = styled.div`
   display: inline-flex;
   align-items: flex-start;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.75rem;
 
   margin-bottom: 2.5rem;
   @media (max-width: 650px) {
-    gap: 1.75rem;
-  }
-  @media (max-width: 550px) {
     gap: 1.25rem;
   }
-  @media (max-width: 450px) {
+  @media (max-width: 550px) {
     gap: 0.75rem;
+  }
+  @media (max-width: 450px) {
+    gap: 0.35rem;
   }
 `;
 
@@ -40,7 +40,13 @@ export const DayText = styled.p`
   font-weight: 400;
   line-height: 1.4rem;
   margin: 0;
+  width: 2.075rem;
   @media (max-width: 550px) {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    width: 1.75rem;
+  }
+  @media (max-width: 450px) {
+    font-size: 0.7rem;
+    width: 1.75rem;
   }
 `;

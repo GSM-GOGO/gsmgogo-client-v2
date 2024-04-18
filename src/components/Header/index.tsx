@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { ThreeDot } from '../../assets';
+import { Roulette, ThreeDot } from '../../assets';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import apiClient from '../../utils/libs/apiClient';
@@ -87,6 +87,10 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
             {miniText[1]}
           </S.GoGoMiniLink>
 
+
+          <S.GoGoMiniLink to="/minigame/daily-roulette">
+          <Roulette isClick={currentPath === '/minigame/daily-roulette'}/>
+          </S.GoGoMiniLink>
           <S.GoGoMiniText
             style={{
               color: 'var(--Main, #23F69A)',

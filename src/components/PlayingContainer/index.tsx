@@ -116,6 +116,8 @@ const PlayContainer = () =>
     const [isPlaying, setIsPlaying] = useState(false);
     const [vote, setVote] = useState(false);
 
+    console.log(matchResult);
+
     const dates = useMemo(() => {
       const today = new Date();
       const newDates: Date[] = [];

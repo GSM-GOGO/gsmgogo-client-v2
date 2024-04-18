@@ -43,7 +43,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
       console.log(e);
     }
   };
-
+//
   useEffect(() => {
     if (!hasFetchedUserPoint) {
       const getUserPoint = async () => {

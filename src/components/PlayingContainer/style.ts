@@ -433,3 +433,13 @@ export const PText = styled.span`
   color: #fff;
   margin-right: 1rem;
 `;
+
+export const BottomText = styled.span`
+  display: flex;
+  justify-content: flex-start;
+  width: 107.5%;
+  margin-top: 1rem;
+
+  @media (max-width: 650px) {
+    width: 95%;
+`;

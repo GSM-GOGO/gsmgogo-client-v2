@@ -337,6 +337,11 @@ const Sports = () => {
                   {/* <S.AddButton onClick={() => setAddteam(!addteam)}>
                     <TeamAddButton />
                   </S.AddButton> */}
+                  <S.ShowMatchContainer>
+                    <S.ShowMatchBox>
+                      <S.ShowMatchText>대진표 보기</S.ShowMatchText>
+                    </S.ShowMatchBox>
+                  </S.ShowMatchContainer>
                 </S.ListWrapper>
               </S.ContainerResponse>
             </S.Container>

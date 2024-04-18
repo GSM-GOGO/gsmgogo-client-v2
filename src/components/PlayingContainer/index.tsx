@@ -113,6 +113,8 @@ const PlayContainer = () =>
     const [selectedSports, setSelectedSports] = useState('');
     const [nextModal, setNextModal] = useState(false);
     const [matchId, setMatchId] = useState<number | undefined>();
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [vote, setVote] = useState(false);
 
     const dates = useMemo(() => {
       const today = new Date();
@@ -244,6 +246,8 @@ const PlayContainer = () =>
     }, [selectedDate]);
 
     const formatMapping = () => {
+      const currentTime = new Date();
+
       return matches.map((match) => {
         const sportType = match.match_type;
         const dateTimeString = match.match_start_at;
@@ -260,14 +264,27 @@ const PlayContainer = () =>
         const endHours = matchEnd.getHours();
         const endMinutes = matchEnd.getMinutes();
 
+        const oneDayInMillis = 24 * 60 * 60 * 1000; // 하루의 밀리초 수
+        const oneDayBefore = new Date(dateTime.getTime() - oneDayInMillis);
+
         const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
         const endFormatted = `${endHours.toString().padStart(2, '0')}:${endMinutes.toString().padStart(2, '0')}`;
 
-        const votingStart = new Date(dateTime);
-        votingStart.setMinutes(votingStart.getMinutes() - 5);
-        const votingStartHours = votingStart.getHours();
-        const votingStartMinutes = votingStart.getMinutes();
-        const votingStartFormatted = `${votingStartHours.toString().padStart(2, '0')}:${votingStartMinutes.toString().padStart(2, '0')}`;
+        const votingEnd = new Date(dateTime);
+        votingEnd.setMinutes(votingEnd.getMinutes() - 5);
+        const votingEndHours = votingEnd.getHours();
+        const votingEndMinutes = votingEnd.getMinutes();
+        const votingEndFormatted = `${votingEndHours.toString().padStart(2, '0')}:${votingEndMinutes.toString().padStart(2, '0')}`;
+
+        if (currentTime >= dateTime && currentTime <= matchEnd) {
+          setIsPlaying(true);
+        }
+
+        if (currentTime < votingEnd && currentTime > oneDayBefore) {
+          setVote(true);
+        }
+
+        console.log(vote);
 
         let sportName = '';
         let gradeInfoA = '';
@@ -347,7 +364,15 @@ const PlayContainer = () =>
         };
 
         const getUserVote = (match: Match) => {
-          if (match.is_vote === false) {
+          if (isPlaying === true) {
+            return (
+              <>
+                <S.VoteConatiner style={{ border: '1px solid var(--White, #FFF)' }}>
+                  <S.VoteText style={{ color: 'var(--White, #FFF)' }}>경기중</S.VoteText>
+                </S.VoteConatiner>
+              </>
+            );
+          } else if (match.is_vote === false && vote === true) {
             return (
               <label
                 onClick={() => {
@@ -366,7 +391,13 @@ const PlayContainer = () =>
           } else if (match.is_vote === true) {
             return (
               <S.VoteConatiner style={{ border: '1px solid var(--colors-main-main-900, #045D36)' }}>
-                <S.VoteText style={{ color: 'var(--colors-main-main-900, #045D36)' }}>투표</S.VoteText>
+                <S.VoteText style={{ color: 'var(--colors-main-main-900, #045D36)' }}>완료</S.VoteText>
+              </S.VoteConatiner>
+            );
+          } else {
+            return (
+              <S.VoteConatiner style={{ border: '1px solid var(--colors-gray-gray-800, #44444B)' }}>
+                <S.VoteText style={{ color: 'var(--Gray2, #6F6F7B)' }}>투표</S.VoteText>
               </S.VoteConatiner>
             );
           }
@@ -413,7 +444,7 @@ const PlayContainer = () =>
               <S.OneTimeBox>
                 <S.TimeText>투표</S.TimeText>
                 <S.TimeText>
-                  {formattedTime} ~ {votingStartFormatted}
+                  {formattedTime} ~ {votingEndFormatted}
                 </S.TimeText>
               </S.OneTimeBox>
 
@@ -688,6 +719,9 @@ const PlayContainer = () =>
             )} */}
           </>
         </S.MainContainers>
+        <S.BottomText>
+          <S.TimeText>출전하는 경기에는 투표할 수 없으며 경기 승리 시 포인트를 받을 수 있습니다</S.TimeText>
+        </S.BottomText>
         <ToastContainer autoClose={1000} />
         <div>
           <Toaster position="top-right" reverseOrder={true} />

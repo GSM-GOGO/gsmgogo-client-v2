@@ -51,9 +51,7 @@ const Roulette = () => {
       setIsSpin(false);
       saveTodayDateToLocalStorage();
       const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-      setTimeout(() => {
-        toast.error(errorMessage, { autoClose: 1000 });
-      }, 500);
+      toast.error(errorMessage, { autoClose: 1000 });
     }
   };
 

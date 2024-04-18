@@ -284,8 +284,6 @@ const PlayContainer = () =>
           setVote(true);
         }
 
-        console.log(vote);
-
         let sportName = '';
         let gradeInfoA = '';
         let gradeInfoB = '';

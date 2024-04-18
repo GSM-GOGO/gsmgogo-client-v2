@@ -129,6 +129,11 @@ const Sports = () => {
     toast.success('팀이 팔로우 되었습니다!', { autoClose: 1000 });
   };
 
+  const showBracket = (sport: string) => {
+    navigate(`/bracket/${sport}`);
+    console.log(sport);
+  };
+
   return (
     <>
       {teams.length !== 0 ? (
@@ -341,6 +346,11 @@ const Sports = () => {
               </S.ContainerResponse>
             </S.Container>
           </S.WidthContainer>
+          <S.ShowMatchContainer>
+            <S.ShowMatchBox onClick={() => showBracket(sport)}>
+              <S.ShowMatchText>대진표 보기</S.ShowMatchText>
+            </S.ShowMatchBox>
+          </S.ShowMatchContainer>
         </S.Wrapper>
       ) : (
         <>

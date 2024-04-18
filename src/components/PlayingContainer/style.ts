@@ -1,19 +1,25 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PlayingContainer = styled.div`
   display: flex;
-  width: 37.5rem;
+  width: 100%;
   padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 700px) {
+    padding: 1rem 1.25rem;
+  }
   @media (max-width: 650px) {
-    width: 30rem;
+    width: 95%;
+    padding: 1rem 1rem;
+  }
+  @media (max-width: 650px) {
+    width: 90%;
+    padding: 1rem 1rem;
   }
   @media (max-width: 500px) {
-    width: 27.5rem;
-  }
-  @media (max-width: 450px) {
-    width: 25rem;
+    width: 85%;
   }
 `;
 
@@ -39,6 +45,7 @@ export const EventTexts = styled.div`
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0;
+  color: var(--Gray1, #b7b7be);
   @media (max-width: 650px) {
     font-size: 0.7rem;
   }
@@ -73,10 +80,16 @@ export const TeamName = styled.h3`
 `;
 
 export const ForMedia = styled.div`
-  width: 6.25rem;
+  width: 8.5rem;
   @media (max-width: 650px) {
-    width: 5rem;
+    width: 6.5rem;
   }
+`;
+
+export const GradeContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
 `;
 
 export const GradeText = styled.p`
@@ -315,4 +328,118 @@ export const ModalInputError = styled.p`
   line-height: 20px;
   text-align: left;
   color: #df454a;
+`;
+
+interface DateContainerProps {
+  selected?: boolean;
+}
+export const WeatherWrapper = styled.div`
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.75rem;
+
+  margin-bottom: 2.5rem;
+  @media (max-width: 650px) {
+    gap: 1.25rem;
+  }
+  @media (max-width: 550px) {
+    gap: 0.75rem;
+  }
+  @media (max-width: 450px) {
+    gap: 0.35rem;
+  }
+`;
+
+export const DateContainer = styled.div<DateContainerProps>`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+
+  color: ${(props) => (props.selected ? 'var(--White, #FFF)' : 'var(--Gray2, #6F6F7B)')};
+`;
+
+export const DayText = styled.p`
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.4rem;
+  margin: 0;
+  width: 2.075rem;
+  @media (max-width: 550px) {
+    font-size: 0.8rem;
+    width: 1.75rem;
+  }
+  @media (max-width: 450px) {
+    font-size: 0.7rem;
+    width: 1.75rem;
+  }
+`;
+
+export const MainContainers = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
+export const VoteConatiner = styled.div`
+  display: flex;
+  padding: 0.5rem 1rem;
+  align-items: center;
+  gap: 0.625rem;
+  border-radius: 0.75rem;
+`;
+
+export const VoteText = styled.p`
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin: 0;
+`;
+
+export const ModalPointContainer = styled.div`
+  display: flex;
+  width: 14.375rem;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+export const ModalPointInput = styled.input`
+  display: flex;
+  width: 100%;
+  padding: 0.8125rem 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5.4375rem;
+  border-radius: 0.5rem;
+  background: var(--colors-gray-gray-900, #26262a);
+  border: none;
+  outline: none;
+  color: #fff;
+`;
+
+export const PText = styled.span`
+  position: absolute;
+  color: #fff;
+  margin-right: 1rem;
+`;
+
+export const BottomText = styled.span`
+  display: flex;
+  justify-content: flex-start;
+  width: 107.5%;
+  margin-top: 1rem;
+
+  @media (max-width: 650px) {
+    width: 95%;
 `;

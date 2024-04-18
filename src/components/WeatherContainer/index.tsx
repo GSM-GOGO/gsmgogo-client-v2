@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { useCallback } from 'react';
 
 import * as S from './style';
-import PlayContainer from '../../components/PlayingContainer/index';
+// import PlayContainer from '../../components/PlayingContainer/index';
 
 const WeatherContainer = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -44,7 +44,6 @@ const WeatherContainer = () => {
           </S.DateContainer>
         ))}
       </S.WeatherWrapper>
-      {selectedDate && <PlayContainer date={selectedDate} />}
     </>
   );
 };

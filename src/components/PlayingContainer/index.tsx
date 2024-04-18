@@ -1,7 +1,10 @@
 import * as S from './style';
-import { PlayingButton, Vote, NotVote, PercentGuageBar } from '../../assets';
+// import { PlayingButton, Vote, NotVote, PercentGuageBar } from '../../assets';
 // import { ArrayProps } from '../../types/ArrayProps';
 // import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'react-hot-toast';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import apiClient from '../../utils/libs/apiClient';
@@ -37,7 +40,7 @@ interface MatchResult extends Match {
   lose_point?: number;
 }
 
-const PlayContainer = ({ date }: { date: Date }) =>
+const PlayContainer = () =>
   // {
   //   isPredictGame,
   //   isFinal,
@@ -100,7 +103,7 @@ const PlayContainer = ({ date }: { date: Date }) =>
 
     const [selectedDate, setSelectedDate] = useState<Date>(new Date());
     const [matches, setMatches] = useState<Match[]>([]);
-    const [matchResult, setMatchResult] = useState<MatchResult>([]);
+    const [matchResult, setMatchResult] = useState<MatchResult[]>([]);
     const [modal, setModal] = useState(false);
     const [teamA, setTeamA] = useState('');
     const [teamB, setTeamB] = useState('');
@@ -153,7 +156,7 @@ const PlayContainer = ({ date }: { date: Date }) =>
         target: { value },
       } = e;
 
-      const filteredInput = value.replace(/\D/g, '');
+      const filteredInput = value === '0' ? '' : value.replace(/\D/g, '');
 
       setPoint(filteredInput);
     };
@@ -174,10 +177,10 @@ const PlayContainer = ({ date }: { date: Date }) =>
       bet_point: string
     ) => {
       if (match_id !== undefined) {
-        try {
-          const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem('accessToken');
 
-          apiClient.post(
+        apiClient
+          .post(
             `/bet`,
             {
               match_id: Number(match_id),
@@ -191,8 +194,17 @@ const PlayContainer = ({ date }: { date: Date }) =>
               },
               withCredentials: true,
             }
-          );
-        } catch (e) {}
+          )
+          .then(() => {})
+          .catch((error) => {
+            if (error.response && error.response.status === 400) {
+              const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+              toast.error(errorMessage, { autoClose: 1000 });
+            } else {
+              const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+              toast.error(errorMessage, { autoClose: 1000 });
+            }
+          });
       }
     };
 
@@ -212,6 +224,8 @@ const PlayContainer = ({ date }: { date: Date }) =>
 
         const fetchData = async () => {
           try {
+            setMatches([]);
+
             const token = localStorage.getItem('accessToken');
             const response = await apiClient.get(`/match?m=${month}&d=${day}`, {
               headers: {
@@ -219,6 +233,7 @@ const PlayContainer = ({ date }: { date: Date }) =>
               },
               withCredentials: true,
             });
+
             setMatches(response.data.matches);
             setMatchResult(response.data.match_result);
           } catch (error) {}
@@ -673,6 +688,10 @@ const PlayContainer = ({ date }: { date: Date }) =>
             )} */}
           </>
         </S.MainContainers>
+        <ToastContainer autoClose={1000} />
+        <div>
+          <Toaster position="top-right" reverseOrder={true} />
+        </div>
       </>
     );
   };

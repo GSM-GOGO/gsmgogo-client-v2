@@ -6,6 +6,21 @@ export const PlayingContainer = styled.div`
   padding: 1rem 1.5rem;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 700px) {
+    padding: 1rem 1.25rem;
+  }
+  @media (max-width: 650px) {
+    width: 95%;
+    padding: 1rem 1rem;
+  }
+  @media (max-width: 650px) {
+    width: 90%;
+    padding: 1rem 1rem;
+  }
+  @media (max-width: 500px) {
+    width: 85%;
+  }
 `;
 
 export const MainContainer = styled.div`

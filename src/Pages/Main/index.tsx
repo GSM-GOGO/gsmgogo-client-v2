@@ -19,7 +19,7 @@ const Main = () => {
               <EmptyPlaying />
             </S.SvgContainer> */}
             {/* <S.MainContainer> */}
-            <PlayingContainer date={new Date()} />
+            <PlayingContainer />
             {/* </S.MainContainer> */}
           </div>
         </S.Container>

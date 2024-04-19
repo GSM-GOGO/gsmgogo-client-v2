@@ -43,7 +43,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
       console.log(e);
     }
   };
-//
+  //
   useEffect(() => {
     if (!hasFetchedUserPoint) {
       const getUserPoint = async () => {
@@ -83,7 +83,10 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
             {miniText[0]}
           </S.GoGoMiniLink>
 
-          <S.GoGoMiniLink to="/minigame" style={currentPath === '/minigame' ? { color: '#23F69A' } : undefined}>
+          <S.GoGoMiniLink
+            to="/minigame/coingame"
+            style={currentPath === '/minigame/coingame' ? { color: '#23F69A' } : undefined}
+          >
             {miniText[1]}
           </S.GoGoMiniLink>
 

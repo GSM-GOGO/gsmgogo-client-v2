@@ -96,8 +96,6 @@ const Coingame: React.FC = () => {
     }
   };
 
-  console.log(coinInput);
-
   return (
     <>
       {modal ? (

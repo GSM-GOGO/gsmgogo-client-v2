@@ -72,6 +72,8 @@ const Coingame: React.FC = () => {
       else if (response.data.result === 'TAIL') setInitialImage(TailCoin);
       setDisplayResultText(true);
       setModal(false);
+      if (response.data.win === true) toast.success('성공!', { autoClose: 1000 });
+      else if (response.data.win === false) toast.error('맞추지 못했어요', { autoClose: 1000 });
 
       try {
         const token = localStorage.getItem('accessToken');

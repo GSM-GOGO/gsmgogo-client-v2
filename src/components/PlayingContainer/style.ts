@@ -139,6 +139,7 @@ export const PredictContainer = styled.div`
   align-items: flex-start;
   border-radius: 0.75rem;
   background: var(--colors-gray-gray-900, #26262a);
+  width: 100%;
 `;
 
 export const PercentBar = styled.div`
@@ -442,4 +443,48 @@ export const BottomText = styled.span`
 
   @media (max-width: 650px) {
     width: 95%;
+  }
+`;
+
+export const MatchResultContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+`;
+
+export const MatchResultText = styled.p`
+  color: var(--White, #fff);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin: 0;
+`;
+
+export const MatchScoreText = styled.p`
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.375rem;
+  margin: 0;
+  color: var(--colors-gray-gray-400, #9f9fa8);
+`;
+
+export const MatchScoreContainer = styled.div`
+  display: flex;
+  gap: 0.25rem;
+`;
+
+export const SuccessBetting = styled.p`
+  color: var(--White, #fff);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin: 0;
 `;

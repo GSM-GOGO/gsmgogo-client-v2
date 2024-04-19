@@ -19,7 +19,7 @@ const Coingame: React.FC = () => {
 
   const [modal, setModal] = useState(false);
   const [coinButton, setCoinButton] = useState<string>('');
-  const [coinInput, setCoinInput] = useState<number>();
+  const [coinInput, setCoinInput] = useState<number | null>(null);
   const [result, setResult] = useState<Result>({} as Result);
   const [displayResultText, setDisplayResultText] = useState(false);
   const [initialImage, setInitialImage] = useState(HeadCoin);
@@ -47,7 +47,7 @@ const Coingame: React.FC = () => {
     const maxLength = 10;
     const truncatedValue = numericValue.slice(0, maxLength);
 
-    const parsedValue = truncatedValue === '' ? undefined : parseInt(truncatedValue);
+    const parsedValue = truncatedValue === '' ? null : parseInt(truncatedValue);
 
     setCoinInput(parsedValue);
   };
@@ -75,7 +75,7 @@ const Coingame: React.FC = () => {
       else if (response.data.result === 'TAIL') setInitialImage(TailCoin);
       setDisplayResultText(true);
       setModal(false);
-      setCoinInput(undefined);
+      setCoinInput(null);
       if (response.data.win === true) toast.success('성공!', { autoClose: 1000 });
       else if (response.data.win === false) toast.error('맞추지 못했어요', { autoClose: 1000 });
 
@@ -112,7 +112,7 @@ const Coingame: React.FC = () => {
             <S.CoinInputContainer>
               <S.CoinInput
                 type="number"
-                value={coinInput}
+                value={coinInput === null ? '' : coinInput} // null 체크 후 빈 문자열로 대체
                 maxLength={10}
                 onChange={ChangeCoinInput}
                 placeholder="마이너스 불가능"
@@ -126,7 +126,7 @@ const Coingame: React.FC = () => {
                 onClick={() => {
                   setModal(false);
                   setCoinButton('');
-                  setCoinInput(undefined);
+                  setCoinInput(null);
                 }}
               >
                 아니오

@@ -42,7 +42,7 @@ const Coingame: React.FC = () => {
 
   const ChangeCoinInput = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    const numericValue = inputValue.replace(/[^\d\uAC00-\uD7A3]/g, '');
+    const numericValue = inputValue.replace(/\D/g, '');
 
     const maxLength = 10;
     const truncatedValue = numericValue.slice(0, maxLength);

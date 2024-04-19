@@ -5,11 +5,13 @@ import apiClient from './../../../utils/libs/apiClient';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import useStorePoint from './../../../utils/libs/storePoint';
 
 const Roulette = () => {
   const [isSpin, setIsSpin] = useState(false);
   const [isShow, setIsShow] = useState(false);
   const [RolletResponse, setRolletResponse] = useState(0);
+  const setUserPoint = useStorePoint((state) => state.setUserPoint);
 
   const getTodayDate = () => {
     const today = new Date();
@@ -41,11 +43,23 @@ const Roulette = () => {
         },
       });
       setRolletResponse(response.data.result);
-      setTimeout(() => {
+      setTimeout(async () => {
         setIsShow(true);
         if (response.data.result != 5) {
           saveTodayDateToLocalStorage();
         }
+        try {
+          const token = localStorage.getItem('accessToken');
+
+          const response = await apiClient.get(`/user/my-point`, {
+            headers: {
+              Authorization: token,
+            },
+            withCredentials: true,
+          });
+
+          setUserPoint(response.data.point);
+        } catch (e) {}
       }, 3000);
     } catch (e: any) {
       setIsSpin(false);

@@ -529,6 +529,7 @@ const PlayContainer = () => {
               borderRadius: '0.75rem',
               background: 'var(--colors-gray-gray-900, #26262A)',
               padding: '0',
+              width: '100%',
             }}
           >
             <S.MainContainer>

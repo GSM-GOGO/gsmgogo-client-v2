@@ -173,6 +173,12 @@ export const CoinInputContainer = styled.div`
 `;
 
 export const CoinInput = styled.input`
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
   width: 14.375rem;
   height: 3rem;
   padding: 0.8125rem 1rem;
@@ -186,7 +192,11 @@ export const CoinInput = styled.input`
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.375rem;
-  color: #6f6f7b;
+  color: #fff;
+
+  &::placeholder {
+    color: #6f6f7b;
+  }
 `;
 
 export const CoinIconCotainer = styled.div`

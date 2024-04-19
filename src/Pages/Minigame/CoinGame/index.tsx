@@ -42,11 +42,14 @@ const Coingame: React.FC = () => {
 
   const ChangeCoinInput = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value;
-    const parsedValue = parseInt(inputValue);
+    const numericValue = inputValue.replace(/[^\d\uAC00-\uD7A3]/g, '');
 
-    if (!isNaN(parsedValue)) {
-      setCoinInput(parsedValue);
-    }
+    const maxLength = 10;
+    const truncatedValue = numericValue.slice(0, maxLength);
+
+    const parsedValue = truncatedValue === '' ? undefined : parseInt(truncatedValue);
+
+    setCoinInput(parsedValue);
   };
 
   const handleBating = async () => {
@@ -92,6 +95,8 @@ const Coingame: React.FC = () => {
     }
   };
 
+  console.log(coinInput);
+
   return (
     <>
       {modal ? (
@@ -106,7 +111,13 @@ const Coingame: React.FC = () => {
               </S.ModalNovelContainer>
             </S.ModalTextContainer>
             <S.CoinInputContainer>
-              <S.CoinInput onChange={ChangeCoinInput} maxLength={8} placeholder="마이너스 불가능" />
+              <S.CoinInput
+                type="number"
+                value={coinInput}
+                maxLength={10}
+                onChange={ChangeCoinInput}
+                placeholder="마이너스 불가능"
+              />
               <S.CoinIconCotainer>
                 <CoinIcon />
               </S.CoinIconCotainer>

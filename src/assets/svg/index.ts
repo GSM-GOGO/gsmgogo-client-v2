@@ -17,3 +17,4 @@ export { default as TeamAddButton } from './TeamAddButton';
 export { default as SmallXIcon } from './SmallXIcon';
 export { default as EmptyPlaying } from './EmptyPlaying';
 export { default as CoinIcon } from './CoinIcon';
+export { default as Roulette } from './Roulette';

@@ -6,3 +6,5 @@ export { default as LoadingLogo } from './LoadingLogo.png';
 export { default as PeopleIcon } from './PeopleIcon.png';
 export { default as HeadCoin } from './HeadCoin.png';
 export { default as TailCoin } from './TailCoin.png';
+export { default as Rouletteimg } from './Rouletteimg.png';
+export { default as Roulette_point} from './Roulette_point.png';

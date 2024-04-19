@@ -19,6 +19,7 @@ import Notfound from './components/Loading/Notfound.tsx';
 import { PrivateRoute } from './utils/libs/PrivateRoute.tsx';
 import Bracket from './Pages/Bracket/index.tsx';
 import Coingame from './Pages/Minigame/CoinGame/index.tsx';
+import Roulette from './Pages/Minigame/Roulette/index.tsx';
 
 const queryClient = new QueryClient();
 
@@ -64,6 +65,17 @@ function App() {
                     <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Coingame />
+                </>
+              }
+            />
+            <Route
+              path="/minigame/daily-roulette"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <Roulette />
                 </>
               }
             />

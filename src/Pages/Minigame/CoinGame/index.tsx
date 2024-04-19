@@ -52,7 +52,7 @@ const Coingame: React.FC = () => {
     setCoinInput(parsedValue);
   };
 
-  const handleBating = async () => {
+  const handleBetting = async () => {
     try {
       setDisplayResultText(false);
 
@@ -131,7 +131,7 @@ const Coingame: React.FC = () => {
               >
                 아니오
               </S.ModalCencleButton>
-              <S.ModalCheerButton onClick={handleBating}>배팅하기</S.ModalCheerButton>
+              <S.ModalCheerButton onClick={handleBetting}>배팅하기</S.ModalCheerButton>
             </S.ModalButtonContainer>
           </S.ModalContainer>
         </S.ModalBackground>

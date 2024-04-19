@@ -13,7 +13,7 @@ export const Container = styled.div`
   text-align: -webkit-center;
 `;
 
-export const Rouletteimg = styled.img<{ isSpin?: boolean }>`
+export const Rouletteimg = styled.img<{ isspin?: number | undefined }>`
   width: 100%;
 
   @media screen and (max-width: 500px) {
@@ -21,7 +21,7 @@ export const Rouletteimg = styled.img<{ isSpin?: boolean }>`
   }
 
   ${(props) =>
-    props.isSpin &&
+    props.isspin &&
     css`
       animation: rotateImage 1.5s linear infinite;
     `}
@@ -36,7 +36,7 @@ export const Rouletteimg = styled.img<{ isSpin?: boolean }>`
   }
 `;
 
-export const Button = styled.button<{ isHidden?: boolean; close?: boolean }>`
+export const Button = styled.button<{ ishidden?: number | undefined; close?: number | undefined }>`
   margin-top: 4.5rem;
   display: flex;
   width: 15rem;
@@ -51,13 +51,13 @@ export const Button = styled.button<{ isHidden?: boolean; close?: boolean }>`
   background: ${(props) => (props.close ? 'var(--colors-gray-gray-800, #44444B)' : 'var(--Main, #23F69A)')};
   cursor: pointer;
   ${(props) =>
-    props.isHidden &&
+    props.ishidden &&
     css`
       visibility: hidden;
     `}
 `;
 
-export const Text = styled.p<{ close?: boolean }>`
+export const Text = styled.p<{ close?: number | undefined }>`
   color: ${(props) => (props.close ? 'var(--Gray1, #B7B7BE)' : 'var(--Black, #1c1c1f)')};
   text-align: center;
   font-family: Pretendard;

@@ -91,7 +91,7 @@ const Roulette = () => {
               </S.MentContainer>
             </div>
           ) : (
-            <S.Rouletteimg src={Rouletteimg} alt="Rouletteimg" isSpin={isSpin} />
+            <S.Rouletteimg src={Rouletteimg} alt="Rouletteimg" isspin={isSpin? 1 : undefined} />
           )}
           {canSpinRoulette() ? (
             <S.Button onClick={Spin} disabled={!canSpinRoulette()}>
@@ -99,8 +99,8 @@ const Roulette = () => {
             </S.Button>
           ) : !isSpin ? (
             <div>
-              <S.Button close={true} isHidden={isSpin}>
-                <S.Text close={true}>내일 만나요!</S.Text>
+              <S.Button close={true? 1 : undefined} ishidden={isSpin? 1 : undefined}>
+                <S.Text close={true? 1 : undefined}>내일 만나요!</S.Text>
               </S.Button>
             </div>
           ) : (

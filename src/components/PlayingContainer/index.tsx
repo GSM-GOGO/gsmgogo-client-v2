@@ -53,8 +53,6 @@ const PlayContainer = () => {
   const [selectedSports, setSelectedSports] = useState('');
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [vote, setVote] = useState(false);
   const [predict, setPredict] = useState(false);
 
   const dates = useMemo(() => {
@@ -217,14 +215,6 @@ const PlayContainer = () => {
       const votingEndMinutes = votingEnd.getMinutes();
       const votingEndFormatted = `${votingEndHours.toString().padStart(2, '0')}:${votingEndMinutes.toString().padStart(2, '0')}`;
 
-      if (currentTime >= dateTime && currentTime <= matchEnd) {
-        setIsPlaying(true);
-      }
-
-      if (currentTime < votingEnd && currentTime > oneDayBefore) {
-        setVote(true);
-      }
-
       let sportName = '';
       let gradeInfoA = '';
       let gradeInfoB = '';
@@ -303,7 +293,7 @@ const PlayContainer = () => {
       };
 
       const getUserVote = (match: Match) => {
-        if (isPlaying === true) {
+        if (currentTime >= dateTime && currentTime <= matchEnd === true) {
           return (
             <>
               <S.VoteConatiner style={{ border: '1px solid var(--White, #FFF)' }}>
@@ -311,7 +301,7 @@ const PlayContainer = () => {
               </S.VoteConatiner>
             </>
           );
-        } else if (match.is_vote === false && vote === true) {
+        } else if (match.is_vote === false && currentTime < votingEnd && currentTime > oneDayBefore === true) {
           return (
             <label
               onClick={() => {

@@ -351,7 +351,9 @@ const PlayContainer = () => {
                 <S.ForMedia>
                   <S.GradeContainer>
                     <S.TeamName style={{ color: '#FFF' }}>{match.team_a_name}팀</S.TeamName>
-                    <S.TeamName style={{ color: '#FFF' }}>{match.team_a_bet}%</S.TeamName>
+                    <S.TeamName style={{ color: '#FFF' }}>
+                      {Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}%
+                    </S.TeamName>
                   </S.GradeContainer>
                 </S.ForMedia>
                 <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText>
@@ -361,7 +363,9 @@ const PlayContainer = () => {
                 <S.ForMedia>
                   <S.GradeContainer>
                     <S.TeamName style={{ color: '#FFF' }}>{match.team_b_name}팀</S.TeamName>
-                    <S.TeamName style={{ color: '#FFF' }}>{match.team_b_bet}%</S.TeamName>
+                    <S.TeamName style={{ color: '#FFF' }}>
+                      {Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}%
+                    </S.TeamName>
                   </S.GradeContainer>
                 </S.ForMedia>
                 <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText>
@@ -422,21 +426,21 @@ const PlayContainer = () => {
       };
 
       const SuccesOfFail = () => {
-        if (
-          matchResult.team_a_bet === matchResult.team_a_score &&
-          matchResult.team_b_bet === matchResult.team_b_score
-        ) {
-          setPredict(true);
-          return <S.EventTexts style={{ color: 'var(--Main, #23F69A)' }}>대성공🔥</S.EventTexts>;
-        } else if (
-          (matchResult.team_a_bet > matchResult.team_b_bet && matchResult.team_a_score > matchResult.team_b_score) ||
-          (matchResult.team_a_bet < matchResult.team_b_bet && matchResult.team_a_score < matchResult.team_b_score)
-        ) {
-          setPredict(true);
-          return <S.EventTexts style={{ color: 'var(--colors-main-main-200, #A7FBD7)' }}>성공</S.EventTexts>;
-        } else {
-          return <S.EventTexts style={{ color: 'var(--Error, #DF454A)' }}>실패</S.EventTexts>;
-        }
+        // if (
+        //   matchResult.team_a_bet === matchResult.team_a_score &&
+        //   matchResult.team_b_bet === matchResult.team_b_score
+        // ) {
+        //   setPredict(true);
+        //   return <S.EventTexts style={{ color: 'var(--Main, #23F69A)' }}>대성공🔥</S.EventTexts>;
+        // } else if (
+        //   (matchResult.team_a_bet > matchResult.team_b_bet && matchResult.team_a_score > matchResult.team_b_score) ||
+        //   (matchResult.team_a_bet < matchResult.team_b_bet && matchResult.team_a_score < matchResult.team_b_score)
+        // ) {
+        //   setPredict(true);
+        //   return <S.EventTexts style={{ color: 'var(--colors-main-main-200, #A7FBD7)' }}>성공</S.EventTexts>;
+        // } else {
+        //   return <S.EventTexts style={{ color: 'var(--Error, #DF454A)' }}>실패</S.EventTexts>;
+        // }
       };
 
       const getSportName = () => {
@@ -533,7 +537,10 @@ const PlayContainer = () => {
                   <S.ForMedia>
                     <S.GradeContainer>
                       <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_a_name}팀</S.TeamName>
-                      <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_a_bet}%</S.TeamName>
+                      <S.TeamName style={{ color: '#FFF' }}>
+                        {Math.floor((matchResult.team_a_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100)}
+                        %
+                      </S.TeamName>
                     </S.GradeContainer>
                   </S.ForMedia>
                   <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText>
@@ -543,7 +550,10 @@ const PlayContainer = () => {
                   <S.ForMedia>
                     <S.GradeContainer>
                       <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_b_name}팀</S.TeamName>
-                      <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_b_bet}%</S.TeamName>
+                      <S.TeamName style={{ color: '#FFF' }}>
+                        {Math.floor((matchResult.team_b_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100)}
+                        %
+                      </S.TeamName>
                     </S.GradeContainer>
                   </S.ForMedia>
                   <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText>
@@ -570,9 +580,9 @@ const PlayContainer = () => {
               <S.UnderTextBox style={{ paddingTop: '1.5rem' }}>
                 <S.WinORLosestyled>{SuccesOfFail()}</S.WinORLosestyled>
                 <S.PercentBar>
-                  <S.PredictText style={{ fontWeight: '400' }}>예측 투표</S.PredictText>
+                  <S.PredictText style={{ fontWeight: '400' }}>내 예측 투표</S.PredictText>
                   <S.PredictText style={{ fontWeight: '600' }}>
-                    {matchResult.team_a_bet} - {matchResult.team_b_bet}
+                    {matchResult.bet_team_a_score} - {matchResult.bet_team_b_score}
                   </S.PredictText>
                 </S.PercentBar>
 
@@ -580,8 +590,8 @@ const PlayContainer = () => {
                   <S.EventContainer>
                     <S.PredictScoreBox>
                       <S.GradeText style={{ color: 'var(--Gray1, #B7B7BE)' }}>점수 예측</S.GradeText>
-                      {matchResult.team_a_bet === matchResult.team_a_score &&
-                      matchResult.team_b_bet === matchResult.team_b_score ? (
+                      {matchResult.team_a_score === matchResult.bet_team_a_score &&
+                      matchResult.team_b_score === matchResult.bet_team_b_score ? (
                         <S.GradeText style={{ color: 'var(--White, #FFF)' }}>성공</S.GradeText>
                       ) : (
                         <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>실패</S.GradeText>

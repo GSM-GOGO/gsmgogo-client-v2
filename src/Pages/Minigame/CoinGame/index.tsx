@@ -91,8 +91,9 @@ const Coingame: React.FC = () => {
 
         setUserPoint(response.data.point);
       } catch (e) {}
-    } catch (error) {
-      toast.error('하루에 10회, 최대 3000 포인트까지 배팅 할 수 있어요.', { autoClose: 1000 });
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      toast.error(errorMessage, { autoClose: 1000 });
     }
   };
 

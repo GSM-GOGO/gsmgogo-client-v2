@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import apiClient from '../../utils/libs/apiClient';
 import LoadingContent from '../../components/Loading/content.tsx';
 import { EmptyPlaying } from '../../assets/index.ts';
-import useStorePoint from '../../utils/libs/storePoint.ts';
 
 interface Match {
   match_id: number;

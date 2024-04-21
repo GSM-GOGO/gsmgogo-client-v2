@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import BadmintionBracket from './Badminton';
 
 const Bracket = () => {
   const { sport } = useParams();
@@ -28,7 +29,12 @@ const Bracket = () => {
     }
   }, [notFound, navigate]);
 
-  return <div>{sportName}</div>;
+  return (
+    <div>
+      {sportName}
+      {sportName === '배드민턴' && <BadmintionBracket />}
+    </div>
+  );
 };
 
 export default Bracket;

@@ -350,5 +350,5 @@ export const ShowMatchContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: fit-content;
 `;

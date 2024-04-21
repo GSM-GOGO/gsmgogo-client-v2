@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import apiClient from '../../utils/libs/apiClient';
 import LoadingContent from '../../components/Loading/content.tsx';
 import { EmptyPlaying } from '../../assets/index.ts';
+import useStorePoint from '../../utils/libs/storePoint.ts';
 
 interface Match {
   match_id: number;
@@ -55,6 +56,7 @@ const PlayContainer = () => {
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
   const [loading, setLoading] = useState(true);
+  const userPoint = useStorePoint((state) => state.userPoint);
 
   const dates = useMemo(() => {
     const today = new Date();
@@ -363,12 +365,12 @@ const PlayContainer = () => {
                 <S.ForMedia>
                   <S.GradeContainer>
                     <S.TeamName style={{ color: '#FFF' }}>{match.team_a_name}팀</S.TeamName>
-                    <S.TeamName style={{ color: '#FFF' }}>
+                    <S.TeamName1 style={{ color: '#FFF' }}>
                       {match.team_a_bet + match.team_b_bet === 0
                         ? '0'
                         : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
                       %
-                    </S.TeamName>
+                    </S.TeamName1>
                   </S.GradeContainer>
                 </S.ForMedia>
                 <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText1>
@@ -378,12 +380,12 @@ const PlayContainer = () => {
                 <S.ForMedia>
                   <S.GradeContainer>
                     <S.TeamName style={{ color: '#FFF' }}>{match.team_b_name}팀</S.TeamName>
-                    <S.TeamName style={{ color: '#FFF' }}>
+                    <S.TeamName1 style={{ color: '#FFF' }}>
                       {match.team_a_bet + match.team_b_bet === 0
                         ? '0'
                         : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
                       %
-                    </S.TeamName>
+                    </S.TeamName1>
                   </S.GradeContainer>
                 </S.ForMedia>
                 <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText1>
@@ -536,10 +538,10 @@ const PlayContainer = () => {
                   <S.ForMedia>
                     <S.GradeContainer>
                       <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_a_name}팀</S.TeamName>
-                      <S.TeamName style={{ color: '#FFF' }}>
+                      <S.TeamName1 style={{ color: '#FFF' }}>
                         {Math.floor((matchResult.team_a_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100)}
                         %
-                      </S.TeamName>
+                      </S.TeamName1>
                     </S.GradeContainer>
                   </S.ForMedia>
                   <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText2>
@@ -549,10 +551,10 @@ const PlayContainer = () => {
                   <S.ForMedia>
                     <S.GradeContainer>
                       <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_b_name}팀</S.TeamName>
-                      <S.TeamName style={{ color: '#FFF' }}>
+                      <S.TeamName1 style={{ color: '#FFF' }}>
                         {Math.floor((matchResult.team_b_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100)}
                         %
-                      </S.TeamName>
+                      </S.TeamName1>
                     </S.GradeContainer>
                   </S.ForMedia>
                   <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText2>

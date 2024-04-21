@@ -40,7 +40,7 @@ export const DayText = styled.p`
   font-weight: 400;
   line-height: 1.4rem;
   margin: 0;
-  width: 2.075rem;
+  width: 2.1rem;
   @media (max-width: 550px) {
     font-size: 0.8rem;
     width: 1.75rem;

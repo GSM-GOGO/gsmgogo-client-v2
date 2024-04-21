@@ -364,7 +364,7 @@ const PlayContainer = () => {
                     </S.TeamName>
                   </S.GradeContainer>
                 </S.ForMedia>
-                <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText>
+                <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText1>
               </S.OneGrade>
 
               <S.OneGrade key={match.team_b_id}>
@@ -379,24 +379,24 @@ const PlayContainer = () => {
                     </S.TeamName>
                   </S.GradeContainer>
                 </S.ForMedia>
-                <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText>
+                <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText1>
               </S.OneGrade>
             </S.GradeBox>
           </S.MainContainer>
 
           <S.TimeContainer>
             <S.OneTimeBox>
-              <S.TimeText>투표</S.TimeText>
-              <S.TimeText>
+              <S.TimeText1>투표</S.TimeText1>
+              <S.TimeText2>
                 {formattedTime} ~ {votingEndFormatted}
-              </S.TimeText>
+              </S.TimeText2>
             </S.OneTimeBox>
 
             <S.OneTimeBox>
-              <S.TimeText>경기</S.TimeText>
-              <S.TimeText>
+              <S.TimeText1>경기</S.TimeText1>
+              <S.TimeText2>
                 {formattedTime} ~ {endFormatted}
-              </S.TimeText>
+              </S.TimeText2>
             </S.OneTimeBox>
           </S.TimeContainer>
 
@@ -508,7 +508,6 @@ const PlayContainer = () => {
           key={matchResult.match_id}
           style={{
             background: 'var(--colors-gray-gray-900, #26262A)',
-            padding: '1rem 1.5rem',
           }}
         >
           <S.PlayingContainer
@@ -536,7 +535,7 @@ const PlayContainer = () => {
                       </S.TeamName>
                     </S.GradeContainer>
                   </S.ForMedia>
-                  <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText>
+                  <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText2>
                 </S.OneGrade>
 
                 <S.OneGrade key={matchResult.team_b_id}>
@@ -549,7 +548,7 @@ const PlayContainer = () => {
                       </S.TeamName>
                     </S.GradeContainer>
                   </S.ForMedia>
-                  <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText>
+                  <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText2>
                 </S.OneGrade>
               </S.GradeBox>
             </S.MainContainer>
@@ -569,7 +568,7 @@ const PlayContainer = () => {
                 padding: '0',
               }}
             >
-              <S.UnderTextBox style={{ paddingTop: '1.5rem' }}>
+              <S.UnderTextBox>
                 <S.WinORLosestyled>
                   {matchResult.team_a_id === matchResult.is_participate_team_id ? (
                     matchResult.team_a_score > matchResult.team_b_score ? (
@@ -593,13 +592,13 @@ const PlayContainer = () => {
                     {(matchResult.team_a_id === matchResult.is_participate_team_id ||
                       matchResult.team_b_id === matchResult.is_participate_team_id) &&
                     matchResult.participate_earned_point === 0 ? (
-                      <S.GradeText style={{ color: 'var(--Error, #DF454A)' }}>
+                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>
                         +{matchResult.participate_earned_point}
-                      </S.GradeText>
+                      </S.GradeText2>
                     ) : (
-                      <S.GradeText style={{ color: 'var(--Main, #23F69A)' }}>
+                      <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>
                         +{matchResult.participate_earned_point}
-                      </S.GradeText>
+                      </S.GradeText2>
                     )}
                   </S.EventContainer>
                 </S.PredictPointBox>
@@ -616,9 +615,10 @@ const PlayContainer = () => {
                 background: 'var(--colors-gray-gray-900, #26262A)',
                 paddingTop: '1.5rem',
                 padding: '0',
+                width: '100%',
               }}
             >
-              <S.UnderTextBox style={{ paddingTop: '1.5rem' }}>
+              <S.UnderTextBox>
                 <S.WinORLosestyled>
                   {matchResult.bet_team_a_score === matchResult.team_a_score &&
                   matchResult.bet_team_b_score === matchResult.team_b_score ? (
@@ -646,29 +646,29 @@ const PlayContainer = () => {
                 <S.PredictPointBox>
                   <S.EventContainer>
                     <S.PredictScoreBox>
-                      <S.GradeText style={{ color: 'var(--Gray1, #B7B7BE)' }}>점수 예측</S.GradeText>
+                      <S.GradeText1 style={{ color: 'var(--Gray1, #B7B7BE)' }}>점수 예측</S.GradeText1>
                       {matchResult.team_a_score === matchResult.bet_team_a_score &&
                       matchResult.team_b_score === matchResult.bet_team_b_score ? (
-                        <S.GradeText style={{ color: 'var(--White, #FFF)' }}>성공</S.GradeText>
+                        <S.GradeText1 style={{ color: 'var(--White, #FFF)' }}>성공</S.GradeText1>
                       ) : (
-                        <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>실패</S.GradeText>
+                        <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>실패</S.GradeText1>
                       )}
                     </S.PredictScoreBox>
                     <S.PredictScoreBox>
-                      <S.GradeText style={{ color: 'var(--Gray1, #B7B7BE)' }}>승패 예측</S.GradeText>
+                      <S.GradeText1 style={{ color: 'var(--Gray1, #B7B7BE)' }}>승패 예측</S.GradeText1>
                       {matchResult.team_a_score > matchResult.team_b_score ==
                       matchResult.bet_team_a_score > matchResult.bet_team_b_score ? (
-                        <S.GradeText style={{ color: 'var(--White, #FFF)' }}>성공</S.GradeText>
+                        <S.GradeText1 style={{ color: 'var(--White, #FFF)' }}>성공</S.GradeText1>
                       ) : (
-                        <S.GradeText style={{ color: 'var(--Gray2, #6F6F7B)' }}>실패</S.GradeText>
+                        <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>실패</S.GradeText1>
                       )}
                     </S.PredictScoreBox>
 
                     {matchResult.team_a_score > matchResult.team_b_score ==
                     matchResult.bet_team_a_score > matchResult.bet_team_b_score ? (
-                      <S.GradeText style={{ color: 'var(--Main, #23F69A)' }}>+{matchResult.earned_point}</S.GradeText>
+                      <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>+{matchResult.earned_point}</S.GradeText2>
                     ) : (
-                      <S.GradeText style={{ color: 'var(--Error, #DF454A)' }}>-{matchResult.lose_point}</S.GradeText>
+                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>-{matchResult.lose_point}</S.GradeText2>
                     )}
                   </S.EventContainer>
                 </S.PredictPointBox>
@@ -769,7 +769,7 @@ const PlayContainer = () => {
         <></>
       ) : (
         <S.BottomText>
-          <S.TimeText>출전하는 경기에는 투표할 수 없으며 경기 승리 시 포인트를 받을 수 있습니다</S.TimeText>
+          <S.TimeText2>출전하는 경기에는 투표할 수 없으며 경기 승리 시 포인트를 받을 수 있습니다</S.TimeText2>
         </S.BottomText>
       )}
       <ToastContainer autoClose={1000} />

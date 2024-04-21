@@ -92,7 +92,22 @@ export const GradeContainer = styled.div`
   gap: 0.25rem;
 `;
 
-export const GradeText = styled.p`
+export const GradeText1 = styled.p`
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+
+export const GradeText2 = styled.p`
   font-family: Pretendard;
   font-size: 0.875rem;
   font-style: normal;
@@ -117,7 +132,21 @@ export const OneTimeBox = styled.div`
   gap: 0.5rem;
 `;
 
-export const TimeText = styled.p`
+export const TimeText1 = styled.p`
+  color: var(--Gray2, #6f6f7b);
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.125rem;
+  margin: 0;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+
+export const TimeText2 = styled.p`
   color: var(--Gray2, #6f6f7b);
   font-family: Pretendard;
   font-size: 0.75rem;
@@ -140,6 +169,22 @@ export const PredictContainer = styled.div`
   border-radius: 0.75rem;
   background: var(--colors-gray-gray-900, #26262a);
   width: 100%;
+  padding: 1rem 1.5rem;
+
+  @media (max-width: 700px) {
+    padding: 1rem 1rem;
+  }
+  @media (max-width: 650px) {
+    width: 95%;
+    padding: 1rem 1rem;
+  }
+  @media (max-width: 650px) {
+    width: 90%;
+    padding: 1rem 1rem;
+  }
+  @media (max-width: 500px) {
+    width: 85%;
+  }
 `;
 
 export const PercentBar = styled.div`
@@ -153,6 +198,11 @@ export const UnderTextBox = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1 0 0;
+  padding-top: 1.5rem;
+
+  @media (max-width: 650px) {
+    padding-top: 0.75rem;
+  }
 `;
 
 export const WinORLosestyled = styled.div`
@@ -371,7 +421,7 @@ export const DayText = styled.p`
   font-weight: 400;
   line-height: 1.4rem;
   margin: 0;
-  width: 2.075rem;
+  width: 2.1rem;
   @media (max-width: 550px) {
     font-size: 0.8rem;
     width: 1.75rem;
@@ -396,6 +446,10 @@ export const VoteConatiner = styled.div`
   align-items: center;
   gap: 0.625rem;
   border-radius: 0.75rem;
+
+  @media (max-width: 500px) {
+    padding: 0.5rem 0.75rem;
+  }
 `;
 
 export const VoteText = styled.p`
@@ -405,6 +459,10 @@ export const VoteText = styled.p`
   font-weight: 400;
   line-height: 1.25rem;
   margin: 0;
+
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const ModalPointContainer = styled.div`
@@ -462,6 +520,9 @@ export const MatchResultText = styled.p`
   font-weight: 400;
   line-height: 1.25rem;
   margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.7rem;
+  }
 `;
 
 export const MatchScoreText = styled.p`
@@ -472,6 +533,10 @@ export const MatchScoreText = styled.p`
   line-height: 1.375rem;
   margin: 0;
   color: var(--colors-gray-gray-400, #9f9fa8);
+
+  @media (max-width: 500px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const MatchScoreContainer = styled.div`

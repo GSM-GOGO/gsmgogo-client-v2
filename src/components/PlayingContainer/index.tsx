@@ -56,7 +56,6 @@ const PlayContainer = () => {
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
   const [loading, setLoading] = useState(true);
-  const userPoint = useStorePoint((state) => state.userPoint);
 
   const dates = useMemo(() => {
     const today = new Date();

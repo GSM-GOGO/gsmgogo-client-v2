@@ -396,6 +396,7 @@ export const WeatherWrapper = styled.div`
   }
   @media (max-width: 550px) {
     gap: 0.75rem;
+    margin-bottom: 1.5rem;
   }
   @media (max-width: 450px) {
     gap: 0.35rem;

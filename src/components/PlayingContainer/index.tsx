@@ -1,13 +1,11 @@
 import * as S from './style';
-// import { PlayingButton, Vote, NotVote, PercentGuageBar } from '../../assets';
-// import { ArrayProps } from '../../types/ArrayProps';
-// import { useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useEffect, useMemo, useState, useCallback } from 'react';
 import apiClient from '../../utils/libs/apiClient';
+import LoadingContent from '../../components/Loading/content.tsx';
 
 interface Match {
   match_id: number;
@@ -55,6 +53,7 @@ const PlayContainer = () => {
   const [selectedSports, setSelectedSports] = useState('');
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
+  const [loading, setLoading] = useState(true);
 
   const dates = useMemo(() => {
     const today = new Date();
@@ -172,6 +171,8 @@ const PlayContainer = () => {
       const fetchData = async () => {
         try {
           setMatches([]);
+          setMatchResult([]);
+          setLoading(true);
 
           const token = localStorage.getItem('accessToken');
           const response = await apiClient.get(`/match?m=${month}&d=${day}`, {
@@ -183,7 +184,10 @@ const PlayContainer = () => {
 
           setMatches(response.data.matches);
           setMatchResult(response.data.match_result);
-        } catch (error) {}
+        } catch (error) {
+        } finally {
+          setLoading(false);
+        }
       };
 
       fetchData();
@@ -389,16 +393,16 @@ const PlayContainer = () => {
           <S.TimeContainer>
             <S.OneTimeBox>
               <S.TimeText1>투표</S.TimeText1>
-              <S.TimeText2>
+              <S.TimeText1>
                 {formattedTime} ~ {votingEndFormatted}
-              </S.TimeText2>
+              </S.TimeText1>
             </S.OneTimeBox>
 
             <S.OneTimeBox>
               <S.TimeText1>경기</S.TimeText1>
-              <S.TimeText2>
+              <S.TimeText1>
                 {formattedTime} ~ {endFormatted}
-              </S.TimeText2>
+              </S.TimeText1>
             </S.OneTimeBox>
           </S.TimeContainer>
 
@@ -764,8 +768,14 @@ const PlayContainer = () => {
       </S.WeatherWrapper>
 
       <S.MainContainers>
-        {formatMapping()}
-        {formatResultMapping()}
+        {loading === true ? (
+          <LoadingContent />
+        ) : (
+          <>
+            {formatMapping()}
+            {formatResultMapping()}
+          </>
+        )}
       </S.MainContainers>
       {matches.length === 0 && matchResult.length === 0 ? (
         <></>

@@ -120,7 +120,7 @@ const PlayContainer = () => {
     team_b_score: string,
     bet_point: string
   ) => {
-    if (match_id !== undefined && userPoint < point) {
+    if (match_id !== undefined) {
       const token = localStorage.getItem('accessToken');
 
       apiClient

@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import apiClient from '../../utils/libs/apiClient';
 import LoadingContent from '../../components/Loading/content.tsx';
+import { EmptyPlaying } from '../../assets/index.ts';
 
 interface Match {
   match_id: number;
@@ -772,8 +773,16 @@ const PlayContainer = () => {
           <LoadingContent />
         ) : (
           <>
-            {formatMapping()}
-            {formatResultMapping()}
+            {matches.length === 0 && matchResult.length === 0 ? (
+              <S.SvgContainer>
+                <EmptyPlaying />
+              </S.SvgContainer>
+            ) : (
+              <>
+                {formatMapping()}
+                {formatResultMapping()}
+              </>
+            )}
           </>
         )}
       </S.MainContainers>

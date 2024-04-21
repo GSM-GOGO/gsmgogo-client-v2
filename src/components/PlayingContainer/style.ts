@@ -554,3 +554,21 @@ export const SuccessBetting = styled.p`
   line-height: 1.25rem;
   margin: 0;
 `;
+
+export const SvgContainer = styled.div`
+  margin-top: 9.25rem;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 650px) {
+    margin-top: 7.5rem;
+    width: 30rem;
+  }
+  @media (max-width: 500px) {
+    width: 27.5rem;
+  }
+  @media (max-width: 450px) {
+    margin-top: 0rem;
+    width: 20rem;
+  }
+`;

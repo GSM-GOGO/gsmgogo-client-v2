@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 40.5rem;
+  width: 37.5rem;
   @media (max-width: 650px) {
     width: 35rem;
   }

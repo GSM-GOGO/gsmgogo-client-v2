@@ -318,3 +318,37 @@ export const SvgContainer = styled.div`
     width: 20rem;
   }
 `;
+
+export const ShowMatchBox = styled.button`
+  display: flex;
+  width: 12.5rem;
+  height: 3.25rem;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: var(--Main, #23f69a);
+  cursor: pointer;
+`;
+
+export const ShowMatchText = styled.p`
+  color: var(--Black, #1c1c1f);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.625rem;
+  margin: 0;
+`;
+
+export const ShowMatchContainer = styled.div`
+  bottom: 2.5rem;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+`;

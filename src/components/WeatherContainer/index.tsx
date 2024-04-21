@@ -1,50 +1,50 @@
-import { useEffect, useState } from "react";
-import * as S from "./style";
+import { useMemo, useState } from 'react';
+import { useCallback } from 'react';
+
+import * as S from './style';
+// import PlayContainer from '../../components/PlayingContainer/index';
 
 const WeatherContainer = () => {
-  const [dates, setDates] = useState<Date[]>([]);
-  const [selectedDateIndex, setSelectedDateIndex] = useState<number | null>(
-    null
-  );
-  const [dayOfWeek, setDayOfWeek] = useState<string[]>([]);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
-  useEffect(() => {
+  const dates = useMemo(() => {
     const today = new Date();
-
     const newDates: Date[] = [];
-    const newDayOfWeek: string[] = [];
     for (let i = 0; i < 11; i++) {
       const date = new Date(today);
       date.setDate(date.getDate() + i);
       newDates.push(date);
-
-      const days = ["일", "월", "화", "수", "목", "금", "토"];
-      const dayIndex = date.getDay();
-      const dayString = days[dayIndex];
-      newDayOfWeek.push(dayString);
     }
-
-    setDates(newDates);
-    setDayOfWeek(newDayOfWeek);
+    return newDates;
   }, []);
 
-  const handleDateClick = (index: number) => {
-    setSelectedDateIndex(index);
-  };
+  const dayOfWeek = useMemo(() => {
+    return dates.map((date) => {
+      const days = ['일', '월', '화', '수', '목', '금', '토'];
+      const dayIndex = date.getDay();
+      return days[dayIndex];
+    });
+  }, [dates]);
+
+  const handleDateClick = useCallback((date: Date) => {
+    setSelectedDate(date);
+  }, []);
 
   return (
-    <S.WeatherWrapper>
-      {dates.map((date, index) => (
-        <S.DateContainer
-          key={index}
-          onClick={() => handleDateClick(index)}
-          selected={index === selectedDateIndex}
-        >
-          <S.DayText>{dayOfWeek[index]}</S.DayText>
-          <S.DayText>{date.getDate()}일</S.DayText>
-        </S.DateContainer>
-      ))}
-    </S.WeatherWrapper>
+    <>
+      <S.WeatherWrapper>
+        {dates.map((date, index) => (
+          <S.DateContainer
+            key={index}
+            onClick={() => handleDateClick(date)}
+            selected={selectedDate === date || (selectedDate === null && index === 0)}
+          >
+            <S.DayText>{dayOfWeek[index]}</S.DayText>
+            <S.DayText>{date.getDate()}일</S.DayText>
+          </S.DateContainer>
+        ))}
+      </S.WeatherWrapper>
+    </>
   );
 };
 

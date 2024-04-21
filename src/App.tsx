@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main, Minigame, Ranking, Signin, Signup } from './Pages';
+import { Main, Ranking, Signin, Signup } from './Pages';
 import { GlobalStyles } from './style/Globalstyles.ts';
 import SoccerForm from './Pages/Formation/SoccerForm/index.tsx';
 import VolleyForm from './Pages/Formation/VolleyForm/index.tsx';
@@ -17,6 +17,12 @@ import Header from './components/Header/index.tsx';
 import styled from 'styled-components';
 import Notfound from './components/Loading/Notfound.tsx';
 import { PrivateRoute } from './utils/libs/PrivateRoute.tsx';
+// import Bracket from './Pages/Bracket/index.tsx';
+import Coingame from './Pages/Minigame/CoinGame/index.tsx';
+import Roulette from './Pages/Minigame/Roulette/index.tsx';
+import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
+import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
+import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
 
 const queryClient = new QueryClient();
 
@@ -55,13 +61,24 @@ function App() {
               }
             />
             <Route
-              path="/minigame"
+              path="/minigame/coingame"
               element={
                 <>
                   <HeaderContainer>
                     <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
-                  <Minigame />
+                  <Coingame />
+                </>
+              }
+            />
+            <Route
+              path="/minigame/daily-roulette"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <Roulette />
                 </>
               }
             />
@@ -129,6 +146,54 @@ function App() {
                     <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <NomalForm />
+                </>
+              }
+            />
+
+            {/* <Route
+              path="/bracket/:sport"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <Bracket />
+                </>
+              }
+            /> */}
+
+            <Route
+              path="/bracket/soccer"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <SoccerBracket />
+                </>
+              }
+            />
+
+            <Route
+              path="/bracket/badminton"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <BadmintonBracket />
+                </>
+              }
+            />
+
+            <Route
+              path="/bracket/volleyball"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <VolleyballBracket />
                 </>
               }
             />

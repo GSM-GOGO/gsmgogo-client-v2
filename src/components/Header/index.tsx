@@ -39,9 +39,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
       localStorage.removeItem('accessToken');
       localStorage.removeItem('refreshToken');
       Navigate('/signin');
-    } catch (e) {
-      console.log(e);
-    }
+    } catch (e) {}
   };
   //
   useEffect(() => {
@@ -90,9 +88,8 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
             {miniText[1]}
           </S.GoGoMiniLink>
 
-
           <S.GoGoMiniLink to="/minigame/daily-roulette">
-          <Roulette isClick={currentPath === '/minigame/daily-roulette'}/>
+            <Roulette isClick={currentPath === '/minigame/daily-roulette'} />
           </S.GoGoMiniLink>
           <S.GoGoMiniText
             style={{

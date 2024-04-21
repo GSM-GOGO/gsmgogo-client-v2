@@ -131,7 +131,6 @@ const Sports = () => {
 
   const showBracket = (sport: string) => {
     navigate(`/bracket/${sport}`);
-    console.log(sport);
   };
 
   return (

@@ -10,7 +10,7 @@ const MiniGameCategory = () => {
         to="/minigame/coingame"
         style={currentPath === '/minigame/coingame' ? { color: '#fff' } : undefined}
       >
-        경기
+        동전 던지기
       </S.CategoryLink>
     </S.CategoryContainer>
   );

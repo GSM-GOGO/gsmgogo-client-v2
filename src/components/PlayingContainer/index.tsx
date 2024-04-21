@@ -7,6 +7,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import apiClient from '../../utils/libs/apiClient';
 import LoadingContent from '../../components/Loading/content.tsx';
 import { EmptyPlaying } from '../../assets/index.ts';
+import useStorePoint from '../../utils/libs/storePoint.ts';
 
 interface Match {
   match_id: number;
@@ -55,6 +56,7 @@ const PlayContainer = () => {
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
   const [loading, setLoading] = useState(true);
+  const userPoint = useStorePoint((state) => state.userPoint);
 
   const dates = useMemo(() => {
     const today = new Date();
@@ -118,7 +120,10 @@ const PlayContainer = () => {
     team_b_score: string,
     bet_point: string
   ) => {
-    if (match_id !== undefined) {
+    if (userPoint > point) {
+      toast.error('보유한 포인트보다 더 많이 베팅하였습니다.', { autoClose: 1000 });
+      setPoint('');
+    } else if (match_id !== undefined && userPoint < point) {
       const token = localStorage.getItem('accessToken');
 
       apiClient

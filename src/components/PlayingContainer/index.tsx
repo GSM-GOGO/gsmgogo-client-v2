@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import apiClient from '../../utils/libs/apiClient';
+import EmptyPlaying from '../../assets/svg/EmptyPlaying';
 
 interface Match {
   match_id: number;
@@ -55,6 +56,7 @@ const PlayContainer = () => {
   const [selectedSports, setSelectedSports] = useState('');
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
+  const [isLoading, setIsLoading] = useState(true);
 
   const dates = useMemo(() => {
     const today = new Date();
@@ -151,6 +153,9 @@ const PlayContainer = () => {
             const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
             toast.error(errorMessage, { autoClose: 1000 });
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
     }
   };
@@ -764,8 +769,16 @@ const PlayContainer = () => {
       </S.WeatherWrapper>
 
       <S.MainContainers>
-        {formatMapping()}
-        {formatResultMapping()}
+        {matches.length === 0 && matchResult.length === 0 ? (
+          <S.SvgContainer>
+            <EmptyPlaying />
+          </S.SvgContainer>
+        ) : (
+          <>
+            {formatMapping()}
+            {formatResultMapping()}
+          </>
+        )}
       </S.MainContainers>
       {matches.length === 0 && matchResult.length === 0 ? (
         <></>

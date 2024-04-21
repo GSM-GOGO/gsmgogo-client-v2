@@ -120,10 +120,7 @@ const PlayContainer = () => {
     team_b_score: string,
     bet_point: string
   ) => {
-    if (userPoint > point) {
-      toast.error('보유한 포인트보다 더 많이 베팅하였습니다.', { autoClose: 1000 });
-      setPoint('');
-    } else if (match_id !== undefined && userPoint < point) {
+    if (match_id !== undefined && userPoint < point) {
       const token = localStorage.getItem('accessToken');
 
       apiClient

@@ -139,7 +139,9 @@ const PlayContainer = () => {
         )
         .then(() => {
           toast.success('투표 완료 되었습니다.', { autoClose: 1000 });
-          window.location.reload();
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
         })
         .catch((error) => {
           if (error.response && error.response.status === 400) {

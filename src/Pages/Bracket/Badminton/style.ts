@@ -8,6 +8,8 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 40.5rem;
+  display: grid;
+  gap: 2.5rem;
 `;
 
 export const GridContainer = styled.div`

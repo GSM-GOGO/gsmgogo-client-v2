@@ -8,22 +8,22 @@ export const Wrapper = styled.div`
 
 export const Container = styled.div`
   width: 40.5rem;
+  padding: 1rem;
   display: grid;
   gap: 2.5rem;
-  margin-top: 2.5rem;
 `;
 
 export const GridContainer = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   border: 1px solid var(--Gray2, #6f6f7b);
 `;
 
 export const GridItem = styled.div<{ diagonal?: string }>`
   color: #fff;
-
+  flex-direction: column;
   text-align: center;
   font-family: Pretendard;
   font-size: 1rem;
@@ -69,4 +69,44 @@ export const BeforeButton = styled.button`
   text-align: center;
 
   cursor: pointer;
+`;
+
+export const TopMentContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  gap: 0.5rem;
+
+  @media (max-width: 500px) {
+    display: block;
+  }
+`;
+
+const Ment = styled.p`
+  margin: 0;
+  font-family: Pretendard;
+  font-weight: 400;
+  font-size: 1rem;
+
+  @media (max-width: 620px) {
+    font-size: 0.8rem;
+  }
+`;
+
+export const Ment1 = styled(Ment)`
+  color: var(--Main, #23f69a);
+`;
+
+export const Ment2 = styled(Ment)`
+  color: #fff;
+`;
+
+export const Ment3 = styled(Ment)`
+  color: var(--Gray1, #b7b7be);
+  font-size: 0.875rem;
+
+  @media (max-width: 550px) {
+    font-size: 0.6rem;
+  }
 `;

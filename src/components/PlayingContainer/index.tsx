@@ -695,7 +695,14 @@ const PlayContainer = () => {
             <S.ModalTextWrapper>
               <S.ModalTextContainer>
                 <S.ModalTitle>
-                  <S.ModalTitleContainer>{selectedSports} 경기에 투표 하시겠습니까?</S.ModalTitleContainer>
+                  <S.ModalTitleContainer>
+                    {selectedSports} 경기에 투표 하시겠습니까?
+                    {selectedSports == '배드민턴' && selectedDate.getDate()>=23&& (
+                      <div>
+                        예선, 본선은 25점 내기 단판입니다
+                      </div>
+                    )}
+                  </S.ModalTitleContainer>
                 </S.ModalTitle>
                 <S.ModalNovelContainer>
                   <S.ModalNovel>

@@ -289,8 +289,14 @@ export const ModalTextContainer = styled.div`
 export const ModalTitleContainer = styled.div`
   text-align: center;
   display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
   justify-content: center;
   width: 14.875rem;
+  div {
+    font-size: 1rem;
+    color: #23f69a;
+  }
 `;
 
 export const ModalTitle = styled.p`

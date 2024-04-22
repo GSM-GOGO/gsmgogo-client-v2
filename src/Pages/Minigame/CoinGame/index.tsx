@@ -107,7 +107,7 @@ const Coingame: React.FC = () => {
                 <S.ModalTitleContainer>코인을 던지겠습니까?</S.ModalTitleContainer>
               </S.ModalTitle>
               <S.ModalNovelContainer>
-                <S.ModalNovel>배팅 금액을 적어주세요</S.ModalNovel>
+                <S.ModalNovel>베팅 금액을 적어주세요</S.ModalNovel>
               </S.ModalNovelContainer>
             </S.ModalTextContainer>
             <S.CoinInputContainer>
@@ -132,7 +132,7 @@ const Coingame: React.FC = () => {
               >
                 아니오
               </S.ModalCencleButton>
-              <S.ModalCheerButton onClick={handleBetting}>배팅하기</S.ModalCheerButton>
+              <S.ModalCheerButton onClick={handleBetting}>베팅하기</S.ModalCheerButton>
             </S.ModalButtonContainer>
           </S.ModalContainer>
         </S.ModalBackground>
@@ -149,14 +149,14 @@ const Coingame: React.FC = () => {
                   <S.ButtonWrapper>
                     <S.ButtonContainer>
                       <S.CoinButton name="obverse" onClick={handleButton}>
-                        앞면 배팅
+                        앞면 베팅
                       </S.CoinButton>
                       <S.CoinButton name="back" onClick={handleButton}>
-                        뒷면 배팅
+                        뒷면 베팅
                       </S.CoinButton>
                     </S.ButtonContainer>
                     <S.Text>
-                      동전던지기는 하루에 10회, 최대 3000 포인트까지 배팅 할 수 있어요 동전의 면을 맞출 시 배팅한
+                      동전던지기는 하루에 10회, 최대 3000 포인트까지 베팅 할 수 있어요 동전의 면을 맞출 시 베팅한
                       포인트의 2배를 얻어요
                     </S.Text>
                   </S.ButtonWrapper>

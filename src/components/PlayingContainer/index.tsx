@@ -600,11 +600,11 @@ const PlayContainer = () => {
                       matchResult.team_b_id === matchResult.is_participate_team_id) &&
                     matchResult.participate_earned_point === 0 ? (
                       <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>
-                        +{matchResult.participate_earned_point}
+                        +{matchResult.participate_earned_point}P
                       </S.GradeText2>
                     ) : (
                       <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>
-                        +{matchResult.participate_earned_point}
+                        +{matchResult.participate_earned_point}P
                       </S.GradeText2>
                     )}
                   </S.EventContainer>
@@ -736,7 +736,7 @@ const PlayContainer = () => {
                 </S.ModalPointContainer>
               )}
 
-              {sameInput && <S.ModalInputError>무승부 배팅은 불가능 합니다.</S.ModalInputError>}
+              {sameInput && <S.ModalInputError>무승부 베팅은 불가능 합니다.</S.ModalInputError>}
             </S.ModalTextWrapper>
             <S.ModalButtonContainer>
               <S.ModalCencleButton

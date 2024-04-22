@@ -1,14 +1,12 @@
 import * as S from './style';
-// import { PlayingButton, Vote, NotVote, PercentGuageBar } from '../../assets';
-// import { ArrayProps } from '../../types/ArrayProps';
-// import { useState } from 'react';
+import { useEffect, useMemo, useState, useCallback } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useEffect, useMemo, useState, useCallback } from 'react';
 import apiClient from '../../utils/libs/apiClient';
-import EmptyPlaying from '../../assets/svg/EmptyPlaying';
+import LoadingContent from '../../components/Loading/content.tsx';
+import { EmptyPlaying } from '../../assets/index.ts';
 
 interface Match {
   match_id: number;
@@ -56,7 +54,7 @@ const PlayContainer = () => {
   const [selectedSports, setSelectedSports] = useState('');
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
-  const [isLoading, setIsLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
   const dates = useMemo(() => {
     const today = new Date();
@@ -177,6 +175,8 @@ const PlayContainer = () => {
       const fetchData = async () => {
         try {
           setMatches([]);
+          setMatchResult([]);
+          setLoading(true);
 
           const token = localStorage.getItem('accessToken');
           const response = await apiClient.get(`/match?m=${month}&d=${day}`, {
@@ -188,7 +188,10 @@ const PlayContainer = () => {
 
           setMatches(response.data.matches);
           setMatchResult(response.data.match_result);
-        } catch (error) {}
+        } catch (error) {
+        } finally {
+          setLoading(false);
+        }
       };
 
       fetchData();
@@ -363,12 +366,12 @@ const PlayContainer = () => {
                 <S.ForMedia>
                   <S.GradeContainer>
                     <S.TeamName style={{ color: '#FFF' }}>{match.team_a_name}팀</S.TeamName>
-                    <S.TeamName style={{ color: '#FFF' }}>
+                    <S.TeamName1 style={{ color: '#FFF' }}>
                       {match.team_a_bet + match.team_b_bet === 0
                         ? '0'
                         : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
                       %
-                    </S.TeamName>
+                    </S.TeamName1>
                   </S.GradeContainer>
                 </S.ForMedia>
                 <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText1>
@@ -378,12 +381,12 @@ const PlayContainer = () => {
                 <S.ForMedia>
                   <S.GradeContainer>
                     <S.TeamName style={{ color: '#FFF' }}>{match.team_b_name}팀</S.TeamName>
-                    <S.TeamName style={{ color: '#FFF' }}>
+                    <S.TeamName1 style={{ color: '#FFF' }}>
                       {match.team_a_bet + match.team_b_bet === 0
                         ? '0'
                         : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
                       %
-                    </S.TeamName>
+                    </S.TeamName1>
                   </S.GradeContainer>
                 </S.ForMedia>
                 <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText1>
@@ -394,16 +397,16 @@ const PlayContainer = () => {
           <S.TimeContainer>
             <S.OneTimeBox>
               <S.TimeText1>투표</S.TimeText1>
-              <S.TimeText2>
+              <S.TimeText1>
                 {formattedTime} ~ {votingEndFormatted}
-              </S.TimeText2>
+              </S.TimeText1>
             </S.OneTimeBox>
 
             <S.OneTimeBox>
               <S.TimeText1>경기</S.TimeText1>
-              <S.TimeText2>
+              <S.TimeText1>
                 {formattedTime} ~ {endFormatted}
-              </S.TimeText2>
+              </S.TimeText1>
             </S.OneTimeBox>
           </S.TimeContainer>
 
@@ -536,10 +539,10 @@ const PlayContainer = () => {
                   <S.ForMedia>
                     <S.GradeContainer>
                       <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_a_name}팀</S.TeamName>
-                      <S.TeamName style={{ color: '#FFF' }}>
+                      <S.TeamName1 style={{ color: '#FFF' }}>
                         {Math.floor((matchResult.team_a_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100)}
                         %
-                      </S.TeamName>
+                      </S.TeamName1>
                     </S.GradeContainer>
                   </S.ForMedia>
                   <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText2>
@@ -549,10 +552,10 @@ const PlayContainer = () => {
                   <S.ForMedia>
                     <S.GradeContainer>
                       <S.TeamName style={{ color: '#FFF' }}>{matchResult.team_b_name}팀</S.TeamName>
-                      <S.TeamName style={{ color: '#FFF' }}>
+                      <S.TeamName1 style={{ color: '#FFF' }}>
                         {Math.floor((matchResult.team_b_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100)}
                         %
-                      </S.TeamName>
+                      </S.TeamName1>
                     </S.GradeContainer>
                   </S.ForMedia>
                   <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText2>
@@ -600,11 +603,11 @@ const PlayContainer = () => {
                       matchResult.team_b_id === matchResult.is_participate_team_id) &&
                     matchResult.participate_earned_point === 0 ? (
                       <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>
-                        +{matchResult.participate_earned_point}
+                        +{matchResult.participate_earned_point}P
                       </S.GradeText2>
                     ) : (
                       <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>
-                        +{matchResult.participate_earned_point}
+                        +{matchResult.participate_earned_point}P
                       </S.GradeText2>
                     )}
                   </S.EventContainer>
@@ -673,9 +676,11 @@ const PlayContainer = () => {
 
                     {matchResult.team_a_score > matchResult.team_b_score ==
                     matchResult.bet_team_a_score > matchResult.bet_team_b_score ? (
-                      <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>+{matchResult.earned_point}</S.GradeText2>
+                      <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>
+                        +{matchResult.earned_point}P
+                      </S.GradeText2>
                     ) : (
-                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>-{matchResult.lose_point}</S.GradeText2>
+                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>-{matchResult.lose_point}P</S.GradeText2>
                     )}
                   </S.EventContainer>
                 </S.PredictPointBox>
@@ -695,7 +700,12 @@ const PlayContainer = () => {
             <S.ModalTextWrapper>
               <S.ModalTextContainer>
                 <S.ModalTitle>
-                  <S.ModalTitleContainer>{selectedSports} 경기에 투표 하시겠습니까?</S.ModalTitleContainer>
+                  <S.ModalTitleContainer>
+                    {selectedSports} 경기에 투표 하시겠습니까?
+                    {selectedSports == '배드민턴' && selectedDate.getDate() >= 23 && (
+                      <div>예선, 본선은 25점 내기 단판입니다</div>
+                    )}
+                  </S.ModalTitleContainer>
                 </S.ModalTitle>
                 <S.ModalNovelContainer>
                   <S.ModalNovel>
@@ -729,7 +739,7 @@ const PlayContainer = () => {
                 </S.ModalPointContainer>
               )}
 
-              {sameInput && <S.ModalInputError>무승부 배팅은 불가능 합니다.</S.ModalInputError>}
+              {sameInput && <S.ModalInputError>무승부 베팅은 불가능 합니다.</S.ModalInputError>}
             </S.ModalTextWrapper>
             <S.ModalButtonContainer>
               <S.ModalCencleButton
@@ -769,14 +779,20 @@ const PlayContainer = () => {
       </S.WeatherWrapper>
 
       <S.MainContainers>
-        {matches.length === 0 && matchResult.length === 0 ? (
-          <S.SvgContainer>
-            <EmptyPlaying />
-          </S.SvgContainer>
+        {loading === true ? (
+          <LoadingContent />
         ) : (
           <>
-            {formatMapping()}
-            {formatResultMapping()}
+            {matches.length === 0 && matchResult.length === 0 ? (
+              <S.SvgContainer>
+                <EmptyPlaying />
+              </S.SvgContainer>
+            ) : (
+              <>
+                {formatMapping()}
+                {formatResultMapping()}
+              </>
+            )}
           </>
         )}
       </S.MainContainers>

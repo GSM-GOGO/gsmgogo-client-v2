@@ -7,20 +7,17 @@ const Main = () => {
     <>
       <S.Wrapper>
         <S.Container>
-          <Category />
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
-          >
-            {/* <S.SvgContainer>
-              <EmptyPlaying />
-            </S.SvgContainer> */}
-            {/* <S.MainContainer> */}
-            <PlayingContainer />
-            {/* </S.MainContainer> */}
+          <div>
+            <Category />
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+            >
+              <PlayingContainer />
+            </div>
           </div>
         </S.Container>
       </S.Wrapper>

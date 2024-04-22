@@ -7,6 +7,9 @@ export const CategoryContainer = styled.div`
   display: flex;
   /* width: 40.5rem; */
   gap: 1.75rem;
+  @media (max-width: 650px) {
+    padding: 0 1rem;
+  }
   @media screen and (max-width: 500px) {
     gap: 1.2rem;
   }

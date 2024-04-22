@@ -32,7 +32,12 @@ const BadmintionBracket = () => {
               김주은/방가온
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>발목부상 승</S.Ment1> <S.Ment2>25 vs 10</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>발목부상 vs 주방</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem>
               발목부상듀오
@@ -79,7 +84,12 @@ const BadmintionBracket = () => {
               이동욱/이태랑
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+            <S.TopMentContainer>
+                <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 vs 13</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>콩보리 vs 지죽동클</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem>
               지죽동클라맨

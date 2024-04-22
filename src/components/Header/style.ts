@@ -20,8 +20,11 @@ export const GoGoText = styled.h1`
   line-height: 1.9375rem;
   margin: 0;
 
-  @media screen and (max-width: 500px) {
-    font-size: 1.2rem;
+  @media screen and (max-width: 550px) {
+    font-size: 1rem;
+  }
+  @media screen and (max-width: 350px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -94,4 +97,7 @@ export const SvgContainer = styled.div`
   @media screen and (max-width: 500px) {
     font-size: 0.75rem;
   }
+
+  width: 1rem;
+  text-align: center;
 `;

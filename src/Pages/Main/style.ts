@@ -11,8 +11,8 @@ export const Wrapper = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 37.5rem;
-  @media (max-width: 650px) {
+  width: 40.5rem;
+  /* @media (max-width: 650px) {
     width: 35rem;
   }
   @media (max-width: 550px) {
@@ -23,7 +23,7 @@ export const Container = styled.div`
   }
   @media (max-width: 450px) {
     width: 25rem;
-  }
+  } */
 `;
 
 export const MainContainer = styled.div`

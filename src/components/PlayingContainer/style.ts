@@ -79,6 +79,19 @@ export const TeamName = styled.h3`
   }
 `;
 
+export const TeamName1 = styled.h3`
+  color: var(--White, #fff);
+  font-family: Pretendard;
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.25rem;
+  margin: 0;
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
+`;
+
 export const ForMedia = styled.div`
   width: 8.5rem;
   @media (max-width: 650px) {
@@ -276,8 +289,14 @@ export const ModalTextContainer = styled.div`
 export const ModalTitleContainer = styled.div`
   text-align: center;
   display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
   justify-content: center;
   width: 14.875rem;
+  div {
+    font-size: 1rem;
+    color: #23f69a;
+  }
 `;
 
 export const ModalTitle = styled.p`
@@ -396,6 +415,7 @@ export const WeatherWrapper = styled.div`
   }
   @media (max-width: 550px) {
     gap: 0.75rem;
+    margin-bottom: 1.5rem;
   }
   @media (max-width: 450px) {
     gap: 0.35rem;

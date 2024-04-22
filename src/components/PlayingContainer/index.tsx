@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import apiClient from '../../utils/libs/apiClient';
 import LoadingContent from '../../components/Loading/content.tsx';
 import { EmptyPlaying } from '../../assets/index.ts';
-import useStorePoint from '../../utils/libs/storePoint.ts';
 
 interface Match {
   match_id: number;
@@ -56,7 +55,6 @@ const PlayContainer = () => {
   const [nextModal, setNextModal] = useState(false);
   const [matchId, setMatchId] = useState<number | undefined>();
   const [loading, setLoading] = useState(true);
-  const userPoint = useStorePoint((state) => state.userPoint);
 
   const dates = useMemo(() => {
     const today = new Date();

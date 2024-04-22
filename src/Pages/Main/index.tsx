@@ -16,12 +16,7 @@ const Main = () => {
                 alignItems: 'center',
               }}
             >
-              {/* <S.SvgContainer>
-              <EmptyPlaying />
-            </S.SvgContainer> */}
-              {/* <S.MainContainer> */}
               <PlayingContainer />
-              {/* </S.MainContainer> */}
             </div>
           </div>
         </S.Container>

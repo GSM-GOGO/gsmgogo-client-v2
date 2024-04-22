@@ -97,4 +97,7 @@ export const SvgContainer = styled.div`
   @media screen and (max-width: 500px) {
     font-size: 0.75rem;
   }
+
+  width: 1rem;
+  text-align: center;
 `;

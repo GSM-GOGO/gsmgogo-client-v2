@@ -673,9 +673,11 @@ const PlayContainer = () => {
 
                     {matchResult.team_a_score > matchResult.team_b_score ==
                     matchResult.bet_team_a_score > matchResult.bet_team_b_score ? (
-                      <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>+{matchResult.earned_point}</S.GradeText2>
+                      <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>
+                        +{matchResult.earned_point}P
+                      </S.GradeText2>
                     ) : (
-                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>-{matchResult.lose_point}</S.GradeText2>
+                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>-{matchResult.lose_point}P</S.GradeText2>
                     )}
                   </S.EventContainer>
                 </S.PredictPointBox>
@@ -697,10 +699,8 @@ const PlayContainer = () => {
                 <S.ModalTitle>
                   <S.ModalTitleContainer>
                     {selectedSports} 경기에 투표 하시겠습니까?
-                    {selectedSports == '배드민턴' && selectedDate.getDate()>=23&& (
-                      <div>
-                        예선, 본선은 25점 내기 단판입니다
-                      </div>
+                    {selectedSports == '배드민턴' && selectedDate.getDate() >= 23 && (
+                      <div>예선, 본선은 25점 내기 단판입니다</div>
                     )}
                   </S.ModalTitleContainer>
                 </S.ModalTitle>

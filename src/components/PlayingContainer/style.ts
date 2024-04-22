@@ -64,6 +64,10 @@ export const OneGrade = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  
+  @media (max-width: 370px) {
+  gap: 0rem;
+  }
 `;
 
 export const TeamName = styled.h3`

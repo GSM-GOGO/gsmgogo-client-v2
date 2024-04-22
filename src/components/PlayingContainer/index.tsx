@@ -371,7 +371,7 @@ const PlayContainer = () => {
                     </S.TeamName1>
                   </S.GradeContainer>
                 </S.ForMedia>
-                <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText1>
+                <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText2>
               </S.OneGrade>
 
               <S.OneGrade key={match.team_b_id}>
@@ -386,7 +386,7 @@ const PlayContainer = () => {
                     </S.TeamName1>
                   </S.GradeContainer>
                 </S.ForMedia>
-                <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText1>
+                <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText2>
               </S.OneGrade>
             </S.GradeBox>
           </S.MainContainer>

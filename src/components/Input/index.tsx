@@ -40,7 +40,7 @@ export default function Input({
   const [count, setCount] = useState(validtime);
   const [expired, setExpired] = useState(false);
   const [resending, setResending] = useState(false);
-  const [isResendDisabled, setIsResendDisabled] = useState(false); // 재전송 버튼 비활성화 상태
+  const [isResendDisabled, setIsResendDisabled] = useState(false);
 
   useEffect(() => {
     if (count === 0) {

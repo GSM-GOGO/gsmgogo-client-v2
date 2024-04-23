@@ -41,7 +41,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
       Navigate('/signin');
     } catch (e) {}
   };
-  //
+
   useEffect(() => {
     if (!hasFetchedUserPoint) {
       const getUserPoint = async () => {

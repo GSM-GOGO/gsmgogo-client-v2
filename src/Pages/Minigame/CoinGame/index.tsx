@@ -113,7 +113,7 @@ const Coingame: React.FC = () => {
             <S.CoinInputContainer>
               <S.CoinInput
                 type="number"
-                value={coinInput === null ? '' : coinInput} // null 체크 후 빈 문자열로 대체
+                value={coinInput === null ? '' : coinInput}
                 maxLength={10}
                 onChange={ChangeCoinInput}
                 placeholder="마이너스 불가능"

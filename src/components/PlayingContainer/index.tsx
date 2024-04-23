@@ -246,7 +246,7 @@ const PlayContainer = () => {
       const endHours = matchEnd.getHours();
       const endMinutes = matchEnd.getMinutes();
 
-      const oneDayInMillis = 24 * 60 * 60 * 1000; // 하루의 밀리초 수
+      const oneDayInMillis = 24 * 60 * 60 * 1000;
       const oneDayBefore = new Date(dateTime.getTime() - oneDayInMillis);
 
       const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;

@@ -7,17 +7,12 @@ import BadmintonForm from './Pages/Formation/BadmintonForm/index.tsx';
 import NomalMatch from './Pages/Category/Nomal/index.tsx';
 import NomalForm from './Pages/Formation/NomalForm/index.tsx';
 import Sports from './Pages/Category/Sports/index.tsx';
-// import Register from './Pages/Register/index.tsx';
 import AuthCallBack from './Pages/AuthCallBack/index.tsx';
-// import Badminton from './Pages/Register/Badminton/index.tsx';
-// import Soccer from './Pages/Register/Soccer/index.tsx';
-// import Volleyball from './Pages/Register/Volleyball/index.tsx';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import Header from './components/Header/index.tsx';
 import styled from 'styled-components';
 import Notfound from './components/Loading/Notfound.tsx';
 import { PrivateRoute } from './utils/libs/PrivateRoute.tsx';
-// import Bracket from './Pages/Bracket/index.tsx';
 import Coingame from './Pages/Minigame/CoinGame/index.tsx';
 import Roulette from './Pages/Minigame/Roulette/index.tsx';
 import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
@@ -30,7 +25,7 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
-//
+
 function App() {
   return (
     <QueryClientProvider client={queryClient}>

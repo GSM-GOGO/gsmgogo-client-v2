@@ -151,9 +151,9 @@ const Register = () => {
 
   const handleSportSelection = (sport: string) => {
     setSelectedSport(sport);
-    setTeamName(''); // 팀 이름 초기화
-    setSearchedName(''); // 팀 검색 input 초기화
-    setSearchResults([]); // 검색 결과 초기화
+    setTeamName('');
+    setSearchedName('');
+    setSearchResults([]);
     setSelectedMembers([]);
   };
 
@@ -379,7 +379,6 @@ const Register = () => {
                       onClick={() => {
                         handleClickRegister();
                       }}
-                      // disabled={allSportsFull && selectedSport == '일반경기'}
                       style={{
                         backgroundColor:
                           allSportsFull && selectedSport == '일반경기' ? 'var(--Main, #23F69A)' : undefined,

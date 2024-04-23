@@ -21,7 +21,7 @@ interface ErrorResponse {
 }
 
 const NomalForm = () => {
-  const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null); // activeCategoryId 타입 수정
+  const [activeCategoryId, setActiveCategoryId] = useState<number | null>(null);
   const [deleteTeam, setdeleteTeam] = useState(false);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
@@ -38,7 +38,6 @@ const NomalForm = () => {
     author_me: boolean;
     team_list?: { team_type: NormalTeamType; participates: { user_name: string }[] }[];
   }>({
-    // teamList 타입 수정
     team_grade: '',
     team_class: '',
     author_me: false,

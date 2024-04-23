@@ -90,7 +90,7 @@ const Ment = styled.p`
   font-size: 1rem;
 
   @media (max-width: 620px) {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 `;
 
@@ -107,6 +107,6 @@ export const Ment3 = styled(Ment)`
   font-size: 0.875rem;
 
   @media (max-width: 550px) {
-    font-size: 0.6rem;
+    font-size: 0.48rem;
   }
 `;

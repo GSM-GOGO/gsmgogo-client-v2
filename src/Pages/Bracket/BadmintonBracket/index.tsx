@@ -1,6 +1,12 @@
+import { useNavigate } from 'react-router-dom';
 import * as S from './style.ts';
 
 const BadmintionBracket = () => {
+  const navigate = useNavigate();
+
+  const GoBeforePage = () => {
+    navigate(-1);
+  };
   return (
     <>
       <S.Wrapper>
@@ -103,9 +109,14 @@ const BadmintionBracket = () => {
               <S.TopMentContainer>
                 <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 : 13</S.Ment2>
               </S.TopMentContainer>
-              <S.Ment3>콩보리 vs 지죽동클</S.Ment3>
+              <S.Ment3>콩보리 vs 지죽동클라맨</S.Ment3>
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 : 19</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>콩보리 vs 아자아자화이</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               지죽동클라맨
               <br />
@@ -115,7 +126,7 @@ const BadmintionBracket = () => {
               <S.TopMentContainer>
                 <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 : 13</S.Ment2>
               </S.TopMentContainer>
-              <S.Ment3>콩보리 vs 지죽동클</S.Ment3>
+              <S.Ment3>콩보리 vs 지죽동클라맨</S.Ment3>
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
             <S.GridItem>TBD</S.GridItem>
@@ -124,7 +135,12 @@ const BadmintionBracket = () => {
               <br />
               김은후/양동찬
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 : 19</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>콩보리 vs 아자아자화이</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
           </S.GridContainer>
@@ -229,7 +245,12 @@ const BadmintionBracket = () => {
               </S.TopMentContainer>
               <S.Ment3>배용빈팀 vs 농협은행</S.Ment3>
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>배용빈팀 승</S.Ment1> <S.Ment2>25 : 21</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>배용빈팀 vs 수원피자</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               농협은행
               <br />
@@ -248,7 +269,12 @@ const BadmintionBracket = () => {
               <br />
               김지훈 / 이산
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>배용빈팀 승</S.Ment1> <S.Ment2>25 : 21</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>배용빈팀 vs 수원피자</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
           </S.GridContainer>
@@ -286,7 +312,12 @@ const BadmintionBracket = () => {
               </S.TopMentContainer>
               <S.Ment3>경심애심심심 vs 수일통닭</S.Ment3>
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>경심애심심심 승</S.Ment1> <S.Ment2>25 : 14</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>경심애심심심 vs 카라박</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               수일통닭
               <br />
@@ -305,18 +336,17 @@ const BadmintionBracket = () => {
               <br />
               김민균 / 전선우
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>경심애심심심 승</S.Ment1> <S.Ment2>25 : 14</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>경심애심심심 vs 카라박</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
           </S.GridContainer>
           <S.BeforeButtonCotainer>
-            <S.BeforeButton
-              onClick={() => {
-                window.location.href = '/';
-              }}
-            >
-              돌아가기
-            </S.BeforeButton>
+            <S.BeforeButton onClick={GoBeforePage}>돌아가기</S.BeforeButton>
           </S.BeforeButtonCotainer>
         </S.Container>
       </S.Wrapper>

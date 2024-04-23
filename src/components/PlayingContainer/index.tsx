@@ -742,13 +742,13 @@ const PlayContainer = () => {
                       )}
                     </>
                   )}
+                  <S.PercentBar>
+                    <S.PredictText style={{ fontWeight: '400' }}>내 예측 투표</S.PredictText>
+                    <S.PredictText style={{ fontWeight: '600' }}>
+                      {matchResult.bet_team_a_score} - {matchResult.bet_team_b_score}
+                    </S.PredictText>
+                  </S.PercentBar>
                 </S.WinORLosestyled>
-                <S.PercentBar>
-                  <S.PredictText style={{ fontWeight: '400' }}>내 예측 투표</S.PredictText>
-                  <S.PredictText style={{ fontWeight: '600' }}>
-                    {matchResult.bet_team_a_score} - {matchResult.bet_team_b_score}
-                  </S.PredictText>
-                </S.PercentBar>
 
                 <S.PredictPointBox>
                   <S.EventContainer>

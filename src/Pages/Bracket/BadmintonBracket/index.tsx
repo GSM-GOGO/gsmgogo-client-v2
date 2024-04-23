@@ -34,17 +34,27 @@ const BadmintionBracket = () => {
             <S.GridItem diagonal="true"></S.GridItem>
             <S.GridItem>
               <S.TopMentContainer>
-                <S.Ment1>발목부상 승</S.Ment1> <S.Ment2>25 vs 10</S.Ment2>
+                <S.Ment1>발목부상듀오 승</S.Ment1> <S.Ment2>25 : 10</S.Ment2>
               </S.TopMentContainer>
-              <S.Ment3>발목부상 vs 주방</S.Ment3>
+              <S.Ment3>발목부상듀오 vs 주방</S.Ment3>
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>사이버보안 승</S.Ment1> <S.Ment2>25 : 18</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>사이버보안 vs 주방</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               발목부상듀오
               <br />
               김태오/정민석
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>발목부상듀오 승</S.Ment1> <S.Ment2>25 : 10</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>발목부상듀오 vs 주방</S.Ment3>
+            </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem>
@@ -52,7 +62,12 @@ const BadmintionBracket = () => {
               <br />
               김현/정상혁
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>사이버보안 승</S.Ment1> <S.Ment2>25 : 18</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>사이버보안 vs 주방</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
           </S.GridContainer>
@@ -86,7 +101,7 @@ const BadmintionBracket = () => {
             <S.GridItem diagonal="true"></S.GridItem>
             <S.GridItem>
               <S.TopMentContainer>
-                <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 vs 13</S.Ment2>
+                <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 : 13</S.Ment2>
               </S.TopMentContainer>
               <S.Ment3>콩보리 vs 지죽동클</S.Ment3>
             </S.GridItem>
@@ -96,7 +111,12 @@ const BadmintionBracket = () => {
               <br />
               박준호/윤태빈
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>콩보리 승</S.Ment1> <S.Ment2>25 : 13</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>콩보리 vs 지죽동클</S.Ment3>
+            </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem>
@@ -136,8 +156,18 @@ const BadmintionBracket = () => {
               김서준 / 변정현
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>겜개듀오 승</S.Ment1> <S.Ment2>25 : 24</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>겜개듀오 vs 우승</S.Ment3>
+            </S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>겜개듀오 승</S.Ment1> <S.Ment2>25 : 18</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>겜개듀오 vs 19cm</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               우승
               <br />
@@ -145,7 +175,7 @@ const BadmintionBracket = () => {
             </S.GridItem>
             <S.GridItem>
               <S.TopMentContainer>
-                <S.Ment1>겜개듀오 승</S.Ment1> <S.Ment2>25 vs 24</S.Ment2>
+                <S.Ment1>겜개듀오 승</S.Ment1> <S.Ment2>25 : 24</S.Ment2>
               </S.TopMentContainer>
               <S.Ment3>겜개듀오 vs 우승</S.Ment3>
             </S.GridItem>
@@ -156,7 +186,12 @@ const BadmintionBracket = () => {
               <br />
               이명훈 / 이정우
             </S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>겜개듀오 승</S.Ment1> <S.Ment2>25 : 18</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>겜개듀오 vs 19cm</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
           </S.GridContainer>
@@ -188,7 +223,12 @@ const BadmintionBracket = () => {
               배용빈 / 서정민
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>배용빈팀 승</S.Ment1> <S.Ment2>21 : 7</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>배용빈팀 vs 농협은행</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem>
               농협은행
@@ -240,7 +280,12 @@ const BadmintionBracket = () => {
               박찬울 / 이서준
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>경심애심심심 승</S.Ment1> <S.Ment2>21 : 20</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>경심애심심심 vs 수일통닭</S.Ment3>
+            </S.GridItem>
             <S.GridItem>TBD</S.GridItem>
             <S.GridItem>
               수일통닭

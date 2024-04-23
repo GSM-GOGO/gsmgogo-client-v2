@@ -242,7 +242,8 @@ export const UnderTextBox = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1 0 0;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
 
   @media (max-width: 650px) {
     padding-top: 0.75rem;
@@ -267,6 +268,7 @@ export const PredictText = styled.p`
   font-size: 0.875rem;
   font-style: normal;
   line-height: 1.25rem;
+  margin: 0;
 `;
 
 export const PredictScoreBox = styled.div`

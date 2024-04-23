@@ -78,6 +78,33 @@ export const TeamName = styled.h3`
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--Gray2, #6f6f7b);
+  }
+
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
+`;
+
+export const HoverTeamName = styled.h3`
+  color: var(--Main, #23f69a);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--Gray2, #6f6f7b);
+  }
+
   @media (max-width: 650px) {
     font-size: 0.75rem;
   }

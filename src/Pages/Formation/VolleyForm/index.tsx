@@ -127,7 +127,7 @@ const VolleyForm = () => {
   };
 
   const GoBackButton = () => {
-    navigate(`/matches/volleyball`);
+    navigate(-1);
   };
 
   const deleteTeamFail = () => {

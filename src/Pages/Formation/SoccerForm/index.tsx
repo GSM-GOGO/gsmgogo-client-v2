@@ -129,7 +129,7 @@ const SoccerForm = () => {
   };
 
   const GoBackButton = () => {
-    navigate(`/matches/soccer`);
+    navigate(-1);
   };
 
   const deleteTeamFail = () => {

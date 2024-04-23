@@ -134,7 +134,7 @@ const BadmintonForm = () => {
   };
 
   const GoBackButton = () => {
-    navigate(`/matches/badminton`);
+    navigate(-1);
   };
 
   const deleteTeamFail = () => {

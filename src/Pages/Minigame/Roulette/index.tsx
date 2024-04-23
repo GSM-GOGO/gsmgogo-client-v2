@@ -4,7 +4,7 @@ import * as S from './style';
 import apiClient from './../../../utils/libs/apiClient';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import useStorePoint from './../../../utils/libs/storePoint';
 
 const Roulette = () => {
@@ -12,6 +12,8 @@ const Roulette = () => {
   const [isShow, setIsShow] = useState(false);
   const [RolletResponse, setRolletResponse] = useState(0);
   const setUserPoint = useStorePoint((state) => state.setUserPoint);
+
+  const navigate = useNavigate();
 
   const getTodayDate = () => {
     const today = new Date();
@@ -78,6 +80,10 @@ const Roulette = () => {
     { SubMent: '아쉽네요', Ment: '꽝, 내일 만나요!' },
   ];
 
+  const SeeTomorrow = () => {
+    navigate(`/`);
+  };
+
   return (
     <>
       <S.Wrapper>
@@ -98,7 +104,7 @@ const Roulette = () => {
               <S.Text>데일리 룰렛 돌리기</S.Text>
             </S.Button>
           ) : !isSpin ? (
-            <div>
+            <div style={{ width: 'fitContent' }} onClick={SeeTomorrow}>
               <S.Button close={true ? 1 : undefined} ishidden={isSpin ? 1 : undefined}>
                 <S.Text close={true ? 1 : undefined}>내일 만나요!</S.Text>
               </S.Button>

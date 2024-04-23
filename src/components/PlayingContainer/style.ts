@@ -102,7 +102,7 @@ export const HoverTeamName = styled.h3`
   transition: color 0.3s ease;
 
   &:hover {
-    color: var(--Gray2, #6f6f7b);
+    color: var(--colors-main-main-900, #045d36);
   }
 
   @media (max-width: 650px) {

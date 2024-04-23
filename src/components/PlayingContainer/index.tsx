@@ -177,7 +177,7 @@ const PlayContainer = () => {
           }
         })
         .finally(() => {
-          setIsLoading(false);
+          setLoading(false);
         });
     }
   };

@@ -366,7 +366,7 @@ const PlayContainer = () => {
                     <S.TeamName1 style={{ color: '#FFF' }}>
                       {match.team_a_bet + match.team_b_bet === 0
                         ? '0'
-                        : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
+                        : ((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100).toFixed(1)}
                       %
                     </S.TeamName1>
                   </S.GradeContainer>
@@ -381,7 +381,7 @@ const PlayContainer = () => {
                     <S.TeamName1 style={{ color: '#FFF' }}>
                       {match.team_a_bet + match.team_b_bet === 0
                         ? '0'
-                        : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
+                        : ((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100).toFixed(1)}
                       %
                     </S.TeamName1>
                   </S.GradeContainer>

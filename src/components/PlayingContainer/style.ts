@@ -64,16 +64,16 @@ export const OneGrade = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  
+
   @media (max-width: 370px) {
-  gap: 0rem;
+    gap: 0rem;
   }
 `;
 
 export const TeamName = styled.h3`
   color: #fff;
   font-family: Pretendard;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-style: normal;
   font-weight: 600;
   line-height: 1.375rem;
@@ -92,7 +92,7 @@ export const TeamName1 = styled.h3`
   line-height: 1.25rem;
   margin: 0;
   @media (max-width: 650px) {
-    font-size: 0.75rem;
+    font-size: 0.6rem;
   }
 `;
 

@@ -108,6 +108,6 @@ export const Ment3 = styled(Ment)`
   font-size: 0.75rem;
 
   @media (max-width: 550px) {
-    font-size: 0.48rem;
+    font-size: 0.4375rem;
   }
 `;

@@ -11,6 +11,7 @@ export const Container = styled.div`
   padding: 1rem;
   display: grid;
   gap: 2.5rem;
+  margin-top: 1.5rem;
 `;
 
 export const GridContainer = styled.div`

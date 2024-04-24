@@ -39,6 +39,10 @@ export const MiniText = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: 1.375rem;
+
+  @media (max-width: 500px) {
+    margin: 0;
+  }
 `;
 
 export const DeleteBtn = styled.button`

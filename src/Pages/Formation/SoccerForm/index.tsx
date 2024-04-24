@@ -129,7 +129,7 @@ const SoccerForm = () => {
   };
 
   const GoBackButton = () => {
-    navigate(`/matches/soccer`);
+    navigate(-1);
   };
 
   const deleteTeamFail = () => {
@@ -184,9 +184,6 @@ const SoccerForm = () => {
               </S.Category>
               <S.Category style={{ color: 'var(--Main, #23F69A)' }}>
                 {formData?.author_me === true ? (
-                  // <D.DeleteBtn onClick={() => setdeleteTeam(!deleteTeam)}>
-                  //   <D.DeleteText>삭제하기</D.DeleteText>
-                  // </D.DeleteBtn>
                   <S.Category style={{ color: 'var(--Main, #23F69A)' }}>{formData?.win_count}승</S.Category>
                 ) : (
                   <S.Category style={{ color: 'var(--Main, #23F69A)' }}>{formData?.win_count}승</S.Category>

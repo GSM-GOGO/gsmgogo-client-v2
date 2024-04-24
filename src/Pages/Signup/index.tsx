@@ -87,7 +87,6 @@ export default function SignUp() {
 
   const handleButtonClick = () => {
     if (showVerification) {
-      // 이전으로
       setShowVerification(false);
       reset();
     } else {

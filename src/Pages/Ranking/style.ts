@@ -36,6 +36,7 @@ export const ListWrapper = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 1rem;
+  padding-bottom: 1.5rem;
 `;
 
 export const ListContainer = styled.div`
@@ -43,16 +44,16 @@ export const ListContainer = styled.div`
 `;
 
 export const List = styled.div<{ myrank: boolean }>`
-padding: 1rem 1.3rem;
-margin: 0 1rem;
-border-radius: 0.75rem;
-font-size: 0.875rem;
-box-sizing: border-box;
-display: flex;
-align-items: center;
-background: #26262a;
-justify-content: space-between;
-border: ${(props) => (props.myrank ? '1px solid var(--Main, #23F69A)' : 'none')};
+  padding: 1rem 1.3rem;
+  margin: 0 1rem;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  background: #26262a;
+  justify-content: space-between;
+  border: ${(props) => (props.myrank ? '1px solid var(--Main, #23F69A)' : 'none')};
 `;
 
 export const TextContainer = styled.div`

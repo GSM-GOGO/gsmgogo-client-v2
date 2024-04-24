@@ -78,6 +78,33 @@ export const TeamName = styled.h3`
   font-weight: 600;
   line-height: 1.375rem;
   margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--Gray2, #6f6f7b);
+  }
+
+  @media (max-width: 650px) {
+    font-size: 0.75rem;
+  }
+`;
+
+export const HoverTeamName = styled.h3`
+  color: var(--Main, #23f69a);
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1.375rem;
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--colors-main-main-900, #045d36);
+  }
+
   @media (max-width: 650px) {
     font-size: 0.75rem;
   }
@@ -215,7 +242,8 @@ export const UnderTextBox = styled.div`
   justify-content: space-between;
   align-items: center;
   flex: 1 0 0;
-  padding-top: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 0.5rem;
 
   @media (max-width: 650px) {
     padding-top: 0.75rem;
@@ -240,6 +268,7 @@ export const PredictText = styled.p`
   font-size: 0.875rem;
   font-style: normal;
   line-height: 1.25rem;
+  margin: 0;
 `;
 
 export const PredictScoreBox = styled.div`

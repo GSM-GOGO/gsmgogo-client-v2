@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react';
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
-// import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';

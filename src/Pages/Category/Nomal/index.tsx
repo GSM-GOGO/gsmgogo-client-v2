@@ -1,7 +1,6 @@
 import * as S from './style.ts';
 import Category from '../../../components/Category/index.tsx';
 import { useNavigate } from 'react-router-dom';
-// import TeamAddButton from '../../../assets/svg/TeamAddButton.tsx';
 import { useEffect, useState } from 'react';
 import apiClient from '../../../utils/libs/apiClient.ts';
 import { EmptyPlaying } from '../../../assets/index.ts';
@@ -22,7 +21,7 @@ const NomalMatch = () => {
 
   const [addteam, setAddteam] = useState(false);
   const [teamList, setTeamList] = useState<Team[]>([]);
-  //
+
   const GoRegister = () => {
     navigate(`/register`);
   };

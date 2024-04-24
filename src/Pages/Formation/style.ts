@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100vw;
@@ -29,6 +29,13 @@ export const CategoryContainer = styled.div`
   @media (max-width: 1800px) {
     padding: 0.5rem 2rem;
   }
+  @media (max-width: 700px) {
+    margin-bottom: 2rem;
+  }
+  @media (max-width: 500px) {
+    margin-bottom: 0rem;
+    margin-top: 0rem;
+  }
 `;
 
 export const Category = styled.div`
@@ -38,6 +45,10 @@ export const Category = styled.div`
   font-weight: 600;
   line-height: 1.9375rem;
   margin: 0;
+
+  @media (max-width: 500px) {
+    font-size: 1rem;
+  }
 `;
 
 export const BackButton = styled.button`
@@ -58,7 +69,7 @@ export const BackButton = styled.button`
 export const BackText = styled.p`
   color: var(--Main, #23f69a);
   text-align: center;
-  font-family: "Pretendard Variable";
+  font-family: 'Pretendard Variable';
   font-size: 1.125rem;
   font-style: normal;
   font-weight: 600;

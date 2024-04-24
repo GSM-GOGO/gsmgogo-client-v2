@@ -105,7 +105,7 @@ export const Ment2 = styled(Ment)`
 
 export const Ment3 = styled(Ment)`
   color: var(--Gray1, #b7b7be);
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 
   @media (max-width: 550px) {
     font-size: 0.48rem;

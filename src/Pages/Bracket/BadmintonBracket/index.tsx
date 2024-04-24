@@ -62,7 +62,12 @@ const BadmintionBracket = () => {
               <S.Ment3>발목부상듀오 vs 주방</S.Ment3>
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>사이버보안 승</S.Ment1> <S.Ment2>25 : 19</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>사이버보안 vs 발목부상듀오</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               사이버보안
               <br />
@@ -129,7 +134,12 @@ const BadmintionBracket = () => {
               <S.Ment3>콩보리 vs 지죽동클라맨</S.Ment3>
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>아자아자 승</S.Ment1> <S.Ment2>25 : 23</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>아자아자 vs 지죽동클라맨</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               아자아자화이
               <br />
@@ -196,7 +206,12 @@ const BadmintionBracket = () => {
               <S.Ment3>겜개듀오 vs 우승</S.Ment3>
             </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
-            <S.GridItem>TBD</S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>우승팀 승</S.Ment1> <S.Ment2>25 : 17</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>우승팀 vs 19cm</S.Ment3>
+            </S.GridItem>
             <S.GridItem>
               19cm
               <br />

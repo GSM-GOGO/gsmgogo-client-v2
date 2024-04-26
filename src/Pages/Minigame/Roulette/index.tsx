@@ -6,6 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import useStorePoint from './../../../utils/libs/storePoint';
+import { debounce } from 'lodash';
 
 const Roulette = () => {
   const [isSpin, setIsSpin] = useState(false);
@@ -34,7 +35,7 @@ const Roulette = () => {
     return lastRouletteDate !== todayDate;
   };
 
-  const Spin = async () => {
+  const Spin = debounce(async () => {
     setIsShow(false);
     setIsSpin(true);
     try {
@@ -69,7 +70,7 @@ const Roulette = () => {
       const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       toast.error(errorMessage, { autoClose: 1000 });
     }
-  };
+  }, 300);
 
   const RouletteMentArr = [
     { SubMent: '축하합니다!', Ment: '2000포인트 당첨!' },

@@ -6,6 +6,7 @@ import apiClient from '../../../utils/libs/apiClient';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import useStorePoint from '../../../utils/libs/storePoint';
+import { debounce } from 'lodash';
 
 interface Result {
   prediction: 'HEAD' | 'TAIL';
@@ -52,7 +53,7 @@ const Coingame: React.FC = () => {
     setCoinInput(parsedValue);
   };
 
-  const handleBetting = async () => {
+  const handleBetting = debounce(async () => {
     try {
       setDisplayResultText(false);
 
@@ -95,7 +96,7 @@ const Coingame: React.FC = () => {
       const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       toast.error(errorMessage, { autoClose: 1000 });
     }
-  };
+  }, 300);
 
   return (
     <>

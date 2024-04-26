@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
+import BadmintionBracket from '../../Pages/Bracket/BadmintonBracket/index.tsx';
 
 const Signin = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -33,13 +34,7 @@ const Signin = () => {
   return (
     <S.Wrapper>
       <S.Container>
-        <S.ContainerResponse>
-          <S.ImgBox src={SignInLogo} alt="SigninLogo" />
-          <S.GauthLoginButton onClick={handleSignIn} disabled={isSigningIn}>
-            <GAuthLogo />
-            Sign up with GAuth
-          </S.GauthLoginButton>
-        </S.ContainerResponse>
+        <BadmintionBracket/>
       </S.Container>
       <ToastContainer autoClose={1000} />
       <div>

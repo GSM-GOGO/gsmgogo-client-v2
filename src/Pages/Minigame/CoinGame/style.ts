@@ -52,7 +52,7 @@ export const ImgBox = styled.img`
 
 export const ButtonWrapper = styled.div`
   margin-top: 2.0625rem;
-  width: 25rem;
+  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`
@@ -60,6 +60,11 @@ export const ButtonContainer = styled.div`
   display: flex;
   gap: 1rem;
   justify-content: space-around;
+
+  @media (max-width: 400px) {
+    justify-content: center;
+    gap: 1rem;
+  }
 `;
 export const CoinButton = styled.button`
   width: 11.25rem;
@@ -77,6 +82,10 @@ export const CoinButton = styled.button`
   text-align: center;
   color: #1c1c1f;
   cursor: pointer;
+
+  @media (max-width: 400px) {
+    width: 10rem;
+  }
 `;
 
 export const AtomWrapper = styled.div`
@@ -99,6 +108,10 @@ export const Text = styled.p`
   color: #b7b7be;
   margin: 0;
   margin-top: 1.25rem;
+
+  @media (max-width: 400px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const ModalBackground = styled.div`
@@ -275,6 +288,11 @@ export const SelectMoney = styled.div`
   align-items: flex-start;
   gap: 0.25rem;
   margin-bottom: 1rem;
+
+  @media (max-width: 400px) {
+    justify-content: center;
+    gap: 0.3rem;
+  }
 `;
 
 export const MoneyBox = styled.button<MoneyBoxProps>`
@@ -282,12 +300,15 @@ export const MoneyBox = styled.button<MoneyBoxProps>`
   padding: 0.75rem;
   justify-content: center;
   align-items: center;
-  gap: 0.625rem;
   border-radius: 0.5rem;
   background: ${({ active }) => (active ? 'var(--Main, #23F69A)' : 'var(--colors-gray-gray-900, #26262A)')};
   color: ${({ active }) => (active ? 'var(--Black, #1C1C1F)' : 'var(--Gray1, #B7B7BE)')};
   border: none;
   cursor: pointer;
+
+  @media (max-width: 400px) {
+    padding: 0.55rem;
+  }
 `;
 
 export const MoneyText = styled.p`

@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface MoneyBoxProps {
+  active: boolean;
+}
+
 export const Wrapper = styled.div`
   width: 100vw;
   height: calc(100vh - 154px);
@@ -48,16 +52,22 @@ export const ImgBox = styled.img`
 
 export const ButtonWrapper = styled.div`
   margin-top: 2.0625rem;
-  width: 21rem;
+  width: 100%;
 `;
 
 export const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   gap: 1rem;
+  justify-content: space-around;
+
+  @media (max-width: 400px) {
+    justify-content: center;
+    gap: 1rem;
+  }
 `;
 export const CoinButton = styled.button`
-  width: 10rem;
+  width: 11.25rem;
   height: 3.25rem;
   box-sizing: border-box;
   padding: 0.75rem 2rem;
@@ -72,6 +82,10 @@ export const CoinButton = styled.button`
   text-align: center;
   color: #1c1c1f;
   cursor: pointer;
+
+  @media (max-width: 400px) {
+    width: 10rem;
+  }
 `;
 
 export const AtomWrapper = styled.div`
@@ -94,6 +108,10 @@ export const Text = styled.p`
   color: #b7b7be;
   margin: 0;
   margin-top: 1.25rem;
+
+  @media (max-width: 400px) {
+    font-size: 0.75rem;
+  }
 `;
 
 export const ModalBackground = styled.div`
@@ -262,4 +280,42 @@ export const SvgContainer = styled.div`
     margin-top: 2rem;
     width: 20rem;
   }
+`;
+
+export const SelectMoney = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+
+  @media (max-width: 400px) {
+    justify-content: center;
+    gap: 0.3rem;
+  }
+`;
+
+export const MoneyBox = styled.button<MoneyBoxProps>`
+  display: flex;
+  padding: 0.75rem;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.5rem;
+  background: ${({ active }) => (active ? 'var(--Main, #23F69A)' : 'var(--colors-gray-gray-900, #26262A)')};
+  color: ${({ active }) => (active ? 'var(--Black, #1C1C1F)' : 'var(--Gray1, #B7B7BE)')};
+  border: none;
+  cursor: pointer;
+
+  @media (max-width: 400px) {
+    padding: 0.55rem;
+  }
+`;
+
+export const MoneyText = styled.p`
+  font-family: Pretendard;
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
 `;

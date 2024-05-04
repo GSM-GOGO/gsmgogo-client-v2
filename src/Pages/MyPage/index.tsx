@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import apiClient from '../../utils/libs/apiClient';
 import { DeleteIcon, DisabledFilterIcon, LogoutIcon, SelectFilterIcon, Stroke } from '../../assets';
 import * as S from './style';

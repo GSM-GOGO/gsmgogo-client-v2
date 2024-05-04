@@ -125,35 +125,32 @@ const MyPage = () => {
               </S.FixedFilterContainer>
               {activeFilter === 'sports' && (
                 <S.SelectFilterContainer>
-                  {(['badminton', 'soccer', 'volleyball'] as SelectSportsType[]).map((sport: SelectSportsType) => (
-                    <React.Fragment key={sport}>
-                      {selectSports === sport ? (
-                        <S.SelectFilter onClick={() => handleSports(sport)}>{SPORTS_LABELS[sport]}</S.SelectFilter>
-                      ) : (
-                        <S.DisabledSelectFilter onClick={() => handleSports(sport)}>
-                          {SPORTS_LABELS[sport]}
-                        </S.DisabledSelectFilter>
-                      )}
-                    </React.Fragment>
-                  ))}
+                  {(['badminton', 'soccer', 'volleyball'] as SelectSportsType[]).map((sport: SelectSportsType) =>
+                    selectSports === sport ? (
+                      <S.SelectFilter key={sport} onClick={() => handleSports(sport)}>
+                        {SPORTS_LABELS[sport]}
+                      </S.SelectFilter>
+                    ) : (
+                      <S.DisabledSelectFilter key={sport} onClick={() => handleSports(sport)}>
+                        {SPORTS_LABELS[sport]}
+                      </S.DisabledSelectFilter>
+                    )
+                  )}
                 </S.SelectFilterContainer>
               )}
               {activeFilter === 'batting' && (
                 <S.SelectFilterContainer>
                   {(['greatSuccess', 'success', 'failure'] as SetSelectBattingType[]).map(
-                    (batting: SetSelectBattingType) => (
-                      <React.Fragment key={batting}>
-                        {selectBatting === batting ? (
-                          <S.SelectFilter onClick={() => handleBatting(batting)}>
-                            {BATTING_LABELS[batting]}
-                          </S.SelectFilter>
-                        ) : (
-                          <S.DisabledSelectFilter onClick={() => handleBatting(batting)}>
-                            {BATTING_LABELS[batting]}
-                          </S.DisabledSelectFilter>
-                        )}
-                      </React.Fragment>
-                    )
+                    (batting: SetSelectBattingType) =>
+                      selectBatting === batting ? (
+                        <S.SelectFilter key={batting} onClick={() => handleBatting(batting)}>
+                          {BATTING_LABELS[batting]}
+                        </S.SelectFilter>
+                      ) : (
+                        <S.DisabledSelectFilter key={batting} onClick={() => handleBatting(batting)}>
+                          {BATTING_LABELS[batting]}
+                        </S.DisabledSelectFilter>
+                      )
                   )}
                 </S.SelectFilterContainer>
               )}

@@ -38,6 +38,12 @@ export const TextBox = styled.div`
   }
 `;
 
+export const UserBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+`;
+
 export const GoGoMiniText = styled.p`
   font-family: Pretendard;
   font-size: 1rem;
@@ -66,34 +72,8 @@ export const GoGoMiniLink = styled(Link)`
   }
 `;
 
-export const ModalWrapper = styled.div`
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  top: 3rem;
-  right: 0.0625rem;
-  box-sizing: border-box;
-  display: flex;
-  background-color: #26262a;
-  width: 6rem;
-  height: 2rem;
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  border-radius: 0.75rem;
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-weight: 400;
-  line-height: 1.375rem;
-  text-align: left;
-  color: #fff;
-
-  @media screen and (max-width: 500px) {
-    font-size: 0.75rem;
-  }
-
-  cursor: pointer;
-`;
-
 export const SvgContainer = styled.div`
+  cursor: pointer;
   @media screen and (max-width: 500px) {
     font-size: 0.75rem;
   }

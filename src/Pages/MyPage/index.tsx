@@ -8,6 +8,18 @@ type FilterType = 'sports' | 'batting';
 type SelectSportsType = 'soccer' | 'badminton' | 'volleyball';
 type SetSelectBattingType = 'greatSuccess' | 'success' | 'failure';
 
+const SPORTS_LABELS: Record<SelectSportsType, string> = {
+  soccer: '축구',
+  badminton: '배드민턴',
+  volleyball: '배구',
+};
+
+const BATTING_LABELS: Record<SetSelectBattingType, string> = {
+  greatSuccess: '대성공🔥',
+  success: '성공',
+  failure: '실패',
+};
+
 const MyPage = () => {
   const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
@@ -41,11 +53,6 @@ const MyPage = () => {
       setSelectSports(sports);
     }
   };
-  const sportsLabels: Record<SelectSportsType, string> = {
-    soccer: '축구',
-    badminton: '배드민턴',
-    volleyball: '배구',
-  };
 
   const handleBatting = (batting: SetSelectBattingType) => {
     if (selectBatting === batting) {
@@ -53,12 +60,6 @@ const MyPage = () => {
     } else {
       setSelectBatting(batting);
     }
-  };
-
-  const battingLabels: Record<SetSelectBattingType, string> = {
-    greatSuccess: '대성공🔥',
-    success: '성공',
-    failure: '실패',
   };
 
   return (
@@ -110,13 +111,13 @@ const MyPage = () => {
                 <S.ViewSelectFilterContainer>
                   {selectSports && (
                     <S.ViewSelectFilter onClick={() => setSelectSports(null)}>
-                      {sportsLabels[selectSports]}
+                      {SPORTS_LABELS[selectSports]}
                       <DeleteIcon />
                     </S.ViewSelectFilter>
                   )}
                   {selectBatting && (
                     <S.ViewSelectFilter onClick={() => setSelectBatting(null)}>
-                      {battingLabels[selectBatting]}
+                      {BATTING_LABELS[selectBatting]}
                       <DeleteIcon />
                     </S.ViewSelectFilter>
                   )}
@@ -127,10 +128,10 @@ const MyPage = () => {
                   {(['badminton', 'soccer', 'volleyball'] as SelectSportsType[]).map((sport: SelectSportsType) => (
                     <React.Fragment key={sport}>
                       {selectSports === sport ? (
-                        <S.SelectFilter onClick={() => handleSports(sport)}>{sportsLabels[sport]}</S.SelectFilter>
+                        <S.SelectFilter onClick={() => handleSports(sport)}>{SPORTS_LABELS[sport]}</S.SelectFilter>
                       ) : (
                         <S.DisabledSelectFilter onClick={() => handleSports(sport)}>
-                          {sportsLabels[sport]}
+                          {SPORTS_LABELS[sport]}
                         </S.DisabledSelectFilter>
                       )}
                     </React.Fragment>
@@ -144,11 +145,11 @@ const MyPage = () => {
                       <React.Fragment key={batting}>
                         {selectBatting === batting ? (
                           <S.SelectFilter onClick={() => handleBatting(batting)}>
-                            {battingLabels[batting]}
+                            {BATTING_LABELS[batting]}
                           </S.SelectFilter>
                         ) : (
                           <S.DisabledSelectFilter onClick={() => handleBatting(batting)}>
-                            {battingLabels[batting]}
+                            {BATTING_LABELS[batting]}
                           </S.DisabledSelectFilter>
                         )}
                       </React.Fragment>

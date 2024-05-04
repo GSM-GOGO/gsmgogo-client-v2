@@ -37,7 +37,7 @@ export const FirstHeaderContainer = styled.div`
 `;
 
 export const FirstHeaderTitleContainer = styled.div`
-  width: 11.6875rem;
+  width: fit-content;
 `;
 
 export const FirstHeaderTitleContainerResponse = styled.div`

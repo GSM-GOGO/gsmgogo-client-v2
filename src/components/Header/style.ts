@@ -78,6 +78,6 @@ export const SvgContainer = styled.div`
     font-size: 0.75rem;
   }
 
-  width: 1rem;
+  display: flex;
   text-align: center;
 `;

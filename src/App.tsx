@@ -18,6 +18,7 @@ import Roulette from './Pages/Minigame/Roulette/index.tsx';
 import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
 import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
 import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
+import MyPage from './Pages/MyPage/index.tsx';
 
 const queryClient = new QueryClient();
 
@@ -189,6 +190,17 @@ function App() {
                     <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <VolleyballBracket />
+                </>
+              }
+            />
+            <Route
+              path="/mypage"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <MyPage />
                 </>
               }
             />

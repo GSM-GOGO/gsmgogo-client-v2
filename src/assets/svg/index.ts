@@ -1,6 +1,5 @@
 export * from './Logo';
 export { default as GAuthLogo } from './GAuthLogo';
-export { default as ThreeDot } from './ThreeDot';
 export { default as PlayingButton } from './PlayingButton';
 export { default as NotVote } from './NotVote';
 export { default as Vote } from './Vote';
@@ -19,3 +18,9 @@ export { default as EmptyPlaying } from './EmptyPlaying';
 export { default as CoinIcon } from './CoinIcon';
 export { default as Roulette } from './Roulette';
 export { default as BracketFrame } from './BracketFrame';
+export { default as MyPageIcon } from './MyPageIcon';
+export { default as LogoutIcon } from './LogoutIcon';
+export { default as SelectFilterIcon } from './SelectFilterIcon';
+export { default as DisabledFilterIcon } from './DisabledFilterIcon';
+export { default as DeleteIcon } from './DeleteIcon';
+export { default as Stroke } from './Stroke';

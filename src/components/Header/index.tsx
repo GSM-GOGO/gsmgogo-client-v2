@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Roulette, ThreeDot } from '../../assets';
+import { Roulette, MyPageIcon } from '../../assets';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import apiClient from '../../utils/libs/apiClient';
@@ -14,33 +14,9 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
-
-  const [showModal, setShowModal] = useState(false);
   const userPoint = useStorePoint((state) => state.userPoint);
   const setUserPoint = useStorePoint((state) => state.setUserPoint);
   const [hasFetchedUserPoint, setHasFetchedUserPoint] = useState(false);
-
-  const toggleModal = () => {
-    setShowModal(!showModal);
-  };
-
-  const Navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      const accessToken = localStorage.getItem('accessToken');
-
-      await apiClient.delete(`/auth/logout`, {
-        headers: {
-          Authorization: accessToken,
-        },
-        withCredentials: true,
-      });
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      Navigate('/signin');
-    } catch (e) {}
-  };
 
   useEffect(() => {
     if (!hasFetchedUserPoint) {
@@ -71,7 +47,6 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
   return (
     <>
       <S.HeaderWrapper>
-        {showModal && <S.ModalWrapper onClick={handleLogout}>로그아웃</S.ModalWrapper>}
         <S.GoGoText onClick={() => navigate(`/`)} style={{ cursor: 'pointer' }}>
           {mainText}
         </S.GoGoText>
@@ -91,17 +66,23 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
           <S.GoGoMiniLink to="/minigame/daily-roulette">
             <Roulette isClick={currentPath === '/minigame/daily-roulette'} />
           </S.GoGoMiniLink>
-          <S.GoGoMiniText
-            style={{
-              color: 'var(--Main, #23F69A)',
-            }}
-          >
-            {userPoint}P
-          </S.GoGoMiniText>
+          <S.UserBox>
+            <S.GoGoMiniText
+              style={{
+                color: 'var(--Main, #23F69A)',
+              }}
+            >
+              {userPoint}P
+            </S.GoGoMiniText>
 
-          <S.SvgContainer style={{ cursor: 'pointer' }} onClick={toggleModal}>
-            <ThreeDot />
-          </S.SvgContainer>
+            <S.SvgContainer
+              onClick={() => {
+                navigate('/mypage');
+              }}
+            >
+              <MyPageIcon />
+            </S.SvgContainer>
+          </S.UserBox>
         </S.TextBox>
       </S.HeaderWrapper>
     </>

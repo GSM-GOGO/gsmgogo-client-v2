@@ -137,7 +137,7 @@ const MyPage = () => {
                       <S.VoteStateContainer>
                         <S.VoteStateTitle>내 투표</S.VoteStateTitle>
                         <S.VoteStateContents>
-                          {matches.bet_team_a_score} - {matches.bet_team_b_score},
+                          {matches.bet_team_a_score} - {matches.bet_team_b_score},{' '}
                           {matches.bet_team_a_score != null &&
                             matches.bet_team_b_score != null &&
                             (matches.bet_team_a_score > matches.bet_team_b_score

@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
-import { Roulette, MyPageIcon } from '../../assets';
+import { Roulette, MyPageIcon, NotMyPage } from '../../assets';
 import * as S from './style';
 import { useEffect, useState } from 'react';
 import apiClient from '../../utils/libs/apiClient';
@@ -80,7 +80,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
                 navigate('/mypage');
               }}
             >
-              <MyPageIcon />
+              {currentPath === '/mypage' ? <MyPageIcon /> : <NotMyPage />}
             </S.SvgContainer>
           </S.UserBox>
         </S.TextBox>

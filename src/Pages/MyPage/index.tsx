@@ -154,8 +154,9 @@ const MyPage = () => {
             {matchResult
               .filter((matchResult) => (selectSports ? matchResult.match_type === selectSports : true))
               .filter((matchResult) => (selectBatting ? calculateBattingCondition(matchResult, selectBatting) : true))
+              .reverse()
               .map((matchResult) => (
-                <S.MatchListContainer>
+                <S.MatchListContainer key={matchResult.match_id}>
                   <S.TeamImforContainer>
                     <S.MatchBattingImforContainer>
                       <S.TeamImforTitleContainer>

@@ -52,7 +52,6 @@ const Coingame: React.FC = () => {
     const parsedValue = truncatedValue === '' ? null : parseInt(truncatedValue);
 
     setCoinInput(parsedValue);
-    console.log(coinInput);
   };
 
   const handleBetting = async () => {

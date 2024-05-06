@@ -13,7 +13,7 @@ const MyPage = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
   const [selectSports, setSelectSports] = useState<SelectSportsType | null>(null);
   const [selectBatting, setSelectBatting] = useState<SetSelectBattingType | null>(null);
-  const [matches, setMatches] = useState<MatchData[]>([]);
+  const [matches, setMatches] = useState<MatchData[] | MatchResultData[]>([]);
   const [matchResult, setMatchResult] = useState<MatchResultData[]>([]);
 
   useEffect(() => {
@@ -89,66 +89,67 @@ const MyPage = () => {
             />
           </S.HeaderCotainer>
           <S.MatchListWrapper>
-            {matches
-              .filter((matches) => (selectSports ? matches.match_type === selectSports : true))
-              .map((matches) => (
-                <S.MatchListContainer>
-                  <S.TeamImforContainer>
-                    <S.MatchBattingImforContainer>
-                      <S.TeamImforTitleContainer>
-                        <S.MatchType>{matchLevelType[matches.match_type]}</S.MatchType>
-                        <S.MatchEvent>{getMatchEvent(matches)}</S.MatchEvent>
-                      </S.TeamImforTitleContainer>
-                      <S.TeamBattingContainer>
-                        <S.TeamBattingText>
-                          <S.TeamName>{matches.team_a_name}</S.TeamName>
-                          <Stroke />
-                          <S.Point>{matches.team_a_bet}P</S.Point>
-                          <S.Percent>
-                            {matches.team_a_bet + matches.team_b_bet === 0
-                              ? '0'
-                              : Math.floor((matches.team_a_bet / (matches.team_a_bet + matches.team_b_bet)) * 100)}
-                            %
-                          </S.Percent>
-                          <S.Department>
-                            {getGradeAndClass(matches.team_a_grade, matches.team_a_class_type)}
-                          </S.Department>
-                        </S.TeamBattingText>
-                        <S.TeamBattingText>
-                          <S.TeamName>{matches.team_b_name}</S.TeamName>
-                          <Stroke />
-                          <S.Point>{matches.team_b_bet}P</S.Point>
-                          <S.Percent>
-                            {matches.team_a_bet + matches.team_b_bet === 0
-                              ? '0'
-                              : Math.floor((matches.team_b_bet / (matches.team_a_bet + matches.team_b_bet)) * 100)}
-                            %
-                          </S.Percent>
-                          <S.Department>
-                            {getGradeAndClass(matches.team_b_grade, matches.team_b_class_type)}
-                          </S.Department>
-                        </S.TeamBattingText>
-                      </S.TeamBattingContainer>
-                    </S.MatchBattingImforContainer>
-                    <S.MatchResultContainer>{getMatchState(matches)}</S.MatchResultContainer>
-                  </S.TeamImforContainer>
-                  <S.BattingImforContainer>
-                    <S.VoteStateContainer>
-                      <S.VoteStateTitle>내 투표</S.VoteStateTitle>
-                      <S.VoteStateContents>
-                        {matches.bet_team_a_score} - {matches.bet_team_b_score},
-                        {matches.bet_team_a_score &&
-                          matches.bet_team_b_score &&
-                          (matches.bet_team_a_score > matches.bet_team_b_score
-                            ? matches.team_a_name
-                            : matches.team_b_name)}
-                        의 승리
-                      </S.VoteStateContents>
-                    </S.VoteStateContainer>
-                    <S.VoteStatePoint>{matches.bet_point}P</S.VoteStatePoint>
-                  </S.BattingImforContainer>
-                </S.MatchListContainer>
-              ))}
+            {activeFilter !== 'batting' &&
+              matches
+                .filter((matches) => (selectSports ? matches.match_type === selectSports : true))
+                .map((matches) => (
+                  <S.MatchListContainer key={matches.match_id}>
+                    <S.TeamImforContainer>
+                      <S.MatchBattingImforContainer>
+                        <S.TeamImforTitleContainer>
+                          <S.MatchType>{matchLevelType[matches.match_type]}</S.MatchType>
+                          <S.MatchEvent>{getMatchEvent(matches)}</S.MatchEvent>
+                        </S.TeamImforTitleContainer>
+                        <S.TeamBattingContainer>
+                          <S.TeamBattingText>
+                            <S.TeamName>{matches.team_a_name}</S.TeamName>
+                            <Stroke />
+                            <S.Point>{matches.team_a_bet}P</S.Point>
+                            <S.Percent>
+                              {matches.team_a_bet + matches.team_b_bet === 0
+                                ? '0'
+                                : Math.floor((matches.team_a_bet / (matches.team_a_bet + matches.team_b_bet)) * 100)}
+                              %
+                            </S.Percent>
+                            <S.Department>
+                              {getGradeAndClass(matches.team_a_grade, matches.team_a_class_type)}
+                            </S.Department>
+                          </S.TeamBattingText>
+                          <S.TeamBattingText>
+                            <S.TeamName>{matches.team_b_name}</S.TeamName>
+                            <Stroke />
+                            <S.Point>{matches.team_b_bet}P</S.Point>
+                            <S.Percent>
+                              {matches.team_a_bet + matches.team_b_bet === 0
+                                ? '0'
+                                : Math.floor((matches.team_b_bet / (matches.team_a_bet + matches.team_b_bet)) * 100)}
+                              %
+                            </S.Percent>
+                            <S.Department>
+                              {getGradeAndClass(matches.team_b_grade, matches.team_b_class_type)}
+                            </S.Department>
+                          </S.TeamBattingText>
+                        </S.TeamBattingContainer>
+                      </S.MatchBattingImforContainer>
+                      <S.MatchResultContainer>{getMatchState(matches)}</S.MatchResultContainer>
+                    </S.TeamImforContainer>
+                    <S.BattingImforContainer>
+                      <S.VoteStateContainer>
+                        <S.VoteStateTitle>내 투표</S.VoteStateTitle>
+                        <S.VoteStateContents>
+                          {matches.bet_team_a_score} - {matches.bet_team_b_score},
+                          {matches.bet_team_a_score &&
+                            matches.bet_team_b_score &&
+                            (matches.bet_team_a_score > matches.bet_team_b_score
+                              ? matches.team_a_name
+                              : matches.team_b_name)}
+                          의 승리
+                        </S.VoteStateContents>
+                      </S.VoteStateContainer>
+                      <S.VoteStatePoint>{matches.bet_point}P</S.VoteStatePoint>
+                    </S.BattingImforContainer>
+                  </S.MatchListContainer>
+                ))}
 
             {matchResult
               .filter((matchResult) => (selectSports ? matchResult.match_type === selectSports : true))

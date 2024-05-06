@@ -334,6 +334,11 @@ export const VoteStateContainer = styled.div`
   display: flex;
   gap: 0.75rem;
   align-items: center;
+  width: 100%;
+
+  @media screen and (max-width: 570px) {
+    justify-content: flex-end;
+  }
 `;
 
 export const VoteStateTitle = styled.p`
@@ -375,6 +380,9 @@ export const VoteStatePoint = styled.p`
 
   @media screen and (max-width: 570px) {
     font-size: 0.625rem;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
 `;
 

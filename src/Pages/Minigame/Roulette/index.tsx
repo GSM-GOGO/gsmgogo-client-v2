@@ -47,9 +47,9 @@ const Roulette = () => {
       setRolletResponse(response.data.result);
       setTimeout(async () => {
         setIsShow(true);
-        if (response.data.result != 5) {
+        // if (response.data.result != 5) {
           saveTodayDateToLocalStorage();
-        }
+        //}
         try {
           const token = localStorage.getItem('accessToken');
 
@@ -72,12 +72,12 @@ const Roulette = () => {
   };
 
   const RouletteMentArr = [
+    { SubMent: '축하합니다!', Ment: '20000포인트 당첨!' }, 
+    { SubMent: '축하합니다!', Ment: '10000포인트 당첨!' },
+    { SubMent: '축하합니다!', Ment: '5000포인트 당첨!' },
+    { SubMent: '축하합니다!', Ment: '3000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '2000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '1000포인트 당첨!' },
-    { SubMent: '축하합니다!', Ment: '500포인트 당첨!' },
-    { SubMent: '축하합니다!', Ment: '100포인트 당첨!' },
-    { SubMent: '500P는 보너스!', Ment: '한 번 더!' },
-    { SubMent: '아쉽네요', Ment: '꽝, 내일 만나요!' },
   ];
 
   const SeeTomorrow = () => {

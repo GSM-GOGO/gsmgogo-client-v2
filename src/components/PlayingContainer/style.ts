@@ -27,6 +27,7 @@ export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  background-color: red;
   @media (max-width: 650px) {
     gap: 1rem;
   }

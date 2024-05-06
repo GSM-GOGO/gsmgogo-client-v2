@@ -60,19 +60,6 @@ export const Title = styled.p`
   }
 `;
 
-export const UserText = styled.p`
-  font-family: Pretendard;
-  font-size: 1rem;
-  font-weight: 600;
-  line-height: 1.375rem;
-  color: #fff;
-  margin: 0;
-
-  @media screen and (max-width: 570px) {
-    font-size: 0.75rem;
-  }
-`;
-
 export const LogoutContainer = styled.div`
   width: 5.375rem;
 
@@ -234,6 +221,7 @@ export const MatchListWrapper = styled.div`
   display: flex;
   gap: 1.5rem;
   flex-direction: column;
+  margin-bottom: 3.9375rem;
 
   @media screen and (max-width: 650px) {
     padding: 0 24px;
@@ -276,7 +264,6 @@ export const MatchBattingImforContainer = styled.div`
 export const TeamImforTitleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.75rem;
 `;
 
 export const MatchType = styled.p`
@@ -309,6 +296,9 @@ export const TeamBattingContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  @media screen and (max-width: 570px) {
+    gap: 0.25rem;
+  }
 `;
 
 export const TeamBattingText = styled.div`
@@ -413,6 +403,10 @@ export const BattingImforContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  @media screen and (max-width: 570px) {
+    flex-direction: column;
+    align-items: self-start;
+  }
 `;
 
 export const BattingResultHeaderContainer = styled.div`
@@ -476,6 +470,11 @@ export const BattingResultBodyContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+
+  @media screen and (max-width: 570px) {
+    width: 100%;
+    justify-content: space-between;
+  }
 `;
 
 export const BattingResultContainer = styled.div`
@@ -516,7 +515,7 @@ export const BattingResultPoint = styled.p`
   font-weight: 400;
   line-height: 1.25rem;
 
-  color: #23f69a;
+  color: ${(props) => props.color};
 `;
 
 export const VoteStateContainer = styled.div`

@@ -25,20 +25,14 @@ const MyPage = () => {
             Authorization: `${token}`,
           },
         });
-
-        const formattedMatches = response.data.matches.map((match) => ({
-          ...match,
-          match_start_at: new Date(match.match_start_at).toLocaleString(),
-          match_end_at: new Date(match.match_end_at).toLocaleString(),
-        }));
-
-        setMatches(formattedMatches);
+        setMatches(response.data.matches);
         setMatchResult(response.data.match_result);
       } catch (e) {}
     };
 
     matchData();
   }, []);
+
   const handleFilterClick = (filter: FilterType) => {
     setActiveFilter((prevFilter) => (prevFilter === filter ? null : filter));
   };
@@ -64,9 +58,11 @@ const MyPage = () => {
   };
 
   const getMatchState = (match: MatchData) => {
-    const currentTime = new Date().getTime();
-    const matchStartTime = new Date(match.match_start_at).getTime();
-    const matchEndTime = new Date(match.match_end_at).getTime();
+    const currentTime = new Date();
+    const dateTimeString = match.match_start_at;
+    const endTimeString = match.match_end_at;
+    const matchStartTime = new Date(dateTimeString);
+    const matchEndTime = new Date(endTimeString);
 
     if (currentTime < matchStartTime) {
       return <S.MatchStateV2>투표 완료</S.MatchStateV2>;

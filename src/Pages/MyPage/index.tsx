@@ -1,41 +1,20 @@
 import { useEffect, useState } from 'react';
 import apiClient from '../../utils/libs/apiClient';
-import { DeleteIcon, DisabledFilterIcon, LogoutIcon, SelectFilterIcon, Stroke } from '../../assets';
+import { Stroke } from '../../assets';
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
 import { MatchData, MatchResultData, MatchResponse } from '../../types/MatchData';
-import {
-  FilterType,
-  SelectSportsType,
-  SetSelectBattingType,
-  SPORTS_LABELS,
-  BATTING_LABELS,
-  matchLevelType,
-} from '../../types/MyPageFilter';
+import { FilterType, SelectSportsType, SetSelectBattingType, matchLevelType } from '../../types/MyPageFilter';
+import FilterComponent from '../../components/MyPageFilter';
+import { calculateBattingCondition } from '../../utils/libs/battingFilter';
+import { getGradeAndClass, getMatchEvent } from '../../utils/libs/myPage';
+import MyPageLogout from '../../components/MyPageLogout';
 
 const MyPage = () => {
-  const navigate = useNavigate();
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);
   const [selectSports, setSelectSports] = useState<SelectSportsType | null>(null);
   const [selectBatting, setSelectBatting] = useState<SetSelectBattingType | null>(null);
   const [matches, setMatches] = useState<MatchData[]>([]);
   const [matchResult, setMatchResult] = useState<MatchResultData[]>([]);
-
-  const handleLogout = async () => {
-    try {
-      const accessToken = localStorage.getItem('accessToken');
-
-      await apiClient.delete(`/auth/logout`, {
-        headers: {
-          Authorization: accessToken!,
-        },
-        withCredentials: true,
-      });
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      navigate('/signin');
-    } catch (e) {}
-  };
 
   useEffect(() => {
     const matchData = async () => {
@@ -64,16 +43,20 @@ const MyPage = () => {
     setActiveFilter((prevFilter) => (prevFilter === filter ? null : filter));
   };
 
-  const handleSports = (sports: SelectSportsType) => {
+  const handleSports = (sports: SelectSportsType | null) => {
     if (selectSports === sports) {
+      setSelectSports(null);
+    } else if (sports === null) {
       setSelectSports(null);
     } else {
       setSelectSports(sports);
     }
   };
 
-  const handleBatting = (batting: SetSelectBattingType) => {
+  const handleBatting = (batting: SetSelectBattingType | null) => {
     if (selectBatting === batting) {
+      setSelectBatting(null);
+    } else if (batting === null) {
       setSelectBatting(null);
     } else {
       setSelectBatting(batting);
@@ -94,124 +77,20 @@ const MyPage = () => {
     }
   };
 
-  const calculateBattingCondition = (matchResult: MatchResultData, selectBatting: SetSelectBattingType): boolean => {
-    if (selectBatting === 'greatSuccess') {
-      return (
-        (matchResult.bet_team_a_score ?? 0) === (matchResult.team_a_score ?? 0) &&
-        (matchResult.bet_team_b_score ?? 0) === (matchResult.team_b_score ?? 0)
-      );
-    } else if (selectBatting === 'success') {
-      return (
-        ((matchResult.bet_team_a_score ?? 0) > (matchResult.bet_team_b_score ?? 0) &&
-          (matchResult.team_a_score ?? 0) > (matchResult.team_b_score ?? 0)) ||
-        ((matchResult.bet_team_a_score ?? 0) < (matchResult.bet_team_b_score ?? 0) &&
-          (matchResult.team_a_score ?? 0) < (matchResult.team_b_score ?? 0))
-      );
-    } else if (selectBatting === 'failure') {
-      return !(
-        ((matchResult.bet_team_a_score ?? 0) === (matchResult.team_a_score ?? 0) &&
-          (matchResult.bet_team_b_score ?? 0) === (matchResult.team_b_score ?? 0)) ||
-        ((matchResult.bet_team_a_score ?? 0) > (matchResult.bet_team_b_score ?? 0) &&
-          (matchResult.team_a_score ?? 0) > (matchResult.team_b_score ?? 0)) ||
-        ((matchResult.bet_team_a_score ?? 0) < (matchResult.bet_team_b_score ?? 0) &&
-          (matchResult.team_a_score ?? 0) < (matchResult.team_b_score ?? 0))
-      );
-    }
-    return true;
-  };
-
   return (
     <S.Wrapper>
       <S.Container>
         <S.ContainerResponse>
           <S.HeaderCotainer>
-            <S.FirstHeaderContainer>
-              <S.FirstHeaderTitleContainer>
-                <S.FirstHeaderTitleContainerResponse>
-                  <S.Title>마이페이지</S.Title>
-                </S.FirstHeaderTitleContainerResponse>
-              </S.FirstHeaderTitleContainer>
-              <S.LogoutContainer onClick={handleLogout}>
-                <S.LogoutContainerResponse>
-                  <LogoutIcon />
-                  <S.LogoutText>로그아웃</S.LogoutText>
-                </S.LogoutContainerResponse>
-              </S.LogoutContainer>
-            </S.FirstHeaderContainer>
-            <S.FilterContainer>
-              <S.FixedFilterContainer>
-                <S.FixedFilter>
-                  {activeFilter === 'sports' ? (
-                    <S.FilterV1 onClick={() => handleFilterClick('sports')}>
-                      <SelectFilterIcon />
-                      종목 필터
-                    </S.FilterV1>
-                  ) : (
-                    <S.FilterV2 onClick={() => handleFilterClick('sports')}>
-                      <DisabledFilterIcon />
-                      종목 필터
-                    </S.FilterV2>
-                  )}
-
-                  {activeFilter === 'batting' ? (
-                    <S.FilterV1 onClick={() => handleFilterClick('batting')}>
-                      <SelectFilterIcon />
-                      성공 필터
-                    </S.FilterV1>
-                  ) : (
-                    <S.FilterV2 onClick={() => handleFilterClick('batting')}>
-                      <DisabledFilterIcon />
-                      성공 필터
-                    </S.FilterV2>
-                  )}
-                </S.FixedFilter>
-                <S.ViewSelectFilterContainer>
-                  {selectSports && (
-                    <S.ViewSelectFilter onClick={() => setSelectSports(null)}>
-                      {SPORTS_LABELS[selectSports]}
-                      <DeleteIcon />
-                    </S.ViewSelectFilter>
-                  )}
-                  {selectBatting && (
-                    <S.ViewSelectFilter onClick={() => setSelectBatting(null)}>
-                      {BATTING_LABELS[selectBatting]}
-                      <DeleteIcon />
-                    </S.ViewSelectFilter>
-                  )}
-                </S.ViewSelectFilterContainer>
-              </S.FixedFilterContainer>
-              {activeFilter === 'sports' && (
-                <S.SelectFilterContainer>
-                  {(['BADMINTON', 'SOCCER', 'VOLLEYBALL'] as SelectSportsType[]).map((sport: SelectSportsType) =>
-                    selectSports === sport ? (
-                      <S.SelectFilter key={sport} onClick={() => handleSports(sport)}>
-                        {SPORTS_LABELS[sport]}
-                      </S.SelectFilter>
-                    ) : (
-                      <S.DisabledSelectFilter key={sport} onClick={() => handleSports(sport)}>
-                        {SPORTS_LABELS[sport]}
-                      </S.DisabledSelectFilter>
-                    )
-                  )}
-                </S.SelectFilterContainer>
-              )}
-              {activeFilter === 'batting' && (
-                <S.SelectFilterContainer>
-                  {(['greatSuccess', 'success', 'failure'] as SetSelectBattingType[]).map(
-                    (batting: SetSelectBattingType) =>
-                      selectBatting === batting ? (
-                        <S.SelectFilter key={batting} onClick={() => handleBatting(batting)}>
-                          {BATTING_LABELS[batting]}
-                        </S.SelectFilter>
-                      ) : (
-                        <S.DisabledSelectFilter key={batting} onClick={() => handleBatting(batting)}>
-                          {BATTING_LABELS[batting]}
-                        </S.DisabledSelectFilter>
-                      )
-                  )}
-                </S.SelectFilterContainer>
-              )}
-            </S.FilterContainer>
+            <MyPageLogout />
+            <FilterComponent
+              activeFilter={activeFilter}
+              handleFilterClick={handleFilterClick}
+              selectSports={selectSports}
+              handleSports={handleSports}
+              selectBatting={selectBatting}
+              handleBatting={handleBatting}
+            />
           </S.HeaderCotainer>
           <S.MatchListWrapper>
             {matches
@@ -222,21 +101,7 @@ const MyPage = () => {
                     <S.MatchBattingImforContainer>
                       <S.TeamImforTitleContainer>
                         <S.MatchType>{matchLevelType[matches.match_type]}</S.MatchType>
-                        <S.MatchEvent>
-                          {matches.badminton_rank === 'D' ? '여자 ' : '남자 '}
-                          {(() => {
-                            switch (matches.match_type) {
-                              case 'SOCCER':
-                                return '축구';
-                              case 'BADMINTON':
-                                return '배드민턴';
-                              case 'VOLLEYBALL':
-                                return '배구';
-                              default:
-                                return '';
-                            }
-                          })()}
-                        </S.MatchEvent>
+                        <S.MatchEvent>{getMatchEvent(matches)}</S.MatchEvent>
                       </S.TeamImforTitleContainer>
                       <S.TeamBattingContainer>
                         <S.TeamBattingText>
@@ -250,23 +115,7 @@ const MyPage = () => {
                             %
                           </S.Percent>
                           <S.Department>
-                            {(() => {
-                              switch (matches.team_a_grade) {
-                                case 'ONE':
-                                  return '1학년';
-                                case 'TWO':
-                                  return '2학년';
-                                case 'THREE':
-                                  return '3학년';
-                                default:
-                                  return '';
-                              }
-                            })()}{' '}
-                            {matches.team_a_class_type === 'SW'
-                              ? 'SW'
-                              : matches.team_a_class_type === 'EB'
-                                ? '임베'
-                                : ''}
+                            {getGradeAndClass(matches.team_a_grade, matches.team_a_class_type)}
                           </S.Department>
                         </S.TeamBattingText>
                         <S.TeamBattingText>
@@ -280,23 +129,7 @@ const MyPage = () => {
                             %
                           </S.Percent>
                           <S.Department>
-                            {(() => {
-                              switch (matches.team_b_grade) {
-                                case 'ONE':
-                                  return '1학년';
-                                case 'TWO':
-                                  return '2학년';
-                                case 'THREE':
-                                  return '3학년';
-                                default:
-                                  return '';
-                              }
-                            })()}{' '}
-                            {matches.team_b_class_type === 'SW'
-                              ? 'SW'
-                              : matches.team_b_class_type === 'EB'
-                                ? '임베'
-                                : ''}
+                            {getGradeAndClass(matches.team_b_grade, matches.team_b_class_type)}
                           </S.Department>
                         </S.TeamBattingText>
                       </S.TeamBattingContainer>
@@ -330,21 +163,7 @@ const MyPage = () => {
                     <S.MatchBattingImforContainer>
                       <S.TeamImforTitleContainer>
                         <S.MatchType>{matchLevelType[matchResult.match_type]}</S.MatchType>
-                        <S.MatchEvent>
-                          {matchResult.badminton_rank === 'D' ? '여자 ' : '남자 '}
-                          {(() => {
-                            switch (matchResult.match_type) {
-                              case 'SOCCER':
-                                return '축구';
-                              case 'BADMINTON':
-                                return '배드민턴';
-                              case 'VOLLEYBALL':
-                                return '배구';
-                              default:
-                                return '';
-                            }
-                          })()}
-                        </S.MatchEvent>
+                        <S.MatchEvent>{getMatchEvent(matchResult)}</S.MatchEvent>
                       </S.TeamImforTitleContainer>
                       <S.TeamBattingContainer>
                         <S.TeamBattingText>
@@ -361,23 +180,7 @@ const MyPage = () => {
                           </S.Percent>
                           <S.Department>
                             <S.Department>
-                              {(() => {
-                                switch (matchResult.team_a_grade) {
-                                  case 'ONE':
-                                    return '1학년';
-                                  case 'TWO':
-                                    return '2학년';
-                                  case 'THREE':
-                                    return '3학년';
-                                  default:
-                                    return '';
-                                }
-                              })()}{' '}
-                              {matchResult.team_a_class_type === 'SW'
-                                ? 'SW'
-                                : matchResult.team_a_class_type === 'EB'
-                                  ? '임베'
-                                  : ''}
+                              {getGradeAndClass(matchResult.team_a_grade, matchResult.team_a_class_type)}
                             </S.Department>
                           </S.Department>
                         </S.TeamBattingText>
@@ -394,23 +197,7 @@ const MyPage = () => {
                             %
                           </S.Percent>
                           <S.Department>
-                            {(() => {
-                              switch (matchResult.team_b_grade) {
-                                case 'ONE':
-                                  return '1학년';
-                                case 'TWO':
-                                  return '2학년';
-                                case 'THREE':
-                                  return '3학년';
-                                default:
-                                  return '';
-                              }
-                            })()}{' '}
-                            {matchResult.team_b_class_type === 'SW'
-                              ? 'SW'
-                              : matchResult.team_b_class_type === 'EB'
-                                ? '임베'
-                                : ''}
+                            {getGradeAndClass(matchResult.team_b_grade, matchResult.team_b_class_type)}
                           </S.Department>
                         </S.TeamBattingText>
                       </S.TeamBattingContainer>

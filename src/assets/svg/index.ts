@@ -19,6 +19,7 @@ export { default as CoinIcon } from './CoinIcon';
 export { default as Roulette } from './Roulette';
 export { default as BracketFrame } from './BracketFrame';
 export { default as MyPageIcon } from './MyPageIcon';
+export { default as NotMyPage } from './NotMyPage';
 export { default as LogoutIcon } from './LogoutIcon';
 export { default as SelectFilterIcon } from './SelectFilterIcon';
 export { default as DisabledFilterIcon } from './DisabledFilterIcon';

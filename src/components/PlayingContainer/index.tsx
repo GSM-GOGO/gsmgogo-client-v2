@@ -9,7 +9,6 @@ import apiClient from '../../utils/libs/apiClient';
 import LoadingContent from '../../components/Loading/content.tsx';
 import { EmptyPlaying } from '../../assets/index.ts';
 import { useNavigate } from 'react-router-dom';
-import { MatchData, MatchResponse, MatchResultData } from 'types/MatchData.ts';
 
 interface Match {
   match_id: number;
@@ -32,6 +31,9 @@ interface Match {
   team_a_bet: number;
   team_b_bet: number;
   is_participate_team_id?: number;
+  bet_team_a_score?: number;
+  bet_team_b_score?: number;
+  bet_point?: number;
 }
 
 interface MatchResult extends Match {
@@ -59,8 +61,6 @@ const PlayContainer = () => {
   const [matchId, setMatchId] = useState<number | undefined>();
   const [loading, setLoading] = useState(true);
   const [favoriteTeam, setFavoriteTeam] = useState<number | undefined>();
-  const [mymatches, setMymatches] = useState<MatchData[] | MatchResultData[]>([]);
-  const [mymatchResult, setMymatchResult] = useState<MatchResultData[]>([]);
 
   const navigate = useNavigate();
 
@@ -225,22 +225,6 @@ const PlayContainer = () => {
       fetchData();
     }
   }, [selectedDate]);
-
-  useEffect(() => {
-    const matchData = async () => {
-      try {
-        const token = localStorage.getItem('accessToken');
-        const response = await apiClient.get<MatchResponse>(`/user/match`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-        setMymatches(response.data.matches);
-        setMymatchResult(response.data.match_result);
-      } catch (e) {}
-    };
-    matchData();
-  }, []);
 
   const onClickTeamName = (id: number | undefined, sport: 'SOCCER' | 'BADMINTON' | 'VOLLEYBALL') => {
     const sportName = sport.toLowerCase();
@@ -504,13 +488,13 @@ const PlayContainer = () => {
           </S1.TeamImforContainer>
 
           <div>
-            {mymatches
+            {matches
               ?.filter((m) => match.match_id === m.match_id)
 
               ?.map((m) => {
-                const matchId = m.match_id; // Assuming matchid is a property of the match object
-                const correspondingMatch = mymatches.find((match) => match.match_id === matchId);
-                if (correspondingMatch) {
+                const matchId = m.match_id;
+                const correspondingMatch = matches.find((match) => match.match_id === matchId);
+                if (correspondingMatch && match.is_vote) {
                   return (
                     <S1.BattingImforContainer key={matchId}>
                       <S1.VoteStateContainer>
@@ -529,7 +513,7 @@ const PlayContainer = () => {
                     </S1.BattingImforContainer>
                   );
                 } else {
-                  return null; // Or handle the case when corresponding match is not found
+                  return null;
                 }
               })}
           </div>

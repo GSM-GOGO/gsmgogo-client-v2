@@ -19,6 +19,7 @@ import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
 import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
 import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
 import MyPage from './Pages/MyPage/index.tsx';
+import { useEffect, useState } from 'react';
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,25 @@ export const HeaderContainer = styled.div`
 `;
 
 function App() {
+  const [headerText, setHeaderText] = useState<string>('GSM GOGO');
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 650) {
+        setHeaderText('G');
+      } else {
+        setHeaderText(headerText);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyles />
@@ -39,7 +59,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Main />
                 </>
@@ -50,7 +70,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Ranking />
                 </>
@@ -61,7 +81,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Coingame />
                 </>
@@ -72,7 +92,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Roulette />
                 </>
@@ -83,7 +103,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <SoccerForm />
                 </>
@@ -94,7 +114,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <BadmintonForm />
                 </>
@@ -105,7 +125,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <VolleyForm />
                 </>
@@ -117,7 +137,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Sports />
                 </>
@@ -128,7 +148,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <NomalMatch />
                 </>
@@ -139,7 +159,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <NomalForm />
                 </>
@@ -151,7 +171,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Bracket />
                 </>
@@ -163,7 +183,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <SoccerBracket />
                 </>
@@ -175,7 +195,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <BadmintonBracket />
                 </>
@@ -187,7 +207,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <VolleyballBracket />
                 </>
@@ -198,7 +218,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <MyPage />
                 </>
@@ -210,7 +230,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Register />
                 </>
@@ -221,7 +241,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Badminton />
                 </>
@@ -232,7 +252,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Soccer />
                 </>
@@ -243,7 +263,7 @@ function App() {
               element={
                 <>
                   <HeaderContainer>
-                    <Header mainText={'GSM GOGO'} miniText={['랭킹', '미니게임']} />
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Volleyball />
                 </>

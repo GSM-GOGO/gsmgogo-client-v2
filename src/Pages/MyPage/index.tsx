@@ -90,6 +90,7 @@ const MyPage = () => {
           </S.HeaderCotainer>
           <S.MatchListWrapper>
             {activeFilter !== 'batting' &&
+              selectBatting === null &&
               matches
                 .filter((matches) => (selectSports ? matches.match_type === selectSports : true))
                 .map((matches) => (

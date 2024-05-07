@@ -405,7 +405,7 @@ const PlayContainer = () => {
                         </S.HoverTeamName>
                         <S.contour />
                         <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
-                          {formatPoint(match.team_a_bet)}P{'  '}
+                          {match.team_a_bet.toLocaleString()}P{'  '}
                           {match.team_a_bet + match.team_b_bet === 0
                             ? '0'
                             : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}

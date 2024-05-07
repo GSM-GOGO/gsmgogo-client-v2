@@ -13,6 +13,7 @@ export const PlayingContainer = styled.div`
   flex-direction: column;
   padding: 1rem 1.5rem;
   position: relative;
+  justify-content: center;
   @media (max-width: 700px) {
     padding: 1rem 1.25rem;
   }

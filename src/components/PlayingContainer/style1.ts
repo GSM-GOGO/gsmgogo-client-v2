@@ -215,7 +215,8 @@ export const BattingImforContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
   @media screen and (max-width: 570px) {
     flex-direction: column;
     align-items: self-start;

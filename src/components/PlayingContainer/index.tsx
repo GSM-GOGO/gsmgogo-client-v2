@@ -405,7 +405,7 @@ const PlayContainer = () => {
                         </S.HoverTeamName>
                         <S.contour />
                         <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
-                          {match.team_a_bet}P{'  '}
+                          {formatPoint(match.team_a_bet)}P{'  '}
                           {match.team_a_bet + match.team_b_bet === 0
                             ? '0'
                             : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
@@ -419,7 +419,7 @@ const PlayContainer = () => {
                         </S.TeamName>
                         <S.contour />
                         <S.TeamName1 style={{ color: '#FFF' }}>
-                          {match.team_a_bet}P{'  '}
+                          {match.team_a_bet.toLocaleString()}P{'  '}
                           {match.team_a_bet + match.team_b_bet === 0
                             ? '0'
                             : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
@@ -440,7 +440,7 @@ const PlayContainer = () => {
                         </S.HoverTeamName>
                         <S.contour />
                         <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
-                          {match.team_b_bet}P{'  '}
+                          {match.team_b_bet.toLocaleString()}P{'  '}
                           {match.team_a_bet + match.team_b_bet === 0
                             ? '0'
                             : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
@@ -454,7 +454,7 @@ const PlayContainer = () => {
                         </S.TeamName>
                         <S.contour />
                         <S.TeamName1 style={{ color: '#FFF' }}>
-                          {match.team_b_bet}P{'  '}
+                          {match.team_b_bet.toLocaleString()}P{'  '}
                           {match.team_a_bet + match.team_b_bet === 0
                             ? '0'
                             : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
@@ -635,80 +635,84 @@ const PlayContainer = () => {
             }}
           >
             <S.MainContainer>
-              <S.EventContainer>
-                {getEventText()}
-                {getSportName()}
-              </S.EventContainer>
+              <S.matchResultContainer>
+                <S.EventContainer>
+                  {getEventText()}
+                  {getSportName()}
+                </S.EventContainer>
+                <S.GradeBox>
+                  <S.OneGrade key={matchResult.team_a_id}>
+                    <S.ForMedia>
+                      {favoriteTeam === matchResult.team_a_id ? (
+                        <S.GradeContainer>
+                          <S.HoverTeamName
+                            onClick={() => onClickTeamName(matchResult.team_a_id, matchResult.match_type)}
+                          >
+                            {matchResult.team_a_name}팀
+                          </S.HoverTeamName>
+                          <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
+                            {Math.floor(
+                              (matchResult.team_a_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
+                            )}
+                            %
+                          </S.TeamName1>
+                        </S.GradeContainer>
+                      ) : (
+                        <S.GradeContainer>
+                          <S.TeamName onClick={() => onClickTeamName(matchResult.team_a_id, matchResult.match_type)}>
+                            {matchResult.team_a_name}팀
+                          </S.TeamName>
+                          <S.TeamName1 style={{ color: '#FFF' }}>
+                            {Math.floor(
+                              (matchResult.team_a_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
+                            )}
+                            %
+                          </S.TeamName1>
+                        </S.GradeContainer>
+                      )}
+                    </S.ForMedia>
+                    <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText2>
+                  </S.OneGrade>
 
-              <S.GradeBox>
-                <S.OneGrade key={matchResult.team_a_id}>
-                  <S.ForMedia>
-                    {favoriteTeam === matchResult.team_a_id ? (
-                      <S.GradeContainer>
-                        <S.HoverTeamName onClick={() => onClickTeamName(matchResult.team_a_id, matchResult.match_type)}>
-                          {matchResult.team_a_name}팀
-                        </S.HoverTeamName>
-                        <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
-                          {Math.floor(
-                            (matchResult.team_a_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
-                          )}
-                          %
-                        </S.TeamName1>
-                      </S.GradeContainer>
-                    ) : (
-                      <S.GradeContainer>
-                        <S.TeamName onClick={() => onClickTeamName(matchResult.team_a_id, matchResult.match_type)}>
-                          {matchResult.team_a_name}팀
-                        </S.TeamName>
-                        <S.TeamName1 style={{ color: '#FFF' }}>
-                          {Math.floor(
-                            (matchResult.team_a_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
-                          )}
-                          %
-                        </S.TeamName1>
-                      </S.GradeContainer>
-                    )}
-                  </S.ForMedia>
-                  <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText2>
-                </S.OneGrade>
-
-                <S.OneGrade key={matchResult.team_b_id}>
-                  <S.ForMedia>
-                    {favoriteTeam === matchResult.team_b_id ? (
-                      <S.GradeContainer>
-                        <S.HoverTeamName onClick={() => onClickTeamName(matchResult.team_b_id, matchResult.match_type)}>
-                          {matchResult.team_b_name}팀
-                        </S.HoverTeamName>
-                        <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
-                          {Math.floor(
-                            (matchResult.team_b_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
-                          )}
-                          %
-                        </S.TeamName1>
-                      </S.GradeContainer>
-                    ) : (
-                      <S.GradeContainer>
-                        <S.TeamName onClick={() => onClickTeamName(matchResult.team_b_id, matchResult.match_type)}>
-                          {matchResult.team_b_name}팀
-                        </S.TeamName>
-                        <S.TeamName1 style={{ color: '#FFF' }}>
-                          {Math.floor(
-                            (matchResult.team_b_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
-                          )}
-                          %
-                        </S.TeamName1>
-                      </S.GradeContainer>
-                    )}
-                  </S.ForMedia>
-                  <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText2>
-                </S.OneGrade>
-              </S.GradeBox>
+                  <S.OneGrade key={matchResult.team_b_id}>
+                    <S.ForMedia>
+                      {favoriteTeam === matchResult.team_b_id ? (
+                        <S.GradeContainer>
+                          <S.HoverTeamName
+                            onClick={() => onClickTeamName(matchResult.team_b_id, matchResult.match_type)}
+                          >
+                            {matchResult.team_b_name}팀
+                          </S.HoverTeamName>
+                          <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
+                            {Math.floor(
+                              (matchResult.team_b_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
+                            )}
+                            %
+                          </S.TeamName1>
+                        </S.GradeContainer>
+                      ) : (
+                        <S.GradeContainer>
+                          <S.TeamName onClick={() => onClickTeamName(matchResult.team_b_id, matchResult.match_type)}>
+                            {matchResult.team_b_name}팀
+                          </S.TeamName>
+                          <S.TeamName1 style={{ color: '#FFF' }}>
+                            {Math.floor(
+                              (matchResult.team_b_bet / (matchResult.team_a_bet + matchResult.team_b_bet)) * 100
+                            )}
+                            %
+                          </S.TeamName1>
+                        </S.GradeContainer>
+                      )}
+                    </S.ForMedia>
+                    <S.GradeText2 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText2>
+                  </S.OneGrade>
+                </S.GradeBox>
+              </S.matchResultContainer>
+              <S.MatchResultContainer>
+                <S.MatchResultText>경기 결과</S.MatchResultText>
+                {matchResultScore()}
+              </S.MatchResultContainer>
             </S.MainContainer>
-
-            <S.MatchResultContainer>
-              <S.MatchResultText>경기 결과</S.MatchResultText>
-              {matchResultScore()}
-            </S.MatchResultContainer>
           </S.PlayingContainer>
 
           {matchResult.is_participate_team_id !== null ? (

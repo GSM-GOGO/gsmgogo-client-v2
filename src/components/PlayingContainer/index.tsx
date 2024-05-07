@@ -847,6 +847,9 @@ const PlayContainer = () => {
                     {selectedSports == '배드민턴' && selectedDate.getDate() >= 23 && (
                       <div>예선, 본선은 25점 내기 단판입니다</div>
                     )}
+                    {selectedSports == '배구'&& (
+                      <div>세트 스코어입니다. (3세트 2선)</div>
+                    )}
                   </S.ModalTitleContainer>
                 </S.ModalTitle>
                 <S.ModalNovelContainer>

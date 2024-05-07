@@ -509,7 +509,7 @@ const PlayContainer = () => {
                           의 승리
                         </S1.VoteStateContents>
                       </S1.VoteStateContainer>
-                      <S1.VoteStatePoint>{correspondingMatch.bet_point}P</S1.VoteStatePoint>
+                      <S1.VoteStatePoint>{correspondingMatch.bet_point?.toLocaleString()}P</S1.VoteStatePoint>
                     </S1.BattingImforContainer>
                   );
                 } else {
@@ -749,11 +749,11 @@ const PlayContainer = () => {
                       matchResult.team_b_id === matchResult.is_participate_team_id) &&
                     matchResult.participate_earned_point === 0 ? (
                       <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>
-                        +{matchResult.participate_earned_point}P
+                        +{matchResult.participate_earned_point.toLocaleString()}P
                       </S.GradeText2>
                     ) : (
                       <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>
-                        +{matchResult.participate_earned_point}P
+                        +{matchResult.participate_earned_point.toLocaleString()}P
                       </S.GradeText2>
                     )}
                   </S.EventContainer>
@@ -823,10 +823,12 @@ const PlayContainer = () => {
                     {matchResult.team_a_score > matchResult.team_b_score ==
                     matchResult.bet_team_a_score > matchResult.bet_team_b_score ? (
                       <S.GradeText2 style={{ color: 'var(--Main, #23F69A)' }}>
-                        +{matchResult.earned_point}P
+                        +{matchResult.earned_point.toLocaleString()}P
                       </S.GradeText2>
                     ) : (
-                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>-{matchResult.lose_point}P</S.GradeText2>
+                      <S.GradeText2 style={{ color: 'var(--Error, #DF454A)' }}>
+                        -{matchResult.lose_point.toLocaleString()}P
+                      </S.GradeText2>
                     )}
                   </S.EventContainer>
                 </S.PredictPointBox>

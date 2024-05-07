@@ -295,7 +295,12 @@ const BadmintionBracket = () => {
               </S.TopMentContainer>
               <S.Ment3>배용빈팀 vs 수원피자</S.Ment3>
             </S.GridItem>
-            <S.GridItem diagonal="true"></S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>수원피자 승</S.Ment1> <S.Ment2>25 : 9</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>수원피자 vs 농협은행</S.Ment3>
+            </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
           </S.GridContainer>
 
@@ -367,7 +372,12 @@ const BadmintionBracket = () => {
               </S.TopMentContainer>
               <S.Ment3>경심애심심심 vs 카라박</S.Ment3>
             </S.GridItem>
-            <S.GridItem diagonal="true"></S.GridItem>
+            <S.GridItem>
+              <S.TopMentContainer>
+                <S.Ment1>수일통닭 승</S.Ment1> <S.Ment2>25 : 16</S.Ment2>
+              </S.TopMentContainer>
+              <S.Ment3>수일통닭 vs 카라박</S.Ment3>
+            </S.GridItem>
             <S.GridItem diagonal="true"></S.GridItem>
           </S.GridContainer>
           <S.BeforeButtonCotainer>

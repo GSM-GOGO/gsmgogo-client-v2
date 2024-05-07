@@ -9,6 +9,11 @@ export const HeaderWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   position: relative;
+
+  @media screen and (max-width: 650px) {
+    justify-content: center;
+    gap: 20px;
+  }
 `;
 
 export const GoGoText = styled.h1`
@@ -19,13 +24,6 @@ export const GoGoText = styled.h1`
   font-weight: 600;
   line-height: 1.9375rem;
   margin: 0;
-
-  @media screen and (max-width: 550px) {
-    font-size: 1rem;
-  }
-  @media screen and (max-width: 350px) {
-    font-size: 0.8rem;
-  }
 `;
 
 export const TextBox = styled.div`

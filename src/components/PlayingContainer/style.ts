@@ -12,7 +12,7 @@ export const PlayingContainer = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 1rem 1.5rem;
-
+  position: relative;
   @media (max-width: 700px) {
     padding: 1rem 1.25rem;
   }
@@ -570,6 +570,8 @@ export const MatchResultContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+  position: absolute;
+  right: 16px;
 `;
 
 export const MatchResultText = styled.p`

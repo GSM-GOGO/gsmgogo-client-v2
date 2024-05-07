@@ -173,7 +173,7 @@ const Coingame: React.FC = () => {
                       </S.CoinButton>
                     </S.ButtonContainer>
                     <S.Text>
-                      동전던지기는 하루에 10회, 최대 3000 포인트까지 베팅 할 수 있어요 <br />
+                      동전던지기는 하루에 10회, 최대 5000 포인트까지 베팅 할 수 있어요 <br />
                       동전의 면을 맞출 시 베팅한 포인트의 2배를 얻어요
                     </S.Text>
                   </S.ButtonWrapper>

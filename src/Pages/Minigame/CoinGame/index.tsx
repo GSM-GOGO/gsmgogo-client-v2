@@ -24,6 +24,8 @@ const Coingame: React.FC = () => {
   const [displayResultText, setDisplayResultText] = useState(false);
   const [initialImage, setInitialImage] = useState(HeadCoin);
 
+  const betAmounts = [1000, 2000, 3000, 4000, 5000];
+
   useEffect(() => {
     setInitialImage(HeadCoin);
   }, []);
@@ -97,6 +99,10 @@ const Coingame: React.FC = () => {
     }
   };
 
+  const handleMoneyClicked = (money: number) => {
+    setCoinInput(money);
+  };
+
   return (
     <>
       {modal ? (
@@ -147,6 +153,17 @@ const Coingame: React.FC = () => {
               <S.AtomWrapper>
                 <S.AtomContainer>
                   <S.ButtonWrapper>
+                    <S.SelectMoney>
+                      {betAmounts.map((amount, index) => (
+                        <S.MoneyBox
+                          key={index}
+                          onClick={() => handleMoneyClicked(amount)}
+                          active={coinInput === amount}
+                        >
+                          <S.MoneyText>{amount}P</S.MoneyText>
+                        </S.MoneyBox>
+                      ))}
+                    </S.SelectMoney>
                     <S.ButtonContainer>
                       <S.CoinButton name="obverse" onClick={handleButton}>
                         앞면 베팅
@@ -156,8 +173,8 @@ const Coingame: React.FC = () => {
                       </S.CoinButton>
                     </S.ButtonContainer>
                     <S.Text>
-                      동전던지기는 하루에 10회, 최대 3000 포인트까지 베팅 할 수 있어요 동전의 면을 맞출 시 베팅한
-                      포인트의 2배를 얻어요
+                      동전던지기는 하루에 10회, 최대 3000 포인트까지 베팅 할 수 있어요 <br />
+                      동전의 면을 맞출 시 베팅한 포인트의 2배를 얻어요
                     </S.Text>
                   </S.ButtonWrapper>
                 </S.AtomContainer>

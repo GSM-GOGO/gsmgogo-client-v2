@@ -1,4 +1,5 @@
 import * as S from './style';
+import * as S1 from './style1.ts';
 import { useEffect, useMemo, useState, useCallback } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
@@ -8,6 +9,7 @@ import apiClient from '../../utils/libs/apiClient';
 import LoadingContent from '../../components/Loading/content.tsx';
 import { EmptyPlaying } from '../../assets/index.ts';
 import { useNavigate } from 'react-router-dom';
+import { MatchData, MatchResponse, MatchResultData } from 'types/MatchData.ts';
 
 interface Match {
   match_id: number;
@@ -57,6 +59,8 @@ const PlayContainer = () => {
   const [matchId, setMatchId] = useState<number | undefined>();
   const [loading, setLoading] = useState(true);
   const [favoriteTeam, setFavoriteTeam] = useState<number | undefined>();
+  const [mymatches, setMymatches] = useState<MatchData[] | MatchResultData[]>([]);
+  const [mymatchResult, setMymatchResult] = useState<MatchResultData[]>([]);
 
   const navigate = useNavigate();
 
@@ -222,6 +226,22 @@ const PlayContainer = () => {
     }
   }, [selectedDate]);
 
+  useEffect(() => {
+    const matchData = async () => {
+      try {
+        const token = localStorage.getItem('accessToken');
+        const response = await apiClient.get<MatchResponse>(`/user/match`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
+        setMymatches(response.data.matches);
+        setMymatchResult(response.data.match_result);
+      } catch (e) {}
+    };
+    matchData();
+  }, []);
+
   const onClickTeamName = (id: number | undefined, sport: 'SOCCER' | 'BADMINTON' | 'VOLLEYBALL') => {
     const sportName = sport.toLowerCase();
     navigate(`/matches/${sportName}/form/${id}`);
@@ -384,94 +404,135 @@ const PlayContainer = () => {
             background: 'var(--colors-gray-gray-900, #26262A)',
           }}
         >
-          <S.MainContainer>
-            <S.EventContainer>
-              {getEventText()}
-              {getSportName()}
-            </S.EventContainer>
+          <S1.TeamImforContainer>
+            <S.MainContainer>
+              <S.EventContainer>
+                {getEventText()}
+                {getSportName()}
+              </S.EventContainer>
 
-            <S.GradeBox>
-              <S.OneGrade key={match.team_a_id}>
-                <S.ForMedia>
-                  {favoriteTeam === match.team_a_id ? (
-                    <S.GradeContainer>
-                      <S.HoverTeamName onClick={() => onClickTeamName(match.team_a_id, match.match_type)}>
-                        {match.team_a_name}팀
-                      </S.HoverTeamName>
-                      <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
-                        {match.team_a_bet + match.team_b_bet === 0
-                          ? '0'
-                          : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
-                        %
-                      </S.TeamName1>
-                    </S.GradeContainer>
-                  ) : (
-                    <S.GradeContainer>
-                      <S.TeamName onClick={() => onClickTeamName(match.team_a_id, match.match_type)}>
-                        {match.team_a_name}팀
-                      </S.TeamName>
-                      <S.TeamName1 style={{ color: '#FFF' }}>
-                        {match.team_a_bet + match.team_b_bet === 0
-                          ? '0'
-                          : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
-                        %
-                      </S.TeamName1>
-                    </S.GradeContainer>
-                  )}
-                </S.ForMedia>
-                <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText1>
-              </S.OneGrade>
+              <S.GradeBox>
+                <S.OneGrade key={match.team_a_id}>
+                  <S.ForMedia>
+                    {favoriteTeam === match.team_a_id ? (
+                      <S.GradeContainer>
+                        <S.HoverTeamName onClick={() => onClickTeamName(match.team_a_id, match.match_type)}>
+                          {match.team_a_name}팀
+                        </S.HoverTeamName>
+                        <S.contour />
+                        <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
+                          {match.team_a_bet}P{'  '}
+                          {match.team_a_bet + match.team_b_bet === 0
+                            ? '0'
+                            : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
+                          %
+                        </S.TeamName1>
+                      </S.GradeContainer>
+                    ) : (
+                      <S.GradeContainer>
+                        <S.TeamName onClick={() => onClickTeamName(match.team_a_id, match.match_type)}>
+                          {match.team_a_name}팀
+                        </S.TeamName>
+                        <S.contour />
+                        <S.TeamName1 style={{ color: '#FFF' }}>
+                          {match.team_a_bet}P{'  '}
+                          {match.team_a_bet + match.team_b_bet === 0
+                            ? '0'
+                            : Math.floor((match.team_a_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
+                          %
+                        </S.TeamName1>
+                      </S.GradeContainer>
+                    )}
+                  </S.ForMedia>
+                  <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoA}</S.GradeText1>
+                </S.OneGrade>
 
-              <S.OneGrade key={match.team_b_id}>
-                <S.ForMedia>
-                  {favoriteTeam === match.team_b_id ? (
-                    <S.GradeContainer>
-                      <S.HoverTeamName onClick={() => onClickTeamName(match.team_b_id, match.match_type)}>
-                        {match.team_b_name}팀
-                      </S.HoverTeamName>
-                      <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
-                        {match.team_a_bet + match.team_b_bet === 0
-                          ? '0'
-                          : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
-                        %
-                      </S.TeamName1>
-                    </S.GradeContainer>
-                  ) : (
-                    <S.GradeContainer>
-                      <S.TeamName onClick={() => onClickTeamName(match.team_b_id, match.match_type)}>
-                        {match.team_b_name}팀
-                      </S.TeamName>
-                      <S.TeamName1 style={{ color: '#FFF' }}>
-                        {match.team_a_bet + match.team_b_bet === 0
-                          ? '0'
-                          : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
-                        %
-                      </S.TeamName1>
-                    </S.GradeContainer>
-                  )}
-                </S.ForMedia>
-                <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText1>
-              </S.OneGrade>
-            </S.GradeBox>
-          </S.MainContainer>
+                <S.OneGrade key={match.team_b_id}>
+                  <S.ForMedia>
+                    {favoriteTeam === match.team_b_id ? (
+                      <S.GradeContainer>
+                        <S.HoverTeamName onClick={() => onClickTeamName(match.team_b_id, match.match_type)}>
+                          {match.team_b_name}팀
+                        </S.HoverTeamName>
+                        <S.contour />
+                        <S.TeamName1 style={{ color: 'var(--Main, #23F69A)' }}>
+                          {match.team_b_bet}P{'  '}
+                          {match.team_a_bet + match.team_b_bet === 0
+                            ? '0'
+                            : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
+                          %
+                        </S.TeamName1>
+                      </S.GradeContainer>
+                    ) : (
+                      <S.GradeContainer>
+                        <S.TeamName onClick={() => onClickTeamName(match.team_b_id, match.match_type)}>
+                          {match.team_b_name}팀
+                        </S.TeamName>
+                        <S.contour />
+                        <S.TeamName1 style={{ color: '#FFF' }}>
+                          {match.team_b_bet}P{'  '}
+                          {match.team_a_bet + match.team_b_bet === 0
+                            ? '0'
+                            : Math.floor((match.team_b_bet / (match.team_a_bet + match.team_b_bet)) * 100)}
+                          %
+                        </S.TeamName1>
+                      </S.GradeContainer>
+                    )}
+                  </S.ForMedia>
+                  <S.GradeText1 style={{ color: 'var(--Gray2, #6F6F7B)' }}>{gradeInfoB}</S.GradeText1>
+                </S.OneGrade>
+              </S.GradeBox>
+            </S.MainContainer>
 
-          <S.TimeContainer>
-            <S.OneTimeBox>
-              <S.TimeText1>투표</S.TimeText1>
-              <S.TimeText1>
-                {formattedTime} ~ {votingEndFormatted}
-              </S.TimeText1>
-            </S.OneTimeBox>
+            <S.TimeContainer>
+              <S.OneTimeBox>
+                <S.TimeText1>투표</S.TimeText1>
+                <S.TimeText1>
+                  {formattedTime} ~ {votingEndFormatted}
+                </S.TimeText1>
+              </S.OneTimeBox>
 
-            <S.OneTimeBox>
-              <S.TimeText1>경기</S.TimeText1>
-              <S.TimeText1>
-                {formattedTime} ~ {endFormatted}
-              </S.TimeText1>
-            </S.OneTimeBox>
-          </S.TimeContainer>
+              <S.OneTimeBox>
+                <S.TimeText1>경기</S.TimeText1>
+                <S.TimeText1>
+                  {formattedTime} ~ {endFormatted}
+                </S.TimeText1>
+              </S.OneTimeBox>
+            </S.TimeContainer>
 
-          <div style={{ display: 'flex', justifyContent: 'center' }}>{getUserVote(match)}</div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>{getUserVote(match)}</div>
+          </S1.TeamImforContainer>
+
+          <div>
+            {mymatches
+              ?.filter((m) => match.match_id === m.match_id)
+
+              ?.map((m) => {
+                const matchId = m.match_id; // Assuming matchid is a property of the match object
+                const correspondingMatch = mymatches.find((match) => match.match_id === matchId);
+                if (correspondingMatch) {
+                  return (
+                    <S1.BattingImforContainer key={matchId}>
+                      <S1.VoteStateContainer>
+                        <S1.VoteStateTitle>내 투표</S1.VoteStateTitle>
+                        <S1.VoteStateContents>
+                          {correspondingMatch.bet_team_a_score} - {correspondingMatch.bet_team_b_score} ,{' '}
+                          {correspondingMatch.bet_team_a_score != null &&
+                            correspondingMatch.bet_team_b_score != null &&
+                            (correspondingMatch.bet_team_a_score > correspondingMatch.bet_team_b_score
+                              ? correspondingMatch.team_a_name
+                              : correspondingMatch.team_b_name)}
+                          의 승리
+                        </S1.VoteStateContents>
+                      </S1.VoteStateContainer>
+                      <S1.VoteStatePoint>{correspondingMatch.bet_point}P</S1.VoteStatePoint>
+                    </S1.BattingImforContainer>
+                  );
+                } else {
+                  return null; // Or handle the case when corresponding match is not found
+                }
+              })}
+          </div>
         </S.PlayingContainer>
       );
     });

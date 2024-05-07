@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
 export const PlayingContainer = styled.div`
-  display: flex;
+  /* display: flex;
+  flex-direction:row;
   width: 100%;
   padding: 1rem 1.5rem;
   justify-content: space-between;
-  align-items: center;
+  align-items: center; */
+
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding: 1rem 1.5rem;
 
   @media (max-width: 700px) {
     padding: 1rem 1.25rem;
@@ -27,8 +33,9 @@ export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  @media (max-width: 650px) {
+  @media (max-width: 550px) {
     gap: 1rem;
+    display: grid;
   }
 `;
 
@@ -124,10 +131,10 @@ export const TeamName1 = styled.h3`
 `;
 
 export const ForMedia = styled.div`
-  width: 8.5rem;
-  @media (max-width: 650px) {
+  /* width: 8.5rem; */
+  /* @media (max-width: 650px) {
     width: 6.5rem;
-  }
+  } */
 `;
 
 export const GradeContainer = styled.div`
@@ -146,9 +153,9 @@ export const GradeText1 = styled.p`
   @media (max-width: 650px) {
     font-size: 0.75rem;
   }
-  @media (max-width: 500px) {
+  /* @media (max-width: 500px) {
     display: none;
-  }
+  } */
 `;
 
 export const GradeText2 = styled.p`
@@ -623,4 +630,12 @@ export const SvgContainer = styled.div`
     margin-top: 0rem;
     width: 20rem;
   }
+`;
+
+export const contour = styled.div`
+border-radius: 5px;
+background: var(--colors-gray-gray-500, #878792);
+height:16px;
+width:1px;
+margin:0 8px;
 `;

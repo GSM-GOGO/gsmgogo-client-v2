@@ -1,5 +1,5 @@
 import { NomalBracket } from '../../../style/Bracket/style';
-import { BracketFrame } from '../../../assets';
+import { BracketFrameV2 } from '../../../assets';
 import * as S from './style';
 
 const SoccerBracket = () => {
@@ -12,11 +12,11 @@ const SoccerBracket = () => {
               <S.TeamCotainer>
                 <NomalBracket Win={false}>발라마FC</NomalBracket>
                 <NomalBracket Win={true}>^____^FC</NomalBracket>
-                <NomalBracket>오영기FC</NomalBracket>
+                <NomalBracket Win={false}>오영기FC</NomalBracket>
               </S.TeamCotainer>
-              <BracketFrame />
+              <BracketFrameV2 />
               <S.TeamCotainer>
-                <NomalBracket>싹싹FC</NomalBracket>
+                <NomalBracket Win={false}>싹싹FC</NomalBracket>
                 <NomalBracket>경주FC</NomalBracket>
                 <NomalBracket>뭉쳐야찬다FC</NomalBracket>
               </S.TeamCotainer>

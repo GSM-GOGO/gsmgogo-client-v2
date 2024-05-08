@@ -18,6 +18,7 @@ export { default as EmptyPlaying } from './EmptyPlaying';
 export { default as CoinIcon } from './CoinIcon';
 export { default as Roulette } from './Roulette';
 export { default as BracketFrame } from './BracketFrame';
+export { default as BracketFrameV2 } from './BracketFrameV2';
 export { default as MyPageIcon } from './MyPageIcon';
 export { default as NotMyPage } from './NotMyPage';
 export { default as LogoutIcon } from './LogoutIcon';

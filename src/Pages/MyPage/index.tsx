@@ -105,7 +105,7 @@ const MyPage = () => {
                           <S.TeamBattingText>
                             <S.TeamName>{matches.team_a_name}</S.TeamName>
                             <Stroke />
-                            <S.Point>{matches.team_a_bet}P</S.Point>
+                            <S.Point>{matches.team_a_bet.toLocaleString()}P</S.Point>
                             <S.Percent>
                               {matches.team_a_bet + matches.team_b_bet === 0
                                 ? '0'
@@ -119,7 +119,7 @@ const MyPage = () => {
                           <S.TeamBattingText>
                             <S.TeamName>{matches.team_b_name}</S.TeamName>
                             <Stroke />
-                            <S.Point>{matches.team_b_bet}P</S.Point>
+                            <S.Point>{matches.team_b_bet.toLocaleString()}P</S.Point>
                             <S.Percent>
                               {matches.team_a_bet + matches.team_b_bet === 0
                                 ? '0'
@@ -147,7 +147,7 @@ const MyPage = () => {
                           의 승리
                         </S.VoteStateContents>
                       </S.VoteStateContainer>
-                      <S.VoteStatePoint>{matches.bet_point}P</S.VoteStatePoint>
+                      <S.VoteStatePoint>{matches.bet_point?.toLocaleString()}P</S.VoteStatePoint>
                     </S.BattingImforContainer>
                   </S.MatchListContainer>
                 ))}
@@ -168,7 +168,7 @@ const MyPage = () => {
                         <S.TeamBattingText>
                           <S.TeamName>{matchResult.team_a_name}</S.TeamName>
                           <Stroke />
-                          <S.Point>{matchResult.team_a_bet}P</S.Point>
+                          <S.Point>{matchResult.team_a_bet.toLocaleString()}P</S.Point>
                           <S.Percent>
                             {matchResult.team_a_bet + matchResult.team_b_bet === 0
                               ? '0'
@@ -186,7 +186,7 @@ const MyPage = () => {
                         <S.TeamBattingText>
                           <S.TeamName>{matchResult.team_b_name}</S.TeamName>
                           <Stroke />
-                          <S.Point>{matchResult.team_b_bet}P</S.Point>
+                          <S.Point>{matchResult.team_b_bet.toLocaleString()}P</S.Point>
                           <S.Percent>
                             {matchResult.team_a_bet + matchResult.team_b_bet === 0
                               ? '0'
@@ -271,11 +271,11 @@ const MyPage = () => {
                         (matchResult.team_a_score > matchResult.team_b_score ===
                         matchResult.bet_team_a_score > matchResult.bet_team_b_score ? (
                           <S.BattingResultPoint style={{ color: 'var(--Main, #23F69A)' }}>
-                            +{matchResult.earned_point}P
+                            +{matchResult.earned_point?.toLocaleString()}P
                           </S.BattingResultPoint>
                         ) : (
                           <S.BattingResultPoint style={{ color: 'var(--Error, #DF454A)' }}>
-                            -{matchResult.lose_point}P
+                            -{matchResult.lose_point?.toLocaleString()}P
                           </S.BattingResultPoint>
                         ))}
                     </S.BattingResultBodyContainer>

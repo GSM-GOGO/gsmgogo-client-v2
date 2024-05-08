@@ -23,12 +23,28 @@ const Coingame: React.FC = () => {
   const [result, setResult] = useState<Result>({} as Result);
   const [displayResultText, setDisplayResultText] = useState(false);
   const [initialImage, setInitialImage] = useState(HeadCoin);
+  const [coinCnt, setCoinCnt] = useState<number | undefined>();
 
   const betAmounts = [1000, 2000, 3000, 4000, 5000];
 
   useEffect(() => {
     setInitialImage(HeadCoin);
+    remainCoinCount();
   }, []);
+
+  const remainCoinCount = async () => {
+    try {
+      const token = localStorage.getItem('accessToken');
+
+      const response = await apiClient.get(`/game/coin`, {
+        headers: {
+          Authorization: token,
+        },
+        withCredentials: true,
+      });
+      setCoinCnt(response.data.count);
+    } catch (e) {}
+  };
 
   const handleButton = (e: MouseEvent<HTMLButtonElement>) => {
     const name = e.currentTarget.name;
@@ -92,6 +108,7 @@ const Coingame: React.FC = () => {
         });
 
         setUserPoint(response.data.point);
+        remainCoinCount();
       } catch (e) {}
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
@@ -145,7 +162,7 @@ const Coingame: React.FC = () => {
       ) : null}
       <S.Wrapper>
         <S.Container>
-          <MiniGameCategory />
+          <MiniGameCategory coinCount={coinCnt} />
           <S.ContainerResponse>
             <S.ComponentsWrapper>
               {displayResultText && <S.ResultText>{result.win ? '성공!' : '맞추지 못했어요'}</S.ResultText>}

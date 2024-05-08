@@ -10,8 +10,8 @@ const SoccerBracket = () => {
           <S.ComponentsWrapper>
             <S.ImgCotainer>
               <S.TeamCotainer>
-                <NomalBracket>발라마FC</NomalBracket>
-                <NomalBracket>^____^FC</NomalBracket>
+                <NomalBracket Win={false}>발라마FC</NomalBracket>
+                <NomalBracket Win={true}>^____^FC</NomalBracket>
                 <NomalBracket>오영기FC</NomalBracket>
               </S.TeamCotainer>
               <BracketFrame />

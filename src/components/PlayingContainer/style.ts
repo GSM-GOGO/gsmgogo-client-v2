@@ -12,7 +12,8 @@ export const PlayingContainer = styled.div`
   width: 100%;
   flex-direction: column;
   padding: 1rem 1.5rem;
-
+  position: relative;
+  justify-content: center;
   @media (max-width: 700px) {
     padding: 1rem 1.25rem;
   }
@@ -33,9 +34,9 @@ export const MainContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 1.5rem;
+  justify-content: space-between;
   @media (max-width: 550px) {
     gap: 1rem;
-    display: grid;
   }
 `;
 
@@ -570,6 +571,8 @@ export const MatchResultContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+  position: absolute;
+  right: 16px;
 `;
 
 export const MatchResultText = styled.p`
@@ -633,9 +636,14 @@ export const SvgContainer = styled.div`
 `;
 
 export const contour = styled.div`
-border-radius: 5px;
-background: var(--colors-gray-gray-500, #878792);
-height:16px;
-width:1px;
-margin:0 8px;
+  border-radius: 5px;
+  background: var(--colors-gray-gray-500, #878792);
+  height: 16px;
+  width: 1px;
+  margin: 0 8px;
+`;
+
+export const matchResultContainer = styled.div`
+  display: flex;
+  gap: 1.5rem;
 `;

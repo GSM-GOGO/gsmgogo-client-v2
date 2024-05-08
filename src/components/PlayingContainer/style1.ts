@@ -215,6 +215,8 @@ export const BattingImforContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 0.5rem;
+  margin-top: 2rem;
   @media screen and (max-width: 570px) {
     flex-direction: column;
     align-items: self-start;
@@ -331,7 +333,6 @@ export const BattingResultPoint = styled.p`
 `;
 
 export const VoteStateContainer = styled.div`
-margin-top:1rem;
   display: flex;
   gap: 0.75rem;
   align-items: center;

@@ -949,7 +949,7 @@ const PlayContainer = () => {
         <></>
       ) : (
         <S.BottomText>
-          <S.TimeText2>출전하는 경기에는 투표할 수 없으며 경기 승리 시 포인트를 받을 수 있습니다</S.TimeText2>
+          <S.TimeText2>출전하는 경기에는 투표할 수 없으며 경기 승리 시 경기 전체 베팅 포인트의 2.5%를 받을 수 있습니다</S.TimeText2>
         </S.BottomText>
       )}
       <ToastContainer autoClose={1000} />

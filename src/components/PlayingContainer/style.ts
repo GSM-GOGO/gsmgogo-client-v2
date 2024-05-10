@@ -340,12 +340,30 @@ export const ModalTitleContainer = styled.div`
   }
 `;
 
+export const ModalTitleServeCotainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+`;
+
 export const ModalTitle = styled.p`
   margin: 0;
   font-weight: 400;
   font-size: 1rem;
   font-family: pretendard;
   color: #fff;
+`;
+
+export const DividendRules = styled.p`
+  font-family: Pretendard;
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  text-align: center;
+
+  color: #df454a;
+
+  margin: 0;
 `;
 
 export const ModalNovelContainer = styled.div`

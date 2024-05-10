@@ -847,15 +847,18 @@ const PlayContainer = () => {
           <S.ModalContainer>
             <S.ModalTextWrapper>
               <S.ModalTextContainer>
-                <S.ModalTitle>
-                  <S.ModalTitleContainer>
-                    {selectedSports} 경기에 투표 하시겠습니까?
-                    {selectedSports == '배드민턴' && selectedDate.getDate() >= 23 && (
-                      <div>예선, 본선은 25점 내기 단판입니다.</div>
-                    )}
-                    {selectedSports !== '배드민턴' && <div>투표 방식은 세트 스코어 입니다.</div>}
-                  </S.ModalTitleContainer>
-                </S.ModalTitle>
+                <S.ModalTitleServeCotainer>
+                  <S.ModalTitle>
+                    <S.ModalTitleContainer>
+                      {selectedSports} 경기에 투표 하시겠습니까?
+                      {selectedSports == '배드민턴' && selectedDate.getDate() >= 23 && (
+                        <div>예선, 본선은 25점 내기 단판입니다.</div>
+                      )}
+                      {selectedSports !== '배드민턴' && <div>투표 방식은 세트 스코어 입니다.</div>}
+                    </S.ModalTitleContainer>
+                  </S.ModalTitle>
+                  <S.DividendRules>대성공 배당식 변경 배팅액 * 배팅 비율 * 2 + 배팅액</S.DividendRules>
+                </S.ModalTitleServeCotainer>
                 <S.ModalNovelContainer>
                   <S.ModalNovel>
                     {nextModal === false ? (
@@ -949,7 +952,9 @@ const PlayContainer = () => {
         <></>
       ) : (
         <S.BottomText>
-          <S.TimeText2>출전하는 경기에는 투표할 수 없으며 경기 승리 시 경기 전체 베팅 포인트의 2.5%를 받을 수 있습니다</S.TimeText2>
+          <S.TimeText2>
+            출전하는 경기에는 투표할 수 없으며 경기 승리 시 경기 전체 베팅 포인트의 2.5%를 받을 수 있습니다
+          </S.TimeText2>
         </S.BottomText>
       )}
       <ToastContainer autoClose={1000} />

@@ -20,7 +20,7 @@ import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
 import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
 import MyPage from './Pages/MyPage/index.tsx';
 import { useEffect, useState } from 'react';
-import { Analytics } from '@vercel/analytics/react';
+// import { Analytics } from '@vercel/analytics/react';
 
 const queryClient = new QueryClient();
 
@@ -277,7 +277,7 @@ function App() {
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="*" element={<Notfound />} />
-          <Analytics />
+          {/* <Analytics /> */}
         </Routes>
       </Router>
     </QueryClientProvider>

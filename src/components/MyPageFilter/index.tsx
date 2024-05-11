@@ -1,4 +1,4 @@
-import { DeleteIcon, DisabledFilterIcon, SelectFilterIcon } from '../../assets';
+import { DeleteIcon, DisabledFilterIcon, SelectFilterIcon } from '@/assets';
 import * as S from './style';
 import {
   BATTING_LABELS,
@@ -6,7 +6,7 @@ import {
   SPORTS_LABELS,
   SelectSportsType,
   SetSelectBattingType,
-} from '../../types/MyPageFilter';
+} from '@/types/MyPageFilter';
 
 interface FilterComponentProps {
   activeFilter: FilterType | null;

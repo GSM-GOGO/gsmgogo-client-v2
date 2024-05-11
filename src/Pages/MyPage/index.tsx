@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import apiClient from '../../utils/libs/apiClient';
-import { Stroke } from '../../assets';
+import apiClient from '@/utils/libs/apiClient';
+import { Stroke } from '@/assets';
 import * as S from './style';
-import { MatchData, MatchResultData, MatchResponse } from '../../types/MatchData';
-import { FilterType, SelectSportsType, SetSelectBattingType, matchLevelType } from '../../types/MyPageFilter';
-import FilterComponent from '../../components/MyPageFilter';
-import { calculateBattingCondition } from '../../utils/libs/battingFilter';
-import { getGradeAndClass, getMatchEvent } from '../../utils/libs/myPage';
-import MyPageLogout from '../../components/MyPageLogout';
+import { MatchData, MatchResultData, MatchResponse } from '@/types/MatchData';
+import { FilterType, SelectSportsType, SetSelectBattingType, matchLevelType } from '@/types/MyPageFilter';
+import FilterComponent from '@/components/MyPageFilter';
+import { calculateBattingCondition } from '@/utils/libs/battingFilter';
+import { getGradeAndClass, getMatchEvent } from '@/utils/libs/myPage';
+import MyPageLogout from '@/components/MyPageLogout';
 
 const MyPage = () => {
   const [activeFilter, setActiveFilter] = useState<FilterType | null>(null);

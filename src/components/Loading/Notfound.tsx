@@ -1,12 +1,12 @@
 import * as S from './style.ts';
-import { NotFound } from '../../assets/svg/NotFound.tsx';
+import { NotFound } from '@/assets/svg/NotFound.tsx';
 
 const Notfound = () => {
   return (
     <S.Wrapper>
       <S.Container>
         <S.ContainerResponse>
-          <NotFound/>
+          <NotFound />
         </S.ContainerResponse>
       </S.Container>
     </S.Wrapper>

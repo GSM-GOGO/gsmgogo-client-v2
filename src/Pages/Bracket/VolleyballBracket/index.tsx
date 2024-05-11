@@ -1,5 +1,5 @@
-import { NomalBracket } from '../../../style/Bracket/style';
-import { BracketFrame } from '../../../assets';
+import { NomalBracket } from '@/style/Bracket/style';
+import { BracketFrame } from '@/assets';
 import * as S from './style';
 
 const VolleyballBracket = () => {

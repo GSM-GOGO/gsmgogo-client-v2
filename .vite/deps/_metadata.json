@@ -1,0 +1,103 @@
+{
+  "hash": "6440eee8",
+  "configHash": "14e6175e",
+  "lockfileHash": "1b9d39c9",
+  "browserHash": "d2988bb3",
+  "optimized": {
+    "react/jsx-dev-runtime": {
+      "src": "../../node_modules/react/jsx-dev-runtime.js",
+      "file": "react_jsx-dev-runtime.js",
+      "fileHash": "d71c7dc7",
+      "needsInterop": true
+    },
+    "axios": {
+      "src": "../../node_modules/axios/index.js",
+      "file": "axios.js",
+      "fileHash": "bd679d32",
+      "needsInterop": false
+    },
+    "react": {
+      "src": "../../node_modules/react/index.js",
+      "file": "react.js",
+      "fileHash": "4f5e9698",
+      "needsInterop": true
+    },
+    "react-cookie": {
+      "src": "../../node_modules/react-cookie/esm/index.mjs",
+      "file": "react-cookie.js",
+      "fileHash": "177a46c9",
+      "needsInterop": false
+    },
+    "react-dom/client": {
+      "src": "../../node_modules/react-dom/client.js",
+      "file": "react-dom_client.js",
+      "fileHash": "9e6ff5d2",
+      "needsInterop": true
+    },
+    "react-draggable": {
+      "src": "../../node_modules/react-draggable/build/cjs/cjs.js",
+      "file": "react-draggable.js",
+      "fileHash": "14a20094",
+      "needsInterop": true
+    },
+    "react-hook-form": {
+      "src": "../../node_modules/react-hook-form/dist/index.esm.mjs",
+      "file": "react-hook-form.js",
+      "fileHash": "8e05fcd1",
+      "needsInterop": false
+    },
+    "react-hot-toast": {
+      "src": "../../node_modules/react-hot-toast/dist/index.mjs",
+      "file": "react-hot-toast.js",
+      "fileHash": "e742c21e",
+      "needsInterop": false
+    },
+    "react-query": {
+      "src": "../../node_modules/react-query/es/index.js",
+      "file": "react-query.js",
+      "fileHash": "fc877573",
+      "needsInterop": false
+    },
+    "react-router-dom": {
+      "src": "../../node_modules/react-router-dom/dist/index.js",
+      "file": "react-router-dom.js",
+      "fileHash": "015d92e9",
+      "needsInterop": false
+    },
+    "react-toastify": {
+      "src": "../../node_modules/react-toastify/dist/react-toastify.esm.mjs",
+      "file": "react-toastify.js",
+      "fileHash": "e24f7c42",
+      "needsInterop": false
+    },
+    "react/jsx-runtime": {
+      "src": "../../node_modules/react/jsx-runtime.js",
+      "file": "react_jsx-runtime.js",
+      "fileHash": "5f2c16ef",
+      "needsInterop": true
+    },
+    "styled-components": {
+      "src": "../../node_modules/styled-components/dist/styled-components.browser.esm.js",
+      "file": "styled-components.js",
+      "fileHash": "38b8a85c",
+      "needsInterop": false
+    },
+    "zustand": {
+      "src": "../../node_modules/zustand/esm/index.mjs",
+      "file": "zustand.js",
+      "fileHash": "3cc5c64d",
+      "needsInterop": false
+    }
+  },
+  "chunks": {
+    "chunk-FBRNPY62": {
+      "file": "chunk-FBRNPY62.js"
+    },
+    "chunk-UM3JHGVO": {
+      "file": "chunk-UM3JHGVO.js"
+    },
+    "chunk-CEQRFMJQ": {
+      "file": "chunk-CEQRFMJQ.js"
+    }
+  }
+}

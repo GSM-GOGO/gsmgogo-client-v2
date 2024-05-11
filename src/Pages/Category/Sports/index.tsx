@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { useEffect, useState } from 'react';
 import * as S from './style.ts';
-import Category from '../../../components/Category/index.tsx';
+import Category from '@/components/Category/index.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import apiClient from '../../../utils/libs/apiClient.ts';
+import apiClient from '@/utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 
 import 'react-toastify/dist/ReactToastify.css';
-import { EmptyPlaying } from '../../../assets/index.ts';
-import Notfound from '../../../components/Loading/Notfound.tsx';
+import { EmptyPlaying } from '@/assets/index.ts';
+import Notfound from '@/components/Loading/Notfound.tsx';
 interface Team {
   team_id: number;
   team_name: string;

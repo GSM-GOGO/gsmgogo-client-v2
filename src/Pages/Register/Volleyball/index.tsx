@@ -1,10 +1,10 @@
 import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useRef, useState } from 'react';
-import { People } from '../../../assets/index.ts';
+import { People } from '@/assets/index.ts';
 import * as S from './style.ts';
 import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
-import VolleyField from '../../../assets/png/VolleyField.png';
+import VolleyField from '@/assets/png/VolleyField.png';
 import { useLocation, useNavigate } from 'react-router-dom';
-import apiClient from '../../../utils/libs/apiClient.ts';
+import apiClient from '@/utils/libs/apiClient.ts';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 

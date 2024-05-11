@@ -1,6 +1,6 @@
 import * as S from './style';
-import { ToastContainer, toast } from 'react-toastify';
-import { Toaster } from 'react-hot-toast';
+// import { ToastContainer, toast } from 'react-toastify';
+// import { Toaster } from 'react-hot-toast';
 import { useState } from 'react'; // 추가
 
 const NunchiGame = () => {
@@ -51,10 +51,10 @@ const NunchiGame = () => {
           </S.ButtonContainer>
         </S.Container>
       </S.Wrapper>
-      <ToastContainer autoClose={1000} />
+      {/* <ToastContainer autoClose={1000} />
       <div>
         <Toaster position="top-right" reverseOrder={true} />
-      </div>
+      </div> */}
     </>
   );
 };

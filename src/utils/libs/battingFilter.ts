@@ -1,5 +1,5 @@
-import { SetSelectBattingType } from '../../types/MyPageFilter';
-import { MatchResultData } from '../../types/MatchData';
+import { SetSelectBattingType } from '@/types/MyPageFilter';
+import { MatchResultData } from '@/types/MatchData';
 
 export const calculateBattingCondition = (
   matchResult: MatchResultData,

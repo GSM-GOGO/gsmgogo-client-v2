@@ -1,11 +1,11 @@
 import React, { useState, MouseEvent, ChangeEvent, useEffect } from 'react';
-import { CoinIcon, HeadCoin, TailCoin } from '../../../assets/index';
-import MiniGameCategory from '../../../components/MiniGameCategory';
+import { CoinIcon, HeadCoin, TailCoin } from '@/assets/index';
+import MiniGameCategory from '@/components/MiniGameCategory';
 import * as S from './style';
-import apiClient from '../../../utils/libs/apiClient';
+import apiClient from '@/utils/libs/apiClient';
+import useStorePoint from '@/utils/libs/storePoint';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-import useStorePoint from '../../../utils/libs/storePoint';
 
 interface Result {
   prediction: 'HEAD' | 'TAIL';

@@ -1,5 +1,5 @@
-import apiClient from '../../utils/libs/apiClient';
-import { LogoutIcon } from '../../assets';
+import apiClient from '@/utils/libs/apiClient';
+import { LogoutIcon } from '@/assets';
 import * as S from './style';
 import { useNavigate } from 'react-router-dom';
 

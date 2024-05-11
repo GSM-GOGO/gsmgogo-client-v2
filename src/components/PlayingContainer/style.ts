@@ -154,9 +154,9 @@ export const GradeText1 = styled.p`
   @media (max-width: 650px) {
     font-size: 0.75rem;
   }
-  /* @media (max-width: 500px) {
+  @media (max-width: 500px) {
     display: none;
-  } */
+  }
 `;
 
 export const GradeText2 = styled.p`

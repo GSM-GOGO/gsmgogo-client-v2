@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-import '../fonts/woff/PretendardWoff.css';
-import '../fonts/woff2/PretendardWoff2.css';
+import '@/fonts/woff/PretendardWoff.css';
+import '@/fonts/woff2/PretendardWoff2.css';
 
 export const GlobalStyles = createGlobalStyle`
 	body{

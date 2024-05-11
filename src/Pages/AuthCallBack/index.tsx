@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useLocation, Location, useNavigate } from 'react-router-dom';
-import Loading from '../../components/Loading/index.tsx';
-import apiClient from '../../utils/libs/apiClient.ts';
+import Loading from '@/components/Loading/index.tsx';
+import apiClient from '@/utils/libs/apiClient.ts';
 
 const AuthCallBack = () => {
   const navigate = useNavigate();

@@ -1,4 +1,4 @@
-import { MatchData } from '../../types/MatchData';
+import { MatchData } from '@/types/MatchData';
 
 export const getMatchEvent = (matchData: MatchData): string => {
   return (

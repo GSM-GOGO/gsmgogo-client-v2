@@ -1,6 +1,6 @@
-import PlayingContainer from '../../components/PlayingContainer/index.tsx';
+import PlayingContainer from '@/components/PlayingContainer/index.tsx';
 import * as S from './style';
-import Category from '../../components/Category/index.tsx';
+import Category from '@/components/Category/index.tsx';
 
 const Main = () => {
   return (

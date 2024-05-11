@@ -18,6 +18,7 @@ import Roulette from './Pages/Minigame/Roulette/index.tsx';
 import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
 import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
 import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
+import NunchiGame from './Pages/Minigame/NunchiGame/index.tsx';
 import MyPage from './Pages/MyPage/index.tsx';
 import { useEffect, useState } from 'react';
 
@@ -275,6 +276,7 @@ function App() {
 
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/NunchiGame" element={<NunchiGame />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </Router>

@@ -1,11 +1,11 @@
-import { RankBar } from '../../assets';
-import apiClient from '../../utils/libs/apiClient';
+import { RankBar } from '@/assets';
+import apiClient from '@/utils/libs/apiClient';
 import { Category, CategoryContainer } from '../Formation/style';
 import * as S from './style';
 import { useQuery } from 'react-query';
-import LoadingContent from '../../components/Loading/content';
+import LoadingContent from '@/components/Loading/content';
 
-const Ranking = ()=>{
+const Ranking = () => {
   return (
     <>
       <S.Wrapper>
@@ -13,17 +13,14 @@ const Ranking = ()=>{
           <CategoryContainer style={{ marginBottom: '1.25rem' }}>
             <Category style={{ color: 'var(--White, #FFF)' }}>랭킹</Category>
           </CategoryContainer>
-          <Content/>
+          <Content />
         </S.Container>
       </S.Wrapper>
     </>
   );
-}
+};
 const Content = () => {
-  const {
-    data: RankData,
-    isLoading: isRankLoading
-  } = useQuery(
+  const { data: RankData, isLoading: isRankLoading } = useQuery(
     'rankData',
     async () => {
       const token = localStorage.getItem('accessToken');
@@ -40,10 +37,7 @@ const Content = () => {
     }
   );
 
-  const {
-    data: myId,
-    isLoading: isMyIdLoading
-  } = useQuery(
+  const { data: myId, isLoading: isMyIdLoading } = useQuery(
     'myId',
     async () => {
       const token = localStorage.getItem('accessToken');
@@ -60,10 +54,13 @@ const Content = () => {
     }
   );
 
-  if (isRankLoading || isMyIdLoading) return <LoadingContent/>;
-  if (!RankData || !myId) return null; 
-  
-  const topThreeDatatest = RankData.length > 0 ? RankData.sort((a: { user_point: number; }, b: { user_point: number; }) => b.user_point - a.user_point).slice(0, 3) : [];
+  if (isRankLoading || isMyIdLoading) return <LoadingContent />;
+  if (!RankData || !myId) return null;
+
+  const topThreeDatatest =
+    RankData.length > 0
+      ? RankData.sort((a: { user_point: number }, b: { user_point: number }) => b.user_point - a.user_point).slice(0, 3)
+      : [];
 
   const firstPlacePointstest = topThreeDatatest.length > 0 ? topThreeDatatest[0].user_point : 0;
   const secondPlacePointstest = topThreeDatatest.length > 1 ? topThreeDatatest[1].user_point : 0;
@@ -129,77 +126,87 @@ const Content = () => {
 
   return (
     <>
-          <S.MainContainer>
-            <S.LankWrapper>
-              {RankData.sort((a: { user_point: number; }, b: { user_point: number; }) => b.user_point - a.user_point)
-                .slice(0, 3)
-                .sort((a: { user_name: number; }, b: { user_name: number; }) => (a.user_name > b.user_name ? 1 : -1))
-                .map((_: any, index: number) => {
-                  const { rankName, rankPoint, rankClass, rankGrade, rankComponent, rank } = getRankInfotest(
-                    index,
-                    RankData
-                  );
-                  return (
-                    <S.LankContainer key={index}>
-                      <S.Name>
-                        {' '}
-                        {Number[rankGrade]}-{Number[rankClass]} {rankName}
-                      </S.Name>
-                      <S.Point>{rankPoint}P</S.Point>
-                      {rankComponent}
-                      <S.Name
-                        style={{
-                          position: 'absolute',
-                          bottom: '1rem',
-                          justifySelf: 'center',
-                        }}
-                      >
-                        {rank}
-                      </S.Name>
-                    </S.LankContainer>
-                  );
-                })}
-            </S.LankWrapper>
-            <S.ListWrapper>
-              {RankData.map((item: { user_id: number; user_grade: string; user_class: string; user_name: string; user_point:number; }, index: number) => (
-                <>
-                  {item.user_id === myId && (
-                    <S.List myrank={item.user_id === myId} key={index}>
-                      <S.TextContainer>
-                        <S.Text>
-                          <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
-                          <S.Name>
-                            {' '}
-                            {Number[item.user_grade]}-{Number[item.user_class]} {item.user_name}
-                          </S.Name>
-                        </S.Text>
-                      </S.TextContainer>
+      <S.MainContainer>
+        <S.LankWrapper>
+          {RankData.sort((a: { user_point: number }, b: { user_point: number }) => b.user_point - a.user_point)
+            .slice(0, 3)
+            .sort((a: { user_name: number }, b: { user_name: number }) => (a.user_name > b.user_name ? 1 : -1))
+            .map((_: any, index: number) => {
+              const { rankName, rankPoint, rankClass, rankGrade, rankComponent, rank } = getRankInfotest(
+                index,
+                RankData
+              );
+              return (
+                <S.LankContainer key={index}>
+                  <S.Name>
+                    {' '}
+                    {Number[rankGrade]}-{Number[rankClass]} {rankName}
+                  </S.Name>
+                  <S.Point>{rankPoint}P</S.Point>
+                  {rankComponent}
+                  <S.Name
+                    style={{
+                      position: 'absolute',
+                      bottom: '1rem',
+                      justifySelf: 'center',
+                    }}
+                  >
+                    {rank}
+                  </S.Name>
+                </S.LankContainer>
+              );
+            })}
+        </S.LankWrapper>
+        <S.ListWrapper>
+          {RankData.map(
+            (
+              item: { user_id: number; user_grade: string; user_class: string; user_name: string; user_point: number },
+              index: number
+            ) => (
+              <>
+                {item.user_id === myId && (
+                  <S.List myrank={item.user_id === myId} key={index}>
+                    <S.TextContainer>
                       <S.Text>
-                        <S.Point>{item.user_point.toLocaleString()}P</S.Point>
+                        <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
+                        <S.Name>
+                          {' '}
+                          {Number[item.user_grade]}-{Number[item.user_class]} {item.user_name}
+                        </S.Name>
                       </S.Text>
-                    </S.List>
-                  )}
-                </>
-              ))}
-              <S.Stroke />
-              {RankData.sort((a: { user_point: number; }, b: { user_point: number; }) => b.user_point - a.user_point).map((item: { user_id: number; user_grade: string; user_class: string; user_name: string; user_point:number; }, index: number) => (
-                <S.List myrank={item.user_id == myId} key={index}>
-                  <S.TextContainer>
+                    </S.TextContainer>
                     <S.Text>
-                      <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
-                      <S.Name>
-                        {' '}
-                        {Number[item.user_grade]}-{Number[item.user_class]} {item.user_name}
-                      </S.Name>
+                      <S.Point>{item.user_point.toLocaleString()}P</S.Point>
                     </S.Text>
-                  </S.TextContainer>
+                  </S.List>
+                )}
+              </>
+            )
+          )}
+          <S.Stroke />
+          {RankData.sort((a: { user_point: number }, b: { user_point: number }) => b.user_point - a.user_point).map(
+            (
+              item: { user_id: number; user_grade: string; user_class: string; user_name: string; user_point: number },
+              index: number
+            ) => (
+              <S.List myrank={item.user_id == myId} key={index}>
+                <S.TextContainer>
                   <S.Text>
-                    <S.Point>{item.user_point.toLocaleString()}P</S.Point>
+                    <S.Lank rank={index < 3}>{index + 1}등</S.Lank>
+                    <S.Name>
+                      {' '}
+                      {Number[item.user_grade]}-{Number[item.user_class]} {item.user_name}
+                    </S.Name>
                   </S.Text>
-                </S.List>
-              ))}
-            </S.ListWrapper>
-          </S.MainContainer>
+                </S.TextContainer>
+                <S.Text>
+                  <S.Point>{item.user_point.toLocaleString()}P</S.Point>
+                </S.Text>
+              </S.List>
+            )
+          )}
+        </S.ListWrapper>
+      </S.MainContainer>
     </>
   );
 };

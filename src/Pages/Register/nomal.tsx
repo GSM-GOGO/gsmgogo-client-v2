@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import * as S from './style.ts';
-import { Search, SmallXIcon } from '../../assets/index.ts';
-import apiClient from '../../utils/libs/apiClient.ts';
+import { Search, SmallXIcon } from '@/assets/index.ts';
+import apiClient from '@/utils/libs/apiClient.ts';
 
 interface Data {
   id: number;

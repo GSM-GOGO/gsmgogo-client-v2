@@ -1,15 +1,14 @@
-import { useEffect, useRef, useState } from 'react';
-import { People } from '../../../assets/index.ts';
 import * as S from '../style.ts';
 import * as D from './style.ts';
+import { useEffect, useRef, useState } from 'react';
+import { People, BadmintonField } from '@/assets/index.ts';
 import Draggable from 'react-draggable';
-import BadmintonField from '../../../assets/png/BadmintonField.png';
-import LoadingContent from '../../../components/Loading/content.tsx';
+import LoadingContent from '@/components/Loading/content.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import apiClient from '../../../utils/libs/apiClient.ts';
+import apiClient from '@/utils/libs/apiClient.ts';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-
 import 'react-toastify/dist/ReactToastify.css';
 
 const BadmintonForm = () => {

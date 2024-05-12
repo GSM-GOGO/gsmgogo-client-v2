@@ -76,7 +76,7 @@ const NunchiGame = () => {
           }, 500);
         } finally {
           setTimeout(() => {
-            toast.success(`${clickBtn}을 클릭하셨습니다.`, { autoClose: 1000 });
+            toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
           }, 1000);
         }
       }
@@ -135,19 +135,8 @@ const NunchiGame = () => {
                   </div>
                 ))}
               </S.InfoContainer>
-              {!isClicked && clickResponse && clickResponse.button_type === null && (
-                <>
-                  <S.Button color={clickedButton} onClick={() => sendClickBtn(clickedButton, isClicked)}>
-                    {clickedButton !== 0 && `${clickedButton}번 `}
-                    버튼 누르기
-                  </S.Button>
-                  <S.Text>
-                    매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
-                    <span>50만 원 이상 보유자는 참여할 수 없어요</span>
-                  </S.Text>
-                </>
-              )}
-              {isClicked && clickResponse && clickResponse.button_type === null && (
+
+              {isClicked && clickResponse && clickResponse.button_type === null ? (
                 <>
                   <S.Button color={0}>
                     {parseInt(userPoint.split(',').join('')) > 500000
@@ -159,10 +148,9 @@ const NunchiGame = () => {
                     <span>50만 원 이상 보유자는 참여할 수 없어요</span>
                   </S.Text>
                 </>
-              )}
-              {clickResponse && clickResponse.button_type !== null && (
+              ) : clickResponse && clickResponse.button_type !== null ? (
                 <>
-                  <S.Button color={0}>
+                  <S.Button color={0} onClick={() => toast.error('이미 버튼을 클릭하셨습니다.', { autoClose: 1000 })}>
                     {clickResponse.button_type === 'ONE'
                       ? 1
                       : clickResponse.button_type === 'TWO'
@@ -178,6 +166,17 @@ const NunchiGame = () => {
                   </S.Button>
                   <S.Text>
                     매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
+                  </S.Text>
+                </>
+              ) : (
+                <>
+                  <S.Button color={clickedButton} onClick={() => sendClickBtn(clickedButton, isClicked)}>
+                    {clickedButton !== 0 && `${clickedButton}번 `}
+                    버튼 누르기
+                  </S.Button>
+                  <S.Text>
+                    매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
+                    <span>50만 원 이상 보유자는 참여할 수 없어요</span>
                   </S.Text>
                 </>
               )}

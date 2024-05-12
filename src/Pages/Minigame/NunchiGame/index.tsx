@@ -29,17 +29,56 @@ const NunchiGame = () => {
         },
         withCredentials: true,
       });
-      setClickResponse(response.data.button_type);
+      const buttonType = response.data.button_type;
+      const clickedBtn =
+        buttonType === 'ONE'
+          ? 1
+          : buttonType === 'TWO'
+            ? 2
+            : buttonType === 'THREE'
+              ? 3
+              : buttonType === 'FOUR'
+                ? 4
+                : buttonType === 'FIVE'
+                  ? 5
+                  : 0;
+      setClickedButton(clickedBtn);
+      setClickResponse(response.data);
     } catch (e) {}
+  };
+
+  const sendClickBtn = async (clickBtn: number, isClicked: boolean) => {
+    if (isClicked === false) {
+      try {
+        const token = localStorage.getItem('accessToken');
+        const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
+        const buttonType = buttonTypes[clickBtn - 1];
+
+        await apiClient.post(
+          `/game/button`,
+          {
+            button_type: buttonType,
+          },
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+      } catch (e: any) {
+        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+        setTimeout(() => {
+          toast.error(errorMessage, { autoClose: 1000 });
+        }, 500);
+      } finally {
+        setTimeout(() => {}, 1000);
+      }
+    }
+    setIsClicked(true);
   };
 
   const handleButtonClick = (button: number) => {
     setClickedButton(clickedButton === button ? 0 : button);
-  };
-
-  const pressBtn = (clickBtn: number, isClicked: boolean) => {
-    setIsClicked(true);
-    console.log(clickBtn, isClicked);
   };
 
   const buttonPositions = [
@@ -87,9 +126,9 @@ const NunchiGame = () => {
                   </div>
                 ))}
               </S.InfoContainer>
-              {!isClicked && (
+              {!isClicked && !clickResponse && (
                 <>
-                  <S.Button color={clickedButton} onClick={() => pressBtn(clickedButton, isClicked)}>
+                  <S.Button color={clickedButton} onClick={() => sendClickBtn(clickedButton, isClicked)}>
                     {clickedButton !== 0 && `${clickedButton}번 `}
                     버튼 누르기
                   </S.Button>
@@ -99,12 +138,33 @@ const NunchiGame = () => {
                   </S.Text>
                 </>
               )}
-              {isClicked && (
+              {isClicked && !clickResponse && (
                 <>
-                  <S.Button color={0}>{clickResponse && `${clickResponse.button_type}번 버튼을 눌렀어요`}</S.Button>
+                  <S.Button color={0}>{clickedButton}번 버튼을 눌렀어요</S.Button>
                   <S.Text>
                     매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
                     <span>50만 원 이상 보유자는 참여할 수 없어요</span>
+                  </S.Text>
+                </>
+              )}
+              {clickResponse && (
+                <>
+                  <S.Button color={0}>
+                    {clickResponse.button_type === 'ONE'
+                      ? 1
+                      : clickResponse.button_type === 'TWO'
+                        ? 2
+                        : clickResponse.button_type === 'THREE'
+                          ? 3
+                          : clickResponse.button_type === 'FOUR'
+                            ? 4
+                            : clickResponse.button_type === 'FIVE'
+                              ? 5
+                              : null}
+                    번 버튼을 눌렀어요
+                  </S.Button>
+                  <S.Text>
+                    매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
                   </S.Text>
                 </>
               )}

@@ -6,6 +6,8 @@ import { Button, Button_click } from '../../../assets/index';
 import MiniGameCategory from '../../../components/MiniGameCategory';
 import apiClient from '../../../utils/libs/apiClient';
 
+import useStorePoint from '../../../utils/libs/storePoint';
+
 const NunchiGame = () => {
   type ClickResponse = {
     button_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null;
@@ -14,6 +16,7 @@ const NunchiGame = () => {
   const [clickedButton, setClickedButton] = useState(0);
   const [isClicked, setIsClicked] = useState(false);
   const [clickResponse, setClickResponse] = useState<ClickResponse>();
+  const userPoint = useStorePoint((state) => state.userPoint);
 
   useEffect(() => {
     getUserBtnClicked();
@@ -48,31 +51,37 @@ const NunchiGame = () => {
   };
 
   const sendClickBtn = async (clickBtn: number, isClicked: boolean) => {
-    if (isClicked === false) {
-      try {
-        const token = localStorage.getItem('accessToken');
-        const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
-        const buttonType = buttonTypes[clickBtn - 1];
+    if (parseInt(userPoint.split(',').join('')) < 500000) {
+      if (isClicked === false) {
+        try {
+          const token = localStorage.getItem('accessToken');
+          const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
+          const buttonType = buttonTypes[clickBtn - 1];
 
-        await apiClient.post(
-          `/game/button`,
-          {
-            button_type: buttonType,
-          },
-          {
-            headers: {
-              Authorization: `${token}`,
+          await apiClient.post(
+            `/game/button`,
+            {
+              button_type: buttonType,
             },
-          }
-        );
-      } catch (e: any) {
-        const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-        setTimeout(() => {
-          toast.error(errorMessage, { autoClose: 1000 });
-        }, 500);
-      } finally {
-        setTimeout(() => {}, 1000);
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+        } catch (e: any) {
+          const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+          setTimeout(() => {
+            toast.error(errorMessage, { autoClose: 1000 });
+          }, 500);
+        } finally {
+          setTimeout(() => {
+            toast.success(`${clickBtn}을 클릭하셨습니다.`, { autoClose: 1000 });
+          }, 1000);
+        }
       }
+    } else {
+      toast.error('너무 많은 포인트를 보유하고 있습니다.', { autoClose: 1000 });
     }
     setIsClicked(true);
   };
@@ -126,7 +135,7 @@ const NunchiGame = () => {
                   </div>
                 ))}
               </S.InfoContainer>
-              {!isClicked && !clickResponse && (
+              {!isClicked && clickResponse && clickResponse.button_type === null && (
                 <>
                   <S.Button color={clickedButton} onClick={() => sendClickBtn(clickedButton, isClicked)}>
                     {clickedButton !== 0 && `${clickedButton}번 `}
@@ -138,16 +147,20 @@ const NunchiGame = () => {
                   </S.Text>
                 </>
               )}
-              {isClicked && !clickResponse && (
+              {isClicked && clickResponse && clickResponse.button_type === null && (
                 <>
-                  <S.Button color={0}>{clickedButton}번 버튼을 눌렀어요</S.Button>
+                  <S.Button color={0}>
+                    {parseInt(userPoint.split(',').join('')) > 500000
+                      ? '많은 포인트를 보유하고 있어요'
+                      : `${clickedButton} 번 버튼을 눌렀어요`}
+                  </S.Button>
                   <S.Text>
                     매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
                     <span>50만 원 이상 보유자는 참여할 수 없어요</span>
                   </S.Text>
                 </>
               )}
-              {clickResponse && (
+              {clickResponse && clickResponse.button_type !== null && (
                 <>
                   <S.Button color={0}>
                     {clickResponse.button_type === 'ONE'

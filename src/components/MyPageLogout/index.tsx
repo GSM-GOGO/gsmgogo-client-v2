@@ -1,7 +1,9 @@
-import apiClient from '@/utils/libs/apiClient';
-import { LogoutIcon } from '@/assets';
 import * as S from './style';
+
 import { useNavigate } from 'react-router-dom';
+
+import { apiClient } from '@/utils';
+import { LogoutIcon } from '@/assets';
 
 const MyPageLogout = () => {
   const navigate = useNavigate();

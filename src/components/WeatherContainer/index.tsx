@@ -1,7 +1,6 @@
-import { useMemo, useState } from 'react';
-import { useCallback } from 'react';
-
 import * as S from './style';
+
+import { useMemo, useState, useCallback } from 'react';
 
 const WeatherContainer = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);

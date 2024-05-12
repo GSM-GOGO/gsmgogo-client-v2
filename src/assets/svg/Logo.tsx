@@ -1,12 +1,6 @@
-export function Logo() {
+const Logo = () => {
   return (
-    <svg
-      width="238"
-      height="160"
-      viewBox="0 0 238 160"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+    <svg width="238" height="160" viewBox="0 0 238 160" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M37.8058 0L110.488 31.7117L132.669 6.77478L155.269 32.7207L187.774 0L230.379 61.2326L214.66 69.503L218.312 80L226.251 77.6143L238 86.998L236.095 118.012L225.579 119.784L231.997 158.703L155.269 119.784L138.11 142.847L110.029 121.829L97.6451 136.143L81.9266 118.966L0 160L37.8058 0Z"
         fill="white"
@@ -23,4 +17,6 @@ export function Logo() {
       />
     </svg>
   );
-}
+};
+
+export default Logo;

@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { UseFormSetError } from 'react-hook-form';
+
 import { FormData } from '@/types/FormDataType';
 
 interface TimerProps {

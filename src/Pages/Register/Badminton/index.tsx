@@ -1,13 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import { People } from '@/assets/index.ts';
 import * as S from './style.ts';
-import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
-import BadmintonField from '@/assets/png/BadmintonField.png';
+
+import { useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import apiClient from '@/utils/libs/apiClient.ts';
+
+import { People } from '@/assets';
+import BadmintonField from '@/assets/png/BadmintonField.png';
+import { apiClient } from '@/utils';
+
+import Draggable, { DraggableData, DraggableEvent } from 'react-draggable';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-
 import 'react-toastify/dist/ReactToastify.css';
 
 const Badminton = () => {

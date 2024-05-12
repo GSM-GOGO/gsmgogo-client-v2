@@ -1,26 +1,30 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Main, Ranking, Signin, Signup } from './Pages';
 import { GlobalStyles } from './style/Globalstyles.ts';
-import SoccerForm from './Pages/Formation/SoccerForm/index.tsx';
-import VolleyForm from './Pages/Formation/VolleyForm/index.tsx';
-import BadmintonForm from './Pages/Formation/BadmintonForm/index.tsx';
-import NomalMatch from './Pages/Category/Nomal/index.tsx';
-import NomalForm from './Pages/Formation/NomalForm/index.tsx';
-import Sports from './Pages/Category/Sports/index.tsx';
-import AuthCallBack from './Pages/AuthCallBack/index.tsx';
-import { QueryClientProvider, QueryClient } from 'react-query';
-import Header from './components/Header/index.tsx';
-import styled from 'styled-components';
-import Notfound from './components/Loading/Notfound.tsx';
-import { PrivateRoute } from './utils/libs/PrivateRoute.tsx';
-import Coingame from './Pages/Minigame/CoinGame/index.tsx';
-import Roulette from './Pages/Minigame/Roulette/index.tsx';
-import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
-import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
-import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
-import NunchiGame from './Pages/Minigame/NunchiGame/index.tsx';
-import MyPage from './Pages/MyPage/index.tsx';
 import { useEffect, useState } from 'react';
+import { QueryClientProvider, QueryClient } from 'react-query';
+import styled from 'styled-components';
+import {
+  Main,
+  Ranking,
+  Signin,
+  Signup,
+  SoccerForm,
+  VolleyForm,
+  BadmintonForm,
+  Nomal,
+  NomalForm,
+  Sports,
+  AuthCallBack,
+  CoinGame,
+  Roulette,
+  NunchiGame,
+  SoccerBracket,
+  BadmintonBracket,
+  VolleyballBracket,
+  MyPage,
+} from '@/Pages';
+import { Header, Notfound } from '@/components';
+import { PrivateRoute } from './utils/libs/PrivateRoute.tsx';
 
 const queryClient = new QueryClient();
 
@@ -84,7 +88,7 @@ function App() {
                   <HeaderContainer>
                     <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
-                  <Coingame />
+                  <CoinGame />
                 </>
               }
             />
@@ -151,7 +155,7 @@ function App() {
                   <HeaderContainer>
                     <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
-                  <NomalMatch />
+                  <Nomal />
                 </>
               }
             />

@@ -1,4 +1,5 @@
 import * as S from './style.ts';
+
 import { LoadingLogo } from '@/assets';
 
 const Loading = () => {

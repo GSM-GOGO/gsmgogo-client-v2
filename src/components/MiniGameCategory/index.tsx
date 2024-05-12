@@ -1,5 +1,6 @@
-import { useLocation } from 'react-router-dom';
 import * as S from './style.ts';
+
+import { useLocation } from 'react-router-dom';
 
 interface coinCountType {
   coinCount: number | undefined;

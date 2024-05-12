@@ -1,9 +1,11 @@
-import React, { useState, MouseEvent, ChangeEvent, useEffect } from 'react';
-import { CoinIcon, HeadCoin, TailCoin } from '@/assets/index';
-import MiniGameCategory from '@/components/MiniGameCategory';
 import * as S from './style';
-import apiClient from '@/utils/libs/apiClient';
-import useStorePoint from '@/utils/libs/storePoint';
+
+import { useState, MouseEvent, ChangeEvent, useEffect } from 'react';
+
+import { apiClient, useStorePoint } from '@/utils';
+import { CoinIcon, HeadCoin, TailCoin } from '@/assets';
+import { MiniGameCategory } from '@/components';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 

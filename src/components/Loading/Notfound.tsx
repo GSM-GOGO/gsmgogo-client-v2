@@ -1,5 +1,6 @@
 import * as S from './style.ts';
-import { NotFound } from '@/assets/svg/NotFound.tsx';
+
+import { NotFound } from '@/assets';
 
 const Notfound = () => {
   return (

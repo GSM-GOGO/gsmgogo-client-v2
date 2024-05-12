@@ -1,5 +1,6 @@
-import { useNavigate } from 'react-router-dom';
 import * as S from './style.ts';
+
+import { useNavigate } from 'react-router-dom';
 
 const BadmintionBracket = () => {
   const navigate = useNavigate();

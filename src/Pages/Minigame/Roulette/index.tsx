@@ -1,11 +1,13 @@
-import { useState } from 'react';
-import { Roulette_point, Rouletteimg } from '../../../assets';
 import * as S from './style';
-import apiClient from './../../../utils/libs/apiClient';
+
+import { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { Roulette_point, Rouletteimg } from '@/assets';
+import { apiClient, useStorePoint } from '@/utils';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
-import useStorePoint from './../../../utils/libs/storePoint';
 
 const Roulette = () => {
   const [isSpin, setIsSpin] = useState(false);
@@ -48,7 +50,7 @@ const Roulette = () => {
       setTimeout(async () => {
         setIsShow(true);
         // if (response.data.result != 5) {
-          saveTodayDateToLocalStorage();
+        saveTodayDateToLocalStorage();
         //}
         try {
           const token = localStorage.getItem('accessToken');
@@ -72,7 +74,7 @@ const Roulette = () => {
   };
 
   const RouletteMentArr = [
-    { SubMent: '축하합니다!', Ment: '20000포인트 당첨!' }, 
+    { SubMent: '축하합니다!', Ment: '20000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '10000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '5000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '3000포인트 당첨!' },

@@ -1,9 +1,11 @@
 import * as S from './style.ts';
-import Category from '@/components/Category/index.tsx';
-import { useNavigate } from 'react-router-dom';
+
 import { useEffect, useState } from 'react';
-import apiClient from '@/utils/libs/apiClient.ts';
-import { EmptyPlaying } from '@/assets/index.ts';
+import { useNavigate } from 'react-router-dom';
+
+import { Category } from '@/components';
+import { apiClient } from '@/utils';
+import { EmptyPlaying } from '@/assets';
 
 interface Team {
   team_id: number;

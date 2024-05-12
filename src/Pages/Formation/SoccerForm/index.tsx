@@ -1,15 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
-import { People } from '../../../assets/index.ts';
 import * as S from '../style.ts';
 import * as D from './style.ts';
-import Draggable from 'react-draggable';
-import FiledImg from '../../../assets/png/Field.png';
-import LoadingContent from '../../../components/Loading/content.tsx';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import apiClient from '../../../utils/libs/apiClient.ts';
+
+import { People } from '@/assets';
+import FiledImg from '@/assets/png/Field.png';
+import { LoadingContent } from '@/components';
+import { apiClient } from '@/utils';
+
+import Draggable from 'react-draggable';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-
 import 'react-toastify/dist/ReactToastify.css';
 
 interface Participate {

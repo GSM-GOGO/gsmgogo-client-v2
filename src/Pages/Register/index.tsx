@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
 import * as S from './style.ts';
-import { Search, XIcon } from '@/assets/index.ts';
+
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '@/utils/libs/apiClient.ts';
+
+import { Search, XIcon } from '@/assets';
 import Nomal from './nomal.tsx';
-import useStorePoint from '@/utils/libs/storePoint';
+import { apiClient, useStorePoint } from '@/utils';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';

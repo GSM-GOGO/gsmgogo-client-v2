@@ -1,4 +1,4 @@
-const BracketFrameV2 = () => {
+export const BracketFrameV2 = () => {
   return (
     <svg width="326" height="143" viewBox="0 0 326 143" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

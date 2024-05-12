@@ -1,14 +1,15 @@
-import { useEffect, useState } from 'react';
-import { OpenReview, CloseReview } from '@/assets';
 import * as S from './style.ts';
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
-import apiClient from '@/utils/libs/apiClient.ts';
+
+import { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { OpenReview, CloseReview } from '@/assets';
+import { apiClient } from '@/utils';
+import { LoadingContent } from '@/components';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-
 import 'react-toastify/dist/ReactToastify.css';
-import LoadingContent from '@/components/Loading/content.tsx';
 
 type NormalTeamType = 'TOSS_RUN' | 'MISSION_RUN' | 'TUG_OF_WAR' | 'FREE_THROW' | 'GROUP_ROPE_JUMP' | 'CROSS_ROPE_JUMP';
 

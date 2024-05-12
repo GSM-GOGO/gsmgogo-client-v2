@@ -1,11 +1,14 @@
 import * as S from './style.ts';
-import { GAuthLogo, SignInLogo } from '@/assets';
-import '@msg-team/gauth-react/dist/index.css';
-import apiClient from '@/utils/libs/apiClient.ts';
 import { useState } from 'react';
+
+import { GAuthLogo, SignInLogo } from '@/assets';
+import { apiClient } from '@/utils';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
+
+import '@msg-team/gauth-react/dist/index.css';
 
 const Signin = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);

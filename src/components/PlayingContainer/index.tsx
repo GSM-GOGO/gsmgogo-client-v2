@@ -1,14 +1,16 @@
 import * as S from './style';
 import * as S1 from './style1.ts';
+
 import { useEffect, useMemo, useState, useCallback } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { apiClient } from '@/utils';
+import { LoadingContent } from '@/components';
+import { EmptyPlaying } from '@/assets';
+
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
 import 'react-toastify/dist/ReactToastify.css';
-
-import apiClient from '@/utils/libs/apiClient';
-import LoadingContent from '@/components/Loading/content.tsx';
-import { EmptyPlaying } from '@/assets/index.ts';
-import { useNavigate } from 'react-router-dom';
 
 interface Match {
   match_id: number;

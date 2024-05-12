@@ -1,9 +1,11 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Roulette, MyPageIcon, NotMyPage } from '@/assets';
 import * as S from './style';
+
 import { useEffect, useState } from 'react';
-import apiClient from '@/utils/libs/apiClient';
-import useStorePoint from '@/utils/libs/storePoint';
+import { useLocation, useNavigate } from 'react-router-dom';
+
+import { Roulette, MyPageIcon, NotMyPage } from '@/assets';
+import { apiClient } from '@/utils';
+import { useStorePoint } from '@/utils';
 
 interface TextTypeProps {
   mainText: string;

@@ -1,5 +1,6 @@
-import { DeleteIcon, DisabledFilterIcon, SelectFilterIcon } from '@/assets';
 import * as S from './style';
+
+import { DeleteIcon, DisabledFilterIcon, SelectFilterIcon } from '@/assets';
 import {
   BATTING_LABELS,
   FilterType,

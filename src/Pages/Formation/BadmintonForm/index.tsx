@@ -1,11 +1,14 @@
 import * as S from '../style.ts';
 import * as D from './style.ts';
+
 import { useEffect, useRef, useState } from 'react';
-import { People, BadmintonField } from '@/assets/index.ts';
-import Draggable from 'react-draggable';
-import LoadingContent from '@/components/Loading/content.tsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import apiClient from '@/utils/libs/apiClient.ts';
+
+import { People, BadmintonField } from '@/assets';
+import { LoadingContent } from '@/components';
+import { apiClient } from '@/utils';
+
+import Draggable from 'react-draggable';
 
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';

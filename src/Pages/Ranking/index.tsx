@@ -1,9 +1,12 @@
-import { RankBar } from '@/assets';
-import apiClient from '@/utils/libs/apiClient';
-import { Category, CategoryContainer } from '../Formation/style';
 import * as S from './style';
+
 import { useQuery } from 'react-query';
-import LoadingContent from '@/components/Loading/content';
+
+import { RankBar } from '@/assets';
+import { apiClient } from '@/utils';
+import { LoadingContent } from '@/components';
+
+import { Category, CategoryContainer } from '../Formation/style';
 
 const Ranking = () => {
   return (

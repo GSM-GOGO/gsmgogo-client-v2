@@ -1,12 +1,15 @@
-import Input from '@/components/Input';
-import { useForm } from 'react-hook-form';
-import { Form, InputWrapper, SubmitWrapper } from './style';
 import * as S from './style';
+import { Form, InputWrapper, SubmitWrapper } from './style';
+
 import { useState } from 'react';
-import { Logo } from '@/assets/svg';
-import { FormData } from '@/types/FormDataType';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import apiClient from '@/utils/libs/apiClient';
+
+import { Input } from '@/components';
+import { Logo } from '@/assets';
+import { FormData } from '@/types/FormDataType';
+import { apiClient } from '@/utils';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

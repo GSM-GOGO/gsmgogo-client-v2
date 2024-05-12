@@ -88,6 +88,18 @@ function App() {
                 </>
               }
             />
+            
+            <Route
+              path="/minigame/nunchi-game"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <NunchiGame />
+                </>
+              }
+            />
             <Route
               path="/minigame/daily-roulette"
               element={
@@ -276,7 +288,6 @@ function App() {
 
           <Route path="/signin" element={<Signin />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/NunchiGame" element={<NunchiGame />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </Router>

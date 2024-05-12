@@ -8,11 +8,11 @@ export const CategoryContainer = styled.div`
   align-items: center;
   /* width: 40.5rem; */
   gap: 0.75rem;
+  @media screen and (max-width: 650px) {
+    margin-left: 1rem;
+  }
   @media screen and (max-width: 500px) {
     gap: 0.5rem;
-  }
-  @media (max-width: 450px) {
-    margin-left: 1rem;
   }
 `;
 

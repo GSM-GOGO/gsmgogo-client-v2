@@ -10,6 +10,10 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media (max-width: 550px) {
+    height: 100vh;
+  }
+
 `;
 
 export const Container = styled.div`
@@ -172,7 +176,12 @@ export const ButtonText = styled.div`
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   position: absolute;
-  bottom: 0.7rem;
+  bottom: 0.5rem;
+  
+  @media (max-width: 500px) {
+    font-size: 0.7rem;
+    bottom: 0.1rem;
+  }
   left: 50%;
   transform: translateX(-50%);
 `;

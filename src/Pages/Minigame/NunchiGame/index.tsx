@@ -110,7 +110,7 @@ const NunchiGame = () => {
     const currentYear = today.getFullYear();
 
     const newDates = [];
-    for (let i = 12; i <= currentDay; i++) {
+    for (let i = 13; i <= currentDay; i++) {
       const date = new Date(currentYear, currentMonth, i);
       newDates.push(date);
     }

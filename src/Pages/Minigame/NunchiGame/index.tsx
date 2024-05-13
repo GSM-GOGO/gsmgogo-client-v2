@@ -90,17 +90,16 @@ const NunchiGame = () => {
           },
         }
       );
+      setTimeout(() => {
+        toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
+        fetchData();
+      }, 1000);
     } catch (e: any) {
       const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       setTimeout(() => {
         toast.error(errorMessage, { autoClose: 1000 });
       }, 500);
-    } finally {
-      setTimeout(() => {
-        toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
-        fetchData();
-      }, 1000);
-    }
+    } 
   };
 
   const dates = useMemo(() => {

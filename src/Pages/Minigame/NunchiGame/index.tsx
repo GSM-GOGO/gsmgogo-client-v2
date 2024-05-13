@@ -63,7 +63,14 @@ const NunchiGame = () => {
                   ? 5
                   : 0
       );
-    } catch (error) {}
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      setTimeout(() => {
+        toast.error(errorMessage, { autoClose: 1000 });
+      }, 500);
+      setClickedButton(0);
+      buttonGame.is_active = false;
+    }
   };
 
   useEffect(() => {
@@ -99,7 +106,7 @@ const NunchiGame = () => {
       setTimeout(() => {
         toast.error(errorMessage, { autoClose: 1000 });
       }, 500);
-    } 
+    }
   };
 
   const dates = useMemo(() => {
@@ -107,12 +114,17 @@ const NunchiGame = () => {
     const currentDay = today.getDate();
     const currentMonth = today.getMonth();
     const currentYear = today.getFullYear();
-
+    const hour = today.getHours();
+    let endDay = currentDay;
+    if (hour >= 23) {
+      endDay++;
+    }
     const newDates = [];
-    for (let i = 13; i <= currentDay; i++) {
+    for (let i = 13; i <= endDay; i++) {
       const date = new Date(currentYear, currentMonth, i);
       newDates.push(date);
     }
+
     return newDates;
   }, []);
 
@@ -131,7 +143,6 @@ const NunchiGame = () => {
   const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
 
   const handleButtonClick = (button: number) => {
-    console.log('buttonGame.button_type,', buttonGame.button_type);
     if (
       buttonGame.button_type !== 'ONE' &&
       buttonGame.button_type !== 'TWO' &&

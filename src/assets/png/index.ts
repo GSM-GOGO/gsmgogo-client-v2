@@ -9,3 +9,6 @@ export { default as TailCoin } from './TailCoin.png';
 export { default as Rouletteimg } from './Rouletteimg.png';
 export { default as Roulette_point } from './Roulette_point.png';
 export { default as BracketFramePng } from './BracketFramePng.png';
+export { default as Button } from './Button.png';
+export { default as Button_click } from './Button_click.png';
+

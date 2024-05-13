@@ -18,6 +18,7 @@ import Roulette from './Pages/Minigame/Roulette/index.tsx';
 import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
 import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
 import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
+import NunchiGame from './Pages/Minigame/NunchiGame/index.tsx';
 import MyPage from './Pages/MyPage/index.tsx';
 import { useEffect, useState } from 'react';
 // import { Analytics } from '@vercel/analytics/react';
@@ -85,6 +86,18 @@ function App() {
                     <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
                   <Coingame />
+                </>
+              }
+            />
+            
+            <Route
+              path="/minigame/nunchi-game"
+              element={
+                <>
+                  <HeaderContainer>
+                    <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
+                  </HeaderContainer>
+                  <NunchiGame />
                 </>
               }
             />

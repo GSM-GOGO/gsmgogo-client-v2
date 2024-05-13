@@ -6,91 +6,28 @@ import { Button, Button_click } from '../../../assets/index';
 import MiniGameCategory from '../../../components/MiniGameCategory';
 import apiClient from '../../../utils/libs/apiClient';
 
-import useStorePoint from '../../../utils/libs/storePoint';
-
 const NunchiGame = () => {
-  type ClickResponse = {
+  type ButtonGameType = {
     button_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null;
+    date: String| null,
+    is_active: Boolean| null,
+    win_type: "ONE" | "TWO" | "THREE" | "FOUR" | "FIVE" | null
+    results: {[key: string]: number| null}
+    is_win: Boolean| null,
+    earned_point: number
   };
 
   const [clickedButton, setClickedButton] = useState(0);
-  const [isClicked, setIsClicked] = useState(false);
-  const [clickResponse, setClickResponse] = useState<ClickResponse>();
-  const userPoint = useStorePoint((state) => state.userPoint);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [buttonGame, setButtonGame] = useState([]);
-
-  useEffect(() => {
-    getUserBtnClicked();
-  }, []);
-
-  const getUserBtnClicked = async () => {
-    try {
-      const token = localStorage.getItem('accessToken');
-
-      const response = await apiClient.get(`/game/button`, {
-        headers: {
-          Authorization: token,
-        },
-        withCredentials: true,
-      });
-      const buttonType = response.data.button_type;
-      const clickedBtn =
-        buttonType === 'ONE'
-          ? 1
-          : buttonType === 'TWO'
-            ? 2
-            : buttonType === 'THREE'
-              ? 3
-              : buttonType === 'FOUR'
-                ? 4
-                : buttonType === 'FIVE'
-                  ? 5
-                  : 0;
-      setClickedButton(clickedBtn);
-      setClickResponse(response.data);
-    } catch (e) {}
-  };
-
-  const sendClickBtn = async (clickBtn: number, isClicked: boolean) => {
-    if (parseInt(userPoint.split(',').join('')) < 500000) {
-      if (isClicked === false) {
-        try {
-          const token = localStorage.getItem('accessToken');
-          const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
-          const buttonType = buttonTypes[clickBtn - 1];
-
-          await apiClient.post(
-            `/game/button`,
-            {
-              button_type: buttonType,
-            },
-            {
-              headers: {
-                Authorization: `${token}`,
-              },
-            }
-          );
-        } catch (e: any) {
-          const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-          setTimeout(() => {
-            toast.error(errorMessage, { autoClose: 1000 });
-          }, 500);
-        } finally {
-          setTimeout(() => {
-            toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
-          }, 1000);
-        }
-      }
-    } else {
-      toast.error('너무 많은 포인트를 보유하고 있습니다.', { autoClose: 1000 });
-    }
-    setIsClicked(true);
-  };
-
-  const handleButtonClick = (button: number) => {
-    setClickedButton(clickedButton === button ? 0 : button);
-  };
+  const [buttonGame, setButtonGame] = useState<ButtonGameType>({
+    button_type: null,
+    date: '',
+    is_active: false,
+    win_type: null,
+    results: {},
+    is_win: false,
+    earned_point: 0
+  });
 
   const buttonPositions = [
     { gridRow: 1, gridColumn: 1 },
@@ -100,34 +37,81 @@ const NunchiGame = () => {
     { gridRow: 3, gridColumn: 3 },
   ];
 
+  const month = selectedDate.getMonth() + 1;
+  const day = selectedDate.getDate();
+
+  const fetchData = async () => {
+    try {
+      const token = localStorage.getItem('accessToken');
+      const response = await apiClient.get(`/game/button?m=${month}&d=${day}`, {
+        headers: {
+          Authorization: token,
+        },
+        withCredentials: true,
+      });
+      setButtonGame(response.data);
+      setClickedButton(
+        response.data.button_type === 'ONE'
+          ? 1
+          : response.data.button_type === 'TWO'
+            ? 2
+            : response.data.button_type === 'THREE'
+              ? 3
+              : response.data.button_type === 'FOUR'
+                ? 4
+                : response.data.button_type === 'FIVE'
+                  ? 5
+                  : 0
+      );
+    } catch (error) {}
+  };
+
   useEffect(() => {
     if (selectedDate) {
-      const month = selectedDate.getMonth() + 1;
-      const day = selectedDate.getDate();
-
-      const fetchData = async () => {
-        try {
-          const token = localStorage.getItem('accessToken');
-          const response = await apiClient.get(` /game/button?m=${month}&d=${day}`, {
-            headers: {
-              Authorization: token,
-            },
-            withCredentials: true,
-          });
-          setButtonGame(response.data);
-        } catch (error) {}
-      };
-
       fetchData();
     }
   }, [selectedDate]);
 
+  const sendClickBtn = async (clickBtn: number) => {
+    try {
+      const token = localStorage.getItem('accessToken');
+      const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
+      const buttonType = buttonTypes[clickBtn - 1];
+
+      console.log('buttonType', buttonType);
+      await apiClient.post(
+        `/game/button`,
+        {
+          button_type: buttonType,
+        },
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+    } catch (e: any) {
+      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      setTimeout(() => {
+        toast.error(errorMessage, { autoClose: 1000 });
+      }, 500);
+    } finally {
+      setTimeout(() => {
+        toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
+        fetchData();
+      }, 1000);
+    }
+  };
+
   const dates = useMemo(() => {
     const today = new Date();
-    const newDates: Date[] = [];
-    for (let i = 0; i < 11; i++) {
-      const date = new Date(today);
-      date.setDate(date.getDate() + i);
+    const currentDay = today.getDate();
+    const currentMonth = today.getMonth();
+    const currentYear = today.getFullYear();
+
+    const newDates = [];
+    for (let i = 12; i <= currentDay; i++) {
+      const date = new Date(currentYear, currentMonth, i);
       newDates.push(date);
     }
     return newDates;
@@ -145,6 +129,21 @@ const NunchiGame = () => {
     setSelectedDate(date);
   }, []);
 
+  const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
+
+  const handleButtonClick = (button: number) => {
+    console.log('buttonGame.button_type,', buttonGame.button_type);
+    if (
+      buttonGame.button_type !== 'ONE' &&
+      buttonGame.button_type !== 'TWO' &&
+      buttonGame.button_type !== 'THREE' &&
+      buttonGame.button_type !== 'FOUR' &&
+      buttonGame.button_type !== 'FIVE' &&
+      buttonGame.is_active
+    ) {
+      setClickedButton(clickedButton === button ? 0 : button);
+    }
+  };
   return (
     <>
       <S.Wrapper>
@@ -163,6 +162,13 @@ const NunchiGame = () => {
                 </S.DateContainer>
               ))}
             </S.WeatherWrapper>
+            <S.Info color={buttonGame.earned_point> 0}>
+              {buttonGame.is_win
+                ? buttonGame.earned_point
+                  ? `+${buttonGame.earned_point}P`
+                  : '아쉬워요'
+                : '걸린 포인트 | 200만'}
+            </S.Info>
             <S.ButtonWrapper>
               <S.ButtonContainer>
                 {[1, 2, 3, 4, 5].map((number, index) => (
@@ -188,58 +194,83 @@ const NunchiGame = () => {
                   {[1, 2, 3, 4, 5].map((number, index) => (
                     <div style={{ display: 'contents' }} key={index}>
                       <div>
-                        <S.Text1>{number}번</S.Text1>
-                        <S.Text2>??%</S.Text2>
+                        <S.Text1
+                          color={
+                            number ==
+                            (buttonGame.button_type === 'ONE'
+                              ? 1
+                              : buttonGame.button_type === 'TWO'
+                                ? 2
+                                : buttonGame.button_type === 'THREE'
+                                  ? 3
+                                  : buttonGame.button_type === 'FOUR'
+                                    ? 4
+                                    : buttonGame.button_type === 'FIVE'
+                                      ? 5
+                                      : 0)
+                          }
+                        >
+                          {number}번
+                        </S.Text1>
+                        <S.Text2
+                          color={
+                            number ==
+                            (buttonGame.button_type === 'ONE'
+                              ? 1
+                              : buttonGame.button_type === 'TWO'
+                                ? 2
+                                : buttonGame.button_type === 'THREE'
+                                  ? 3
+                                  : buttonGame.button_type === 'FOUR'
+                                    ? 4
+                                    : buttonGame.button_type === 'FIVE'
+                                      ? 5
+                                      : 0)
+                          }
+                        >
+                          {buttonGame.results ? buttonGame.results[buttonTypes[number - 1]] ?? '0' : '??'}명
+                        </S.Text2>
                       </div>
                       {number !== 5 && <S.Contour />}
                     </div>
                   ))}
                 </S.InfoContainer>
-
-                {isClicked && clickResponse && clickResponse.button_type === null ? (
-                  <>
-                    <S.Button color={0}>
-                      {parseInt(userPoint.split(',').join('')) > 500000
-                        ? '많은 포인트를 보유하고 있어요'
-                        : `${clickedButton} 번 버튼을 눌렀어요`}
-                    </S.Button>
-                    <S.Text>
-                      매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
-                      <span>50만 원 이상 보유자는 참여할 수 없어요</span>
-                    </S.Text>
-                  </>
-                ) : clickResponse && clickResponse.button_type !== null ? (
-                  <>
-                    <S.Button color={0} onClick={() => toast.error('이미 버튼을 클릭하셨습니다.', { autoClose: 1000 })}>
-                      {clickResponse.button_type === 'ONE'
-                        ? 1
-                        : clickResponse.button_type === 'TWO'
-                          ? 2
-                          : clickResponse.button_type === 'THREE'
-                            ? 3
-                            : clickResponse.button_type === 'FOUR'
-                              ? 4
-                              : clickResponse.button_type === 'FIVE'
-                                ? 5
-                                : null}
-                      번 버튼을 눌렀어요
-                    </S.Button>
-                    <S.Text>
-                      매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
-                    </S.Text>
-                  </>
-                ) : (
-                  <>
-                    <S.Button color={clickedButton} onClick={() => sendClickBtn(clickedButton, isClicked)}>
-                      {clickedButton !== 0 && `${clickedButton}번 `}
-                      버튼 누르기
-                    </S.Button>
-                    <S.Text>
-                      매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
-                      <span>50만 원 이상 보유자는 참여할 수 없어요</span>
-                    </S.Text>
-                  </>
-                )}
+                <S.Button
+                  color={
+                    clickedButton &&
+                    buttonGame.button_type !== 'ONE' &&
+                    buttonGame.button_type !== 'TWO' &&
+                    buttonGame.button_type !== 'THREE' &&
+                    buttonGame.button_type !== 'FOUR' &&
+                    buttonGame.button_type !== 'FIVE'
+                  }
+                  onClick={
+                    clickedButton &&
+                    buttonGame.button_type !== 'ONE' &&
+                    buttonGame.button_type !== 'TWO' &&
+                    buttonGame.button_type !== 'THREE' &&
+                    buttonGame.button_type !== 'FOUR' &&
+                    buttonGame.button_type !== 'FIVE'
+                      ? () => sendClickBtn(clickedButton)
+                      : undefined
+                  }
+                
+                >
+                  {clickedButton>0 &&`${clickedButton}번 `}
+                  {buttonGame.button_type == 'ONE' ||
+                  buttonGame.button_type == 'TWO' ||
+                  buttonGame.button_type == 'THREE' ||
+                  buttonGame.button_type == 'FOUR' ||
+                  buttonGame.button_type == 'FIVE' ? (
+                    <>버튼을 눌렀어요</>
+                  ) : (
+                    <>버튼 누르기</>
+                  )}
+                </S.Button>
+                <S.Text>
+                  매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
+                  <span>50만 원 이상 보유자는 참여할 수 없어요</span>
+                </S.Text>
               </S.BottomContainer>
             </S.ButtonWrapper>
           </S.ContainerResponse>

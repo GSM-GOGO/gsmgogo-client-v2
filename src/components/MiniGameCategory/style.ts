@@ -10,6 +10,7 @@ export const CategoryContainer = styled.div`
   gap: 0.75rem;
   @media screen and (max-width: 650px) {
     margin-left: 1rem;
+  margin-bottom: 1rem;
   }
   @media screen and (max-width: 500px) {
     gap: 0.5rem;
@@ -34,6 +35,7 @@ export const remainCountContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.25rem;
+
 `;
 
 export const remainText = styled.p`

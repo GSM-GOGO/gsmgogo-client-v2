@@ -31,13 +31,14 @@ export const WeatherWrapper = styled.div`
   justify-content: center;
   gap: 1.75rem;
 
-  margin-bottom: 2.5rem;
+  margin-bottom: 1rem;
+  
   @media (max-width: 650px) {
     gap: 1.25rem;
   }
   @media (max-width: 550px) {
     gap: 0.75rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
   }
   @media (max-width: 450px) {
     gap: 0.35rem;
@@ -100,9 +101,8 @@ export const Text = styled.p`
   }
 `;
 
-export const Text1 = styled.div`
-  color: #fff;
-
+export const Text1 = styled.div<{ color?: boolean }>`
+  color: ${({ color }) => (color ? 'var(--Main, #23F69A)' : ' #fff')};
   text-align: center;
   font-family: Pretendard;
   font-size: 1rem;
@@ -111,8 +111,8 @@ export const Text1 = styled.div`
   line-height: 1.375rem;
 `;
 
-export const Text2 = styled.div`
-  color: var(--Gray1, #b7b7be);
+export const Text2 = styled.div<{ color?: boolean }>`
+  color: ${({ color }) => (color ? 'var(--Main, #23F69A)' : ' #fff')};
   text-align: center;
   font-family: Pretendard;
   font-size: 0.875rem;
@@ -139,28 +139,22 @@ export const ButtonContainer = styled.div`
   justify-items: center;
   align-items: center;
   justify-content: center;
-  grid-template-columns: repeat(3, 9rem);
-  grid-template-rows: repeat(3, 8rem);
+  grid-template-columns: repeat(3, 7.5rem);
+  grid-template-rows: repeat(3, 6rem);
   margin: 2rem;
 
   @media (max-width: 500px) {
-    grid-template-columns: repeat(3, 7rem);
-    grid-template-rows: repeat(3, 6rem);
-  }
-  @media (max-width: 400px) {
-    grid-template-columns: repeat(3, 6rem);
-    grid-template-rows: repeat(3, 5rem);
+    grid-template-columns: repeat(3, 5rem);
+    grid-template-rows: repeat(3, 4rem);
+    margin: 1rem;
   }
 `;
 
 export const ButtonIMG = styled.img`
-  width: 13rem;
+  width: 10rem;
 
   @media (max-width: 500px) {
-    width: 10rem;
-  }
-  @media (max-width: 400px) {
-    width: 8rem;
+    width: 7rem;
   }
 `;
 
@@ -190,7 +184,7 @@ export const BottomContainer = styled.div`
   margin-bottom: 10rem;
 `;
 
-export const Button = styled.div<{ color?: number }>`
+export const Button = styled.div<{ color?: boolean|number }>`
   display: flex;
   width: 18.75rem;
   height: 3.25rem;
@@ -205,4 +199,23 @@ export const Button = styled.div<{ color?: number }>`
   font-family: Pretendard;
   font-size: 1.125rem;
   font-weight: 500;
+`;
+
+export const Info =  styled.div<{ color?: boolean }>`
+
+display: inline-flex;
+padding: 0.75rem 1.25rem;
+flex-direction: column;
+align-items: flex-start;
+gap: 0.625rem;
+border-radius: 3.125rem;
+background: ${({ color }) => (color ? 'var(--Main, #23F69A)' : 'var(--colors-gray-gray-900, #26262A)')};
+color: ${({ color }) => (color ? '#1C1C1F' : '#FFF')};
+text-align: center;
+/* BodyLarge */
+font-family: Pretendard;
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+line-height: 1.375rem;
 `;

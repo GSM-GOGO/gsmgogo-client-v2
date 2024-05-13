@@ -9,12 +9,12 @@ import apiClient from '../../../utils/libs/apiClient';
 const NunchiGame = () => {
   type ButtonGameType = {
     button_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null;
-    date: String| null,
-    is_active: Boolean| null,
-    win_type: "ONE" | "TWO" | "THREE" | "FOUR" | "FIVE" | null
-    results: {[key: string]: number| null}
-    is_win: Boolean| null,
-    earned_point: number
+    date: String | null;
+    is_active: Boolean | null;
+    win_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null;
+    results: { [key: string]: number | null };
+    is_win: Boolean | null;
+    earned_point: number;
   };
 
   const [clickedButton, setClickedButton] = useState(0);
@@ -26,7 +26,7 @@ const NunchiGame = () => {
     win_type: null,
     results: {},
     is_win: false,
-    earned_point: 0
+    earned_point: 0,
   });
 
   const buttonPositions = [
@@ -110,7 +110,7 @@ const NunchiGame = () => {
     const currentYear = today.getFullYear();
 
     const newDates = [];
-    for (let i = 13; i <= currentDay; i++) {
+    for (let i = 12; i <= currentDay; i++) {
       const date = new Date(currentYear, currentMonth, i);
       newDates.push(date);
     }
@@ -162,12 +162,12 @@ const NunchiGame = () => {
                 </S.DateContainer>
               ))}
             </S.WeatherWrapper>
-            <S.Info color={buttonGame.earned_point> 0}>
-              {buttonGame.is_win
-                ? buttonGame.earned_point
-                  ? `+${buttonGame.earned_point}P`
-                  : '아쉬워요'
-                : '걸린 포인트 | 200만'}
+            <S.Info color={buttonGame.earned_point > 0}>
+              {buttonGame.is_win == true
+                ? `+${buttonGame.earned_point}P`
+                : buttonGame.is_win == false
+                  ? '아쉬워요'
+                  : '걸린 포인트 | 200만'}
             </S.Info>
             <S.ButtonWrapper>
               <S.ButtonContainer>
@@ -254,9 +254,8 @@ const NunchiGame = () => {
                       ? () => sendClickBtn(clickedButton)
                       : undefined
                   }
-                
                 >
-                  {clickedButton>0 &&`${clickedButton}번 `}
+                  {clickedButton > 0 && `${clickedButton}번 `}
                   {buttonGame.button_type == 'ONE' ||
                   buttonGame.button_type == 'TWO' ||
                   buttonGame.button_type == 'THREE' ||

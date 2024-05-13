@@ -24,12 +24,6 @@ const MiniGameCategory: React.FC<coinCountType> = ({ coinCount = 0 }) => {
           <S.countText>{coinCount}번</S.countText>
         </S.remainCountContainer>
       )}
-      {isNunchiGame && (
-        <S.remainCountContainer>
-          <S.remainText>걸린 포인트</S.remainText>
-          <S.countText>200만</S.countText>
-        </S.remainCountContainer>
-      )}
     </S.CategoryContainer>
   );
 };

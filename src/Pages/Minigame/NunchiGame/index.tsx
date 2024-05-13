@@ -110,7 +110,7 @@ const NunchiGame = () => {
     const currentYear = today.getFullYear();
 
     const newDates = [];
-    for (let i = 12; i <= currentDay; i++) {
+    for (let i = 13; i <= currentDay; i++) {
       const date = new Date(currentYear, currentMonth, i);
       newDates.push(date);
     }
@@ -163,11 +163,11 @@ const NunchiGame = () => {
               ))}
             </S.WeatherWrapper>
             <S.Info color={buttonGame.earned_point > 0}>
-              {buttonGame.is_win == true
-                ? `+${buttonGame.earned_point}P`
-                : buttonGame.is_win == false
-                  ? '아쉬워요'
-                  : '걸린 포인트 | 200만'}
+              {buttonGame.is_active == true
+                ? '걸린 포인트 | 200만'
+                : buttonGame.is_win == true
+                  ? `+${buttonGame.earned_point.toLocaleString()}P`
+                  : '아쉬워요'}
             </S.Info>
             <S.ButtonWrapper>
               <S.ButtonContainer>

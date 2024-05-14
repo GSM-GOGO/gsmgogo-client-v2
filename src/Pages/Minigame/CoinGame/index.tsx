@@ -24,6 +24,7 @@ const Coingame: React.FC = () => {
   const [displayResultText, setDisplayResultText] = useState(false);
   const [initialImage, setInitialImage] = useState(HeadCoin);
   const [coinCnt, setCoinCnt] = useState<number | undefined>();
+  const [isBettingInProgress, setIsBettingInProgress] = useState(false);
 
   const betAmounts = [1000, 2000, 3000, 4000, 5000];
 
@@ -71,7 +72,10 @@ const Coingame: React.FC = () => {
   };
 
   const handleBetting = async () => {
+    if (isBettingInProgress) return;
     try {
+      setIsBettingInProgress(true);
+
       setDisplayResultText(false);
 
       const token = localStorage.getItem('accessToken');
@@ -113,6 +117,10 @@ const Coingame: React.FC = () => {
     } catch (error: any) {
       const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       toast.error(errorMessage, { autoClose: 1000 });
+    } finally {
+      setTimeout(() => {
+        setIsBettingInProgress(false);
+      }, 300);
     }
   };
 

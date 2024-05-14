@@ -19,6 +19,7 @@ const NunchiGame = () => {
 
   const [clickedButton, setClickedButton] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [debounce, setDebounce] = useState<boolean>(false);
   const [buttonGame, setButtonGame] = useState<ButtonGameType>({
     button_type: null,
     date: '',
@@ -80,12 +81,12 @@ const NunchiGame = () => {
   }, [selectedDate]);
 
   const sendClickBtn = async (clickBtn: number) => {
+    if (debounce) return;
     try {
+      setDebounce(true);
       const token = localStorage.getItem('accessToken');
       const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
       const buttonType = buttonTypes[clickBtn - 1];
-
-      console.log('buttonType', buttonType);
       await apiClient.post(
         `/game/button`,
         {
@@ -106,6 +107,10 @@ const NunchiGame = () => {
       setTimeout(() => {
         toast.error(errorMessage, { autoClose: 1000 });
       }, 500);
+    } finally {
+      setTimeout(() => {
+        setDebounce(false);
+      }, 300);
     }
   };
 

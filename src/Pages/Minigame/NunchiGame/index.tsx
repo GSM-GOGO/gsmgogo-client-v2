@@ -19,6 +19,7 @@ const NunchiGame = () => {
 
   const [clickedButton, setClickedButton] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [debounce, setDebounce] = useState<boolean>(false);
   const [buttonGame, setButtonGame] = useState<ButtonGameType>({
     button_type: null,
     date: '',
@@ -63,7 +64,14 @@ const NunchiGame = () => {
                   ? 5
                   : 0
       );
-    } catch (error) {}
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      setTimeout(() => {
+        toast.error(errorMessage, { autoClose: 1000 });
+      }, 500);
+      setClickedButton(0);
+      buttonGame.is_active = false;
+    }
   };
 
   useEffect(() => {
@@ -73,12 +81,12 @@ const NunchiGame = () => {
   }, [selectedDate]);
 
   const sendClickBtn = async (clickBtn: number) => {
+    if (debounce) return;
     try {
+      setDebounce(true);
       const token = localStorage.getItem('accessToken');
       const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
       const buttonType = buttonTypes[clickBtn - 1];
-
-      console.log('buttonType', buttonType);
       await apiClient.post(
         `/game/button`,
         {
@@ -90,6 +98,10 @@ const NunchiGame = () => {
           },
         }
       );
+      setTimeout(() => {
+        toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
+        fetchData();
+      }, 1000);
     } catch (e: any) {
       const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       setTimeout(() => {
@@ -97,9 +109,8 @@ const NunchiGame = () => {
       }, 500);
     } finally {
       setTimeout(() => {
-        toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
-        fetchData();
-      }, 1000);
+        setDebounce(false);
+      }, 300);
     }
   };
 
@@ -108,12 +119,17 @@ const NunchiGame = () => {
     const currentDay = today.getDate();
     const currentMonth = today.getMonth();
     const currentYear = today.getFullYear();
-
+    const hour = today.getHours();
+    let endDay = currentDay;
+    if (hour >= 23) {
+      endDay++;
+    }
     const newDates = [];
-    for (let i = 13; i <= currentDay; i++) {
+    for (let i = 13; i <= endDay; i++) {
       const date = new Date(currentYear, currentMonth, i);
       newDates.push(date);
     }
+
     return newDates;
   }, []);
 
@@ -132,7 +148,6 @@ const NunchiGame = () => {
   const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
 
   const handleButtonClick = (button: number) => {
-    console.log('buttonGame.button_type,', buttonGame.button_type);
     if (
       buttonGame.button_type !== 'ONE' &&
       buttonGame.button_type !== 'TWO' &&

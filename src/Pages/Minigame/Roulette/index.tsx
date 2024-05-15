@@ -4,7 +4,7 @@ import * as S from './style';
 import apiClient from './../../../utils/libs/apiClient';
 import { ToastContainer, toast } from 'react-toastify';
 import { Toaster } from 'react-hot-toast';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import useStorePoint from './../../../utils/libs/storePoint';
 
 const Roulette = () => {
@@ -12,8 +12,7 @@ const Roulette = () => {
   const [isShow, setIsShow] = useState(false);
   const [RolletResponse, setRolletResponse] = useState(0);
   const setUserPoint = useStorePoint((state) => state.setUserPoint);
-
-  const navigate = useNavigate();
+  const [debounce, setDebounce] = useState(false);
 
   const getTodayDate = () => {
     const today = new Date();
@@ -37,7 +36,9 @@ const Roulette = () => {
   const Spin = async () => {
     setIsShow(false);
     setIsSpin(true);
+    if (debounce) return;
     try {
+      setDebounce(true);
       const token = localStorage.getItem('accessToken');
       const response = await apiClient.post(`/game/roulette`, null, {
         headers: {
@@ -48,7 +49,7 @@ const Roulette = () => {
       setTimeout(async () => {
         setIsShow(true);
         // if (response.data.result != 5) {
-          saveTodayDateToLocalStorage();
+        saveTodayDateToLocalStorage();
         //}
         try {
           const token = localStorage.getItem('accessToken');
@@ -62,27 +63,27 @@ const Roulette = () => {
 
           setUserPoint(response.data.point);
         } catch (e) {}
-      }, 3000);
+      }, 300);
     } catch (e: any) {
       setIsSpin(false);
       saveTodayDateToLocalStorage();
       const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
       toast.error(errorMessage, { autoClose: 1000 });
+    } finally {
+      setTimeout(() => {
+        setDebounce(false);
+      }, 300);
     }
   };
 
   const RouletteMentArr = [
-    { SubMent: '축하합니다!', Ment: '20000포인트 당첨!' }, 
+    { SubMent: '축하합니다!', Ment: '20000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '10000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '5000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '3000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '2000포인트 당첨!' },
     { SubMent: '축하합니다!', Ment: '1000포인트 당첨!' },
   ];
-
-  const SeeTomorrow = () => {
-    navigate(`/`);
-  };
 
   return (
     <>
@@ -104,7 +105,7 @@ const Roulette = () => {
               <S.Text>데일리 룰렛 돌리기</S.Text>
             </S.Button>
           ) : !isSpin ? (
-            <div style={{ width: 'fitContent' }} onClick={SeeTomorrow}>
+            <div style={{ width: 'fitContent' }}>
               <S.Button close={true ? 1 : undefined} ishidden={isSpin ? 1 : undefined}>
                 <S.Text close={true ? 1 : undefined}>내일 만나요!</S.Text>
               </S.Button>

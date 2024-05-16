@@ -850,11 +850,7 @@ const PlayContainer = () => {
                 <S.ModalTitleServeCotainer>
                   <S.ModalTitle>
                     <S.ModalTitleContainer>
-                      {selectedSports} 경기에 투표 하시겠습니까?
-                      {selectedSports == '배드민턴' && selectedDate.getDate() >= 23 && (
-                        <div>예선, 본선은 25점 내기 단판입니다.</div>
-                      )}
-                      {selectedSports !== '배드민턴' && <div>투표 방식은 세트 스코어 입니다.</div>}
+                      {selectedSports} 경기에 투표 하시겠습니까? <div>투표 방식은 세트 스코어 입니다.</div>
                     </S.ModalTitleContainer>
                   </S.ModalTitle>
                   <S.DividendRules>대성공 배당식 변경 배팅액 * 배팅 비율 * 2 + 배팅액</S.DividendRules>

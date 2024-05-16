@@ -14,13 +14,14 @@ import styled from 'styled-components';
 import Notfound from './components/Loading/Notfound.tsx';
 import { PrivateRoute } from './utils/libs/PrivateRoute.tsx';
 import Coingame from './Pages/Minigame/CoinGame/index.tsx';
-import Roulette from './Pages/Minigame/Roulette/index.tsx';
 import SoccerBracket from './Pages/Bracket/ScoccerBracket/index.tsx';
 import BadmintonBracket from './Pages/Bracket/BadmintonBracket/index.tsx';
 import VolleyballBracket from './Pages/Bracket/VolleyballBracket/index.tsx';
 import NunchiGame from './Pages/Minigame/NunchiGame/index.tsx';
 import MyPage from './Pages/MyPage/index.tsx';
 import { useEffect, useState } from 'react';
+import { EmptyPlaying } from '../src/assets/index.ts';
+
 // import { Analytics } from '@vercel/analytics/react';
 
 const queryClient = new QueryClient();
@@ -28,6 +29,17 @@ const queryClient = new QueryClient();
 export const HeaderContainer = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+export const EmptyContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rem;
+
+  @media (max-width: 450px) {
+    margin-top: 7.5rem;
+  }
 `;
 
 function App() {
@@ -85,11 +97,13 @@ function App() {
                   <HeaderContainer>
                     <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
-                  <Coingame />
+                  <EmptyContainer>
+                    <EmptyPlaying />
+                  </EmptyContainer>
                 </>
               }
             />
-            
+
             <Route
               path="/minigame/nunchi-game"
               element={
@@ -97,7 +111,9 @@ function App() {
                   <HeaderContainer>
                     <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
-                  <NunchiGame />
+                  <EmptyContainer>
+                    <EmptyPlaying />
+                  </EmptyContainer>
                 </>
               }
             />
@@ -108,7 +124,9 @@ function App() {
                   <HeaderContainer>
                     <Header mainText={headerText} miniText={['랭킹', '미니게임']} />
                   </HeaderContainer>
-                  <Roulette />
+                  <EmptyContainer>
+                    <EmptyPlaying />
+                  </EmptyContainer>
                 </>
               }
             />

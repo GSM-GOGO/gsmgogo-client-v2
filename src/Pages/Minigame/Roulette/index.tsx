@@ -54,7 +54,7 @@ const Roulette = () => {
     } catch (e) {
       setIsSpin(false)
       saveTodayDateToLocalStorage()
-      const errorMessage = e.message || 'An unknown error occurred.'
+      const errorMessage = (e as Error).message || 'An unknown error occurred.'
       toast.error(errorMessage, { autoClose: 1000 })
     } finally {
       setTimeout(() => {

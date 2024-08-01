@@ -1,48 +1,40 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-import { Roulette, MyPageIcon, NotMyPage } from '../../assets';
-import * as S from './style';
-import { useEffect, useState } from 'react';
-import apiClient from '../../utils/libs/apiClient';
-import useStorePoint from '../../utils/libs/storePoint';
+import { useLocation, useNavigate } from 'react-router-dom'
+import { Roulette, MyPageIcon, NotMyPage } from '../../assets'
+import * as S from './style'
+import { useEffect, useState } from 'react'
+import useStorePoint from '../../utils/libs/storePoint'
+import { fetchUserPoints } from '../../apis/Point/fetchUserPoints'
 
 interface TextTypeProps {
-  mainText: string;
-  miniText: string[];
+  mainText: string
+  miniText: string[]
 }
 
 const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const currentPath = location.pathname;
-  const userPoint = useStorePoint((state) => state.userPoint);
-  const setUserPoint = useStorePoint((state) => state.setUserPoint);
-  const [hasFetchedUserPoint, setHasFetchedUserPoint] = useState(false);
+  const navigate = useNavigate()
+  const location = useLocation()
+  const currentPath = location.pathname
+  const userPoint = useStorePoint((state) => state.userPoint)
+  const setUserPoint = useStorePoint((state) => state.setUserPoint)
+  const [hasFetchedUserPoint, setHasFetchedUserPoint] = useState(false)
 
   useEffect(() => {
     if (!hasFetchedUserPoint) {
       const getUserPoint = async () => {
-        try {
-          const token = localStorage.getItem('accessToken');
+        const token = localStorage.getItem('accessToken')
+        const data = await fetchUserPoints(token)
 
-          const response = await apiClient.get(`/user/my-point`, {
-            headers: {
-              Authorization: token,
-            },
-            withCredentials: true,
-          });
+        setUserPoint(formatPoint(data.point))
+        setHasFetchedUserPoint(true)
+      }
 
-          setUserPoint(formatPoint(response.data.point));
-          setHasFetchedUserPoint(true);
-        } catch (e) {}
-      };
-
-      getUserPoint();
+      getUserPoint()
     }
-  }, [hasFetchedUserPoint, setUserPoint, userPoint]);
+  }, [hasFetchedUserPoint, setUserPoint, userPoint])
 
   const formatPoint = (point: string) => {
-    return parseInt(point).toLocaleString();
-  };
+    return parseInt(point).toLocaleString()
+  }
 
   return (
     <>
@@ -52,18 +44,27 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
         </S.GoGoText>
 
         <S.TextBox>
-          <S.GoGoMiniLink to="/ranking" style={currentPath === '/ranking' ? { color: '#23F69A' } : undefined}>
+          <S.GoGoMiniLink
+            to='/ranking'
+            style={
+              currentPath === '/ranking' ? { color: '#23F69A' } : undefined
+            }
+          >
             {miniText[0]}
           </S.GoGoMiniLink>
 
           <S.GoGoMiniLink
-            to="/minigame/coingame"
-            style={currentPath === '/minigame/coingame' ? { color: '#23F69A' } : undefined}
+            to='/minigame/coingame'
+            style={
+              currentPath === '/minigame/coingame'
+                ? { color: '#23F69A' }
+                : undefined
+            }
           >
             {miniText[1]}
           </S.GoGoMiniLink>
 
-          <S.GoGoMiniLink to="/minigame/daily-roulette">
+          <S.GoGoMiniLink to='/minigame/daily-roulette'>
             <Roulette isClick={currentPath === '/minigame/daily-roulette'} />
           </S.GoGoMiniLink>
           <S.UserBox>
@@ -77,7 +78,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
 
             <S.SvgContainer
               onClick={() => {
-                navigate('/mypage');
+                navigate('/mypage')
               }}
             >
               {currentPath === '/mypage' ? <MyPageIcon /> : <NotMyPage />}
@@ -86,7 +87,7 @@ const Header: React.FC<TextTypeProps> = ({ mainText, miniText }) => {
         </S.TextBox>
       </S.HeaderWrapper>
     </>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

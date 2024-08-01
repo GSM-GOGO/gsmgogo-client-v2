@@ -1,26 +1,26 @@
-import { ReactElement, useEffect, useState } from 'react';
-import { UseFormRegisterReturn, UseFormSetError } from 'react-hook-form';
-import * as S from './style';
-import Timer from '../Timer';
-import { FormData } from '../../types/FormDataType';
-import apiClient from '../../utils/libs/apiClient';
-import { ToastContainer, toast } from 'react-toastify';
-import { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
+import { ReactElement, useEffect, useState } from 'react'
+import { UseFormRegisterReturn, UseFormSetError } from 'react-hook-form'
+import * as S from './style'
+import Timer from '../Timer'
+import { FormData } from '../../types/FormDataType'
+import { ToastContainer } from 'react-toastify'
+import { Toaster } from 'react-hot-toast'
+import 'react-toastify/dist/ReactToastify.css'
+import { sendSMS } from '../../apis/Auth/sendSMS'
 
 interface Props {
-  label: string;
-  errors: boolean;
-  message?: string;
-  placeholder: string;
-  register?: UseFormRegisterReturn;
-  type?: string;
-  fixed?: string | ReactElement;
-  maxLength?: number;
-  readOnly?: boolean;
-  setError?: UseFormSetError<FormData>;
-  reset?: (values?: FormData) => void;
-  phoneNumber?: string;
+  label: string
+  errors: boolean
+  message?: string
+  placeholder: string
+  register?: UseFormRegisterReturn
+  type?: string
+  fixed?: string | ReactElement
+  maxLength?: number
+  readOnly?: boolean
+  setError?: UseFormSetError<FormData>
+  reset?: (values?: FormData) => void
+  phoneNumber?: string
 }
 
 export default function Input({
@@ -36,62 +36,46 @@ export default function Input({
   reset,
   phoneNumber,
 }: Props) {
-  const validtime = 300;
-  const [count, setCount] = useState(validtime);
-  const [expired, setExpired] = useState(false);
-  const [resending, setResending] = useState(false);
-  const [isResendDisabled, setIsResendDisabled] = useState(false);
+  const validtime = 300
+  const [count, setCount] = useState(validtime)
+  const [expired, setExpired] = useState(false)
+  const [resending, setResending] = useState(false)
+  const [isResendDisabled, setIsResendDisabled] = useState(false)
 
   useEffect(() => {
     if (count === 0) {
-      setExpired(true);
+      setExpired(true)
     }
-  }, [count]);
+  }, [count])
 
   const resetTimer = () => {
-    setCount(validtime);
-    setExpired(false);
+    setCount(validtime)
+    setExpired(false)
     if (setError) {
-      setError('verificationCode', { type: 'manual', message: '' });
+      setError('verificationCode', { type: 'manual', message: '' })
     }
     if (reset) {
-      reset();
+      reset()
     }
-  };
+  }
 
   const handleResend = async () => {
-    if (resending || isResendDisabled) return;
+    if (resending || isResendDisabled) return
 
-    setResending(true);
-    setIsResendDisabled(true);
+    setResending(true)
+    setIsResendDisabled(true)
 
-    resetTimer();
+    resetTimer()
 
     try {
-      const token = localStorage.getItem('accessToken');
-      await apiClient.post(
-        `/auth/sms`,
-        {
-          phone_number: phoneNumber,
-        },
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-    } catch (e: any) {
-      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-      setTimeout(() => {
-        toast.error(errorMessage, { autoClose: 1000 });
-      }, 500);
+      await sendSMS(phoneNumber || '')
     } finally {
-      setResending(false);
+      setResending(false)
       setTimeout(() => {
-        setIsResendDisabled(false);
-      }, 2000);
+        setIsResendDisabled(false)
+      }, 2000)
     }
-  };
+  }
 
   return (
     <>
@@ -104,7 +88,10 @@ export default function Input({
               <h4>
                 <Timer count={count} setCount={setCount} setError={setError} />
               </h4>
-              <h4 onClick={handleResend} style={{ cursor: isResendDisabled ? 'not-allowed' : 'pointer' }}>
+              <h4
+                onClick={handleResend}
+                style={{ cursor: isResendDisabled ? 'not-allowed' : 'pointer' }}
+              >
                 {isResendDisabled ? '잠시만 기다려주세요...' : '재발송'}
               </h4>
             </S.CertificationNumberWrapper>
@@ -117,7 +104,7 @@ export default function Input({
             maxLength={maxLength}
             placeholder={placeholder}
             erroredStyle={errors}
-            autoComplete="off"
+            autoComplete='off'
             readOnly={readOnly || expired}
           />
         </S.InputWrapper>
@@ -125,8 +112,8 @@ export default function Input({
       </S.Wrapper>
       <ToastContainer autoClose={1000} />
       <div>
-        <Toaster position="top-right" reverseOrder={true} />
+        <Toaster position='top-right' reverseOrder={true} />
       </div>
     </>
-  );
+  )
 }

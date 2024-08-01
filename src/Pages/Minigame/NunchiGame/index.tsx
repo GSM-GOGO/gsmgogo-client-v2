@@ -1,25 +1,26 @@
-import * as S from './style';
-import { ToastContainer, toast } from 'react-toastify';
-import { Toaster } from 'react-hot-toast';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Button_click } from '../../../assets/index';
-import MiniGameCategory from '../../../components/MiniGameCategory';
-import apiClient from '../../../utils/libs/apiClient';
+import { useState, useEffect, useMemo, useCallback } from 'react'
+import { Button, Button_click } from '../../../assets/index'
+import MiniGameCategory from '../../../components/MiniGameCategory'
+import * as S from './style'
+import { ToastContainer, toast } from 'react-toastify'
+import { Toaster } from 'react-hot-toast'
+import { getNunchiGame } from '../../../apis/Minigame/getNunchiGame'
+import { postNunchiGameButton } from '../../../apis/Minigame/postNunchiGameButton'
 
 const NunchiGame = () => {
   type ButtonGameType = {
-    button_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null;
-    date: String | null;
-    is_active: Boolean | null;
-    win_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null;
-    results: { [key: string]: number | null };
-    is_win: Boolean | null;
-    earned_point: number;
-  };
+    button_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null
+    date: String | null
+    is_active: Boolean | null
+    win_type: 'ONE' | 'TWO' | 'THREE' | 'FOUR' | 'FIVE' | null
+    results: { [key: string]: number | null }
+    is_win: Boolean | null
+    earned_point: number
+  }
 
-  const [clickedButton, setClickedButton] = useState(0);
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-  const [debounce, setDebounce] = useState<boolean>(false);
+  const [clickedButton, setClickedButton] = useState(0)
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date())
+  const [debounce, setDebounce] = useState<boolean>(false)
   const [buttonGame, setButtonGame] = useState<ButtonGameType>({
     button_type: null,
     date: '',
@@ -28,7 +29,7 @@ const NunchiGame = () => {
     results: {},
     is_win: false,
     earned_point: 0,
-  });
+  })
 
   const buttonPositions = [
     { gridRow: 1, gridColumn: 1 },
@@ -36,116 +37,105 @@ const NunchiGame = () => {
     { gridRow: 2, gridColumn: 2 },
     { gridRow: 3, gridColumn: 1 },
     { gridRow: 3, gridColumn: 3 },
-  ];
+  ]
 
-  const month = selectedDate.getMonth() + 1;
-  const day = selectedDate.getDate();
+  const month = selectedDate.getMonth() + 1
+  const day = selectedDate.getDate()
 
   const fetchData = async () => {
     try {
-      const token = localStorage.getItem('accessToken');
-      const response = await apiClient.get(`/game/button?m=${month}&d=${day}`, {
-        headers: {
-          Authorization: token,
-        },
-        withCredentials: true,
-      });
-      setButtonGame(response.data);
+      const token = localStorage.getItem('accessToken')
+      const data = await getNunchiGame(token, month, day)
+      setButtonGame(data)
       setClickedButton(
-        response.data.button_type === 'ONE'
+        data.button_type === 'ONE'
           ? 1
-          : response.data.button_type === 'TWO'
+          : data.button_type === 'TWO'
             ? 2
-            : response.data.button_type === 'THREE'
+            : data.button_type === 'THREE'
               ? 3
-              : response.data.button_type === 'FOUR'
+              : data.button_type === 'FOUR'
                 ? 4
-                : response.data.button_type === 'FIVE'
+                : data.button_type === 'FIVE'
                   ? 5
-                  : 0
-      );
+                  : 0,
+      )
     } catch (error: any) {
-      const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      const errorMessage =
+        error.response?.data?.message || '알 수 없는 오류가 발생했습니다.'
       setTimeout(() => {
-        toast.error(errorMessage, { autoClose: 1000 });
-      }, 500);
-      setClickedButton(0);
-      buttonGame.is_active = false;
+        toast.error(errorMessage, { autoClose: 1000 })
+      }, 500)
+      setClickedButton(0)
+      buttonGame.is_active = false
     }
-  };
+  }
 
   useEffect(() => {
     if (selectedDate) {
-      fetchData();
+      fetchData()
     }
-  }, [selectedDate]);
+  }, [selectedDate])
 
   const sendClickBtn = async (clickBtn: number) => {
-    if (debounce) return;
+    if (debounce) return
     try {
-      setDebounce(true);
-      const token = localStorage.getItem('accessToken');
-      const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
-      const buttonType = buttonTypes[clickBtn - 1];
-      await apiClient.post(
-        `/game/button`,
-        {
-          button_type: buttonType,
-        },
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
+      setDebounce(true)
+      const token = localStorage.getItem('accessToken')
+      const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE']
+      const buttonType = buttonTypes[clickBtn - 1]
+      await postNunchiGameButton(token, buttonType)
       setTimeout(() => {
-        toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, { autoClose: 1000 });
-        fetchData();
-      }, 1000);
+        toast.success(`${clickBtn}번 버튼을 클릭하셨습니다.`, {
+          autoClose: 1000,
+        })
+        fetchData()
+      }, 1000)
     } catch (e: any) {
-      const errorMessage = e.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
+      const errorMessage =
+        e.response?.data?.message || '알 수 없는 오류가 발생했습니다.'
       setTimeout(() => {
-        toast.error(errorMessage, { autoClose: 1000 });
-      }, 500);
+        toast.error(errorMessage, { autoClose: 1000 })
+      }, 500)
     } finally {
       setTimeout(() => {
-        setDebounce(false);
-      }, 300);
+        setDebounce(false)
+      }, 300)
     }
-  };
+  }
 
   const dates = useMemo(() => {
-    const today = new Date();
-    const currentDay = today.getDate();
-    const currentMonth = today.getMonth();
-    const currentYear = today.getFullYear();
-    const hour = today.getHours();
-    let endDay = currentDay;
+    const today = new Date()
+    const currentDay = today.getDate()
+    const currentMonth = today.getMonth()
+    const currentYear = today.getFullYear()
+    const hour = today.getHours()
+    let endDay = currentDay
     if (hour >= 23) {
-      endDay++;
+      endDay++
     }
-    const newDates = [];
+    const newDates = []
     for (let i = 13; i <= endDay; i++) {
-      const date = new Date(currentYear, currentMonth, i);
-      newDates.push(date);
+      const date = new Date(currentYear, currentMonth, i)
+      newDates.push(date)
     }
 
-    return newDates;
-  }, []);
+    return newDates
+  }, [])
 
   const dayOfWeek = useMemo(() => {
     return dates.map((date) => {
-      const days = ['일', '월', '화', '수', '목', '금', '토'];
-      const dayIndex = date.getDay();
-      return days[dayIndex];
-    });
-  }, [dates]);
+      const days = ['일', '월', '화', '수', '목', '금', '토']
+      const dayIndex = date.getDay()
+      return days[dayIndex]
+    })
+  }, [dates])
 
   const handleDateClick = useCallback((date: Date) => {
-    setSelectedDate(date);
-  }, []);
+    setSelectedDate(date)
+  }, [])
 
-  const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE'];
+  const buttonTypes = ['ONE', 'TWO', 'THREE', 'FOUR', 'FIVE']
 
   const handleButtonClick = (button: number) => {
     if (
@@ -156,9 +146,9 @@ const NunchiGame = () => {
       buttonGame.button_type !== 'FIVE' &&
       buttonGame.is_active
     ) {
-      setClickedButton(clickedButton === button ? 0 : button);
+      setClickedButton(clickedButton === button ? 0 : button)
     }
-  };
+  }
   return (
     <>
       <S.Wrapper>
@@ -243,7 +233,11 @@ const NunchiGame = () => {
                                       : 0)
                           }
                         >
-                          {buttonGame.results ? buttonGame.results[buttonTypes[number - 1]] ?? '0' : '??'}명
+                          {buttonGame.results
+                            ? (buttonGame.results[buttonTypes[number - 1]] ??
+                              '0')
+                            : '??'}
+                          명
                         </S.Text2>
                       </div>
                       {number !== 5 && <S.Contour />}
@@ -282,7 +276,8 @@ const NunchiGame = () => {
                   )}
                 </S.Button>
                 <S.Text>
-                  매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를 지급해요 <br />
+                  매일 밤 11시, 가장 적게 눌린 버튼을 누른 분들에게 포인트를
+                  지급해요 <br />
                   <span>50만 원 이상 보유자는 참여할 수 없어요</span>
                 </S.Text>
               </S.BottomContainer>
@@ -292,10 +287,10 @@ const NunchiGame = () => {
       </S.Wrapper>
       <ToastContainer autoClose={1000} />
       <div>
-        <Toaster position="top-right" reverseOrder={true} />
+        <Toaster position='top-right' reverseOrder={true} />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default NunchiGame;
+export default NunchiGame

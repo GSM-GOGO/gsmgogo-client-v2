@@ -1,41 +1,24 @@
-import * as S from './style.ts';
-import { GAuthLogo, SignInLogo } from '../../assets';
-import '@msg-team/gauth-react/dist/index.css';
-import apiClient from '../../utils/libs/apiClient.ts';
-import { useState } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import { Toaster } from 'react-hot-toast';
-import 'react-toastify/dist/ReactToastify.css';
+import * as S from './style.ts'
+import { GAuthLogo, SignInLogo } from '../../assets'
+import '@msg-team/gauth-react/dist/index.css'
+import { useState } from 'react'
+import { ToastContainer } from 'react-toastify'
+import { Toaster } from 'react-hot-toast'
+import 'react-toastify/dist/ReactToastify.css'
+import { signIn } from '../../apis/Auth/signin.ts'
 
 const Signin = () => {
-  const [isSigningIn, setIsSigningIn] = useState(false);
-
-  const handleSignIn = async () => {
-    if (isSigningIn) return;
-
-    setIsSigningIn(true);
-
-    try {
-      const response = await apiClient.get('/auth/login');
-      window.location.href = response.data.redirect;
-    } catch (error: any) {
-      const errorMessage = error.response?.data?.message || '알 수 없는 오류가 발생했습니다.';
-      setTimeout(() => {
-        toast.error(errorMessage, { autoClose: 1000 });
-      }, 500);
-    } finally {
-      setTimeout(() => {
-        setIsSigningIn(false);
-      }, 800);
-    }
-  };
+  const [isSigningIn, setIsSigningIn] = useState(false)
 
   return (
     <S.Wrapper>
       <S.Container>
         <S.ContainerResponse>
-          <S.ImgBox src={SignInLogo} alt="SigninLogo" />
-          <S.GauthLoginButton onClick={handleSignIn} disabled={isSigningIn}>
+          <S.ImgBox src={SignInLogo} alt='SigninLogo' />
+          <S.GauthLoginButton
+            onClick={() => signIn(setIsSigningIn)}
+            disabled={isSigningIn}
+          >
             <GAuthLogo />
             Sign up with GAuth
           </S.GauthLoginButton>
@@ -43,10 +26,10 @@ const Signin = () => {
       </S.Container>
       <ToastContainer autoClose={1000} />
       <div>
-        <Toaster position="top-right" reverseOrder={true} />
+        <Toaster position='top-right' reverseOrder={true} />
       </div>
     </S.Wrapper>
-  );
-};
+  )
+}
 
-export default Signin;
+export default Signin

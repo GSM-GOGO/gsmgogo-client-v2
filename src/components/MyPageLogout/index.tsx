@@ -1,25 +1,13 @@
-import apiClient from '../../utils/libs/apiClient';
-import { LogoutIcon } from '../../assets';
-import * as S from './style';
-import { useNavigate } from 'react-router-dom';
+import { LogoutIcon } from '../../assets'
+import * as S from './style'
+import { useNavigate } from 'react-router-dom'
+import { logout } from '../../apis/Auth/logout'
 
 const MyPageLogout = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   const handleLogout = async () => {
-    try {
-      const accessToken = localStorage.getItem('accessToken');
-
-      await apiClient.delete(`/auth/logout`, {
-        headers: {
-          Authorization: accessToken!,
-        },
-        withCredentials: true,
-      });
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
-      navigate('/signin');
-    } catch (e) {}
-  };
+    logout(navigate)
+  }
 
   return (
     <S.FirstHeaderContainer>
@@ -35,7 +23,7 @@ const MyPageLogout = () => {
         </S.LogoutContainerResponse>
       </S.LogoutContainer>
     </S.FirstHeaderContainer>
-  );
-};
+  )
+}
 
-export default MyPageLogout;
+export default MyPageLogout

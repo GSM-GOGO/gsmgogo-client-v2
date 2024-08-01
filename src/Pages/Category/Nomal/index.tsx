@@ -1,46 +1,24 @@
-import * as S from './style.ts';
-import Category from '../../../components/Category/index.tsx';
-import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import apiClient from '../../../utils/libs/apiClient.ts';
-import { EmptyPlaying } from '../../../assets/index.ts';
-
-interface Team {
-  team_id: number;
-  team_name: string;
-  team_grade: 'ONE' | 'TWO' | 'THREE';
-  team_class_type: 'SW' | 'EB';
-  win_count: number;
-  follow: boolean;
-  my_team: boolean;
-  badminton_rank?: 'A' | 'B' | 'C' | 'D';
-}
+import * as S from './style.ts'
+import Category from '../../../components/Category/index.tsx'
+import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { EmptyPlaying } from '../../../assets/index.ts'
+import { Team } from '../../../types/Team.ts'
+import fetchNormal from '../../../apis/Category/fetchNormal.ts'
 
 const NomalMatch = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
-  const [addteam, setAddteam] = useState(false);
-  const [teamList, setTeamList] = useState<Team[]>([]);
+  const [addteam, setAddteam] = useState(false)
+  const [teamList, setTeamList] = useState<Team[]>([])
 
   const GoRegister = () => {
-    navigate(`/register`);
-  };
+    navigate(`/register`)
+  }
 
   useEffect(() => {
-    const fetchNormal = async () => {
-      try {
-        const token = localStorage.getItem('accessToken');
-        const response = await apiClient.get(`/team?type=NORMAL`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-        setTeamList(response.data);
-      } catch (e) {}
-    };
-
-    fetchNormal();
-  }, []);
+    fetchNormal(setTeamList)
+  }, [])
 
   return (
     <>
@@ -49,7 +27,9 @@ const NomalMatch = () => {
           <S.ModalContainer>
             <S.ModalTextContainer style={{ gap: '0' }}>
               <S.ModalTitle>
-                <S.ModalTitleContainer style={{ alignItems: 'center' }}>팀을 등록하시겠습니까?</S.ModalTitleContainer>
+                <S.ModalTitleContainer style={{ alignItems: 'center' }}>
+                  팀을 등록하시겠습니까?
+                </S.ModalTitleContainer>
               </S.ModalTitle>
               <S.ModalNovelContainer>
                 <S.ModalNovel style={{ color: 'var(--Error, #DF454A)' }}>
@@ -59,8 +39,12 @@ const NomalMatch = () => {
               </S.ModalNovelContainer>
             </S.ModalTextContainer>
             <S.ModalButtonContainer>
-              <S.ModalCencleButton onClick={() => setAddteam(!addteam)}>아니오</S.ModalCencleButton>
-              <S.ModalCheerButton onClick={GoRegister}>팀구성하기</S.ModalCheerButton>
+              <S.ModalCencleButton onClick={() => setAddteam(!addteam)}>
+                아니오
+              </S.ModalCencleButton>
+              <S.ModalCheerButton onClick={GoRegister}>
+                팀구성하기
+              </S.ModalCheerButton>
             </S.ModalButtonContainer>
           </S.ModalContainer>
         </S.ModalBackground>
@@ -89,11 +73,19 @@ const NomalMatch = () => {
                                         : '3학년'}
                                   </S.TeamClass>
                                   <S.TeamClass>
-                                    {team.team_class_type === 'SW' ? '소프트웨어 개발과' : '임베디드 개발과'}
+                                    {team.team_class_type === 'SW'
+                                      ? '소프트웨어 개발과'
+                                      : '임베디드 개발과'}
                                   </S.TeamClass>
                                 </S.TeamTextContainer>
                               </S.TextContainer>
-                              <S.CheckButton onClick={() => navigate(`/matches/nomal-match/form/${team.team_id}`)}>
+                              <S.CheckButton
+                                onClick={() =>
+                                  navigate(
+                                    `/matches/nomal-match/form/${team.team_id}`,
+                                  )
+                                }
+                              >
                                 확인하기
                               </S.CheckButton>
                             </S.List>
@@ -124,12 +116,20 @@ const NomalMatch = () => {
                                         : '3학년'}
                                   </S.TeamClass>
                                   <S.TeamClass>
-                                    {team.team_class_type === 'SW' ? '소프트웨어 개발과' : '임베디드 개발과'}
+                                    {team.team_class_type === 'SW'
+                                      ? '소프트웨어 개발과'
+                                      : '임베디드 개발과'}
                                   </S.TeamClass>
                                 </S.TeamTextContainer>
                               </S.TextContainer>
                               <S.ButtonContainer>
-                                <S.CheckButton onClick={() => navigate(`/matches/nomal-match/form/${team.team_id}`)}>
+                                <S.CheckButton
+                                  onClick={() =>
+                                    navigate(
+                                      `/matches/nomal-match/form/${team.team_id}`,
+                                    )
+                                  }
+                                >
                                   확인하기
                                 </S.CheckButton>
                               </S.ButtonContainer>
@@ -155,7 +155,7 @@ const NomalMatch = () => {
         </S.Container>
       </S.Wrapper>
     </>
-  );
-};
+  )
+}
 
-export default NomalMatch;
+export default NomalMatch
